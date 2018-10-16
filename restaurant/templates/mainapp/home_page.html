@@ -1,0 +1,121 @@
+{% extends 'mainapp/base.html' %}
+{% load common_template_functions %}
+
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %} 
+{% block title %}
+
+ Home
+
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    <ul class="messages" style="display: none;">
+        {% for message in messages %}
+            {% if message|stringformat:"s" == 'contact_success' %}  <li id="contactsucc" class="{{ message.tags }}">{%  trans 'Your Enqiry Has Been Submitted' %}</li>{% endif %}
+
+            {% if message|stringformat:"s" == 'contact_error' %}  <li id="contact_error" class="{{ message.tags }}">{%  trans 'Sorry Some Error While Submitting Your Query' %}</li>{% endif %}
+            {% if message|stringformat:"s" == 'cancelorder' %}  <li id="cancelorder" class="{{ message.tags }}">{%  trans 'Payment is failed or canceled.' %}</li>{% endif %}
+            {% if message|stringformat:"s" == 'unavailablepayment' %}  <li id="cancelorder" class="{{ message.tags }}">{%  trans 'This link is not available.' %}</li>{% endif %}
+            <!-- <li id="msg" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li> -->
+        {% endfor %}
+    </ul>
+{% endif %}   
+<section class="our_lunchbox_section pull-left full-width">
+    <div class="container">
+        <h1 class="pull-left full-width text-center"> {% trans "Our Lunchboxes" %}</h1>
+        
+            {% if not last_ten %}
+                <center><strong>{% trans 'No lunchbox available' %}.</strong></center>
+            {% endif %}
+            {% for last in last_ten %}
+            <form role="form"  method="GET" action="{% url 'tocart' %}">{% csrf_token %}
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="our_lunchbox_box pull-left full-width">
+                    <div class="our_lunchbox_box_image">
+                        {% if last.get_images %}
+                            {% for i in last.get_images|slice:":1" %}
+                                {% if i.image|thumbnail_url:'home_lunchbox_pic' %}
+                                    <a href="{% url 'individual_lunchbox' slug=last.category.slug pk=last.id %}"><img src="{{ i.image|thumbnail_url:'home_lunchbox_pic' }}" alt=""></a>
+                                {% else %}
+                                    <a href="{% url 'individual_lunchbox' slug=last.category.slug pk=last.id %}"><img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt=""></a>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% else %}
+                            <a href="{% url 'individual_lunchbox' slug=last.category.slug pk=last.id %}"><img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt=""></a>
+                        {% endif %}
+                        
+                    </div>   
+                    <div class="our_lunchbox_box_discription pull-left full-width">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <span class="our_lunchbox_box_title pull-left full-width"> 
+                                    {{ last.name }}
+                                </span>
+                                <span class="our_lunchbox_box_price pull-left full-width">€ {{ last.price }} </span>
+
+                            </div>
+                            <input type="hidden" class="available_till" id="ddate_ddate{{ forloop.counter }}" value="{{ last.available_till|date:'Y-m-d' }}">
+                            <input type="hidden" name="lunchboxname" value="{{ last.name }}">
+                          <input type="hidden" name="lunchbox" value="{{ last.id }}">
+                          <input type="hidden" name="lunchboxqty" value="1">
+                           <input type="hidden" name="lunchboxprice" value="{{ last.price }}">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="our_lunchbox_box_button pull-left full-width text-right">
+                                    <a class="our_lunchbox_box_see_more" href="{% url 'individual_lunchbox' slug=last.category.slug pk=last.id %}">{% trans 'See' %} {% trans 'More' %}</a>
+                                    <input type="button" name="submit" value="{% trans 'Order' %}" onclick="tocart(this.form)" />
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+            {% endfor %}
+            <div class="col-sm-12">
+            {% if last_ten %}
+                <div class="view_all_lunchboxes pull-left full-width text-center">
+                    <a href="{% url 'all' %}"><img class="hover_arrow" src="{% static 'mainapp/img/view_all_arrow.png' %}" alt=""><img class="non_hover_arrow" src="{% static 'mainapp/img/view_all_arrow_non_hover.png' %}" alt="">{% trans 'View all lunchboxes' %}</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<section class="meet_your_needs_section pull-left full-width">
+    <div class="container">
+        <h1>{% trans 'Lunchboxes to meet your needs' %}</h1>
+        <div class="row">
+
+            {% for category in categories %}
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="meet_your_needs_box full-width pull-left">
+                        <div class="meet_your_needs_bg_img pull-left full-width">
+                            <img src="{% static 'mainapp/img/meet_your_need_bg_black.jpg' %}" alt="">
+                        </div>   
+                        <div class="meet_your_needs_box_content">
+                            <div class="meet_your_needs_box_inner">
+
+                      <a class="full-width" href="{% url 'category_lunchbox' slug=category.slug %}">
+                                    <div class="meet_your_needs_box_bg pull-left full-width">
+                                        <img src="{% static 'mainapp/img/Gluten_icon.png' %}">
+                                        <h2>{{category.title}}   </h2>
+                                    </div>
+                                    <div class="meet_your_needs_box_bg_hover">
+                                        <img src="/media/{{category.image}}" alt>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

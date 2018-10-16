@@ -1,0 +1,209 @@
+{% extends 'mainapp/base.html' %}
+{% load common_template_functions %}
+{% load user_leave_review %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load is_buyer %}
+{% load i18n %}
+{% load l10n %} 
+{% block title %}
+Restaurant
+{% endblock %}
+
+{% block content %}
+<section class="individual_restaurant_section full-width">
+         <div class="container">
+         
+            <div class="individual-rest-slider">
+               <div class="row">
+                  
+                  <div class="col-md-8">
+                     <div class="carousel slide" id="individualmyCarousel" data-ride="carousel">
+                        <!-- Carousel items -->
+                        
+                           <div class="carousel-inner">
+                           {% if restaurant.get_images %}
+                              {% for i in restaurant.get_images %}
+                                 {% if forloop.counter == 1 %}
+                                    <div class="item active" data-slide-number="{{ forloop.counter }}">
+                                      <img src="{{ i.image|thumbnail_url:'restaurant_gallery_image' }}" alt=" /">
+                                    </div>
+                                 {% else %}
+                                    <div class="item" data-slide-number="{{ forloop.counter }}" alt=" /">
+                                      <img src="{{ i.image|thumbnail_url:'restaurant_gallery_image' }}" alt="">
+                                    </div>
+                                 {% endif %}
+                              {% endfor %}
+                              <div class="row" id="slider-thumbs">
+                                 <ol class="carousel-indicators" style="z-index:1 !important">
+                                    {% for i in restaurant.get_images %}
+                                       {% if forloop.counter == 1 %}
+                                          <li data-target="#individualmyCarousel" data-slide-to="{{ forloop.counter }}" class="active"></li>
+                                       {% else %}
+                                          <li data-target="#individualmyCarousel" data-slide-to="{{ forloop.counter }}" class=""></li>
+                                       {% endif %}
+                                    {% endfor %}
+                                    </ol> 
+                              </div>
+                           {% else %}
+                                 <div class="item active" data-slide-number="0">
+                                   <img src="{% static 'mainapp/img/in-slider1.jpg' %}" alt=" /">
+                                 </div>
+                                 <div class="item" data-slide-number="1" alt=" /">
+                                   <img src="{% static 'mainapp/img/in-slider2.jpg' %}" alt="">
+                                 </div>
+                                 <div class="item" data-slide-number="1" alt=" /">
+                                   <img src="{% static 'mainapp/img/in-slider3.jpg' %}" alt="">
+                                 </div>
+                               
+                              <div class="row" id="slider-thumbs">
+                                 <!-- Bottom switcher of slider -->
+                                 <ol class="carousel-indicators" style="z-index:1 !important">
+                                  <li data-target="#individualmyCarousel" data-slide-to="0" class="active"></li>
+                                  <li data-target="#individualmyCarousel" data-slide-to="1" class=""></li>
+                                  <li data-target="#individualmyCarousel" data-slide-to="2" class=""></li>
+                                  
+                                </ol>                 
+                             </div>
+                          {% endif %}
+                          <a class="left carousel-control" href="#individualmyCarousel" data-slide="prev">
+                                 <span><img src="{% static 'mainapp/img/prev-arrow-gray.png' %}"></span>
+                              </a>
+                          <a class="right carousel-control" href="#individualmyCarousel" data-slide="next">
+                              <span><img src="{% static 'mainapp/img/next-arrow-gray.png' %}"></span>
+                          </a>
+                        </div>                                
+                     </div>
+
+                     <!-- Slider Ends -->
+
+                     <!-- Reviews Here -->
+
+                     <div class="reviews-individual-sec" data-res="{{ restaurant.id }}">
+                        <h3>{% trans 'Reviews' %}</h3>
+
+                        <div class="reviews-added" >
+                        {% if restaurant.get_reviews %}
+                           <ul class="reviews-container">
+                              {% for f in restaurant.get_reviews %}
+                                 <li>
+                                    <a class="profile-img" href="#"><span><img src="{% static 'mainapp/img/dummy-image.jpg' %}" alt="profile-img"></span></a>
+                                    <span class="dated">{{ f.datetime|date:'H:i Y. M d' }}</span>
+                                    <h5>{{ f.user.first_name|title }} {{ f.user.last_name|title }}</h5>
+                                    <p>{{ f.msg }}</p>
+                                 </li>
+                              {% endfor %}
+                           </ul>
+                           {% else %}
+                                <strong class="no_review_msg">{% trans "Currently, the restaurant doesn't have any reviews." %}</strong>
+                            {% endif %}
+                        </div>
+                        {% if request.user.is_authenticated and not restaurant.id|user_leave_review:request.user.id and restaurant.id|is_buyer:request.user.id %}
+                        <div class="review_comment_box">
+                           <textarea class="msg" placeholder="Enter your review here...."></textarea>
+                           <button id="res_review_send">Send</button>
+                        
+                        </div>
+                        {% endif %}
+                     </div>
+
+                  </div>
+
+                  <div class="col-md-4">
+                     <div class="sidebar-details-individuals">
+                        <div class="individual-bananas-text-box">
+                           <h3>{{ restaurant.name|title }}</h3>
+                           <div class="text-box-desc">
+                              <p>
+                              {% if restaurant.desc %}
+                                {% trans restaurant.desc|safe %}
+                              {% else %}
+                                {% trans 'Description not available.' %}
+                              {% endif %}
+                              </p>
+                           </div>
+                        </div>
+                        
+                        <div class="individual-bananas-contact-det">
+                           <ul class="address-shown">
+                              <li><span>{% trans 'Address' %}:</span>{{ restaurant.address }}</li>
+                              <li><span>{% trans 'Phone' %}:</span><a href="#">{{ restaurant.phone }}</a></li>
+                              {% if restaurant.website %}
+                                <li><span>{% trans 'Website' %}:</span><a class="website" {% if restaurant.website %} href="{{ restaurant.website }}" {% else %} href="#"{% endif %}>{{ restaurant.website }}</a></li>
+                              {% endif %}
+                           </ul>
+                           <ul class="social-list-address">
+                            {% if restaurant.facebook %}
+                              <li><a {% if restaurant.facebook %} href="{{ restaurant.facebook }}"  {% else %} href="#"{% endif %}><img src="{% static 'mainapp/img/fb-ico.png' %}" alt="fb"></a></li>
+                            {% endif %}
+                            {% if restaurant.twitter %}
+                              <li><a {% if restaurant.twitter %} href="{{ restaurant.twitter }}"  {% else %} href="#"{% endif %}><img src="{% static 'mainapp/img/twitter-ico.png' %}" alt="twitter"></a></li>
+                            {% endif %}
+                            {% if restaurant.instagram %}
+                              <li><a {% if restaurant.instagram %} href="{{ restaurant.instagram }}"  {% else %} href="#"{% endif %}><img src="{% static 'mainapp/img/insta-ico.png' %}" alt="insta"></a></li>
+                            {% endif %}
+                           </ul>
+                        </div>   
+
+                        <div class="opening-hours">
+                           <h5>{% trans 'Opening hours' %} :</h5>
+                           <ul>
+                           {% if restaurant.opening_hours %}
+                              <!-- <li><span>Monday:</span> Closed</li> -->
+                              <li>{{ restaurant.opening_hours|safe }}</li>
+                           {% else %}
+                              {% trans 'Not available' %}
+                           {% endif %}
+                           </ul>
+                        </div>
+
+                        <div class="delivery-to-individual">
+                           <h5>{% trans 'Delivery To' %}:</h5>
+                           {% if restaurant.get_delivery_distances %}
+                              <ul>
+                              {% for d in restaurant.get_delivery_distances %}
+                                 <li>{{ d.city }} </li>
+                              {% endfor %}
+                              </ul>
+                           {% else %}
+                              {% trans 'No city available' %}.
+                           {% endif %}
+                        </div>
+
+                     </div>
+                  </div>
+
+
+                  <!-- Bottom Buttons -->
+
+                  <div class="col-md-12">
+                     <div class="action-panel-individual">
+                     <a href="{{request.META.HTTP_REFERER}}">{% trans 'Back to Lunchbox' %}</a>
+                     <a href="{% url 'restaurant_lunchboxes_detail' restaurant.id 1%}">
+                        <img class="non_hover_arrow" src="{% static 'mainapp/img/arrow-un-hov.png' %}" alt="arrow">
+                        <img class="hover_arrow" src="{% static 'mainapp/img/arrow-hov.png' %}" alt="arrow"> {% trans 'Current Lunchboxes' %}
+                     </a>
+                     
+                     <a href="{% url 'restaurant_lunchboxes_detail' restaurant.id 2 %}">
+                        <img class="non_hover_arrow" src="{% static 'mainapp/img/arrow-un-hov.png' %}" alt="arrow">
+                        <img class="hover_arrow" src="{% static 'mainapp/img/arrow-hov.png' %}" alt="arrow"> {% trans 'Archived Lunchboxes' %}
+                     </a>
+                     
+                  </div>
+                  </div>
+
+
+               </div>
+            </div>
+            
+
+
+
+
+
+         </div>
+      </section>
+      <script type="text/javascript">
+        var leave_review = "{% url 'leave_review' %}";
+      </script>
+{% endblock %}

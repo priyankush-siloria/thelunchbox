@@ -1,0 +1,98 @@
+{% load i18n %}
+{% load l10n %}
+{% load staticfiles %}
+<!DOCTYPE html> 
+<html lang=en>
+   <head>
+      <meta charset=utf-8>
+      <meta content="IE=edge" http-equiv=X-UA-Compatible>
+      <meta content="width=device-width,initial-scale=1" name=viewport>
+      <title>
+      {% block title %}
+       {% endblock %}
+       </title>
+      <link href="{% static 'dashboard/css/bootstrap.min.css' %}" rel=stylesheet>
+      <link href="{% static 'dashboard/css/style.css' %}" rel=stylesheet>
+      <link href="{% static 'dashboard/css/font-awesome.min.css' %}" rel=stylesheet>
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+      <link rel="stylesheet" type="text/css" href="{% static 'datepicker/jquery.datetimepicker.css' %}"/>
+      <link href="{% static 'toast_noti/css/jquery.toast.css' %}" rel="stylesheet" type="text/css">
+      {% block css %}
+       {% endblock %}
+   </head>
+   <body>
+      <div class="restaurants_admin_outer pull-left full-width">
+         {% include 'dashboard/header.html' %}
+         {% block content %}
+
+
+         {% endblock %}
+         {% include 'dashboard/footer.html' %}
+            
+      </div>
+
+
+      
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{% static 'datepicker/jquery.js' %}"></script>
+        <script src="{% static 'datepicker/build/jquery.datetimepicker.full.js' %}"></script>
+        <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>  
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjwFQSl6YAT8xSUNSrkZWt17tpLyd9zFQ&libraries=places&callback=initAutocomplete"
+        async defer></script>
+        <script src="{% static 'toast_noti/js/jquery.toast.js' %}"></script>
+        <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+        <script src="{% static 'dashboard/js/dashboard.js' %}"></script> 
+        <!-- <script src="//cdn.ckeditor.com/4.5.8/standard/ckeditor.js"></script> -->
+        
+        
+        <script type="text/javascript">
+    
+        // tabbing js 
+        $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+            e.preventDefault();
+            $(this).siblings('a.active').removeClass("active");
+            $(this).addClass("active");
+            var index = $(this).index();
+            $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+            $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        });
+
+        var token="{{ csrf_token }}";
+        
+        var order_set = "{% url 'process_status' %}";
+        var archieve_notification = "{% url 'archive_noti' %}";
+        var set_msg_priorty = "{% url 'set_priority' %}";
+        var savemailorder="{% url 'savemailorder' %}";
+        var mailorderdetail="{% url 'mailorderdetail' %}";
+        var remove_restaurant = "{% url 'remove_restaurant' %}";
+        $('.carousel').carousel ({
+            interval: false
+          })
+</script>
+          {% block scriptcode %}
+
+
+         {% endblock %}
+
+      <!-- MODAL -->
+       <div id="dashboard_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{% trans 'Modal Header' %}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{% trans 'Some text in the modal' %}.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+   </body>
+</html>

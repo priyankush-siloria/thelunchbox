@@ -1,0 +1,33 @@
+{% extends 'control/base_control.html' %}
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}{% trans Restaurants %}{% endblock %}
+{% block content %}
+    <div class="col-md-15 lunchbox-content center restaurants">
+        <h1 class="text-uppercase">{% trans 'Registered restaurants' %}</h1>
+        <br>
+        <div class="items">
+            {% for r in default %}
+                <div class="item">
+                    <a href="{% url 'admin_restaurant_info' r.id %}"></a>
+                    {% if r.logo %}
+                        <img src="{{ r.logo|thumbnail_url:'restaurant_control_logo_small' }}" alt="">
+                    {% else %}
+                        <div class="camera">
+                            <div class="line"></div>
+                            <span class="glyphicon glyphicon-camera"></span>
+                        </div>
+                    {% endif %}
+                    <div class="glyphicon glyphicon-remove remove_restaurant" data-res="{{ r.id }}"></div>
+                </div>
+            {% endfor %}
+            <div class="clearfix"></div>
+        </div>
+        <div class="col-md-3 pull-right">
+            <a href="#"
+               class="btn btn-primary rm-btn">{% trans 'Remove' %}</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}

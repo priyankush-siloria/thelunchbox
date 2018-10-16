@@ -1,0 +1,387 @@
+{% load thumbnail %}
+{% load percent %}
+{% load i18n %}
+{% load l10n %}
+{% load staticfiles %}
+{% load get_company_orders_qty %}
+          {% if today_orders %}
+          <ul class="nav nav-tabs">
+              {% for o in today_orders %}
+                {% if forloop.counter == 1 %}
+  							 <li class="active"><a data-toggle="tab" href="#c-home" aria-expanded="true">{{ o.lunchbox.name }}</a></li>
+                {% else %}
+                    <li class=""><a data-toggle="tab" href="#c-menu1" aria-expanded="false">{{ o.lunchbox.name }}</a></li>
+                {% endif %}
+              {% endfor %}
+							
+
+						</ul>
+          {% endif %}
+						<div class="tab-content">
+            {% for o in today_orders %}
+              {% if forloop.counter == 1 %}
+							 <div id="c-home" class="tab-pane fade active in">
+							{% else %}
+                <div id="c-menu1" class="tab-pane fade">
+              {% endif %}
+                <section class="admin_restaurant_edit_section pull-left full-width">
+
+                  
+                  {% for i in o.lunchbox.get_images %}
+                      {% if forloop.counter == 1 %}
+                     <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input">
+                                      {% if i.image %}
+                                       <img id="gallerybigimg1" src="{{ i.image|thumbnail_url:'dashboard_lunchbox' }}" alt="">
+                                      {% else %}
+                                        <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_1.png' %}" alt="">
+                                      {% endif %}
+                                    </label>
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                      {% else %}
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                        {% if i.image %}
+                                          <img id="gallerybigimg1" src="{{ i.image|thumbnail_url:'home_lunchbox_pic' }}" alt="">
+                                        {% else %}
+                                          <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_1.png' %}" alt="">
+                                        {% endif %}
+
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     {% endif %}
+                    {% endfor %}
+                     
+                     {% if not o.lunchbox.get_images %}
+                      <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input">
+                                        <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_1.png' %}" alt="">
+                                    </label>
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                      {% for i in list1 %}
+                        <div class="col-md-4 col-sm-4">
+                          <div class="row">
+                             <div class="admin_restaurant_edit_pin pull-left full-width">
+                                <div class="col-xs-12">
+                                   <div class="row">
+                                      <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                         <label for="file-input3">  
+                                            <img id="gallerybigimg3" src="{% static 'mainapp/img/lunchbox_chicken_1.png' %}" alt="">
+                                         </label>
+                                         <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                      </div>   
+                                   </div>
+                                </div>   
+                             </div>
+                          </div>   
+                       </div>
+                      {% endfor %}
+                    {% else %}
+                      {% for key, value in dict1.items %} 
+                            {% if key == o.lunchbox.id %}
+                                {% for val in value %}
+                                      <div class="col-md-4 col-sm-4">
+                                        <div class="row">
+                                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                                              <div class="col-xs-12">
+                                                 <div class="row">
+                                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                                       <label for="file-input3">  
+                                                          <img id="gallerybigimg3" src="{% static 'mainapp/img/lunchbox_chicken_1.png' %}" alt="">
+                                                       </label>
+                                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                                    </div>   
+                                                 </div>
+                                              </div>   
+                                           </div>
+                                        </div>   
+                                     </div>
+                                {% endfor %}
+                            {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                     
+                <!-- Images/ Section -->
+
+                <section id="wild-s-t" class="wild-s-t">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="wild-salmon-text">
+                                  <h2>{{ o.lunchbox.name }}</h2>
+
+                                  <p class="wst">
+                                      {% trans o.lunchbox.desc|safe %}
+                                  </p>
+                              </div>
+
+                              <div class="availability-section">
+
+                                  <h2 class="availability-tab">{% trans 'Availability' %}</h2>
+                                    <div class="availability-dates">
+                                        <div class="form-group">
+                                            <lable>{% trans 'Start' %}</lable>
+                                            <span class="admin_date_picker admin_start_date avail-date">
+                                                         <input value="{{ o.lunchbox.available_from|date:'M d Y' }}" name="available_from" placeholder="Click here"  type="text" id="datetimepicker3" disabled="true" > <a href="#"><img src="{% static 'dashboard/img/admin_date_picker.png' %}"></a> 
+                                                      </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <lable>{% trans 'End' %}</lable>
+                                            <span class="admin_date_picker admin_start_date avail-date">
+                                               <input id="datetimepicker4" value="{{ o.lunchbox.available_till|date:'M d Y' }}" name="available_till" placeholder="Click here"  type="text" disabled="true"> <a href="#"><img src="{% static 'dashboard/img/admin_date_picker.png' %}"></a> 
+                                            </span>
+                                        </div>
+                                    </div>
+                              </div>
+
+                              <div class="salmon-outer-price">
+                                <table class="salmon-prices table-responsive table table-bordered">
+                                   <tbody>
+                                     <tr>
+                                       <th>{% trans 'Price' %}/{% trans 'Lunchbox' %}</th>
+                                       <td class="priced-td">{{ o.lunchbox.price }} € </td>
+                                     </tr>
+                                     {% for d in o.lunchbox.get_discounts %}
+                                       <tr>
+                                         <th>{{ d.percent }} % {% trans 'discount at' %} {{ d.qty }} {% trans 'lunchboxes' %} </th>
+                                         <td class="priced-td">{{ o.lunchbox.price|percent:d.percent }} € </td>
+                                       </tr>
+                                      {% endfor %}
+                                   </tbody> 
+                                </table>
+                              </div>
+
+                          </div>
+                          <div class="col-md-8 todays-box-right">
+
+                              <!-- Ratings Starts -->
+                              <div class="lunchbox-rating">
+                                <div class="rating">
+                                    <p class="text-uppercase">{% trans 'Average' %}
+                                        <br> {% trans 'Rating' %}</p>
+                                    <span class="rating_num">{{ o.lunchbox.get_rating }}</span>
+                                    <ul class="stars">
+                                      {% for r in o.lunchbox.get_rating_int %}
+                                          <li><span class="glyphicon glyphicon-star"></span></li>
+                                      {% endfor %}
+                                      {% for r in o.lunchbox.get_rating_diff %}
+                                        <li><span class="glyphicon glyphicon-star-empty"></span>
+                                        </li>
+                                      {% endfor %}
+
+                                    </ul>
+                                </div>
+                                <div class="rating_info">
+                                    <p>{{ o.lunchbox.name }} {% trans 'got 1 star' %}
+                                        from {{ o.lunchbox.get_count_of_rating_1 }}
+                                        people</p>
+                                    <p>{{ o.lunchbox.name }} {% trans 'got 2 star' %}
+                                        from {{ o.lunchbox.get_count_of_rating_2 }}
+                                        people</p>
+                                    <p>{{ o.lunchbox.name }} {% trans 'got 3 star' %}
+                                        from {{ o.lunchbox.get_count_of_rating_3 }}
+                                        people</p>
+                                    <p>{{ o.lunchbox.name }} {% trans 'got 4 star' %}
+                                        from {{ o.lunchbox.get_count_of_rating_4 }}
+                                        people</p>
+                                    <p>{{ o.lunchbox.name }} {% trans 'got 5 star' %}
+                                        from {{ o.lunchbox.get_count_of_rating_5 }}
+                                        people</p>
+                                </div>
+                            </div>
+                            <!-- Ratings Ends -->
+
+                            <!-- People Choose This Today -->
+                            <div class="people-choose">
+                                <h2><span class="qty">{{ o.lunchbox.id|get_company_orders_qty:request.user.id }}</span> {% trans 'People chose this today' %}</h2>
+                            </div>
+
+                            <div class="table-outer">
+                                <table class="table table-borderd table-lunch-box">
+                                    
+                                <tbody>
+                                    <tr>
+                                        <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 140px;">{% trans 'Total Calories' %}</td>
+                                        <td class="bg-td" style="width: 160px;">{{ o.lunchbox.get_total_calories }} Kcal</td>
+                                        <td>{% trans 'Fat' %}   </td>
+                                        <td  class="bg-td" style="width: 160px;">{{ o.lunchbox.fat }} Gr</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Protein' %}   </td>
+                                        <td class="bg-td">{{ o.lunchbox.protein }} Gr </td>
+                                        <td>{% trans 'Sugar' %}    </td>
+                                        <td class="bg-td">{{ o.lunchbox.sugar }} Gr </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                          {% trans 'Carbohydrates' %}    
+                                        </td>
+                                        <td class="bg-td">
+                                          {{ o.lunchbox.carbohydrates }} Gr
+                                        </td>
+                                        <td>
+                                          {% trans 'Sodium' %}    
+                                        </td>
+                                        <td class="bg-td">
+                                          {{ o.lunchbox.sodium }} MGr
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                                </table>
+                                </div>  
+
+                            <!-- People Choose This Today Ends -->
+                           </div>
+                      </div>
+                  </div>
+              </section>
+
+              <!-- Feedbacks & Communication Section Starts -->
+
+              <section id="f-and-c" class="feedback-and-communication">
+                     <div class="container-fluid">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="feedbacks-box">
+                              <h2>{% trans 'Feedback from the clients' %}</h2>
+
+                              <div class="feedback-desc show_feedback_only">
+                                <ul>
+                                {% for f in o.lunchbox.get_feedback %}
+                                  {% if f.inc %}
+                                    <li>
+                                      <span>
+                                        <img src="{% static 'mainapp/img/dummy-image.jpg' %}" alt="user-img">
+                                      </span> 
+                                      <p class="user-name">{{ f.user.first_name }} {{ f.user.last_name }}</p>
+                                      <p class="user-content">
+                                          {{ f.msg }}
+                                      </p>
+                                      <span class="d-and-t">
+                                          <span class="time">{{ f.datetime|date:'H:i' }}</span>
+                                          <span> {{ f.datetime|date:'Y. M d' }}</span>
+                                      </span>
+                                    </li>
+                                  {% else %}
+                                      <li>
+                                      <span>
+                                        <img src="{% static 'mainapp/img/dummy-image.jpg' %}" alt="user-img">
+                                      </span> 
+                                      <p class="user-name">{{ f.restaurant.name|upper }}</p>
+                                      <p class="user-content">
+                                          {{ f.msg }}
+                                      </p>
+                                      <span class="d-and-t">
+                                          <span class="time">{{ f.datetime|date:'H:i' }}</span>
+                                          <span> {{ f.datetime|date:'Y. M d' }}</span>
+                                      </span>
+                                    </li>
+                                  {% endif %}
+                                {% endfor %}
+                                {% if not o.lunchbox.get_feedback %}
+                                      <li>
+                                        <p><strong>{% trans 'No feedback available' %}.</strong></p>
+                                    </li>
+                                {% endif %}
+                                </ul>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="communication-box">
+                              <h2>{% trans 'Communication Box' %}
+                                                    [{{ restaurant.name|upper }}]</h2>
+                              
+                              <div id="lb-chat" data-res="{{ o.lunchbox.restaurant.id }}" data-lb="{{ o.lunchbox.id }}" class="chat-box-custom">
+
+                                <div class="top-chat-list">
+                                   <div class="feedback-desc">
+                                <ul id="lb_msg_list">
+                                  
+                                    {% for f in o.lunchbox.get_admin_communication %}
+                                      <li>
+                                        <span>
+                                          <img src="{% static 'mainapp/img/dummy-image.jpg' %}" alt="user-img">
+                                        </span> 
+                                        <p class="user-name">{{ f.user.first_name }} {{ f.user.last_name }}{% if f.user.is_staff %} ({% trans 'Manager' %}){% endif %}</p>
+                                        <p class="user-content">
+                                            {{ f.msg }}
+                                        </p>
+                                        <span class="d-and-t">
+                                            <span class="time">{{ f.date|date:'H:i' }}</span>
+                                            <span> {{ f.date|date:'Y. M d' }}</span>
+                                        </span>
+                                      </li>
+                                    {% endfor %}
+                                    {% if not o.lunchbox.get_admin_communication %}
+                                      <li id="no_msg_avl">
+                                        <p>
+                                          {% trans 'No message available' %}.  
+                                        </p>
+                                      </li>
+                                    {% endif %}
+                                </ul>
+                              </div> 
+                                </div>
+
+                                <div class="bottom-chat-box">
+                                  <textarea rows="5" class="lb_msg" cols="30" id="res_chat_box_text1" value="Entered Text"></textarea>
+
+                                  <button onclick="send_chat_lb(this)" class="send-chat">{% trans 'Send' %}</button>
+                                </div>
+                              </div>
+
+
+                            </div>
+                          </div>
+                        </div>
+                     </div>               
+              </section>
+
+              <!-- Feedbacks & Communication Section Ends -->
+
+              <div class="buttons-form pull-right">
+                 <a class="" href="{% url 'admin_edit_lunchbox' o.lunchbox.restaurant.id o.lunchbox.id %}">{% trans 'Edit' %}</a>
+                 <!-- <a class="" href="#">{% trans 'Send' %}</a> -->
+              </div>
+
+              </div>
+
+              {% endfor %}
+              </div>          

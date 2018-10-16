@@ -1,0 +1,51 @@
+{% extends 'mainapp/base.html' %}
+{% load common_template_functions %}
+
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %} 
+{% block title %}
+
+
+ Search Result
+
+{% endblock %}
+
+{% block content %}
+<div class="clearfix"></div>
+<section class="invite-friend-section">
+	<div class="container">
+		<div class="row">
+			<div class="share-lunchboxes _outer">
+				<div class="col-md-12">
+	                <div class="inner_title full-width">
+	                   <h1 class="pull-left full-width text-center">{% trans 'Share Your Lunchbox Selection' %}</h1>
+	                </div>
+               </div>
+				
+				  <div class="form-group">
+	                   <div class="col-md-10 col-normal">
+		                   	<div class="share_lunchboxes_new">
+		                   		<div class="row">
+							  		<div class="col-md-6 col-sm-6 col-xs-12 text-left">
+							  			<label>{% trans 'Enter Email' %}*:</label>
+							  			<input type="text" class="email" name="email" placeholder="Enter email">
+							  		</div>
+								    <div class="col-md-6 col-sm-6 col-xs-12 text-left">
+								    	<label>{% trans 'Enter Credits' %}:</label>
+								    	<input type="text" class="share" name="share_credits" placeholder="Enter credits">
+								    </div>
+								    <div class="col-xs-12 text-right">
+								    	<button class="share-lunch">{% trans 'Share' %}</button>
+								    </div>
+								</div>    
+							</div>    
+				  		</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>	
+{% endblock %}

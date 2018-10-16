@@ -1,0 +1,4993 @@
+  @charset "UTF-8";
+  @font-face {
+      font-family: 'bodoniflfbold';
+      src: url('../fonts/bodoniflf-bold-webfont.woff2') format('woff2'),
+           url('../fonts/bodoniflf-bold-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+  body{
+  	font-family: "Roboto",sans-serif;
+  	font-weight: 400;
+  }
+  .full-width{
+  	width: 100% !important;
+  }
+  .home_banner {
+    background-image: url("../img/home_banner.jpg");
+    background-position: right bottom 17px;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  header {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    transition: all 400ms ease-out 0.1s;
+    -webkit-transition: all 400ms ease-out 0.1s;
+  }
+  header.stick {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  header .navbar-brand > img {
+    width: 113px;
+    transition: width 400ms ease-out 0.1s;
+    -webkit-transition: width 400ms ease-out 0.1s;
+  }
+  header.stick .navbar-brand > img {
+    width: 68px;
+  }
+  .nav > li > a:focus, .nav > li > a:hover {
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .navbar-nav > li > a {
+    color: #ffffff;
+    font-family: "Roboto",sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 9px;
+    padding: 14px 28px 15px;
+  }
+  .navbar-nav > li.over_lunch_box > a {
+    border: 1px solid #ffffff;
+    margin-top: 17px;
+    padding: 5px 20px 7px;
+  }
+  .navbar-nav > li.user_account > a {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #ffffff;
+    margin-top: 17px;
+    padding: 5px 20px 7px;
+  }
+  .navbar-nav > li.break_text > a{
+  	margin: 0px;
+  }
+  .navbar-nav > li.blog > a {
+    padding-left: 28px;
+    padding-right: 0;
+  }
+  .navbar-brand {
+    padding: 0 60px 0 15px;
+  }
+  .navbar-nav > li.sub_menu > a {
+    background-image: url("../img/drop_arrow.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+  }
+  .navbar-nav > li.over_lunch_box {
+    padding-right: 28px;
+  }
+  .navbar-nav > li.cart_custom{
+    position: relative;
+  }
+  ul.top_nav_sub-menu {
+    background-color: #ffffff;
+    border: 1px solid #545454;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 70px;
+    left: inherit;
+    width: 173px;
+    border-radius: 0px;
+  }
+  ul.top_nav_sub-menu > li {
+    float: left;
+    width: 100%;
+    list-style: none;
+  }
+  ul.top_nav_sub-menu > li a {
+    border-bottom: 1px solid #cccccc;
+    color: #020202;
+    float: left;
+    font-size: 16px;
+    padding: 6px 20px;
+    width: 100%;
+  }
+  .navbar-nav > li.cart_custom a .cart_quientity {
+    background-color: #000000;
+    border-radius: 20px;
+    font-size: 13px;
+    left: 37px;
+    position: absolute;
+    text-align: center;
+    top: 3px;
+    width: 21px;
+  }
+  .navbar-nav > li.cart_custom a {
+    padding-bottom: 24px;
+    padding-left: 18px;
+    padding-right: 25px;
+  }
+  .navbar-nav > li.language_choose > a {
+    background-image: url("../img/drop_arrow.png");
+    background-position: 45px center;
+    background-repeat: no-repeat;
+    padding-right: 39px;
+  }
+  .product_item_total_detail {
+    background-color: #ffffff;
+    border: 1px solid #545454;
+    margin: 0;
+    border-radius: 0px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 488px;
+  }
+  .product_item_total_detail ul.list.products {
+    border: medium none;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    overflow-y: scroll;
+    max-height: 200px;
+    padding: 0 40px;
+    position: relative;
+    width: 100%;
+  }
+  .product_item_total_detail ul.list.products li{
+    overflow: hidden;
+    position: relative;
+    padding: 0 0 8px;
+  }
+  .product_item_total_detail ul.list.products li a.preview-image {
+    line-height: 60px;
+    margin: 0;
+    width: 20%;
+    padding: 0px;
+    display: block;
+    float: left;
+  }
+  .product_item_total_detail ul.list.products li a.preview-image img{
+    width: 100%;
+  }
+  .product_item_total_detail ul.list.products li .description {
+    float: left;
+    height: 60px;
+    margin: 0;
+    min-height: 0;
+    width: 72%;
+  }
+
+  .product_item_total_detail ul.list.products li .description .price-quantity .quantity-formated {
+    display: inline-block;
+    margin: 0;
+    text-transform: none;
+    width: 100%;
+  }
+  .product_item_total_detail ul.list.products li .description .price-quantity .quantity-formated .quantity {
+    color: #020202;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 60px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+  }
+  .product_item_total_detail ul.list.products li .description > a {
+    color: #020202;
+    float: left;
+    font-size: 16px;
+    line-height: 60px;
+    padding: 0;
+    width: 60%;
+    text-decoration: none;
+  }
+  .product_item_total_detail ul.list.products li .description .price-quantity {
+    float: left;
+    width: 25%;
+  }
+  .product_item_total_detail ul.list.products li .description .price-quantity .lc_price {
+    color: #333f48;
+    display: inline-block;
+    font-family: "Sansation";
+    line-height: 60px;
+    text-align: center;
+    width: 100%;
+  }
+  .product_item_total_detail ul.list.products li .remove_link {
+    display: inline-block;
+    float: left;
+    height: 60px;
+    width: 8%;
+  }
+  .product_item_total_detail ul.list.products li .remove_link a{
+    background-image:url("../img/del_cross.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    line-height: 60px;
+    padding-bottom: 0px;
+    height: 100%;
+    position: relative;
+    right: auto;
+    top: 0;
+    width: 100%;
+  }
+  .product_subtotal_detail {
+    padding: 0 40px;
+    text-align: right;
+  }
+  .product_subtotal{
+  	margin-right:14px; 
+  }
+  .product_subtotal,.chekout_product_order {
+    background-color: #242425;
+    border: 1px solid #242425;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 16px;
+    padding: 5px 20px !important;
+  }
+  .chekout_product_order:hover{
+    background-color: #ffffff;
+    color: #000;
+    text-decoration: none;
+  }
+  .product_subtotal_inner {
+    border-top: 1px solid #747474;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+  .add_products {
+    color: #020202;
+    font-size: 16px;
+    padding: 19px 0 23px;
+  }
+  .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: transparent;
+    border:none;
+  }
+  .language_choose_list {
+    background-color: #ffffff !important;
+    border: 1px solid #545454 !important;
+    padding: 0;
+    position: absolute !important;
+    right: 0;
+    top: 70px;
+    border-radius: 0px;
+    list-style: none;
+    width: 130px !important;
+  }
+  .language_choose_list > li a {
+    border-bottom: 1px solid #cccccc;
+    color: #020202;
+    font-size: 16px;
+    padding: 6px 20px;
+  }
+  .language_choose_list > li:last-child{
+  	border: none;
+  }
+
+  /*mobile header style start here*/
+  .logo {
+    height: 69px;
+  }
+  .mobile_header {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0 15px;
+  }
+  .mobile_toggle {
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+    font-size: 32px;
+    margin-left: 28px;
+    margin-top: 12px;
+  }
+  .mobile_header_outer {
+    display: none;
+  }
+  .mobile_navigation {
+    background-color: #ffffff;
+    border: 1px solid #545454;
+    border-radius: 0;
+    left: 0;
+    margin: 0;
+    padding-bottom: 12px;
+    position: absolute;
+    top: 0;
+    width: 260px;
+  }
+  ul.mobile_nav {
+    padding: 0;
+  }
+  ul.mobile_nav li{
+    list-style: none;
+  }
+  ul.mobile_nav li a {
+    float: left;
+    color: #020202;
+    font-size: 16px;
+    padding: 10px 15px;
+    width: 100%;
+  }
+  ul.mobile_nav li a:hover{
+  	color: #000000;
+  	text-decoration: none;
+  }
+  .mobile_head {
+    border-bottom: 1px solid #cccccc;
+    float: left;
+    margin-bottom: 9px;
+    padding: 13px 15px;
+    width: 100%;
+  }
+  .mobile_head_heading{
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .close_icon{
+    font-size: 22px;
+    cursor: pointer;
+  }
+  /*mobile header style end here*/
+
+  /*banner style start here*/
+  .banner_content {
+    padding: 200px 0 150px 24px;
+  }
+  .banner_content h1 {
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 40px;
+    margin-bottom: 25px;
+  }
+  .banner_content p {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 38px;
+  }
+  .banner_content a {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 20px;
+    padding: 7px 40px;
+    text-decoration: none;
+  }
+  .banner_content a:hover {
+    background-color: #1a1a1a;
+  }
+  /*banner style end here*/
+
+  /*our lunch box section style start here*/
+  section.our_lunchbox_section {
+    padding: 40px 0 54px;
+  }
+  .our_lunchbox_box {
+    margin-top: 30px;
+  }
+  .our_lunchbox_box img{
+    width: 100%;
+  }
+
+  .our_lunchbox_box_discription {
+    padding: 11px 0;
+  }
+  .our_lunchbox_box_image {
+    overflow: hidden;
+    float: left;
+    width: 100%;
+  }
+  .our_lunchbox_box .our_lunchbox_box_image img{
+    transition: all 400ms ease-out 0.1s;
+    -webkit-transition: all 400ms ease-out 0.1s;
+  }
+  .our_lunchbox_box:hover .our_lunchbox_box_image img{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+  }
+  .our_lunchbox_box_title {
+    color: #555555;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .our_lunchbox_box_price {
+    color: #555555;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0px;
+  }
+  .our_lunchbox_box_discription a {
+    background-color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 1px 9px 2px;
+    text-decoration: none;
+  }
+  .our_lunchbox_box_discription a:hover{
+    background-color: transparent;
+    color: #2e2e2e;
+  }
+  .our_lunchbox_box_see_more {
+    margin-right: 12px;
+  }
+  .our_lunchbox_section h1 {
+    color: #1f1f1f;
+    font-family: "bodoniflfbold";
+    font-size: 32px;
+    margin: 0 0 12px;
+    padding-bottom: 9px;
+    position: relative;
+  }
+  .our_lunchbox_section h1::after {
+    background-color: #1f1f1f;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 57px;
+  }
+  .view_all_lunchboxes {
+    padding-top: 30px;
+  }
+  .view_all_lunchboxes > a {
+    border: 1px solid #1a1a1a;
+    background-color: #1a1a1a;
+    color: #fff;
+    display: inline-block;
+    font-family: "bodoniflfbold";
+    font-size: 22px;
+    padding: 9px 30px;
+    text-decoration: none;
+  }
+  .view_all_lunchboxes > a:hover{
+    background-color: transparent;
+    color: #1a1a1a;
+  }
+  .view_all_lunchboxes > a img.hover_arrow{
+    display: none;
+  }
+  .view_all_lunchboxes > a:hover img.hover_arrow{
+    display: inline-block;
+  }
+  .view_all_lunchboxes > a:hover img.non_hover_arrow{
+    display: none;
+  }
+  .view_all_lunchboxes > a img {
+    margin-right: 10px;
+    position: relative;
+    top: -2px;
+  }
+  /*our lunch box section style end here*/
+
+  /*meet your need section style start here*/
+  .meet_your_needs_section {
+    background-image: url("../img/meet_your_need_bg.jpg");
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 54px 0 80px;
+  }
+  .meet_your_needs_section h1 {
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 32px;
+    margin: 0 0 24px;
+    padding-bottom: 9px;
+    position: relative;
+    text-align: center;
+  }
+  .meet_your_needs_section h1::after {
+    background-color: #ffffff;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 57px;
+  }
+  .meet_your_needs_box {
+    position: relative;
+    overflow: hidden;
+    margin-top:30px; 
+  }
+  .meet_your_needs_box img{
+    width: 100%;
+  }
+  .meet_your_needs_box_content {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .meet_your_needs_box_outer {
+    height: 100%;
+    width: 100%;
+  }
+  .meet_your_needs_box_inner {
+    display: table;
+    height: 100%;
+    width: 100%;
+  }
+  .meet_your_needs_box_inner a {
+    display: table-cell;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    text-decoration: none;
+  }
+  .meet_your_needs_box_bg_hover {
+    height: 100%;
+    left: -100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: all 400ms ease-out 0.1s;
+    -webkit-transition: all 400ms ease-out 0.1s;
+  }
+  .meet_your_needs_box_inner a:hover .meet_your_needs_box_bg_hover {
+    left: 0;
+  }
+  .meet_your_needs_box_bg img {
+    width: auto;
+  }
+  .meet_your_needs_box_bg_hover > img {
+    height: 100%;
+    border:solid 1px #ffffff;
+  }
+  .meet_your_needs_bg_img img {
+    border: 6px solid rgba(255, 255, 255, 0.3);
+  }
+  .meet_your_needs_box h2 {
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 28.16px;
+  }
+  /*meet your need section style end here*/
+
+  /*Inner pages style start here*/
+
+  /*individual_lunchbox style start here*/
+
+  .individual_lunchbox_slide_content h1 {
+    color: #0d0d0d;
+    font-family: "bodoniflfbold";
+    font-size: 25px;
+    margin: 0 0 10px;
+  }
+  .individual_lunchbox_icon {
+    background-color: #333333;
+    border-radius: 100px;
+    line-height: 33px;
+    margin-left: 20px;
+    padding: 3px 9px;
+  }
+  .individual_lunchbox_icon > img {
+    position: relative;
+    top: -1px;
+  }
+  .individual_lunchbox_price {
+    color: #0d0d0d;
+    float: left;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  .individual_lunchbox_quantity {
+    float: left;
+  }
+  .individual_lunchbox_quantity .input-group-addon {
+    background-color:#d1d2d4;
+    border: none;
+    clear: none;
+    color: #0d0d0d;
+    font-weight: 400;
+    font-size: 19px;
+    height: 24px;
+    float: left;
+    line-height: 24px;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 0px;
+    position: relative;
+    text-align: center;
+    width: 32px;
+  }
+  .individual_lunchbox_quantity #individual_lunchbox_quantity_wanted.form-control {
+    background-color:#d1d2d4;
+    border: none;
+    clear: none;
+    color: #0d0d0d;
+    float: left;
+    font-weight: 400;
+    font-size: 16px;
+    height: 24px;
+    line-height: 24px;
+    margin: 0 5px;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    width: 32px;
+    box-shadow: none;
+  }
+  .individual_lunchbox_order button {
+    background-color: transparent;
+    border: 1px solid #2e323a;
+    border-radius: 0;
+    color: #2e323a;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 400;
+    height: 24px;
+    line-height: 3px;
+    padding: 0 18px 1px;
+    text-decoration: none;
+  }
+  .individual_lunchbox_order button:hover{
+    background-color: #2e323a;
+    color: #fff;
+    border: 1px solid #2e323a;
+    outline: none;
+  }
+  .individual_lunchbox_order {
+    float: left;
+    padding-left: 5px;
+  }
+  .individual_lunchbox_more_info {
+    float: left;
+    margin-top: 59px;
+    width: 100%;
+  }
+  .individual_lunchbox_more_info .tab-content {
+    background-color: #ffffff;
+    border: 1px solid #bcbdc0;
+    height: 155px;
+    overflow-y: scroll;
+    padding: 20px 25px;
+  }
+  .individual_lunchbox_more_info .tab-content p {
+    color: #626060;
+    font-size: 14px;
+  }
+  .individual_lunchbox_more_info .nav-tabs {
+    border-bottom: medium none;
+    bottom: -1px;
+    position: relative;
+  }
+
+  .individual_lunchbox_more_info .nav-tabs li {
+      background: #f6f8f9 none repeat scroll 0 0;
+      border: 1px solid #bcbdc0;
+      border-right: 0;
+      float: left;
+      list-style: outside none none;
+      margin-bottom: 0;
+      min-width: 120px;
+      padding: 0 8px;
+      width: auto;
+      -ms-transition: none;
+      -moz-transition: none;
+      -webkit-transition: none;
+      transition: none;
+      position: relative;
+  }
+  .individual_lunchbox_more_info .nav-tabs li.active {
+      background-color: #fff;
+  }
+
+  .individual_lunchbox_more_info .nav-tabs li.active:before {
+      background-color: #fff;
+      bottom: -2px;
+      content: "";
+      height: 3px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+  }
+  .individual_lunchbox_more_info .nav-tabs li.active:first-child:before {
+      width: 120%;
+  }
+  .individual_lunchbox_more_info .nav-tabs li:first-child {
+      border-left: 1px solid #bcbdc0;
+  }
+  .individual_lunchbox_more_info .nav-tabs li.active a:before, 
+  .individual_lunchbox_more_info .nav-tabs li:hover a:before {
+      display: none;
+  }
+  .individual_lunchbox_more_info .nav-tabs li a {
+      background: transparent;
+      border-left: 0 none;
+      -ms-border-radius: 0 !important;
+      -moz-border-radius: 0 !important;
+      -webkit-border-radius: 0 !important;
+      border-radius: 0 !important;
+      border-right: 0 none;
+      border-top: 0 none;
+      color: #2e323a;
+      font-weight: 400;
+      font-size: 12px;
+      height: 30px;
+      line-height: 30px;
+      margin-right: 0;
+      padding: 0;
+      text-align: center;
+      text-transform: uppercase;
+      -ms-transition: none;
+      -moz-transition: none;
+      -webkit-transition: none;
+      transition: none;
+      border: none;
+  }
+  .individual_lunchbox_more_info .nav-tabs li:nth-child(n+2){
+      -webkit-transform: skew(25deg);
+      -moz-transform: skew(25deg);
+      -ms-transform: skew(25deg);
+      -o-transform: skew(25deg);
+      transform: skew(25deg);
+  }
+  .individual_lunchbox_more_info .nav-tabs li:nth-child(n+2) a{
+      -webkit-transform: skew(-25deg);
+      -moz-transform: skew(-25deg);
+      -ms-transform: skew(-25deg);
+      -o-transform: skew(-25deg);
+      transform: skew(-25deg);
+  }
+  .individual_lunchbox_more_info .nav-tabs li:last-child {
+      border-right: 1px solid #bcbdc0;
+  }
+  .individual_lunchbox_more_info .nav-tabs li:first-child:after,
+  .individual_lunchbox_more_info .nav-tabs li:first-child:after{
+      background: transparent;
+      content: "";
+      height: 100%;
+      position: absolute;
+      right: -15px;
+      top: 0;
+      width: 40px;
+      z-index: 0;
+  }
+  .individual_lunchbox_more_info .nav-tabs li.active:first-child:after {
+      background: #fff none repeat scroll 0 0;
+      content: "";
+      height: 100%;
+      position: absolute;
+      right: -31px;
+      top: 0;
+      width: 40px;
+      z-index: 0;
+  }
+  ul.multiple_lunchboxes {
+    padding: 0;
+  }
+  .multiple_lunchboxes li::before {
+    background-color: #221e1e;
+    border-radius: 100%;
+    content: "";
+    height: 10px;
+    left: 0;
+    position: absolute;
+    top: 7px;
+    width: 10px;
+  }
+  .multiple_lunchboxes li {
+    color: #626060;
+    font-size: 14px;
+    line-height: 23px;
+    list-style: outside none none;
+    padding-left: 17px;
+    position: relative;
+  }
+  /*.individual_lunchbox_more_info .nav-tabs li:last-child {
+      border-left: medium none;
+      left: 0;
+      min-width: 1px;
+      padding: 0;
+      position: relative;
+  }*/
+  .individual_lunchbox_more_info .nav-tabs > li.active > a, 
+  .individual_lunchbox_more_info .nav-tabs > li.active > a:focus, 
+  .individual_lunchbox_more_info .nav-tabs > li.active > a:hover {
+    border:none;
+  }
+  .nutritional_values {
+    float: left;
+    margin: 10px 0;
+    width: 100%;
+  }
+  .nutritional_values_row_grey {
+    background-color: #eeeeee;
+    float: left;
+    padding: 10px 15px;
+    width: 100%;
+  }
+  .nutritional_values_row_white {
+    background-color: #fcfcfc;
+    float: left;
+    padding: 10px 15px;
+    width: 100%;
+  }
+  .nutritional_name {
+    float: left;
+    width: 32%;
+  }
+  .nutritional_data {
+    float: left;
+    width: 18%;
+  }
+  .restaurant_logo {
+    border: 1px solid #eeeeee;
+    margin: 0 0 10px;
+    padding: 5px;
+    width: 100px;
+  }
+  .restaurant_logo img {
+    width: 100%;
+  }
+  .address p {
+    font-style: italic;
+  }
+  .address p strong{
+    font-style: normal;
+  }
+  .individual_lunchbox_section .carousel-control.left,
+  .individual_lunchbox_section .carousel-control.right {
+    background-image: inherit;
+  }
+  .individual_lunchbox_section .carousel-control {
+    width: 20px;
+    opacity: 1;
+  }
+  .individual_lunchbox_section .glyphicon-chevron-right::before {
+    content: inherit;
+  }
+  .individual_lunchbox_section .glyphicon-chevron-left::before {
+    content: inherit;
+  }
+  .individual_lunchbox_section .carousel-inner > .item > a > img, 
+  .individual_lunchbox_section .carousel-inner > .item > img, .img-responsive, 
+  .individual_lunchbox_section .thumbnail a > img, .thumbnail > img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    width: 100%;
+  }
+  .carousel-control.right {
+    right: -46px;
+  }
+  .carousel-control {
+    left: -46px;
+  }
+  .individual_lunch_view_all_lunchboxes {
+    padding-top: 30px;
+  }
+  .individual_lunch_view_all_lunchboxes > a {
+    background-color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    color: #ffffff;
+    display: inline-block;
+    font-family: "bodoniflfbold";
+    font-size: 22px;
+    padding: 9px 30px;
+    text-decoration: none;
+  }
+  .individual_lunch_view_all_lunchboxes a img.hover_arrow {
+    display: none;
+  }
+  .individual_lunch_view_all_lunchboxes a:hover {
+    background-color: rgba(0, 0, 0, 0);
+    color: #1a1a1a;
+  }
+  .individual_lunch_view_all_lunchboxes a:hover img.hover_arrow {
+    display: inline-block;
+  }
+  .individual_lunch_view_all_lunchboxes a:hover img.non_hover_arrow {
+    display: none;
+  }
+  .individual_lunch_view_all_lunchboxes a img {
+    margin-right: 10px;
+    position: relative;
+    top: -2px;
+  }
+  .carousel-bounding {
+    margin-bottom: 30px;
+  }
+  section.individual_lunchbox_section {
+    float: left;
+    padding: 50px 0 65px;
+    width: 100%;
+  }
+  .carousel-indicators li {
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    height: 15px;
+    margin: 0px !important;
+    margin: 1px;
+    text-indent: -999px;
+    width: 15px;
+  }
+  .carousel-indicators .active {
+    background-color: #221e1e;
+    height: 15px;
+    border: none;
+    margin: 0;
+    width: 15px;
+  }
+  .individual_lunchbox_more_info.mobile-tab {
+    display: none;
+  }
+  /*individual_lunchbox style end here*/
+
+  /*contact us page style start here*/
+    .inner_title h1::after {
+      background-color: #1f1f1f;
+      bottom: 0;
+      content: "";
+      height: 1px;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      width: 57px;
+    }
+    .inner_title h1 {
+      color: #1f1f1f;
+      font-family: "bodoniflfbold";
+      font-size: 32px;
+      margin: 0 0 51px;
+      padding-bottom: 9px;
+      position: relative;
+    }
+    .contact_inner {
+      display: table;
+      margin: 0 auto;
+      max-width: 100%;
+      width: 986px;
+    }
+    .contact_inner input[type="text"], 
+    .contact_inner input[type="email"] {
+      border: 1px solid #cccccc;
+      font-size: 16px;
+      height: 46px;
+      margin-bottom: 27px;
+      padding: 0 18px;
+      width: 100%;
+    }
+    .contact_inner textarea {
+      border: 1px solid #cccccc;
+      font-size: 16px;
+      height: 118px;
+      padding: 14px 18px;
+      width: 100%;
+    }
+    .inner_group {
+      padding: 0 8px;
+    }
+    .send_message_button button {
+      background-color: #1a1a1a;
+      border: 1px solid #1a1a1a;
+      color: #ffffff;
+      display: inline-block;
+      font-family: "bodoniflfbold";
+      font-size: 19px;
+      height: 44px;
+      margin: 35px 0 0;
+      padding: 0 40px;
+      text-decoration: none;
+    }
+    .send_message_button button:hover {
+      background-color: transparent;
+      color: #1a1a1a;
+    }
+    section.contact_us_section {
+      padding: 30px 0 60px;
+    }
+  /*contact us page style end here*/
+
+  /*blog page style start here*/
+  section.blog_section {
+    padding: 30px 0 60px;
+  }
+  .inner_title > p {
+    color: #313131;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+  }
+  section.blog_section .inner_title h1 {
+    margin: 0 0 24px;
+  }
+  .blog_time_name {
+    color: #a3a3a3;
+    font-size: 16px;
+    font-style: italic;
+    padding: 12px 0;
+  }
+  .blog_title h2 {
+    color: #313131;
+    font-family: "bodoniflfbold";
+    font-size: 24px;
+    margin: 2px 0 0;
+  }
+  .blog_discription p {
+    color: #313131;
+    font-size: 15px;
+    line-height: 25px;
+    margin-top: 12px;
+  }
+  .blog_read_more_button > a {
+    background-color: #222222;
+    border-radius: 25px;
+    border: solid 1px #222222;
+    color: #ffffff;
+    float: left;
+    font-size: 15px;
+    margin-bottom: 30px;
+    margin-top: 18px;
+    padding: 9px 36px 10px;
+    text-decoration: none;
+  }
+  .blog_read_more_button > a:hover {
+    background-color: transparent;
+    color: #222222;
+  }
+  .blog_image {
+    margin-top: 32px;
+  }
+  .pagination > .disabled > a, 
+  .pagination > .disabled > a:focus, 
+  .pagination > .disabled > a:hover, 
+  .pagination > .disabled > span, 
+  .pagination > .disabled > span:focus, 
+  .pagination > .disabled > span:hover {
+    background-color: #ffffff;
+    border-color: #b4b4b3;
+  }
+  .pagination > .active > a, 
+  .pagination > .active > a:focus, 
+  .pagination > .active > a:hover, 
+  .pagination > .active > span, 
+  .pagination > .active > span:focus, 
+  .pagination > .active > span:hover {
+    background-color: #222222;
+    border-color: #222222;
+  }
+  .pagination > li > a, .pagination > li > span {
+    background-color: #ffffff;
+    border: 1px solid #b4b4b3;
+    color: #93938e;
+    float: left;
+    font-size: 16px;
+    line-height: 1.42857;
+    margin-left: 7px;
+    padding: 9px 16px;
+    position: relative;
+    text-decoration: none;
+  }
+  .pagination > li:last-child > a,
+  .pagination > li:last-child > span{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .pagination > li:first-child > a, 
+  .pagination > li:first-child > span {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+  }
+  .pagination > li > a:focus, .pagination > li > a:hover, 
+  .pagination > li > span:focus, .pagination > li > span:hover {
+    background-color: #222222;
+    border-color: #222222;
+    color: #fff;
+  }
+  .pagination {
+    margin: 50px 0 0;
+  }
+  .blog_image > img {
+    width: 100%;
+  }
+  /*blog page style end here*/
+
+  /*FAQ page style start here*/
+  section.faqs_section {
+    padding: 26px 0 54px;
+  }
+  .panel-heading .accordion-toggle::after {
+    background-image: url("../img/accordian_down_arrow.png");
+    background-position: left 0;
+    background-repeat: no-repeat;
+    color: #808080;
+    content: "";
+    height: 17px;
+    left: 19px;
+    position: absolute;
+    top: 20px;
+    width: 17px;
+  }
+  .panel-heading .accordion-toggle.collapsed::after {
+    background-image: url("../img/accordian_down_next.png");
+    background-position: left 0;
+    top: 17px;
+  }
+  .faqs_section .accordion-toggle {
+    color: #5a5a5a;
+    display: block;
+    font-family: roboto;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 15px 16px 49px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .faqs_section .panel-heading {
+    padding: 0;
+    background-color: transparent;
+  }
+  .faqs_section .panel-default {
+    border-color: #cccccc;
+    border-radius: 0;
+  }
+  .faqs_section .panel-group .panel-heading {
+    border-bottom: none !important;
+   }
+  .faqs_section .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: transparent;
+    color: #5a5a5a;
+    font-family: roboto;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 25px;
+    padding: 4px 15px 17px 50px;
+  }
+  .faqs_section .panel-group .panel + .panel {
+    margin-top: 18px;
+  }
+  /*FAQ page style end here*/
+
+  /*checkout page style start here*/
+  section.checkout_section {
+    padding: 50px 0 60px;
+  }
+  .checkout_left_section {
+    padding-right: 16px;
+  }
+  .checkout_already_register {
+    background-color: #f5f6f7;
+    padding: 0 20px;
+  }
+  .checkout_already_register > h1 {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0;
+    padding: 34px 0 30px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .input_group label {
+    color: #656464;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 7px;
+    text-transform: capitalize;
+    width: 100%;
+  }
+  .input_group {
+    margin-bottom: 32px;
+    padding: 0 8px;
+  }
+  .customer_data_section input {
+    border: 1px solid #d6d6d6;
+    height: 26px;
+    width: 100%;
+  }
+  .customer_data_section {
+    background-color: #f5f6f7;
+    margin-top: 16px;
+    padding: 0 42px;
+  }
+  .customer_data_section h2 {
+    color: #313131;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 32px 0 42px;
+    padding-bottom: 9px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .customer_data_section h2::after {
+    background-color: #1f1f1f;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 88px;
+  }
+  .payment_section h2 {
+    color: #313131;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 86px 0 36px;
+    padding-bottom: 9px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .payment_section h2::after {
+    background-color: #1f1f1f;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 88px;
+  }
+  .payment_section {
+    background-color: #f5f6f7;
+    padding: 0 42px 0px;
+    min-height: 460px;
+  }
+
+  .vissa_debit_area {
+    background-color: #e5e5e5;
+    color: #656464;
+    float: left;
+    font-size: 14px;
+    padding: 16px;
+    text-align: center;
+    width: 100%;
+  }
+  .vissa_debit_area img{
+    max-width: 100%;
+  }
+  .Wallet_credits_area,
+  .purchase_credits_area {
+    background-color: #242425;
+    float: left;
+    margin-top: 40px;
+    width: 100%;
+  }
+  .Checkout_points {
+    float: right;
+  }
+  .Wallet_credits_area a,
+  .purchase_credits_area a {
+    color: #ffffff;
+    float: left;
+    font-size: 18px;
+    padding: 12px 28px;
+    text-decoration: none;
+    width: 100%;
+  }
+  .purchase_credits_area {
+    margin-top: 20px;
+  }
+  .checkout_last_section {
+    padding: 0 0 0 16px;
+  }
+  .observation_section {
+    background-color: #f5f6f7;
+    padding: 0 42px 100px;
+  }
+  .observation_section h2 {
+    color: #313131;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 86px 0 42px;
+    padding-bottom: 9px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .observation_section h2::after {
+    background-color: #1f1f1f;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 88px;
+  }
+  .observation_section textarea {
+    border: 1px solid #d6d6d6;
+    color: #000000;
+    height: 201px;
+    padding: 20px;
+    width: 100%;
+  }
+  .purchase_summery {
+    background-color: #f5f6f7;
+    margin-top: 16px;
+    padding: 0 30px 70px;
+  }
+  .purchase_summery h2 {
+    color: #313131;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 60px 0 42px;
+    padding-bottom: 9px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .purchase_summery h2::after {
+    background-color: #1f1f1f;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 88px;
+  }
+  .purchase_summery_checkout_cart_summary_details {
+    display: inline-block;
+    padding: 20px 0 0 22px;
+    width: 100%;
+  }
+  .box2{
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+  }
+  ul.purchase_summery_checkout {
+    padding: 0 16px 0 0;
+    margin: 0px;
+    max-height: 102px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  ul.purchase_summery_checkout li{
+    list-style: none;
+    clear: both;
+    float: left;
+    margin-bottom: 7px;
+    width: 100%;
+  }
+  ul.purchase_summery_checkout li .purchase_summery_checkout_image {
+    float: left;
+    width: 37%;
+  }
+  ul.purchase_summery_checkout li .purchase_summery_checkout_image  img{
+    width: 100%;
+  }
+  .purchase_summery_checkout_data {
+    float: left;
+    padding: 7px 11px 11px;
+    width: 63%;
+  }
+  p.purchase_summery_checkout_product-name {
+    line-height: 16px;
+    margin: 0;
+  }
+  .purchase_summery_checkout_product-name > a {
+    color: #656464;
+    font-size: 12px;
+    line-height: 9px;
+    text-decoration: none;
+  }
+  .purchase_summery_checkout_product_unit{
+    clear: left;
+    float: left;
+    width: 50%;
+  }
+  .purchase_summery_checkout_price .price {
+    color: #656464;
+    font-size: 12px;
+  }
+  .purchase_summery_checkout_product_delete {
+    float: left;
+    position: relative;
+    width: 50%;
+  }
+  .cart_quantity_delete {
+    background-image: url("../img/del_cross.png");
+    background-repeat: no-repeat;
+    float: right;
+    height: 11px;
+    margin-top: 5px;
+    width: 10px;
+  }
+  .purchase_summery_checkout_product_quantity {
+    clear: left;
+    float: left;
+  }
+  .purchase_summery_checkout_product_price {
+    float: right;
+    line-height: 16px;
+    margin-top: 9px;
+    width: auto;
+  }
+  .purchase_summery_checkout_cart_quantity_button a ,
+  .purchase_summery_checkout_cart_quantity_button .purchase_summery_checkout_cart_quantity_input{
+    background-color: #9a9c9f;
+    border:none;
+    color: #ffffff;
+    display: block;
+    float: left;
+    font-weight: 400;
+    font-size: 11px;
+    height: 16px;
+    margin-top: 9px;
+    text-decoration: none;
+    position: relative;
+    text-align: center;
+    width: 20px;
+  }
+  .purchase_summery_checkout_cart_quantity_input {
+    margin: 0 2px;
+  }
+  .purchase_summery_checkout_product_price {
+    color: #656464;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  .purchase_summery_checkout_cart_summary_outer {
+    padding-right: 43px;
+    padding-top: 36px;
+  }
+  table.purchase_summery_checkout_cart_summary {
+    width: 100%;
+  }
+  table.purchase_summery_checkout_cart_summary tr td {
+    color: #656464;
+    font-family: roboto;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 10px 0;
+  }
+  table.purchase_summery_checkout_cart_summary tr td:last-child {
+    text-align: right;
+  }
+  table.purchase_summery_checkout_cart_summary_final_price tr.purchase_cart_summary_cart_final_price td {
+    border-top: 1px solid #c2c2c2;
+    color: #313131;
+    font-size: 19px;
+    font-weight: 500;
+    padding-bottom: 16px;
+    padding-top: 16px;
+  }
+  table.purchase_summery_checkout_cart_summary_final_price tr.purchase_cart_summary_cart_final_price td:last-child {
+    padding-right: 133px;
+    text-align: right;
+  }
+  table.purchase_summery_checkout_cart_summary tr.purchase_cart_summary_cart_total_delivery{
+    border-top: 1px solid #c2c2c2;
+  }
+  table.purchase_summery_checkout_cart_summary tr.purchase_cart_summary_cart_total_products td{
+    padding-bottom: 22px;
+  }
+  table.purchase_summery_checkout_cart_summary tr.purchase_cart_summary_cart_total_delivery td{
+    padding: 22px 0;
+  }
+  .checkout_promo_code{
+    margin-bottom: 25px;
+  }
+  .checkout_apply_section {
+    padding: 22px; 
+  }
+  .box1{
+    border: 1px solid #d6d6d6;
+    border-left: 0px;
+    background-color: #ffffff;
+  }
+  .checkout_promo_code > input {
+    border: 1px solid #d6d6d6;
+    color: #383838;
+    font-size: 16px;
+    height: 50px;
+    padding: 0 23px;
+    width: 100%;
+  }
+  .checkout_promo_code > button {
+    background-color: #242425;
+    border: 1px solid #242425;
+    color: #ffffff;
+    font-size: 16px;
+    height: 44px;
+    margin-top: 17px;
+    padding-bottom: 3px;
+    width: 119px;
+  }
+  .checkout_promo_code > button:hover{
+    color: #242425;
+    background-color: transparent;
+  }
+  .term_of_use_privacy_policy {
+    color: #656464;
+    font-size: 13px;
+    margin: 14px 0 26px;
+    padding-left: 28px;
+    position: relative;
+  }
+  .term_of_use_privacy_policy > input {
+    left: 0;
+    margin: 3px 0 0;
+    position: absolute;
+    top: 0;
+  }
+  .checkout_complete_purchase > button {
+    background-color: #242425;
+    border: 1px solid #242425;
+    color: #ffffff;
+    font-size: 19px;
+    height: 49px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    width: 74.1%;
+  }
+  .checkout_complete_purchase > button:hover{
+    color: #242425;
+    background-color: transparent;
+  }
+  /*checkout page style end here*/
+
+  /*step to healthy style start here*/
+  section.step_to_healthy_lunch_section {
+    padding: 30px 0 60px;
+  }
+  .step_to_healthy_lunch_section_box_left_image {
+    margin-top: 80px;
+  }
+  .step_to_healthy_lunch_content > p {
+    color: #313131;
+    font-size: 16px;
+    margin: 0px;
+    line-height: 26px;
+  }
+  .step_to_healthy_lunch_section_left{
+    position: relative;
+  }
+  .step_to_healthy_lunch_section_discription {
+    border-left: 2px solid #384048;
+  }
+  .step_to_healthy_lunch_section_discription_right {
+    border-right: 2px solid #384048;
+  }
+  .stay_healthy_img_section {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 50%;
+  }
+  .right{
+    right: 0;
+  }
+  .left{
+    left: 0;
+  }
+  .stay_healthy_img_section_outer {
+    display: table;
+    height: 100%;
+    width: 100%;
+  }
+  .stay_healthy_img_section_inner {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    width: 100%;
+  }
+  .step_to_healthy_lunch_section_discription {
+    box-sizing: border-box;
+    padding: 10px 0 10px 50px;
+    position: relative;
+    width: 50%;
+  }
+  .step_to_healthy_lunch_section_discription_right {
+    box-sizing: border-box;
+    padding: 10px 50px 10px 10px;
+    position: relative;
+    width: 50%;
+  }
+  .step_to_healthy_lunch_section_discription_right.extra_padding {
+    box-sizing: border-box;
+    padding: 46px 50px 46px 10px;
+    position: relative;
+    width: 50%;
+  }
+  .round_circle_left{
+    background-color: #ffffff;
+    background-image: url("../img/round_half_border_left.png");
+    background-position: left top;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    color: #1f1f1f;
+    font-family: "bodoniflfbold";
+    font-size: 20px;
+    height: 61px;
+    left: -31px;
+    line-height: 61px;
+    position: absolute;
+    top: 35%;
+    width: 61px;
+  }
+  .round_circle_right{
+    background-color: #ffffff;
+    background-image: url("../img/round_half_border_right.png");
+    background-position: right top;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    color: #1f1f1f;
+    font-family: "bodoniflfbold";
+    font-size: 20px;
+    height: 61px;
+    right: -31px;
+    line-height: 61px;
+    position: absolute;
+    top: 35%;
+    width: 61px;
+  }
+  .step_to_healthy_lunch_section_discription h2 {
+    background-repeat: no-repeat;
+    color: #221e1e;
+    font-family: "bodoniflfbold";
+    font-size: 28px;
+    margin: 0 0 14px;
+    padding-left: 32px;
+  }
+  .step_to_healthy_lunch_section_discription_right h2 {
+    background-repeat: no-repeat;
+    color: #221e1e;
+    font-family: "bodoniflfbold";
+    font-size: 28px;
+    margin: 0 0 14px;
+    padding-right: 32px;
+  }
+  .step_to_healthy_lunch_section_discription h2.discover_plan {
+    background-image: url("../img/plan_icon.png");
+    background-position: left 2px;
+  }
+  .step_to_healthy_lunch_section_discription_right h2.discounts {
+    background-image: url("../img/discount_icon.png");
+    background-position: right 2px;
+    padding-right: 40px;
+  }
+  .step_to_healthy_lunch_section_discription h2.place_order {
+    background-image: url("../img/place_order_icon.png");
+    background-position: left 2px;
+  }
+  .step_to_healthy_lunch_section_discription_right h2.enjoy_lunchbox_icon {
+    background-image: url("../img/enjoy_lunchbox_icon.png");
+    background-position: right 2px;
+    padding-right: 40px;
+  }
+  .step_to_healthy_lunch_listing {
+    padding: 0;
+    margin: 0px;
+  }
+  .step_to_healthy_lunch_listing_right {
+    padding: 0;
+    margin: 0px;
+  }
+  .step_to_healthy_lunch_listing li {
+    color: #221e1e;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    list-style: outside none none;
+    padding-left: 23px;
+    position: relative;
+  }
+  .step_to_healthy_lunch_listing_right li {
+    color: #221e1e;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    list-style: outside none none;
+    padding-right: 23px;
+    position: relative;
+  }
+  ul.step_to_healthy_lunch_listing li::before {
+    background-color: #221e1e;
+    border-radius: 100%;
+    content: "";
+    height: 10px;
+    left: 0;
+    position: absolute;
+    top: 9px;
+    width: 10px;
+  }
+  ul.step_to_healthy_lunch_listing_right li::before {
+    background-color: #221e1e;
+    border-radius: 100%;
+    content: "";
+    height: 10px;
+    right: 0;
+    position: absolute;
+    top: 9px;
+    width: 10px;
+  }
+  .step_to_healthy_lunch_section_faq {
+    background-color: #000000;
+    padding: 13px 0 15px;
+  }
+  .step_to_healthy_lunch_section_faq span {
+    color: #ffffff;
+    display: inline-block;
+    font-family: "bodoniflfbold";
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  .step_to_healthy_lunch_section_faq a {
+    background-color: #ffffff;
+    color: #000000;
+    display: inline-block;
+    font-family: "bodoniflfbold";
+    font-size: 20px;
+    margin-left: 65px;
+    text-decoration: none;
+    padding: 6px 39px 5px;
+  }
+  /*step to healthy style end here*/
+
+  /*Inner pages style end here*/
+
+  /*footer style start here*/
+  footer {
+    background-image: url("../img/footer_bg.jpg");
+    background-repeat:repeat;
+    padding: 70px 0 0;
+  }
+  ul.footer_navgation {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  ul.footer_navgation li {
+    display: inline-block;
+    list-style: outside none none;
+  }
+  ul.footer_navgation li a {
+    color: #ffffff;
+    display: inline-block;
+    font-size: 16px;
+    padding: 18px 19px 8px;
+    text-decoration: none;
+  }
+  .payment_card_section {
+    padding: 59px 0;
+  }
+  .payment_card_section img{
+  	max-width: 100%;
+  }
+  ul.social_icons {
+    margin: 0;
+    padding: 0;
+  }
+  ul.social_icons li {
+    display: inline-block;
+    list-style:none;
+  }
+  ul.social_icons li a {
+    background-image: url("../img/social_icon.png");
+    display: inline-block;
+    height: 41px;
+    margin: 0 4px;
+    width: 40px;
+  }
+  ul.social_icons li.linked_in a {
+    background-position: -53px 0;
+  }
+  ul.social_icons li.instagram a {
+    background-position: -104px 0;
+  }
+  ul.social_icons li a:hover{
+  	opacity: 0.5;
+  }
+  .pre_footer {
+    background-color: rgba(55, 55, 55, 0.7);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 17px 0;
+    margin-top: 24px;
+  }
+  /*footer style end here*/
+
+  /*Admin restaurants page style start here*/
+    
+  .restaurants_admin_outer {
+    background-image: url("../img/admin_restaurants_bg.png");
+    width: 100%;
+    background-size: cover;
+  }
+  .restaurants_admin_outer.order_admin_outer.edit_restaurant_bg.pull-left.full-width {
+    background-image: url("../img/edit_restaurant_bg.jpg");
+    width: 100%;
+    background-size: cover;
+  }
+  .restaurants_admin_outer header.admin-header{
+    position: relative !important;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-brand {
+    padding: 0px 15px 15px 0px;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-brand  > img{
+    width: auto;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-nav > li > a {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-family: "Roboto",sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 25px;
+    margin-top: 0;
+    padding: 6px 25px 9px;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-nav > li > a:hover,
+  .restaurants_admin_outer header.admin-header .navbar-nav > li > a:focus,
+  .restaurants_admin_outer header.admin-header .navbar-nav > li > a.active{
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .restaurants_admin_outer header.admin-header .navbar-right {
+    padding: 20px 0;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-nav > li > a.unread_msg{
+    position: relative;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-nav > li.unread_msg > a span.unread_msg_icon {
+    background-color: #ff0000;
+    border-radius: 100%;
+    height: 24px;
+    line-height: 24px;
+    position: absolute;
+    right: 15px;
+    text-align: center;
+    top: -11px;
+    width: 24px;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-nav > li:last-child > a {
+    border:none;
+    padding: 0;
+    margin-right: 0px;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-toggle {
+    border: 1px solid #ffffff;
+    margin-top: 15px;
+  }
+  .restaurants_admin_outer header.admin-header .navbar-toggle .icon-bar {
+    background-color: #ffffff;
+  }
+  .top_nav_icon{
+    display: none;
+  }
+  .navbar-header .top_nav_icon {
+    margin: 13px 0 14px;
+  }
+  .admin_registered_restaurants_outer {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    display: table;
+    float: left;
+    margin: 140px 0;
+    padding: 30px;
+    width: 100%;
+  }
+  .admin_registered_restaurants_outer h1 {
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 35px;
+    margin: 0 0 20px;
+    padding: 0 7px;
+    text-transform: uppercase;
+  }
+  .admin_restaurants_logo_listing ul{
+    padding:0px;
+    width: 75% !important;
+  }
+  .admin_restaurants_logo_listing ul li {
+    display: table;
+    float: left;
+    margin-top: 16px;
+    padding: 0 7px;
+    width: 33.333%;
+  }
+  .admin_restaurants_logo_listing ul li span.admin_restaurants_logo_listing_inner {
+    background-color: #ffffff;
+    border: 5px solid rgba(0, 0, 0, 0.5);
+    display: table-cell;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+  }
+  .close_logo.glyphicon.glyphicon-remove {
+    border-radius: 100%;
+    color: #ff0000;
+    height: 25px;
+    line-height: 25px;
+    position: absolute;
+    right: 0;
+    top: -2px;
+    cursor: pointer;
+    width: 25px;
+  }
+  .admin_restaurants_logo_listing ul li span.admin_restaurants_logo_listing_inner img {
+    max-width: 100%;
+    width: 100%;
+  }
+  .admin_add_restaurant_icon {
+    box-sizing: border-box;
+    margin-top: 16px;
+    width: 25%;
+  }
+  .admin_add_restaurant_icon_inner{
+    display: table;
+    float: left;
+    padding: 0 7px;
+    width: 100%;
+  }
+  .admin_restaurants_logo_listing_inner{
+    background-color: #ffffff;
+    border: 5px solid rgba(0, 0, 0, 0.5);
+    display: table-cell;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+  }
+  .admin_remove_logo {
+    padding: 30px 7px 11px;
+    text-align: right;
+  }
+  .admin_remove_logo a {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url("../img/admin_delete_icon.png");
+    background-position: 33px center;
+    background-repeat: no-repeat;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 22px;
+    height: 58px;
+    line-height: 58px;
+    padding: 0 31px 0 64px;
+    text-align: center;
+    text-decoration: none;
+  }
+  .admin_remove_logo a:hover{
+    background-color: #000;
+  }
+  footer.admin_footer {
+    background-color: #585858;
+    background-image: none;
+    color: #bab9b9;
+    font-size: 15px;
+    opacity: 1;
+    padding: 16px 0;
+  }
+
+  /*Admin restaurants page style end here*/
+
+  /*Admin notifications page style Start here*/
+
+  .control .status_default:nth-child(2n) {
+    background: rgba(255, 255, 255, 0.6) none repeat scroll 0 0;
+  }
+  .control .notification_msg {
+    margin-bottom: 1px;
+  }
+  .notification_msg {
+    background: #ffffff;
+    float: left;
+    width: 100%;
+    padding: 10px 10px;
+    margin-bottom: 12px;
+  }
+
+  .btn-done {
+    background: #3c3c3c;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 7px 20px;
+    border: 1px solid #3c3c3c;
+    text-align: center;
+  }
+
+  .btn-done:hover {
+    background: #000000;
+    border: 1px solid #3c3c3c;
+    transition: all 0.3s ease-out 0s;
+  }
+  .btn-done:active {
+    background: #000000;
+    transition: all 0.3s ease-out 0s;
+  }
+  .btn-done:focus {
+    background: #000000;
+    transition: all 0.3s ease-out 0s;
+  }
+  .priority.high-priority {
+    background: #ef2121;
+    color: #ffffff;
+    margin-bottom: 5px;
+    padding: 2px 8px;
+  }
+  .priority.less-priority {
+    background: #f58220;
+    padding: 2px 8px;
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+  .priority.low-priority{
+    background: #00aeef;
+    padding: 2px 8px;
+    color: #ffffff;
+  }
+  .content2 .table-responsive {
+    margin-bottom: 26px;
+    width: 100%;
+  }
+  .content2 {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    float: left;
+    padding: 20px;
+  }
+  .bg-gray {
+    background: #959595 !important;
+  }
+  table.admin_order_table2 tbody tr td
+   {
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    color: rgb(43, 43, 43);
+    font-size: 13px;
+    padding: 13px 10px;
+    /*width: 100%;*/
+
+  }
+  h1.order_title {
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 35px;
+    margin:0 0 10px 0;
+    text-transform: uppercase;
+  }
+  span.date {
+    color: #ffffff;
+    float: left;
+    margin: 0 0 20px 0;
+    width: 100%;
+  }
+  .information_btn {
+    background: #000000;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 7px 20px;
+    border: 1px solid #3c3c3c;
+    text-align: center;
+    width: 100%;
+    line-height: 35px;
+    float: left;
+    margin: 20px 0;
+  }
+  a.information_btn:hover {
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    transition: all 0.3s ease-out 0s;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /*Admin notifications page style end here*/
+
+
+
+  /*order admin page style start here*/
+    table.admin_order_table thead tr td {
+      background-color: #000000;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 16px;
+      padding: 20px 22px;
+      text-transform: uppercase;
+    }
+    table.admin_order_table tbody tr.blank_admin_tr {
+      height: 20px;
+    }
+    table.admin_order_table tbody tr.blank_admin_tr td{
+      border: none;
+      background-color: transparent;
+      padding: 0px;
+    }
+    table.admin_order_table tbody tr td {
+      background-color: #ffffff;
+      border: 1px solid #e3e3e3;
+      color: #2b2b2b;
+      font-size: 16px;
+      padding: 19px 22px;
+    }
+    table.admin_order_table thead tr td.admin_arrow_down {
+      background-image: url("../img/admin_change_down_arrow_icon.png");
+      background-position: 89% center;
+      background-repeat: no-repeat;
+      padding-left: 14px;
+      padding-right: 36px;
+    }
+    table.admin_order_table thead tr td.admin_location_icon {
+      background-image: url("../img/admin_location_icon.png");
+      background-position: 16px center;
+      background-repeat: no-repeat;
+      padding-left: 36px;
+      width: 22%;
+    }
+    table.admin_order_table thead tr td.admin_doller_icon {
+      background-image: url("../img/admin_doller_icon.png");
+      background-position: 16px center;
+      background-repeat: no-repeat;
+      padding-left: 36px;
+    }
+    table.admin_order_table tbody tr td.admin_order_calendar {
+      background-image: url("../img/admin_calender_icon.png");
+      background-position: 19px center;
+      background-repeat: no-repeat;
+      padding-left: 46px;
+    }
+    table.admin_order_table tbody tr:nth-child(2n+1) td {
+      background-color: #f3f0f0;
+    }
+    table.admin_order_table tbody tr.blank_admin_tr:nth-child(2n+1) td {
+      background-color: transparent;
+    }
+    .admin_order_inner .pagination {
+      margin-top: 32px;
+    }
+    .admin_billing_nav.nav-pills > li.active > a, 
+    .admin_billing_nav.nav-pills > li.active > a:focus, 
+    .admin_billing_nav.nav-pills > li.active > a:hover {
+      background-color: #2e2e2e;
+      color: #ffffff;
+    }
+    .admin_billing_nav.nav-pills > li {
+      margin-right: 10px;
+    }
+    .admin_billing_nav.nav-pills > li > a {
+      background-color: #fdfdfd;
+      border: 1px solid #e3e3e3;
+      border-bottom: none;
+      border-radius: 5px 5px 0 0;
+      color: #616161;
+      font-family: roboto;
+      font-size: 19px;
+      font-weight: 600;
+      padding: 15px 35px;
+    }
+    .admin_order_inner.admin_billing_inner .tab-content {
+      background-color: #ffffff;
+      border: 1px solid #d3d5d5;
+      border-radius: 0 5px 5px;
+      padding: 10px 10px 30px;
+    }
+    .admin_order_inner.admin_billing_inner table.admin_order_table.admin_billing_table tr td.admin_billig_time_icon > img {
+      margin-right: 8px;
+      margin-top: -4px;
+    }
+    /*order admin page style end here*/
+
+    /*admin edit restaurant page style start here*/
+    .admin_restaurant_edit_pin img {
+      /*border: 1px dashed #ffffff;*/
+      padding: 4px;
+      width: 100%;
+    }
+    .admin_restaurant_edit_pin {
+      padding: 8px;
+      position: relative;
+    }
+
+
+
+   .admin_restaurant_edit_small_img {
+      height: 105px;
+      margin-bottom: 17px;
+      overflow: hidden;
+      position: relative;
+    }
+    .admin_restaurant_edit_small_img input[type="file"] {
+      position: absolute;
+      display: inherit !important;
+      opacity: 0;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+  .admin_restaurant_edit_small_img {
+    height: auto;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+  .admin_restaurant_edit_small_img.pull-left.full-width > label {
+    border: 1px dashed #ffffff !important;
+    margin-bottom: 0;
+    overflow: hidden !important;
+    width: 100%;
+  }
+  .admin_restaurant_edit_big_img.pull-left.full-width > label {
+    margin-bottom: 0 !important;
+    border: 1px dashed #ffffff !important;
+    width: 100%
+  }
+  #mytable tr td:first-child {
+    color: #ffffff !important;
+  }
+
+
+    .admin_restaurant_edit_pin a img {
+      border:none;
+      padding: 0;
+      width: auto;
+    }
+    .admin_restaurant_edit_pin a {
+      position: absolute;
+      right: 11px;
+      top: 11px;
+    }
+    .admin_restaurant_edit_pin .admin_restaurant_edit_big_img a {
+      right: 18px;
+      top: 19px;
+    }
+    .attract_visitor_section {
+      padding: 0 8px;
+    }
+    table.attract_visitor_table th {
+      background-color: #000000;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 20px;
+      font-weight: 400;
+      padding: 14px 15px;
+    }
+    table.attract_visitor_table th img {
+      margin-right: 8px;
+      margin-top: -5px;
+    }
+    table.attract_visitor_table tbody tr td {
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 16px;
+      padding: 15px 19px;
+      text-align: center;
+    }
+    table.attract_visitor_table tbody tr td lable {
+      margin-right: 7px;
+      width: 100px;
+    }
+    table.attract_visitor_table tbody tr td .admin_date_picker input {
+      background-color: #ffffff;
+      border: medium none;
+      color: #000000;
+      font-size: 14px;
+      height: 31px;
+      max-width: 75%;
+    }
+    table.attract_visitor_table tbody tr td .admin_date_picker {
+      background: #ffffff none repeat scroll 0 0;
+      border-radius: 5px;
+      display: inline-block;
+      width: 60%;
+    }
+    table.attract_visitor_table tbody tr td .admin_date_picker img {
+      margin-top: -2px;
+    }
+    table.attract_visitor_table tbody tr td .admin_add_discount input {
+      border: medium none;
+      border-radius: 5px;
+      color: #000000;
+      height: 33px;
+      margin: 0 6px;
+      text-align: center;
+      width: 50px;
+    }
+    .admin_delivery_outer {
+      margin-top: 10px;
+      padding: 0px;
+    }
+    .admin_info_section {
+    clear: left;
+    padding-top: 10px;
+  }
+    .admin_delivery_inner {
+      background-color: #ffffff;
+      height: auto;
+    }
+    .admin_delivery_section h2 {
+      background-color: #000000;
+      background-image: url("../img/delivery-to.png");
+      background-position: 27px center;
+      background-repeat: no-repeat;
+      border: 1px dashed #ffffff;
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 22px;
+      font-weight: 400;
+      margin: 0;
+      padding: 14px 20px 13px 75px;
+    }
+    .admin_inner_edit_restaurant_logo_all {
+      padding: 0 8px;
+    }
+  h2.discount_text {
+    margin: 20px 0 20px 0;
+  }
+  .admin_outer_weak_start_end_section.english_bx {
+    padding: 0;
+  }
+    .admin_inner_edit_restaurant_logo {
+      border: 1px dashed #ffffff;
+      display: table;
+      margin-top: 25px;
+      padding: 4px;
+      width: 100%;
+    }
+  .admin_bananas_slice_section_inner.english_bx {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+  }
+    .admin_inner_edit_restaurant_logo_inner {
+      background-color: #ffffff;
+      display: table-cell;
+      height: 390px;
+      text-align: center;
+      vertical-align: middle;
+      position: relative;
+    }
+    .admin_inner_edit_restaurant_logo_inner input[type="file"]{
+      position: absolute;
+      opacity: 0;
+      display: inherit !important;
+    }
+    .admin_bananas_slice_section_inner {
+      margin-top: 25px;
+      padding: 0 8px;
+    }
+
+  .admin_bananas_slice_section_content > h4 {
+    padding: 0 0 0 20px;
+  }
+    .admin_bananas_slice_section_inner h2 {
+      background-color: #000000;
+      background-image: url("../img/tray-icon.png");
+      background-position: 27px center;
+      background-repeat: no-repeat;
+      border: 1px dashed #ffffff;
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 22px;
+      font-weight: 400;
+      margin: 0;
+      padding: 14px 20px 13px 63px;
+    }
+    .admin_bananas_slice_section_content {
+      background-color: #ffffff;
+      margin-top: 10px;
+      padding: 2px 0 13px;
+    }
+    .admin_bananas_slice_section_content p {
+      background-color: #ffffff;
+      color: #1b1a1a;
+      font-size: 14px;
+      height: 102px;
+      line-height: 24px;
+      overflow-y: scroll;
+      padding: 0 28px 20px 20px;
+    }
+    .admin_address_listing {
+      margin: 22px 0 30px;
+    }
+    .admin_address_icon {
+      background-image: url("../img/address-ico.png");
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+    .admin_address_phone_icon {
+      background-image: url("../img/phone-ico.png");
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+    .admin_address_email_icon {
+      background-image: url("../img/email-ico.png");
+      
+    }
+    .admin_address_listing, .admin_web_address {
+      padding-left: 0;
+    }
+  .admin_address_listing li, .admin_web_address li {
+    background-position: left 4px;
+    background-repeat: no-repeat;
+    list-style: outside none none;
+    margin: 8px 0;
+    position: relative;
+    padding-left: 30px;
+  }
+  .admin_address_listing li a i, 
+  .admin_web_address li a i {
+    left: 0;
+    position: absolute;
+    top: 10px;
+  }
+  .normal i {
+    display: inline-block;
+    width: 15px !important;
+    color: #ffffff;
+  }
+  .c-web-address li > input {
+    border: medium none;
+    color: #000000;
+    height: 32px;
+    line-height: 1;
+    margin-left: 0px !important;
+    padding-left: 15px;
+    width: 100%;
+  }
+  .c-web-address li i {
+    display: inline-block;
+    width: 15px !important;
+    color: #ffffff;
+  }
+
+    .admin_address_listing li a, .admin_web_address li a {
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 28px;
+      text-decoration: none;
+    }
+    .admin_web_address_web_icon {
+      background-image: url("../img/website-ico.png");
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+    .admin_web_address_fb_icon {
+      background-image: url("../img/fb-ico.png");
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+    .admin_web_address_twitter_icon {
+      background-image: url("../img/twitter-ico.png");
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+    .admin_web_address_insta_icon {
+      background-image: url("../img/insta-ico.png");
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+    .admin_outer_weak_start_end_section {
+      margin-top: 35px;
+      padding: 0 8px;
+    }
+    .admin_outer_weak_start_end thead {
+      background-color: #000000;
+      border: 1px dashed #ffffff;
+    }
+    .admin_outer_weak_start_end thead tr td {
+      border-right: 1px solid #ffffff;
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 16px;
+      padding: 14px 20px;
+    }
+    .admin_outer_weak_start_end thead tr td:last-child {
+      border-right:none;
+    }
+    .week_day_icon {
+      background-image: url("../img/calendar-ico.png");
+      background-position: 0 2px;
+      background-repeat: no-repeat;
+      padding-left: 22px;
+      float: left;
+    }
+    .start_day_icon {
+      background-image: url("../img/power-ico.png");
+      background-position: 0 2px;
+      background-repeat: no-repeat;
+      padding-left: 22px;
+    }
+    .end_day_icon {
+      background-image: url("../img/end-ico.png");
+      background-position: 0 2px;
+      background-repeat: no-repeat;
+      padding-left: 22px;
+    }
+    .admin_outer_weak_start_end tbody tr td {
+      border: 1px solid #ffffff;
+      padding: 11px 20px;
+      text-align: center;
+      width: 33%;
+    }
+    .admin_outer_weak_start_end tbody tr td input {
+      border: none;
+      border-radius: 5px;
+      font-family: roboto;
+      font-size: 14px;
+      height: 31px;
+      color: #000;
+      padding: 0 10px;
+      text-align: center;
+      width: 92%;
+    }
+    .admin_outer_weak_start_end tbody tr td select {
+      -webkit-appearance: none; 
+       -moz-appearance: none;
+       appearance: none;
+      background-image: url("../img/admin_select_down_arrow.png");
+      background-position: 94% center;
+      background-repeat: no-repeat;
+      border: medium none;
+      border-radius: 5px;
+      color: #000000;
+      font-family: roboto;
+      font-size: 13px;
+      height: 31px;
+      padding: 0 10px;
+      text-align: left;
+      width: 92%;
+    }
+     .admin_outer_weak_start_end tbody tr td  select::-ms-expand { 
+        display: none; /* hide the default arrow in ie10 and ie11 */
+    }
+    .admin_outer_weak_start_end tbody tr:first-child td {
+      border-top:none;
+    }
+    .admin_outer_weak_start_end tfoot tr td {
+      border: 1px solid #ffffff;
+      padding: 15px 26px;
+    }
+    .admin_outer_weak_start_end tbody tr td select::-ms-expand {
+      display: none;
+    }
+    .admin_minimum_order_count {
+      background-color: #000000;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      font-family: roboto;
+      font-size: 20px;
+      margin-top: 35px;
+      padding: 17px 10px;
+      text-align: center;
+    }
+    .admin_minimum_order_count > input {
+      border: none;
+      border-radius: 5px;
+      color: #000000;
+      font-size: 16px;
+      height: 36px;
+      margin-left: 20px;
+      text-align: center;
+      width: 50px;
+    }
+    .edit_restaurant_check > input {
+      float: left;
+      height: 72px;
+      left: 0;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+      position: absolute;
+      width: 72px;
+      z-index: 999;
+    }
+    .edit_restaurant_check input[type="checkbox"] + label {
+      background-color: #000000;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 34px auto;
+      border: 1px solid #ffffff;
+      height: 72px;
+      left: 0px;
+      margin: 0;
+      position: relative;
+      top: 0;
+      width: 72px;
+    }
+    .edit_restaurant_check input[type="checkbox"]:checked + label {
+      background-image: url("../img/admin_input_check_box_icon.png");
+      height: 72px;
+      width: 72px;
+    }
+    .admin_edit_resturant_save_inner > button {
+      background-color: #000000;
+      border: 1px solid #ffffff;
+      color: #ffffff;
+      float: left;
+      font-family: bodoniflfbold;
+      font-size: 34px;
+      height: 72px;
+      padding: 0;
+      width: 42%;
+    }
+    .edit_restaurant_check {
+      float: left;
+      margin-left: 20px;
+      position: relative;
+    }
+    .admin_edit_resturant_save_inner > span {
+      color: #ffffff;
+      display: inline-block;
+      font-family: roboto;
+      font-size: 18px;
+      line-height: 23px;
+      margin-left: 14px;
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+    .admin_registered_restaurants_outer.admin_order_list_outer.admin_billing_outer.admin_restaurant_edit {
+      margin-bottom: 38px;
+    }
+    .admin_edit_resturant_save_section {
+      margin-bottom: 60px;
+    }
+    .admin_edit_resturant_save_inner {
+      padding: 0 8px;
+    }
+    .admin_registered_restaurants_outer.admin_order_list_outer.admin_billing_outer.admin_restaurant_edit {
+      overflow: inherit !important;
+    }
+    .admin_registered_restaurants_outer.admin_order_list_outer.admin_billing_outer.admin_restaurant_edit .admin_order_inner.admin_billing_inner.admin_restaurant_edit_inner {
+      float: left;
+      width: 100% !important;
+    }
+   .admin_restaurant_edit_big_img {
+      /*height: 240px;*/
+      height: auto;
+      overflow: hidden;
+      position: relative;
+  }
+  .admin_restaurant_edit_big_img input[type="file"]{
+    position: absolute;
+    opacity: 0;
+    display: inherit !important;
+    left: 0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    /*admin edit restaurant page style end here*/ 
+  }
+
+  .text-left > input#res_dis_text {
+    color: #000000;
+  }
+  textarea#res_desc {
+    resize: none !important;
+  }
+
+  /* 13th July */
+  .admin_restaurant_edit_small_img label > img {
+    max-height: 111px;
+    max-width: 100%;
+    min-height: 111px;
+    width: 342px;
+  }
+  .admin_restaurant_edit_big_img label img {
+    min-height: 245px;
+  }
+  .attract_visitor_section {
+    margin-top: 15px;
+  }
+  .admin_inner_edit_restaurant_logo_inner.full-width > label {
+    margin: 0;
+    /*max-height: 160px;*/
+    overflow: hidden;
+  }
+  .admin_inner_edit_restaurant_logo_inner img {
+    max-width: 100%;
+  }
+
+  /* Create Lunch Box Page */
+
+  section.create-lunch-box {
+    float: left;
+    margin-bottom: 80px;
+    margin-top: 80px;
+    width: 100%;
+  }
+
+  div.bhoechie-tab-container {
+      padding: 0 !important;
+      z-index: 10;
+  }
+  div.bhoechie-tab-menu div.list-group > a {
+    border-radius: 0;
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: 10px;
+    padding: 22px 10px;
+  }
+  div.bhoechie-tab-menu div.list-group {
+      margin-bottom: 0;
+  }
+  div.bhoechie-tab-menu div.list-group div {
+      margin-bottom: 20px!important;
+  }
+  .feedback-desc ul li .d-and-t {
+      border-radius: 0;
+      bottom: 5px !important;
+      color: #f6f6f6;
+      height: 18px;
+      left: auto;
+      right: 5px;
+      top: auto;
+      width: auto !important;
+  }
+  .feedback-desc.show_feedback_only {
+      max-height: 483px;
+      overflow-y: scroll;
+  }
+  div.bhoechie-tab-menu div.list-group > a.active {
+    background-color: #ffffff;
+    background-position: 97% center;
+    background-repeat: no-repeat;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    color: #000000;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  div.bhoechie-tab-menu div.list-group > a.active::after {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("/static/dashboard/img/chevron-right.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    content: "";
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    width: 30px;
+  }
+
+     select.c-select::-ms-expand { 
+        display: none; /* hide the default arrow in ie10 and ie11 */
+    }
+  .c-select {
+    -moz-appearance: none;
+    -webkit-appearance: none; 
+     -moz-appearance: none;
+     appearance: none;
+    background-image: url("/static/dashboard/img/drop-img.png");
+    background-position: 97% center;
+    background-repeat: no-repeat;
+    border: medium none;
+    border-radius: 0;
+    height: 44px;
+    line-height: 1;
+    overflow: hidden;
+    padding-right: 30px;
+  }
+
+  div.bhoechie-tab-menu div.list-group > a {
+      border-radius: 0;
+      margin-bottom: 15px;
+      background-color: #000000;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+  }
+
+  div.bhoechie-tab-content {
+    background-color: rgba(0, 0, 0, 0);
+    float: left;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
+      display: none;
+  }
+  div.bhoechie-tab-menu div.list-group > a.active i {
+      display: none;
+  }
+
+  .sub-title {
+      color: #514f4f;
+      font-weight: 700;
+      font-size: 20px;
+  }
+  .list_dot li::before {
+      color: #db4336;
+      content: "\f111";
+      font-family: fontawesome;
+      font-size: 10px;
+      margin-right: 5px;
+      left: 0;
+      position: absolute;
+  }
+  .list_dot li {
+      line-height: 30px;
+      padding-left: 20px;
+      position: relative;
+  }
+  .line-height li {
+      line-height: 24px;
+  }
+  .marbottom-30 {
+      margin-bottom: 30px;
+  }
+  .apply_0 {
+      display: block;
+      line-height: 45px;
+      margin-bottom: 0;
+      margin-top: 20px;
+      padding-bottom: 0;
+  }
+  .bhoechie-tab-content h2 {
+      margin-top: 0;
+  }
+
+  .lunch-box-inner {
+    margin: 0 auto;
+    max-width: 1270px;
+  }
+  .create-lunch-box .tabs-area {
+    padding-left: 15px;
+  }
+  .content1 {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    display: table;
+    float: left;
+    padding: 20px;
+  }
+  .bhoechie-tab-content .admin_restaurant_edit_big_img label img {
+    min-height: 366px;
+  }
+  .bhoechie-tab-content .admin_restaurant_edit_small_img label > img {
+    max-height: 172px;
+    max-width: 100%;
+    min-height: 172px;
+    width: 342px;
+  }
+  .bhoechie-tab-content .admin_restaurant_edit_small_img.pull-left.full-width > label {
+    border: 1px dashed #ffffff !important;
+    margin-bottom: 0;
+    overflow: hidden !important;
+    width: 100%;
+  }
+  table.table-lunch-box th.heading {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-family: roboto;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 14px 15px;
+    text-align: center;
+  }
+  table.table-lunch-box, table.table-lunch-box tr, table.table-lunch-box th, table.table-lunch-box td {
+    border: 1px solid #ffffff;
+    border-collapse: collapse;
+    color: #ffffff;
+    vertical-align: middle !important;
+  }
+  .delivery-text
+  {
+    padding:20px 20px;
+  }
+  .admin_info_section {
+    border: 1px dashed #ffffff;
+    clear: left;
+    padding: 20px;
+  }
+  .creating-lunchbox .row > .col-lg-4 {
+    padding-left: 23px;
+    padding-right: 3px;
+  }
+  .box-name-input {
+    border: medium none;
+    border-radius: 0;
+    color: #333333;
+    font-size: 20px;
+    height: 46px;
+    line-height: 1;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    width: 100%;
+  }
+  textarea#box-name-desc {
+    height: 140px;
+    margin-bottom: 15px;
+    max-height: 120px;
+    overflow-y: scroll;
+    padding: 10px;
+  }
+  .show_description {
+      background: #fff none repeat scroll 0 0;
+      height: 140px;
+      margin-bottom: 15px;
+      max-height: 120px;
+      overflow-y: scroll;
+      padding: 10px 25px 10px 10px;
+  }
+  .gr-input {
+    border: medium none;
+    border-radius: 5px;
+    color: #333333;
+    height: 35px;
+    line-height: 1;
+    margin-left: 5px;
+    padding: 10px;
+    width: 112px;
+  }
+  .gr-input-right-m {
+    border: medium none;
+    border-radius: 5px;
+    color: #333333;
+    height: 29px;
+    line-height: 1;
+    margin-right: 5px;
+    padding: 8px 10px;
+    width: 64px;
+  }
+  .gr-input-right-both {
+    border: medium none;
+    border-radius: 5px;
+    color: #333333;
+    height: 29px;
+    line-height: 1;
+    margin: 0px 5px;
+    padding: 8px 10px;
+    width: 64px;
+  }
+  .td-input-span-r {
+    text-align: right;
+    float: right;
+    margin-right: 2px;
+  }
+  .tb-lable-span {
+
+    height: 29px;
+    line-height: 1;
+
+  }
+  .td-input-span {
+    float: right;
+    width: 132px;
+  }
+  h2.availability-tab {
+    background-color: #000000;
+    border: 1px dashed #ffffff;
+    color: #ffffff;
+    font-family: roboto;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    padding: 14px 15px;
+    text-align: center;
+  }
+  .availability-dates .form-group {
+    float: left;
+    width: 50%;
+  }
+  .avail-date input#datetimepicker3 , .avail-date input#datetimepicker4 {
+    border: medium none;
+    border-radius: 5px;
+    color: #333333;
+    height: 29px;
+    line-height: 1;
+    padding: 0 10px;
+    width: 100%;
+  }
+  .avail-date input#datetimepicker31 , .avail-date input#datetimepicker41 {
+    border: medium none;
+    border-radius: 5px;
+    color: #333333;
+    height: 29px;
+    line-height: 1;
+    padding: 0 10px;
+    width: 100%;
+  }
+  .availability-dates .form-group:first-child {
+    padding-right: 5px;
+  }
+  .availability-dates .form-group:last-child {
+    padding-left: 5px;
+  }
+  .availability-dates .form-group lable {
+    color: #ffffff;
+    display: block;
+    font-size: 16px;
+    line-height: 1;
+    padding: 15px 0;
+  }
+  .admin_date_picker.admin_start_date.avail-date > a {
+    position: absolute;
+    right: 10px;
+    top: -3px;
+  }
+  .admin_date_picker.admin_start_date.avail-date {
+    position: relative;
+  }
+  .lunch-category-select .form-group > label {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1;
+    padding: 0 0 10px;
+  }
+  .creating-lunchbox .edit_restaurant_check {
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    margin: 0;
+    padding-top: 10px;
+    width: 25%;
+  }
+  .creating-lunchbox .edit_restaurant_check > input {
+    height: 48px;
+    width: 48px;
+  }
+  .creating-lunchbox .edit_restaurant_check input[type="checkbox"]:checked + label {
+    background-image: url("../img/admin_input_check_box_icon.png");
+    height: 48px;
+    width: 48px;
+  }
+  .creating-lunchbox .edit_restaurant_check input[type="checkbox"] + label {
+    background-color: #000000;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 34px auto;
+    border: 1px solid #ffffff;
+    left: 0;
+    margin: 0;
+    position: relative;
+    top: 0;
+    height: 48px;
+    width: 48px;
+  }
+  .creating-lunchbox .edit_restaurant_check p {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: normal;
+    padding-left: 55px;
+    text-transform: uppercase;
+  }
+  .submit-lunch > button {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: block;
+    float: left;
+    font-family: bodoniflfbold;
+    font-size: 34px;
+    height: 72px;
+    max-width: 210px;
+    padding: 0;
+    width: 100%;
+  }
+  .c-web-address li , .normal {
+    padding-left: 32px !important;
+  }
+
+  .show_coupon_class.full-width {
+    float: left;
+    padding: 12px 8px;
+  }
+  .show_coupon_class.full-width > input {
+    background-color: #000000;
+    border: 1px dashed #ffffff;
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
+  }
+  .attract_visitor_section_inner.full-width.pull-left {
+    position: relative;
+  }
+  #hide_coupon {
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+  }
+  .normal > input {
+    border: medium none;
+    color: #000000;
+    height: 32px;
+    line-height: 1;
+    margin-left: 0px !important;
+    padding-left: 15px;
+    width: 100%;
+  }
+  .name-of-wild {
+    background-color: #000000;
+    border: 1px dashed #ffffff;
+    color: #ffffff;
+    float: left;
+    font-family: roboto;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 15px;
+    padding: 14px 15px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .table-lunch-box2 td {
+    padding: 15px 8px !important;
+  }
+  .edit-l, .del-l {
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 1;
+    padding: 20px 0;
+    text-align: center;
+    text-decoration: none;
+    width: 190px !important;
+    text-decoration: none !important;
+  }
+  .edit-l:hover, .del-l:hover {
+    background-color: rgba(0, 0, 0, 1);
+    color: #ffffff;
+  }
+  .edit-l {
+    margin-right: 10px;
+  }
+  .ed-and-del {
+    margin: 15px 0;
+    text-align: right;
+  }
+  .communication-box {
+    margin-top: 15px;
+  }
+  .communication-box-h {
+    background-color: #000000;
+    border: 1px dashed #ffffff;
+    color: #ffffff;
+    font-family: roboto;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 0 15px 0;
+    padding: 14px 15px;
+    text-align: left;
+  }
+  .Send-lunch > button {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: block;
+    float: right;
+    font-size: 34px;
+    height: 72px;
+    max-width: 210px;
+    padding: 0;
+    width: 100%;
+  }
+
+  .bhoechie-tab-content .nav-tabs li {
+    border: medium none !important;
+    border-radius: 0 !important;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+    height: 56px;
+    line-height: 1;
+    width: auto;
+  }
+  .bhoechie-tab-content .nav-tabs li a {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+  }
+  .bhoechie-tab-content .nav-tabs li.active a {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    color: #000000;
+  }
+  .bhoechie-tab-content .nav.nav-tabs {
+    border: medium none;
+    padding: 0 8px;
+  }
+
+  /* Today's Orders */
+
+  .create-lunch-box div.bhoechie-tab-content {
+    float: none;
+  }
+  .wild-salmon-text h2 {
+    background-color: #000000;
+    background-position: 27px center;
+    background-repeat: no-repeat;
+    border: 1px dashed #ffffff;
+    color: #ffffff;
+    font-family: roboto;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    padding: 14px 20px 13px 75px;
+  }
+  .wild-salmon-text p {
+    background-color: #ffffff;
+    padding:10px 10px;
+    margin: 0px;
+  }
+  .people-choose {
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .people-choose h2 {
+    background-color: #000000;
+    background-position: 27px center;
+    background-repeat: no-repeat;
+    border: 1px dashed #ffffff;
+    color: #ffffff;
+    float: left;
+    font-family: roboto;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    padding: 14px 20px 13px 100px;
+    position: relative;
+    width: 100%;
+  }
+  .people-choose h2 span {
+    border-right: 1px solid #ffffff;
+    color: #ffffff;
+    display: block;
+    font-size: 22px;
+    height: 100%;
+    left: 0;
+    line-height: 52px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 80px;
+  }
+
+  #wild-s-t .availability-section {
+    margin-top: 15px;
+  }
+  #wild-s-t .row > .col-md-4 {
+    padding: 0 8px;
+  }
+  div.salmon-outer-price table.salmon-prices tr, div.salmon-outer-price table.salmon-prices th {
+    color: #ffffff;
+  }
+  td.priced-td {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    text-align: right;
+  }
+  .lunchbox-rating {
+    display: block;
+    position: relative;
+  }
+  .todays-box-right .rating {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #9f9f9f;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 160px;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    width: 160px;
+  }
+  .todays-box-right .rating .text-uppercase {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0 0 0 0;
+    text-align: center;
+  }
+  .todays-box-right .rating .rating_num {
+    color: #ffffff;
+    display: block;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+  }
+  .todays-box-right .rating .stars {
+    display: block;
+    list-style: outside none none;
+    margin: 0px auto;
+    padding: 0;
+    text-align: center;
+
+  }
+  .todays-box-right .rating .stars > li {
+    display: inline-block;
+    margin: 0 3px;
+  }
+  .todays-box-right .rating .stars > li .glyphicon {
+    color: #ffffff;
+    font-size: 18px;
+  }
+  .todays-box-right .rating_info {
+    display: inline-block;
+    float: left;
+    padding-left: 174px;
+    width: 100%;
+  }
+  .todays-box-right .rating_info > p {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    display: block;
+    line-height: 27px;
+    margin: 4px 0;
+    padding: 0 10px;
+    width: 100%;
+  }
+  .col-md-8.todays-box-right {
+    padding: 0 8px;
+  }
+
+  .todays-box-right .table.table-borderd.table-lunch-box {
+    float: left;
+    margin-bottom: 0;
+    margin-top: 20px;
+    width: 100%;
+  }
+  td.bg-td {
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+
+  .feedbacks-box h2 , .communication-box h2 {
+    background-color: #000000;
+    background-position: 27px center;
+    background-repeat: no-repeat;
+    border: 1px dashed #ffffff;
+    color: #ffffff;
+    float: left;
+    font-family: roboto;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    padding: 14px 20px 13px 20px;
+    position: relative;
+    width: 100%;
+  }
+  .feedback-desc > ul {
+    padding: 0;
+  }
+  .feedback-desc li {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    line-height: 50px;
+    list-style: outside none none;
+    margin: 5px 0;
+    min-height: 50px;
+    padding: 8px 10px;
+    position: relative;
+    width: 100%;
+  }
+  .feedback-desc ul li > span {
+    border-radius: 50%;
+    display: block;
+    height: 40px;
+    left: 10px;
+    line-height: normal;
+    overflow: hidden;
+    position: absolute;
+    top: 12px;
+    width: 40px;
+  }
+  .feedback-desc ul li > p {
+    color: #ffffff;
+    float: left;
+    line-height: 24px;
+    padding-left: 50px;
+  }
+  .feedback-desc ul li > p.user-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    width: 100%;
+  }
+  .feedback-desc ul li > span img {
+    width: 100%;
+  }
+  .feedback-desc {
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .communication-box {
+    margin: 0;
+  }
+
+  /* Empty Lunch Box Order */
+
+  .res_empty_lunchbox {
+    background-color: #f2f2f2;
+    border: 1px solid #000000;
+    padding: 60px 0;
+    text-align: center;
+  }
+  .res_empty_lunchbox .box {
+    margin-bottom: 30px;
+  }
+  .res_empty_lunchbox .have_no_lb {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .res_empty_lunchbox .btn.btn-default.text-uppercase {
+    border-radius: 0;
+    height: 42px;
+    line-height: 28px;
+    text-align: center;
+    width: 200px;
+  }
+
+
+
+
+
+  /* Chat Box */
+
+  .chat-box-custom {
+    background-color: #f2f2f2;
+    float: left;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 15px;
+    width: 100%;
+  }
+  .bottom-chat-box textarea {
+    width: 100%;
+  }
+  .top-chat-list {
+    float: left;
+    margin-bottom: 15px;
+    max-height: 250px;
+    min-height: 250px;
+    overflow-y: scroll;
+    width: 100%;
+  }
+  .bottom-chat-box {
+    float: left;
+    position: relative;
+    width: 100%;
+  }
+  .bottom-chat-box .send-chat {
+    border: 1px solid #cccccc;
+    bottom: 4px;
+    height: 34px;
+    position: absolute;
+    right: 3px;
+    width: 120px;
+  }
+  .bottom-chat-box textarea {
+    padding-bottom: 45px;
+    padding-left: 10px;
+    padding-top: 5px;
+    width: 100%;
+  }
+
+  #myCarouselnew .feedbacks-box {
+    float: left;
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  /* Chat Box Ends */
+
+  .feedback-and-communication .communication-box > textarea {
+    box-sizing: border-box;
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
+  }
+  .feedback-and-communication .row > .col-sm-6 {
+    padding: 0 8px;
+  }
+  .buttons-form a {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-image: none;
+    background-position: 33px center;
+    background-repeat: no-repeat;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 22px;
+    height: 58px;
+    line-height: 58px;
+    margin: 0 5px;
+    padding: 10px 35px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .buttons-form a:hover {
+      background-color: rgba(0, 0, 0, 1);
+  }
+
+  /* Admin Dashboard */
+
+  .custom-container {
+    clear: both;
+    margin: 120px auto 0;
+    max-width: 1280px;
+  /*  padding: 15px;*/
+    width: 100%;
+  }
+  .orders-sect {
+    background-color: rgba(255, 255, 255, 0.4);
+    float: left;
+    padding: 15px;
+    width: 100%;
+  }
+  .scheduled-orders {
+    border: 1px solid #cccccc;
+    color: #f2f2f2;
+    float: left;
+    min-height: 130px;
+    text-align: center;
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .scheduled-orders h3 {
+    line-height: 130px;
+    margin: 0;
+  }
+  .orders-sect .information_btn {
+    margin-bottom: 0;
+  }
+  .profile-sect {
+    float: left;
+    width: 100%;
+  }
+  .profile-sect .profile-left {
+    float: left;
+    width: 40%;
+  }
+  .profile-right {
+    color: #ffffff;
+    float: left;
+    width: 60%;
+  }
+  .profile-img {
+    border: 1px solid #ffffff;
+  }
+  .profile-sect .profile-img > img {
+    max-width: 100%;
+  }
+  .profile-right {
+    color: #ffffff;
+    float: left;
+    padding: 15px 0px 15px 15px;
+    width: 60%;
+
+  }
+  .profile-right ul li > span {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  .profile-sect {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid #dedede;
+    float: left;
+    margin-top: 30px;
+    padding: 15px;
+    width: 100%;
+  }
+  .delivery-to table th {
+    background-color: #000000;
+    color: #ffffff;
+  }
+  .delivery-to {
+    margin-top: 15px;
+    color: #ffffff;
+  }
+  .profile-right > ul {
+    list-style: outside none none;
+    padding: 0;
+  }
+  .profile-right > h3 {
+    margin: 0 0 10px;
+  }
+  .empty-div {
+  /*  border: 1px dashed #ffffff;*/
+    display: block;
+    float: left;
+    /*min-height: 128px;*/
+    width: 100%;
+  }
+  .empty-div > a {
+    border: 2px dashed #ffffff;
+    color: #ffffff;
+    display: block;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+  }
+  .empty-div > a .small {
+    font-size: 16px;
+    margin: 0;
+  }
+  .empty-div h3 {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 0;
+  }
+  .empty-div > a {
+    background-color: #f6f6f6;
+    border: 2px dashed #000000;
+    color: #555555;
+    display: block;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    position: relative;
+  }
+
+  .empty-div > a::before {
+    border: 1px solid #555555;
+    bottom: 3%;
+    content: "";
+    height: 92%;
+    left: 3%;
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    width: 94%;
+  }
+
+  .profile-sect .admin_minimum_order_count.full-width.pull-left {
+    margin-top: 0;
+  }
+  .feedbacks-box.reviews-sect {
+    border: 1px solid #dedede;
+    float: left;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    padding: 15px;
+    width: 100%;
+  }
+  .feedbacks-box.reviews-sect .feedback-desc li {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    display: inline-block;
+    line-height: 50px;
+    list-style: outside none none;
+    margin: 0;
+    min-height: 64px;
+    padding: 8px 10px 35px 10px;
+    position: relative;
+    width: 100%;
+  }
+  .feedbacks-box.reviews-sect li > span.d-and-t {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    bottom: 5px;
+    height: auto;
+    left: auto;
+    padding: 2px 8px;
+    position: absolute;
+    right: 5px;
+    top: auto;
+    width: auto;
+  }
+  .chat-box-custom .d-and-t {
+    border-radius: 0;
+    bottom: 5px !important;
+    color: #f6f6f6;
+    height: 18px;
+    left: auto;
+    right: 5px;
+    top: auto;
+    width: auto !important;
+  }
+
+
+  .feedbacks-box.reviews-sect .feedback-desc > ul {
+    margin: 0;
+  }
+  .img-tb-span > img {
+    width: 100%;
+  }
+  .img-tb-span {
+    display: block;
+    height: 90px;
+    overflow: hidden;
+  }
+  .create-lunch-box.imagery-tabs div.bhoechie-tab-menu div.list-group > a {
+    border-radius: 0;
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  .tb-txt-span {
+    display: block;
+    padding: 0 0 8px;
+  }
+  .imagery-tabs div.bhoechie-tab-menu div.list-group a.active {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 16px;
+  }
+  .imagery-tabs div.bhoechie-tab-menu div.list-group a {
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+  }
+  #order_time_table > p {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: lighter !important;
+  }
+  #order_time_table > p strong {
+    font-weight: normal !important;
+  }
+  .imagery-tabs div.bhoechie-tab-menu div.list-group a.active::after {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("/static/dashboard/img/chevron-right.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    content: "";
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 2px;
+    transform: none;
+    width: 30px;
+  }
+
+  #myCarouselnew .admin_restaurant_edit_big_img.pull-left.full-width > label {
+    border: 1px dashed #ffffff !important;
+    margin-bottom: 0 !important;
+    height: 200px;
+    overflow: hidden;
+    width: 100% !important;
+  }
+  #myCarouselnew .admin_restaurant_edit_pin.pull-left.full-width {
+    margin-bottom: 10px;
+    padding: 0;
+  }
+  body #myCarouselnew .admin_restaurant_edit_big_img.pull-left.full-width > label > img {
+    height: 198px;
+    min-height: auto !important;
+  }
+  .inside-caption h2 {
+    background-color: #000000;
+    background-repeat: no-repeat;
+    border: 1px dashed #ffffff;
+    color: #ffffff;
+    float: left;
+    font-family: roboto;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0;
+    padding: 14px 20px 14px 20px;
+    position: relative;
+    width: 100%;
+  }
+  .inside-caption p {
+    margin-top: 15px;
+    float: left;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 10px;
+    color: #000;
+  }
+  #myCarouselnew.carousel.slide {
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .table-lunch-box td span.text-right {
+    float: right;
+  }
+  .table-ppl-who-chose, .table-ppl-who-chose tr td {
+    border: 1px solid #ffffff !important;
+    color: #ffffff;
+  }
+  .col-md-12.col-xs-12.people-who-chose {
+    padding: 0;
+  }
+  #myCarouselnew .left.carousel-control {
+    background-image: none !important;
+  }
+  #myCarouselnew .right.carousel-control {
+    background-image: none !important;
+  }
+  #myCarouselnew .left.carousel-control {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    display: block;
+    height: 50px;
+    left: 0 !important;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    width: 30px;
+  }
+  #myCarouselnew .right.carousel-control {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0 !important;
+    right: 0px !important;
+    display: block;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    width: 30px;
+
+  }
+  .profile-right {
+    color: #ffffff;
+    float: left;
+    padding: 15px 0 15px 15px;
+    width: 60%;
+  }
+  .profile-first-content {
+    margin-bottom: 15px;
+    max-height: 270px;
+    min-height: 200px;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+    padding: 0 15px 15px 0;
+  }
+
+  /* Coupon Page */
+
+  .coupon-left-c {
+    float: left;
+    width: 50%;
+  }
+  .couplon-right-c {
+    float: left;
+    width: 50%;
+  }
+  .main-coupon-area.col-xs-12 {
+    clear: both;
+    float: none;
+    margin: 40px auto;
+    max-width: 770px;
+    width: 100%;
+  }
+  .coupon-left-c .table-outer {
+    float: left;
+    margin-top: 15px;
+    width: 100%;
+  }
+  table.coupon-table {
+    color: #ffffff;
+  }
+  .coupon-img-here {
+    border: 1px solid #ffffff;
+    float: none;
+    margin: 0 auto;
+    max-height: 160px;
+    max-width: 300px;
+    min-height: 160px;
+    overflow: hidden;
+    width: 100%;
+  }
+  .coupon-img-here .restaurant-logo {
+    min-height: 160px;
+    width: 100%;
+  }
+  .couplon-right-c h2 {
+    color: #ffffff;
+    font-size: 22px;
+    margin: 10px 0;
+    text-align: center;
+  }
+  .couplon-right-c p.restaurant-desc {
+    color: #ffffff;
+  }
+  .couplon-right-c .contact_info li {
+    color: #ffffff;
+    list-style: outside none none;
+    text-align: center;
+  }
+  .couplon-right-c .contact_info > ul {
+    padding: 0;
+  }
+  .main-coupon-area .restaurant-coupon.text-center {
+    float: left;
+    margin: 90px 0;
+    width: 100%;
+  }
+
+  .empty-ord-page {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: #ffffff;
+    float: left;
+    min-height: 400px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  .empty-ord-page h3 {
+    left: 0;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    text-decoration: underline;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .submit-lunch {
+    margin-top: 10px;
+  }
+  .outer-chat {
+    background-color: #f2f2f2;
+    float: left;
+    margin-top: 15px;
+    width: 100%;
+  }
+  .outer-chat .chat-box-custom {
+    border-bottom: 1px solid #d4d4d4;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .outer-chat .bottom-chat-box {
+    padding: 15px;
+  }
+  .outer-chat .bottom-chat-box .send-chat {
+    bottom: 19px;
+    right: 18px;
+  }
+
+  /* Mail Invoice Div */
+
+  .mail-invoice-div {
+    border: 1px solid #ffffff;
+    float: left;
+    margin: 0 0 15px;
+    padding: 10px;
+    width: 100%;
+    color: #ffffff;
+  }
+  .mail-invoice-div > div {
+    float: left;
+    width: 50%;
+  }
+  .inc-right > button {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    height: 38px;
+    line-height: 1;
+    width: 105px;
+  }
+  .inc-right > span {
+    float: left;
+    width: 80%;
+  }
+  .inc-right input {
+    border: 1px solid #dedede;
+    height: 38px;
+    line-height: 1;
+    width: 100%;
+  }
+  .inc-left > p {
+    line-height: 38px;
+    margin: 0;
+    padding-right: 15px;
+    text-align: right;
+  }
+  /*17 aug style start here*/
+  .notification_msg.high-priority button {
+    float: right;
+    margin-left: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: right;
+  }
+  .notification_msg.high-priority {
+    padding: 25px 10px;
+    width: 100%;
+  }
+  .admin_registered_restaurants_outer.admin_order_list_outer.admin_restaurant_non_scroller_new h1 {
+    float: left;
+    font-size: 27px;
+    margin: 13px 0 20px;
+    width: 100%;
+  }
+  .notification_reply.a_reply {
+    border-top: 1px dashed #cccccc;
+    margin-top: 23px;
+    padding-top: 19px;
+  }
+  .notification_reply.a_reply textarea {
+    border: 1px solid #cccccc;
+    float: left;
+    height: 96px;
+    margin-bottom: 18px;
+    margin-top: 10px;
+    padding: 12px 15px;
+    width: 100%;
+  }
+  .notification_reply.a_reply > button {
+    background-color: #337ab7;
+    border: 1px solid #2e6da4;
+    border-radius: 4px;
+    color: #ffffff;
+    font-family: "bodoniflfbold";
+    font-size: 21px;
+    padding: 3px 24px;
+    text-transform: capitalize;
+  }
+  .notification_reply.a_reply > button:hover{
+    background-color: #286090;
+    border-color: #204d74;
+  }
+  .button_notification_new button.btn.btn-primary.small.btn-reply > a {
+    color: #ffffff;
+  }
+  /*17 aug style start here*/
+
+  /*22 aug style start here*/
+
+  .invoice-edit-outer {
+    display: table;
+    width: 100%;
+  }
+
+  .invoice-edit-outer_box {
+    display: table-cell;
+    padding: 15px;
+  }
+
+  .invoice-edit-outer_box input[type="date"] {
+      height: 40px;
+      padding: 0 15px;
+      width: 100%;
+      color: #333;
+      background-image: url(../../mainapp/img/select_arrow-icon.png);
+      background-size: auto 6px;
+      background-position: right center;
+  }
+  input[type="date"]::-webkit-inner-spin-button {
+      display: none;
+      -webkit-appearance: none;
+  }
+  input[type="date"] {
+         background-image: url(img/select_arrow-icon.png);
+         background-position:center;
+         background-size:20px 20px;
+         background-repeat:no-repeat;
+        color:rgba(204,204,204,0);
+  }
+  .invoice-edit-outer_box lable {
+    color: #ffffff;
+    float: left;
+    margin-bottom: 13px;
+    width: 100%;
+  }
+  .invoice-edit-outer_box input[type="button"] {
+    background-color: #1a1a1a;
+    border: 1px solid #1a1a1a;
+    color: #ffffff;
+    height: 40px;
+    padding: 0 25px;
+  }
+  .admin_registered_restaurants_outer.admin_order_list_outer center {
+    color: #ffffff;
+    font-size: 20px;
+  }
+  .admin_order_table2 {
+      text-align: center;
+      width: 100%;
+  }
+  table.admin_order_table2 tbody tr td:first-child {
+      text-align: left;
+  }
+
+
+  /* responsive style start here */
+
+  @media screen and (min-width:1283px) {
+  	header .container,.restaurants_admin_outer.order_admin_outer .container , .create-lunch-box .container {
+  	  max-width: 100%;    
+  	  width: 1300px;
+  	}
+
+
+
+  }
+
+
+  @media screen and (max-width:1340px) {
+
+    .custom-container {
+      padding: 10px;
+    }
+
+  }
+
+
+
+  @media screen and (max-width:1282px) {
+    /*admin page style start here*/
+    table.admin_order_table thead tr td {
+      font-size: 14px;
+      padding: 20px 10px;
+    }
+    table.admin_order_table thead tr td.admin_arrow_down {
+      padding-right: 28px;
+    }
+
+    /*admin page style end here*/
+  	.navbar-brand {
+  	  padding: 0 28px 0 15px;
+  	}
+  	.navbar-nav > li > a {
+  	  padding: 14px 22px 15px;
+  	}
+      .navbar-nav > li:last-child > a {
+  	  padding-right: 0;
+  	}
+  	.navbar-nav.navbar-right > li:last-child > a {
+  	  padding-right: 28px;
+  	}
+  	.navbar-nav > li.over_lunch_box {
+  	  padding-right: 6px;
+  	}
+
+    .individual_lunchbox_section .carousel-control .glyphicon-chevron-left, 
+    .individual_lunchbox_section .carousel-control .carousel-control .glyphicon-chevron-right, 
+    .individual_lunchbox_section .carousel-control .carousel-control .icon-next, 
+    .individual_lunchbox_section .carousel-control .carousel-control .icon-prev {
+      margin-top: 0px;
+      top: -59px;
+    }
+    .individual_lunchbox_section .carousel-control .glyphicon-chevron-left, 
+    .individual_lunchbox_section .carousel-control .glyphicon-chevron-right, 
+    .individual_lunchbox_section .carousel-control .icon-next, 
+    .individual_lunchbox_section .carousel-control .icon-prev {
+      margin-top: 0px;
+      top: -59px;
+    }
+    .individual_lunchbox_section .glyphicon.glyphicon-chevron-left > img,
+    .individual_lunchbox_section .glyphicon.glyphicon-chevron-right > img {
+      width: 13px;
+    }
+    .individual_lunchbox_section .carousel-control {
+      height: 78px;
+    }
+    .carousel-control {
+      left: 0;
+    }
+    .carousel-control.right {
+      right: 0;
+    }
+    .custom-container {
+      padding: 15px;
+    }
+
+
+
+  }
+  @media screen and (max-width:1199px) {
+    /*admin style start here*/
+    .restaurants_admin_outer header.admin-header .navbar-nav > li > a {
+      margin-right: 11px;
+      padding: 6px 25px 9px;
+    }
+    .admin_outer_weak_start_end tbody tr td select {
+      font-size: 12px;
+    }
+    .admin_outer_weak_start_end tbody tr td input {
+      font-size: 12px;
+    }
+    .admin_outer_weak_start_end thead tr td {
+      padding: 14px 12px;
+    }
+    .admin_outer_weak_start_end tbody tr td {
+      padding: 11px 8px;
+    }
+    .admin_outer_weak_start_end tfoot tr td {
+      padding: 15px 14px;
+    }
+    table.admin_order_table tbody tr td.admin_order_calendar {
+      background-position: 16px center;
+      padding-left: 43px;
+    }
+    /*admin style end here*/
+    table.purchase_summery_checkout_cart_summary_final_price tr.purchase_cart_summary_cart_final_price td:last-child {
+      padding-right: 0;
+    }
+    .observation_section {
+      margin-top: 16px;
+      padding: 0 42px 50px;
+    }
+    .observation_section h2 {
+      margin: 44px 0 42px;
+    }
+    .observation_section textarea {
+      color: #000000;
+      height: 139px;
+    }
+    .purchase_summery h2 {
+      margin: 44px 0 42px;
+    }
+    .purchase_summery {
+      padding: 0 30px 54px;
+    }
+    .individual_lunch_view_all_lunchboxes {
+      padding-top: 59px;
+    }
+    .individual_lunchbox_more_info.mobile-tab {
+      display: block;
+      margin-top: 20px;
+    }
+    .individual_lunchbox_more_info.desktop {
+      display: none;
+    }
+  	.navbar-nav > li.over_lunch_box > a {
+  	  font-size: 14px;
+  	  padding: 5px 11px 7px;
+  	}
+  	.navbar-nav > li > a {
+  	  font-size: 14px;
+  	  padding: 14px 13px 15px;
+  	}
+  	.navbar-nav > li.cart_custom a {
+  	  padding-bottom: 24px;
+  	  padding-left: 15px;
+  	  padding-right: 15px;
+  	}
+  	.navbar-nav > li.user_account > a {
+  	  padding: 5px 11px 7px;
+  	}
+  	.navbar-nav.navbar-right > li:last-child > a {
+  	  padding-right: 17px;
+  	}
+  	.navbar-nav > li.language_choose > a {
+  	  background-position: 46px center;
+  	}
+  	.navbar-brand {
+  	  padding: 0 15px 0 0;
+  	}
+  	.navbar-nav > li.blog > a {
+  	  padding-left: 16px;
+  	  padding-right: 0;
+  	}
+  	.navbar-nav > li.sub_menu > a {
+  	  padding-right: 20px;
+  	}
+  	.our_lunchbox_box_discription a {
+  	  width: 89px;
+  	  text-align: center;
+  	}
+  	.our_lunchbox_box_see_more {
+  	  margin-bottom: 8px;
+  	  margin-right: 0;
+  	}
+    textarea#res_desc {
+      resize: vertical !important;
+    }
+    .creating-lunchbox .row > .col-lg-4 {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .creating-lunchbox .edit_restaurant_check {
+      width: 50%;
+    }
+    .submit-lunch {
+      margin-top: 10px;
+    }
+    .availability-section {
+      padding-top: 15px;
+    }
+    div.bhoechie-tab-menu div.list-group > a {
+      line-height: 30px;
+      padding: 15px 10px;
+    }
+    .mail-invoice-div > div {
+      float: left;
+      width: 100%;
+    }
+    .inc-left > p {
+      padding-right: 0;
+      text-align: center;
+    }
+    .inc-right {
+      position: relative;
+    }
+    .inc-right > button {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .inc-right > span {
+      float: left;
+      padding-right: 104px;
+      width: 100%;
+    }
+    .invoice-edit-outer {
+  	padding: 10px;
+     }
+
+
+
+
+  }
+  @media screen and (max-width:991px) {
+    /*admin responsive style start here*/
+    .admin_restaurant_non_scroller_new .notification_priority {
+      float: left;
+      margin-top: 15px;
+      width: 100%;
+    }
+    .contact_inner {
+
+      width: 100%;
+    }
+    .invoice-edit-outer_box input[type="date"] {
+      width: 200px;
+    }
+    .attract_visitor_section_inner{
+      overflow-x: scroll;
+      padding-bottom: 30px;
+    }
+    .attract_visitor_table {
+      width: 920px !important;
+    }
+    .admin_registered_restaurants_outer.admin_order_list_outer .admin_order_inner{
+      display: inherit !important;
+      float: none !important;
+      padding: 0 0px !important;
+      width: 918px !important;
+    }
+    .button_notification_new {
+      float: left;
+      margin-top: 11px;
+      width: 100%;
+    }
+    .notification_msg.high-priority button {
+      float: left;
+      margin-left: 0;
+      margin-right: 10px;
+    }
+    .admin_registered_restaurants_outer.admin_order_list_outer {
+      display: inherit;
+      padding: 30px 0;
+      overflow-x: scroll !important;
+    }
+    .restaurants_admin_outer .admin_registered_restaurants_outer.admin_order_list_outer.admin_restaurant_non_scroller_new .admin_order_inner {
+      width: 100% !important;
+    }
+    .admin_registered_restaurants_outer.admin_order_list_outer.admin_restaurant_non_scroller_new {
+      max-width: 100%;
+      overflow: inherit;
+      width: 100%;
+    }
+    .navbar-nav > li.language_choose > a {
+      background-position: 36px center;
+    }
+    .admin_restaurants_logo_listing ul li {
+      width: 50%;
+    }
+    .restaurants_admin_outer header.admin-header {
+      display: block;
+    }
+    .restaurants_admin_outer header.admin-header .navbar-brand > img {
+      width: 149px;
+    }
+    .restaurants_admin_outer header.admin-header .navbar-nav > li > a {
+      margin-right: 6px;
+      padding: 6px 13px 9px;
+    }
+    .restaurants_admin_outer header.admin-header .navbar-nav > li.language_choose > a {
+      padding: 6px 26px 9px 13px;
+    }
+    /*admin responsive style end here*/
+    .checkout_complete_purchase > button {
+      width: 100%;
+    }
+    .checkout_left_section {
+      padding-right: 0;
+    }
+    .checkout_last_section {
+      padding-left: 0;
+    }
+    .payment_section {
+      margin-top: 16px;
+      min-height: auto;
+      padding-bottom: 54px;
+    }
+    .payment_section h2 {
+      margin: 44px 0 36px;
+    }
+    ul.top_nav_sub-menu {
+      background-color: #ffffff;
+      border:none;
+      float: left;
+      padding: 0 0 0 6px;
+      position: inherit;
+      top: 0px;
+      width: 100%;
+    }
+    ul.top_nav_sub-menu > li a {
+      border-bottom:none;
+      color: #272727;
+      float: left;
+      font-size: 15px;
+      padding: 6px 20px;
+      width: 100%;
+    }
+  	header {
+  	  display: none;
+  	}
+  	.navbar-right {
+  	  float: right;
+  	  margin-right: 0px;
+  	  margin: 0px !important;
+  	}
+  	.navbar-nav > li.user_account > a {
+  	  background-color: rgba(0, 0, 0, 0);
+  	  border: medium none;
+  	  font-size: 22px;
+  	  margin-top: 9px;
+  	  padding: 13px 8px;
+  	}
+  	.navbar-nav > li{
+  		display: inline-block !important;
+  	}
+  	.navbar-nav > li.cart_custom a {
+  	  padding-left: 20px;
+  	  padding-right: 24px;
+  	}
+  	.mobile_header_outer {
+  	  display: block;
+  	}
+  	.logo.pull-left img {
+  	  width: 68px;
+  	}
+  	.banner_content {
+  	  padding: 83px 0 101px 17px;
+  	}
+    .customer_data_section {
+      padding: 0 20px 35px;
+    }
+    .input_group {
+      margin-bottom: 16px;
+      padding: 0 8px;
+    }
+    .customer_data_section h2 {
+      margin: 44px 0 42px;
+    }
+    .purchase_summery .container {
+      max-width: 100%;
+      width: 100%;
+    }
+    #hide_coupon {
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 24px;
+      left: 15px;
+      position: absolute;
+      top: 15px;
+    }
+
+
+    /* Today's Oder */
+
+    .wild-salmon-text h2 {
+      clear: left;
+    }
+    .feedback-and-communication .row > .col-sm-6 {
+      margin-top: 15px;
+      width: 100%;
+    }
+    .buttons-form.pull-right {
+      margin-top: 15px;
+    }
+
+  }
+
+
+
+
+  @media screen and (max-width:767px) {
+  .profile-sect .profile-img > img {
+     max-width: 100%;
+     width: 100%;
+  }  
+    
+    /*admin style start here*/
+
+    /*Restaurant admin page style start here*/
+    .admin_restaurants_logo_listing ul li {
+      width: 50%;
+    }
+    .admin_add_restaurant_icon {
+      margin-top: 16px;
+      width: 100%;
+    }
+    .admin_restaurants_logo_listing ul {
+      padding: 0;
+      width: 100% !important;
+    }
+    .admin_restaurants_logo_listing ul li span.admin_restaurants_logo_listing_inner {
+      height: 162px;
+    }
+    .restaurants_admin_outer header.admin-header .navbar-nav > li {
+      margin-bottom: 26px;
+      text-align: center;
+      width: 49%;
+    }
+    .admin_registered_restaurants_outer {
+      margin: 53px 0;
+      padding: 30px 10px;
+      width: 100%;
+    }
+    .admin_restaurants_logo_listing ul li span.admin_restaurants_logo_listing_inner {
+      height: 162px;
+      padding: 0 10px;
+    }
+    .top_nav_icon{
+      display: inline-block;
+    }
+    .restaurants_admin_outer header.admin-header .navbar-nav > li:last-child{
+      display: none !important;
+    }
+    .restaurants_admin_outer header.admin-header .navbar-right {
+      float: none;
+      padding: 34px 0 9px;
+    }
+    .restaurants_admin_outer header.admin-header .navbar-nav > li:nth-child(2n) > a {
+      margin-right: 0;
+    }
+    .restaurants_admin_outer header.admin-header .navbar-brand > img {
+      width: 124px;
+    }
+    .navbar-header .top_nav_icon {
+      float: right;
+      margin: 13px 15px 14px 0;
+    }
+    .navbar-header .top_nav_icon img {
+      margin-top: 2px;
+      width: 35px;
+    }
+    .navbar-nav > li.language_choose > a {
+      background-position: 94% center;
+    }
+    /*Restaurant admin page style end here*/
+    .box1 {
+      border-left: solid 1px #d6d6d6;
+      margin-top: 16px;
+    }
+    .purchase_summery_checkout_cart_summary_outer {
+      padding-right: 22px;
+    }
+    .col-sm-6.col-xs-12.box2 {
+      height: auto !important;
+    }
+    .individual_lunchbox_section .carousel-control .glyphicon-chevron-left, 
+    .individual_lunchbox_section .carousel-control .glyphicon-chevron-right,
+    .individual_lunchbox_section .carousel-control .icon-next, 
+    .individual_lunchbox_section .carousel-control .icon-prev {
+      top: -52px;
+    }
+    .carousel-control {
+      left: 15px;
+    }
+    .carousel-control.right {
+      right: 15px;
+    }
+  	.language_choose_list {
+  	  top: 68px;
+  	  left: inherit;
+  	}
+  	.banner_content {
+  	  padding: 55px 0 85px;
+  	}
+  	.our_lunchbox_box_button.pull-left.full-width.text-right {
+  	  text-align: left;
+  	}
+  	.our_lunchbox_box_see_more {
+  	  margin-bottom: 0;
+  	  margin-right: 12px;
+  	}
+  	.view_all_lunchboxes > a {
+  	  margin-top: 13px;
+  	  padding: 7px 30px;
+  	}
+    .our_lunchbox_box_price {
+      margin-bottom: 15px;
+    }
+  	footer {
+  	  padding: 26px 0 0;
+  	}
+  	.payment_card_section {
+  	  padding: 39px 0;
+  	}
+    .admin_restaurant_edit_small_img label > img {
+      max-height: inherit;
+      max-width: 100%;
+    /*min-height: 200px;*/
+      width: 100%;
+    }
+    .content1 {
+      padding: 10px;
+    }
+    div.bhoechie-tab-container {
+      padding: 15px !important;
+    }
+    .col-lg-3.col-md-3.col-sm-3.col-xs-12.bhoechie-tab-menu.tabs-area {
+      padding: 0;
+    }
+    .bhoechie-tab .admin_restaurant_edit_big_img.pull-left.full-width > label {
+      width: 100%;
+    }
+    .bhoechie-tab-content .admin_restaurant_edit_small_img label > img {
+      max-height: 100%;
+      max-width: 100%;
+      min-height: 172px;
+      width: 100%;
+    }
+    .row.resp {
+      margin: 0px;
+    }
+    .table-outer {
+    overflow-x: scroll !important;
+    width: 100%;
+  }
+  .table-lunch-box {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .content1 {
+    display: block;
+  }
+  div.bhoechie-tab-content {
+    float: none;
+    padding-bottom: 20px !important;
+  }
+  .submit-lunch {
+    float: left;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .bhoechie-tab-content .nav-tabs li {
+    width: 50%;
+  }
+  .admin_restaurant_edit_pin {
+    padding: 15px;
+  }
+  .content1 {
+    padding: 20px 10px 10px;
+  }
+  .admin_restaurant_edit_pin {
+    padding: 5px 15px;
+  }
+  .creating-lunchbox {
+    float: left;
+    padding-top: 15px;
+    width: 100%;
+  }
+  .creating-lunchbox .edit_restaurant_check p {
+    padding-top: 4px;
+    margin: 0;
+  }
+  .bhoechie-tab-content .nav.nav-tabs {
+    border: medium none;
+    padding: 0 15px;
+  }
+  .couplon-right-c {
+    float: left;
+    width: 100%;
+  }
+  .coupon-left-c {
+    float: left;
+    width: 100%;
+  }
+  .main-coupon-area .restaurant-coupon.text-center {
+    float: left;
+    margin: 0 0 30px 0;
+    width: 100%;
+  }
+  .main-coupon-area.col-xs-12 {
+    margin: 10px auto;
+  }
+
+
+
+  }
+
+  @media screen and (max-width:670px) {
+    .stay_healthy_img_section {
+      float: left;
+      margin-bottom: 54px;
+      position: relative;
+      width: 100%;
+    }
+    .step_to_healthy_lunch_section_discription {
+      border: none;
+      padding: 0;
+      width: 100%;
+    }
+    .round_circle_left,
+    .round_circle_right {
+      display: none;
+    }
+    .step_to_healthy_lunch_section_discription_right {
+      border:none;
+      padding: 0;
+      position: relative;
+      text-align: left;
+      width: 100%;
+    }
+    .step_to_healthy_lunch_section_discription_right h2.discounts {
+      background-image: url("../img/discount_icon.png");
+      background-position: left 2px;
+      padding-left: 40px;
+    }
+    .step_to_healthy_lunch_section_discription_right.extra_padding {
+      padding: 0;
+      position: relative;
+      width: 100%;
+    }
+    .step_to_healthy_lunch_section_discription_right h2.enjoy_lunchbox_icon {
+      background-image: url("../img/enjoy_lunchbox_icon.png");
+      background-position: left 2px;
+      padding-left: 40px;
+      padding-right: 0px;
+    }
+    ul.step_to_healthy_lunch_listing_right li::before {
+      left: 0;
+    }
+    .step_to_healthy_lunch_listing_right li {
+      padding-left: 23px;
+    }
+
+    /* Today's Order */
+
+    .todays-box-right .rating {
+      position: relative;
+    }
+    .todays-box-right .rating_info {
+      float: left;
+      margin-top: 15px;
+      padding-left: 0;
+      width: 100%;
+    }
+    .buttons-form a {
+      padding: 10px 30px;
+    }
+
+
+  }
+
+  @media screen and (max-width:580px) {
+    .individual_lunchbox_more_info .nav-tabs li.active:first-child::after {
+      right: 0;
+    }
+    .individual_lunchbox_more_info .nav-tabs li{
+      border-bottom: none;
+      float: none;
+      border-right: 1px solid #bcbdc0;
+    }
+    .individual_lunchbox_more_info .nav-tabs li:last-child {
+      border-bottom: 1px solid #bcbdc0;
+      border-right: 1px solid #bcbdc0;
+    }
+    .individual_lunchbox_more_info .nav-tabs li:nth-child(n+2) a,
+    .individual_lunchbox_more_info .nav-tabs li:nth-child(n+2) {
+      transform: none;
+      -webkit-transform: none;
+    }
+    .individual_lunchbox_more_info .nav-tabs li.active:first-child::before {
+      width: auto;
+    }
+    .individual_lunchbox_more_info .nav-tabs li a {
+      height: 42px;
+      line-height: 42px;
+      font-size: 13px;
+    }
+    .individual_lunchbox_more_info .nav-tabs li.active a{
+      font-weight: 600;
+    }
+    .individual_lunchbox_more_info .nav-tabs li.active::before {
+      bottom: 0;
+    }
+    .nutritional_name {
+      margin-bottom: 10px;
+      margin-top: 10px;
+      width: 50%;
+    }
+    .nutritional_data {
+      margin-bottom: 10px;
+      margin-top: 10px;
+      width: 50%;
+    }
+    .observation_section {
+      padding: 0 20px 50px;
+    }
+    .payment_section{
+      padding-left: 20px;
+      padding-right:20px; 
+    }
+    .purchase_summery .container {
+      padding: 0;
+    }
+    .purchase_summery {
+      padding: 0 20px 54px;
+    }
+    .table-lunch-box {
+      max-width: 560px !important;
+      width: 560px !important;
+    }
+
+
+
+
+  }
+  @media screen and (max-width:500px) {
+    .logo.pull-left img {
+      width: 68px;
+    }
+    .banner_content {
+      padding: 39px 0 66px;
+    }
+    /*admin page style start here*/
+    .admin_outer_weak_start_end_table {
+      overflow-x: scroll;
+      padding-bottom: 30px;
+    }
+    .admin_outer_weak_start_end {
+      width: 409px !important;
+    }
+    .admin_edit_resturant_save_inner > span {
+      margin-left: 0;
+      width: 100%;
+    }
+    .admin_edit_resturant_save_inner > span br{
+      display: none;
+    }
+    /*admin page style end here*/
+  }
+  @media screen and (max-width:480px) {
+  	.pagination > li > a, .pagination > li > span {
+      padding: 4px 11px;
+    }
+    .checkout_already_register > h1 {
+      font-size: 18px;
+    }
+    .step_to_healthy_lunch_section_faq a {
+      margin-left: 14px;
+      padding: 6px 20px 5px;
+    }
+    .step_to_healthy_lunch_section_faq span {
+      font-size: 18px;
+    }
+    .step_to_healthy_lunch_section_discription_right h2,
+    .step_to_healthy_lunch_section_discription h2 {
+      font-size: 26px;
+    }
+    /*admin page style satrt here*/
+      .admin_minimum_order_count {
+        font-size: 16px;
+      }
+      .admin_minimum_order_count > input {
+        height: 31px;
+        width: 43px;
+      }
+    /*admin page style end here*/
+
+    .admin_restaurant_edit_big_img label img {
+      min-height: auto;
+      }
+      .creating-lunchbox .edit_restaurant_check {
+        width: 100%;
+      }
+      .submit-lunch {
+      float: left;
+      margin-top: 10px;
+      width: 100%;
+    }
+    .edit-l, .del-l {
+      clear: left !important;
+      display: block;
+      line-height: 1;
+      margin: 15px 0;
+      padding: 20px 0;
+      width: 190px !important;
+    }
+    .bhoechie-tab-content .nav-tabs li {
+      width: 100%;
+    }
+    .profile-sect .profile-left {
+      float: left;
+      width: 100%;
+    }
+    .profile-right {
+      color: #ffffff;
+      float: left;
+      padding: 0;
+      width: 100%;
+    }
+    .profile-sect .admin_minimum_order_count.full-width.pull-left {
+      margin-top: 20px;
+    }
+    .normal > input ,.c-web-address li > input{
+      font-size: 12px;
+    }
+
+
+
+  }
+  @media screen and (max-width:350px) {
+  .normal > input, .c-web-address li > input {
+    font-size: 10px;
+  }
+  }
+
+  .error {
+      border: 1px solid #ff0000 !important;
+  }
+
+

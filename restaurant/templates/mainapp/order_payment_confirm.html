@@ -1,0 +1,181 @@
+{% extends 'mainapp/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load add_hour %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% block title %}{% trans 'Payment Confirmation Details' %}{% endblock %}
+{% block content %}
+ <div class="container" id="main_page_section">
+            <div class="admin_registered_restaurants_outer admin_order_list_outer">
+               <div class="admin_order_inner pull-left full-width">
+                  <div class="outer-table">
+                     <table class="admin_order_table full-width table table-responsive table-bordered">
+                     <tbody>
+                        <tr>
+                           <td>{% trans 'Restaurant' %}</td>
+                           <td>{% trans 'Lunchbox' %}</td>
+                           <td class="">{% trans 'Quantity' %}</td>
+                           <td class="text-center">{% trans 'Delivery Time' %}</td>
+                           <td class="admin_location_icon">{% trans 'Address' %}</td>
+                           <td class="admin_doller_icon">{% trans 'Payment' %}</td>
+                        </tr>
+                     {% for day in order_list %}
+                        <tr class="text-center" class="blank_admin_tr">
+                           <td colspan="6">{{ day.date | localtime | date:"M d, Y" }}</td>
+                        </tr>
+                        {% for order in day.orders %}
+                        <tr>
+                           <td rowspan="{{ order.length_of }}">
+                              <p>
+                                 <strong>[{{ order.restaurant.name }}]</strong><br>
+                                    [{{ order.restaurant.address }}; {{ order.restaurant.zip_code }}]<br>
+                                 <strong>[{{ order.restaurant.phone }}]</strong>
+                              </p>
+                           </td>
+                        </tr>
+                           {% if order.user_orders %}
+                                   {% for o in order.user_orders %}
+                                       <tr>   
+                                          <td>{{ o.lunchbox.name }}</td>
+                                          <td>
+                                             {{ o.qty }}
+                                          </td>
+                                          <td class="text-center">{{ o.delivery_date|date:'D' }} <strong>{{ o.delivery_date|date:'H:i'}}-{{ o.delivery_date|add_hour|date:'H:i'}}</strong></td>
+                                          <td>
+                                             <strong>
+                                               {{ o.order.user.profile.customer.address }}
+                                               {{ o.order.user.profile.customer.city }}
+                                               {{ o.order.user.profile.customer.state }}
+                                               {{ o.order.user.profile.customer.zip_code }}
+                                             </strong>
+                                          </td>
+                                          <td>{{ o.get_amount }} €</td>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="5">
+                                             <div><strong>{% trans 'DELIVERY DETAILS' %}:</strong>
+                                                [{{ o.order.user.first_name }} {{ o.order.user.last_name }}],
+                                                [{{ o.order.user.profile.phone }}],[{{ o.order.user.email }}]
+                                            </div>
+                                          </td>
+                                          
+                                       </tr>
+                                       <tr>
+                                          <td colspan="5">
+                                             <div><strong>{% trans 'Comment' %}:</strong>
+                                                {{ o.order.get_comment }}
+                                            </div>
+                                          </td>
+                                          
+                                       </tr>
+                                       <tr>
+                                          <td colspan="5">
+                                             <div><strong>{% trans 'Note' %}:</strong> {% trans 'order' %} #{{ o.order.id }}</div>
+                                          </td>
+                                       </tr>
+                                    {% endfor %}
+                              {% endif %}
+                        {% endfor %}
+                     {% endfor %}
+                     <tr>
+                        <td colspan="5">
+                           <div><strong>{% trans 'Total Vat' %}:</strong></div>
+                        </td>
+                        <td>{{ order.vat }} €</td>
+                     </tr>
+                     <tr>
+                        <td colspan="5">
+                           <div><strong>{% trans 'Total Amount' %}:</strong></div>
+                        </td>
+                        <td>{{ order.payment.amount }} €</td>
+                     </tr>
+                     </tbody>
+                  </table>
+                  </div>
+                  <button id="print_button">{% trans 'Print' %}</button>
+               </div>
+            </div>
+         </div>
+{% endblock %}
+{% block scriptcode %}
+<script type="text/javascript">
+        $('#print_button').click(function () {
+         var emlnts=$('.order_ids');
+                    var printContents = $('.outer-table').html();
+                    printContents=printContents.replace('class="admin_order_table full-width table table-responsive table-bordered"','border="1"')
+                    printContents=printContents.replace('<td class=""></td>','')
+                    
+                    
+                    // var originalContents = document.body.innerHTML;
+                    // document.body.innerHTML = printContents;
+
+                    // window.print();
+
+                    // document.body.innerHTML = originalContents;
+                    var strFrameName = ("printer-" + (new Date()).getTime());
+                     
+                    // Create an iFrame with the new name.
+                    var jFrame = $( "<iframe name='" + strFrameName + "'>" );
+                     
+                    // Hide the frame (sort of) and attach to the body.
+                    jFrame
+                    .css( "width", "1px" )
+                    .css( "height", "1px" )
+                    .css( "position", "absolute" )
+                    .css( "left", "-9999px" )
+                    .appendTo( $( "body:first" ) )
+                    ;
+                     
+                    // Get a FRAMES reference to the new frame.
+                    var objFrame = window.frames[ strFrameName ];
+                     
+                    // Get a reference to the DOM in the new frame.
+                    var objDoc = objFrame.document;
+                     
+                    // Grab all the style tags and copy to the new
+                    // document so that we capture look and feel of
+                    // the current document.
+                     
+                    // Create a temp document DIV to hold the style tags.
+                    // This is the only way I could find to get the style
+                    // tags into IE.
+                    var jStyleDiv = $( "<div>" ).append(
+                    $( "style" ).clone()
+                    );
+                     
+                    // Write the HTML for the document. In this, we will
+                    // write out the HTML of the current element.
+                    objDoc.open();
+                    objDoc.write( "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">" );
+                    objDoc.write( "<html>" );
+                    objDoc.write( "<body>" );
+                    objDoc.write( "<head>" );
+                    objDoc.write( "<title>" );
+                    objDoc.write( document.title );
+                    objDoc.write( "</title>" );
+                    objDoc.write( jStyleDiv.html() );
+                    objDoc.write( "</head>" );
+                    objDoc.write( printContents );
+                    objDoc.write( "</body>" );
+                    objDoc.write( "</html>" );
+                    objDoc.close();
+                     
+                    // Print the document.
+                    objFrame.focus();
+                    objFrame.print();
+                     
+                    // Have the frame remove itself in about a minute so that
+                    // we don't build up too many of these frames.
+                    setTimeout(
+                    function(){
+                    jFrame.remove();
+                    },
+                    (60 * 1000)
+                    );
+
+        });
+
+    </script>
+{% endblock %}

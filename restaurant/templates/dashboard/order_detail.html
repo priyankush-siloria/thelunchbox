@@ -1,0 +1,103 @@
+{% extends 'dashboard/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load add_hour %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% block title %}
+{% trans 'Orders' %}
+{% endblock %}
+
+{% block content %}
+         <div class="container">
+            <div class="admin_registered_restaurants_outer admin_order_list_outer">
+               <div class="admin_order_inner pull-left full-width">
+                  <table class="admin_order_table full-width">
+                     <thead>
+                        <tr>
+                        {%if request.user.profile.is_employee or request.user.is_staff %}
+                           <td>{% trans 'Restaurant Name' %}</td>
+                        {% else %}
+                           <td>{% trans 'Customer Name' %}</td>
+                        {% endif %}
+                           <td>{% trans 'Lunchbox' %}</td>
+                           <td class="">{% trans 'Quantity' %}</td>
+                           <td class="text-center">{% trans 'Delivery Time' %}</td>
+                           <td class="admin_location_icon">{% trans 'Address' %}</td>
+                           <td class="admin_doller_icon">{% trans 'Payment' %}</td>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     {% for day in order_list %}
+                        <tr class="text-center" class="blank_admin_tr">
+                           <td colspan="6">{{ day.date | date:"M d, Y" }}</td>
+                        </tr>
+                        {% for order in day.orders %}
+                        <tr>
+                           <td rowspan="6">
+                              <p>
+                                 <strong>{{ order.restaurant.name|title }}</strong><br>
+                                    {{ order.restaurant.address }}; {{ order.restaurant.zip_code }}<br>
+                                 <strong>{% trans 'Tel' %}:{{ order.restaurant.phone }}</strong>
+                              </p>
+                           </td>
+                        </tr>
+                           {% if order.user_orders %}
+                                   {% for o in order.user_orders %}
+                                       <tr>   
+                                          <td>{{ o.lunchbox.name }}</td>
+                                          <td>
+                                             {{ o.qty }}
+                                          </td>
+                                          <td class="text-center">{{ o.delivery_date|date:'D' }} <strong>{{ o.delivery_date|time:"H:i"}}-{{ o.delivery_date|add_hour|time:"H:i" }}</strong></td>
+                                          <td>
+                                             <strong>
+                                               {{ o.order.user.profile.customer.address }}
+                                               {{ o.order.user.profile.customer.city }}
+                                               {{ o.order.user.profile.customer.state }}
+                                               {{ o.order.user.profile.customer.zip_code }}
+                                             </strong>
+                                          </td>
+                                          <td>{{ o.order.payment.amount }} €</td>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="5">
+                                             <div><strong>{% trans 'DELIVERY DETAILS' %}:</strong>
+                                                [{{ o.order.user.first_name|title }} {{ o.order.user.last_name|title }}],
+                                                [{% trans 'Tel:' %}{{ o.order.user.profile.phone }}],[{{ o.order.user.email }}]
+                                            </div>
+                                          </td>
+                                          
+                                       </tr>
+                                       <tr>
+                                          <td colspan="5">
+                                             <div><strong>{% trans 'Comment' %}:</strong>
+                                                {{ o.order.get_comment }}
+                                            </div>
+                                          </td>
+                                          
+                                       </tr>
+                                       <tr>
+                                          <td colspan="5">
+                                             <div><strong>{% trans 'Order' %}:</strong>{{ o.order.id }}</div>
+                                          </td>
+                                       </tr>
+                                       <tr>
+                                          <td colspan="5">
+                                             <div><strong>{% trans 'Payment Status' %}:</strong> {% if o.order.u_is_paid %}{% trans 'Paid' %}{% else %}{% trans 'Unpaid' %}{% endif %}</div>
+                                          </td>
+                                       </tr>
+                                    {% endfor %}
+                              {% endif %}
+                        {% endfor %}
+                     {% endfor %}
+                     </tbody>
+                  </table>
+                  
+               </div>
+            </div>
+         </div>
+         {% endblock %}
+
+        

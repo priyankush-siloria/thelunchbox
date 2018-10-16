@@ -1,0 +1,78 @@
+{% extends "mainapp/base.html" %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}Faqs{% endblock %}
+{% block content %}
+
+
+
+
+      <section class="faqs_section pull-left full-width" id="main_page_section">
+         <div class="container">
+
+            <div class="inner_title pull-left full-width">
+               <h1 class="pull-left full-width text-center">{% trans 'FAQs' %}</h1>
+               <div class="row">
+                  <div class="faq_contant_tab pull-left full-width">
+                     <div class="panel-group" id="accordion">
+
+                        <div class="col-md-6 col-sm-6 col-xs-12 panel-bottom-margin">
+                        {% for faq in faqs %}
+                          {% if forloop.counter <= half %}
+                             <div class="panel panel-default">
+                               <div class="panel-heading">
+                                 <h4 class="panel-title">
+                                   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{forloop.counter}}">
+                                     {% trans faq.title %}
+                                   </a>
+                                 </h4>
+                               </div>
+                               {% if forloop.first %}
+                               <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse in">
+                                 <div class="panel-body">
+                                   {% trans faq.description %}
+                                 </div>
+                               </div>
+                             </div>
+                             {% else %}
+                                  <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse">
+                                 <div class="panel-body">
+                                   {% trans faq.description %}
+                                 </div>
+                               </div>
+                             </div>
+                             {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                        </div>
+                        <div class="panel-left col-md-6 col-sm-6 col-xs-12">
+                        {% for faq in faqs %}
+                          {% if forloop.counter > half %}
+                          <div class="panel panel-default">
+                             <div class="panel-heading">
+                               <h4 class="panel-title">
+                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne{{forloop.counter}}">
+                                   {% trans faq.title %}
+                                 </a>
+                               </h4>
+                             </div>
+                             <div id="collapseOne{{forloop.counter}}" class="panel-collapse collapse">
+                               <div class="panel-body">
+                                 {% trans faq.description %}
+                               </div>
+                             </div>
+                           </div>
+                          {% endif %}
+                        {% endfor %}
+                        </div>
+                     </div>
+                  </div>  
+               </div>
+            </div>  
+         </div>
+      </section>
+
+      
+       {% endblock %}

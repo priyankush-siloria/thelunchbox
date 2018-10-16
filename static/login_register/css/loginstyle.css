@@ -1,0 +1,186 @@
+.login_form {
+	background-image: url("../images/home_banner.jpg");
+	background-position: right bottom 17px;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	 min-height: 100vh; 
+	padding-top: 40px;
+	padding-bottom: 110px;
+	width: 100%;
+}
+
+.content {
+	padding: 100px 0px;
+}
+
+.logo {
+	padding-bottom: 30px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.form-control {
+	color: #ffffff;
+	background-color: rgba(0,0,0,0.2);
+	border-color: #ffffff;
+	height: 45px;
+	border: 1px dashed #fff;
+}
+
+.btn-facebook {
+  background: #3e5785 none repeat scroll 0 0;
+  border: 0 solid #ffffff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  color: #ffffff;
+  float: left;
+  font-size: 16px;
+  padding: 12px 0 10px;
+  text-align: center;
+  width: 48%;
+}
+
+.btn.btn-facebook i {
+  display: inline-block;
+  font-size: 29px;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+.btn.btn-facebook > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-facebook:hover{
+	color: #dedede;
+	text-decoration: none;
+	background-color: #2e4775;
+}
+
+.btn-facebook:focus{
+	color: #fff;
+	text-decoration: none;
+}
+
+.btn-linkedin {
+  background: #126d9b none repeat scroll 0 0;
+  border: 0 solid #ffffff;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  color: #ffffff;
+  float: right;
+  font-size: 16px;
+  margin: 0;
+  padding: 12px 0 10px;
+  text-align: center;
+  width: 48%;
+}
+
+.btn.btn-linkedin i {
+  display: inline-block;
+  font-size: 29px;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+.btn.btn-linkedin > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-linkedin:hover{
+	color: #dedede;
+	text-decoration: none;
+	background-color: #105d8b;
+}
+
+.btn-linkedin:focus{
+	color: #fff;
+	text-decoration: none;
+}
+
+.form-group {
+	margin-bottom: 30px;
+}
+
+.btn-default {
+	background: #f1f1f1;
+	color: #333333;
+	width: 100%;
+	border: 2px solid #ffffff;
+	padding: 10px 0;
+	text-align: center;
+	margin-bottom: 25px;
+	font-size: 18px;
+}
+
+.register_btn
+{
+ float: left;
+ margin:20px 0 0 0;
+ width: 100%;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: #eeeeee;
+  opacity: 1;
+}
+
+.form-control::-webkit-input-placeholder { color: white; } 
+.form-control:-moz-placeholder { color: white; }  
+.form-control::-moz-placeholder { color: white; }  
+.form-control:-ms-input-placeholder { color: white; }
+.form-control::-ms-input-placeholder { color: white; }
+
+/* Added 18th August */
+
+section.login_form .login-forget {
+  color: #ffffff;
+  display: inline-block;
+  float: left;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  margin-top: 15px;
+  text-decoration: none;
+  width: 100%;
+}
+section.login_form .login-forget:hover {
+  color: #126d9b; 
+}
+.forget-password-outer-form > p {
+  border: 1px dashed #da4336;
+  color: #da4336;
+  margin: 20px auto 40px;
+  max-width: 520px;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+
+
+@media only screen and (max-width: 767px) {
+.btn-facebook {
+	width: 100%;
+	margin-bottom: 15px;
+}
+.btn-linkedin {
+	width: 100%;
+}
+
+}
+
+
+.error {
+    border: 1px solid #ff0000 !important;
+}
+#hidden_login_alert {
+  color: #ef2525 !important;
+  padding: 5px 0 !important;
+  text-align: center !important;
+}
+
+

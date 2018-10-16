@@ -1,0 +1,279 @@
+{% extends 'control/base_control.html' %}
+{% load static %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}Billing{% endblock %}
+{% block content %}
+    <div class="col-md-16 center">
+        <div class="col-md-16 lb-nav pull-right">
+            <ul class="billingTabs" role="tablist">
+                <li>
+                    <a href="#opened_lunchboxes" id="opened_lunchboxes-tab" role="tab" data-toggle="tab"
+                       aria-controls="opened_lunchboxes" aria-expanded="true">{% trans 'Opened lunchboxes' %}</a>
+                </li>
+                <li>
+                    <a href="#processing_lunchboxes" id="processing_lunchboxes-tab" role="tab" data-toggle="tab"
+                       aria-controls="processing_lunchboxes" aria-expanded="true">{% trans 'Processing lunchboxes' %}</a>
+                </li>
+                <li>
+                    <a href="#paid_lunchboxes" id="paid_lunchboxes-tab" role="tab" data-toggle="tab"
+                       aria-controls="paid_lunchboxes" aria-expanded="true">{% trans 'Paid lunchboxes' %}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-16 orders-header billing-header bg-black">
+            <div class="col-md-6 text-uppercase text-center">{% trans 'Name of the lunchbox' %} | {% trans 'reference number' %}</div>
+            <div class="col-md-2 text-uppercase text-center">{% trans 'quantity SOLD' %}</div>
+            <div class="col-md-4 text-uppercase text-center">{% trans 'time period' %}</div>
+            <div class="col-md-3 text-center">{% trans 'La Fiambrera Rate' %}</div>
+            <div class="col-md-1 text-center">{% trans 'Processed' %}</div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tab-content col-md-16" id="myTabContent">
+            <div class="tab-pane fade in active" role="tabpanel" id="opened_lunchboxes"
+                 aria-labelledby="opened_lunchboxes-tab">
+                {% if not billing_opened %}
+                    <div class="col-md-16 bill_order no-margins">
+                        <img src="{% static 'img/bill.png' %}" alt="" class="box">
+                        <p class="have_no_lb  text-uppercase">
+                            {% trans 'Your billing is empty!' %}
+                        </p>
+                    </div>
+                {% else %}
+                    {% for o in billing_opened %}
+                        <div class="bill_order col-md-16 no-margins">
+                            <div class="col-md-6">{{ o.lunchbox.name }} | Order #{{ o.order.id }}</div>
+                            <div class="col-md-2">{{ o.qty }}</div>
+                            <div class="col-md-4">{{ o.order.u_processing_date_from|date:'Y.M d' }}
+                                - {{ o.order.u_processing_date_till|date:'Y.M d' }}</div>
+                            <div class="col-md-3">{{ o.lunchbox.rate }} €</div>
+                            <div class="col-md-1 processed-check">
+                                <input type="checkbox" id="op1{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                       data-id="{{ o.id }}" data-status="1" {% if o.is_processed %}checked{% endif %}>
+                                <label for="op1{{ forloop.counter }}"></label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="tab-pane fade in active" role="tabpanel" id="processing_lunchboxes"
+                 aria-labelledby="processing_lunchboxes-tab">
+                {% if not billing_user_processing %}
+                    <div class="col-md-16 bill_order no-margins">
+                        <img src="{% static 'img/bill.png' %}" alt="" class="box">
+                        <p class="have_no_lb  text-uppercase">
+                            {% trans 'Your billing is empty!' %}
+                        </p>
+                    </div>
+                {% else %}
+                    {% for o in billing_user_processing %}
+                        <div class="bill_order col-md-16 no-margins">
+                            <div class="col-md-6">{{ o.lunchbox.name }} | Order #{{ o.order.id }}</div>
+                            <div class="col-md-2">{{ o.qty }}</div>
+                            <div class="col-md-4">{{ o.order.u_processing_date_from|date:'Y.M d' }}
+                                - {{ o.order.u_processing_date_till|date:'Y.M d' }}</div>
+                            <div class="col-md-3">{{ o.lunchbox.rate }} €</div>
+                            {% if o.is_confirmed_by_lf %}
+                            <div class="col-md-1 processed-static-check">
+                                ✔
+                            </div>
+                            {% else %}
+                            <div class="col-md-1 processed-check">
+                                <input type="checkbox" id="op2{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                       data-id="{{ o.id }}" data-status="1" {% if o.is_processed %}checked{% endif %}>
+                                <label for="op2{{ forloop.counter }}"></label>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="bill_status col-md-16 no-margins">
+                            <div class="col-md-4 status_info">
+                                <div class="col-md-2 symbol">
+                                    ✔
+                                </div>
+                                <div class="col-md-14">
+                                    <strong>{% trans 'Processed' %}:</strong> {{ o.processed_date|date:'Y.M d' }}
+                                </div>
+                            </div>
+                            <div class="col-md-4 {% if o.is_payment_requested %}status_info{% else %}status_default_steps{% endif %}">
+                                <div class="col-md-2 symbol">
+                                    {% if o.is_payment_requested and request.user.is_staff or o.is_confirmed_by_lf %}
+                                        ✔
+                                    {% elif request.user.is_staff %}
+                                        2.
+                                    {% else %}
+                                        <div class="step-check">
+                                            <input type="checkbox" id="step2{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                                   data-id="{{ o.id }}" data-status="2" {% if o.is_payment_requested %}checked{% endif %}>
+                                            <label for="step2{{ forloop.counter }}" style="margin-bottom: 0"></label>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-14">
+                                    {% if o.is_payment_requested %}
+                                    <strong>{% trans 'Payment requested' %}:</strong> {{ o.payment_request_date|date:'Y.M d' }}
+                                    {% else %}
+                                    <strong>{% trans 'Request payment' %}:</strong>{% trans 'not available yet' %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-4 {% if o.is_confirmed_by_lf %}status_info{% else %}status_default_steps{% endif %}">
+
+                                {% if request.user.is_staff and o.is_payment_requested and not o.is_payment_transferred %}
+                                    <div class="col-md-2 symbol">
+                                        <div class="step-check">
+                                            <input type="checkbox" id="step3{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                                   data-id="{{ o.id }}" data-status="3" {% if o.is_confirmed_by_lf %}checked{% endif %}>
+                                            <label for="step3{{ forloop.counter }}" style="margin-bottom: 0"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-14">
+                                        {% if o.is_confirmed_by_lf %}
+                                        <strong>{% trans 'Confirmed' %}:</strong> {{ o.confirmation_by_lf_date|date:'Y.M d' }}
+                                        {% else %}
+                                        <strong>{% trans 'To be confirmed by La Fiambrera' %}</strong>
+                                        {% endif %}
+                                    </div>
+                                {% elif o.is_confirmed_by_lf %}
+                                    <div class="col-md-2 symbol">
+                                        ✔
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong>{% trans 'Confirmed' %}:</strong> {{ o.confirmation_by_lf_date|date:'Y.M d' }}
+                                    </div>
+                                {% else %}
+                                    <div class="col-md-2 symbol">
+                                        3.
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong> {% trans 'To be confirmed by La Fiambrera' %}</strong>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4 status_default_steps">
+                                {% if request.user.is_staff and o.is_confirmed_by_lf and not o.is_payment_transferred %}
+                                    <div class="col-md-2 symbol">
+                                        <div class="step-check">
+                                            <input type="checkbox" id="step4{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                                   data-id="{{ o.id }}" data-status="4" {% if o.is_payment_transferred %}checked{% endif %}>
+                                            <label for="step4{{ forloop.counter }}" style="margin-bottom: 0"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong>{% trans 'Payment' %}</strong>
+                                    </div>
+                                {% else %}
+                                    <div class="col-md-2 symbol">
+                                        4.
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong>{% trans 'Payment' %}</strong>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="tab-pane fade in active" role="tabpanel" id="paid_lunchboxes"
+                 aria-labelledby="paid_lunchboxes-tab">
+                {% if not billing_restaurant_processing %}
+                    <div class="col-md-16 bill_order no-margins">
+                        <img src="{% static 'img/bill.png' %}" alt="" class="box">
+                        <p class="have_no_lb text-uppercase">
+                            {% trans 'Your billing is empty!' %}
+                        </p>
+                    </div>
+                {% else %}
+                    {% for o in billing_restaurant_processing %}
+                        <div class="bill_order col-md-16 no-margins">
+                            <div class="col-md-6">{{ o.lunchbox.name }} | {% trans 'Order' %} #{{ o.order.id }}</div>
+                            <div class="col-md-2">{{ o.qty }}</div>
+                            <div class="col-md-4">{{ o.order.u_processing_date_from|date:'Y.M d' }}
+                                - {{ o.order.u_processing_date_till|date:'Y.M d' }}</div>
+                            <div class="col-md-3">{{ o.lunchbox.rate }} €</div>
+                            <div class="col-md-1 processed-static-check">
+                                ✔
+                            </div>
+                        </div>
+                        <div class="bill_status col-md-16 no-margins">
+                            <div class="col-md-4 status_info">
+                                <div class="col-md-2 symbol">
+                                    ✔
+                                </div>
+                                <div class="col-md-14">
+                                    <strong>{% trans 'Processed' %}:</strong> {{ o.processed_date|date:'Y.M d' }} {{ o.processed_date|time:"H:i" }}
+                                </div>
+                            </div>
+                            <div class="col-md-4 {% if o.is_payment_requested %}status_info{% else %}status_default_steps{% endif %}">
+                                {% if o.is_payment_requested %}
+                                    <div class="col-md-2 symbol">
+                                        ✔
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong> {% trans 'Payment requested' %}:</strong> {{ o.payment_request_date|date:'Y.M d' }}
+                                    </div>
+                                {% else %}
+                                    <div class="col-md-2 symbol">
+                                        2.
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong> {% trans 'Request payment' %}:</strong> {% trans 'not available yet' %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4 {% if o.is_confirmed_by_lf %}status_info{% else %}status_default_steps{% endif %}">
+                                {% if o.is_confirmed_by_lf %}
+                                    <div class="col-md-2 symbol">
+                                        ✔
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong> {% trans 'Confirmed' %}:</strong> {{ o.confirmation_by_lf_date|date:'Y.M d' }}
+                                    </div>
+                                {% else %}
+                                    <div class="col-md-2 symbol">
+                                        3.
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong> {% trans 'To be confirmed by La Fiambrera' %}</strong>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4 {% if o.is_payment_transferred %}status_info{% else %}status_default_steps{% endif %}">
+                                {% if o.is_payment_transferred %}
+                                    <div class="col-md-2 symbol">
+                                        ✔
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong>{% trans 'Transferred' %}: </strong>{{ o.payment_transfer_date|date:'Y.M d' }}
+                                    </div>
+                                {% else %}
+                                    <div class="col-md-2 symbol">
+                                        4.
+                                    </div>
+                                    <div class="col-md-14">
+                                        <strong>{% trans 'Transfer' %}</strong>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(window).on('load', function () {
+            $('.billingTabs a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+                $('.billingTabs a').each(function(){
+                   $(this).removeClass('active');
+                });
+                $(this).addClass('active');
+            });
+            $('.billingTabs a:first').click();
+        });
+    </script>
+{% endblock %}

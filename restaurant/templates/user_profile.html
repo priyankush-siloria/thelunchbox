@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans 'User Profile' %}{% endblock %}
+{% block content %}
+    <div class="section fp-auto-height graybg" xmlns="http://www.w3.org/1999/html">
+        <div class="wrapper inner">
+            {% if request.user.is_authenticated %}
+                <div class="pseudo-nav"></div>
+                {% include 'inc/nav.html' %}
+
+                <div class="user_profile col-md-11 center">
+                    <form class="register_form col-md-16 col-xs-16 center" action="." method="POST"
+                          name="registration">{% csrf_token %}
+                        <div class="user_profile-userInfo pull-left">
+                            <h3>{% trans 'Company address' %}:</h3>
+                            {#                        {% if messages %}#}
+                            {#                            {% for message in messages %}#}
+                            {#                                <p class="bg-danger">{{ message }}</p>#}
+                            {#                            {% endfor %}#}
+                            {#                        {% endif %}#}
+                            <div class="form-group {% if company_form.first_name.errors or company_form.last_name.errors %}has-error{% endif %}">
+                                {% if company_form.errors %}
+                                    <label class="control-label small error_msg">{% trans 'These fields (marked red) are required!' %}</label>
+                                {% endif %}
+                                <div class="clearfix"></div>
+                                {{ company_form.first_name }}
+                                {{ company_form.last_name }}
+                            </div>
+                            <div class="form-group {% if company_form.phone.errors or company_form.phone.errors %}has-error{% endif %}">
+                                {{ company_form.phone }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group {% if company_form.company_name.errors %}has-error{% endif %}">
+                                {{ company_form.company_name }}
+                            </div>
+                            <div class="form-group {% if company_form.company_street.errors %}has-error{% endif %}">
+                                {{ company_form.company_street }}
+                            </div>
+
+                            <div class="form-group {% if company_form.company_city.errors or company_form.company_state_full.errors or company_form.company_zip_code.errors %}has-error{% endif %}">
+                                {{ company_form.company_city }}
+                                {{ company_form.company_state_full }}
+                                {{ company_form.company_zipcode }}
+                            </div>
+
+                            <div class="form-group {% if company_form.company_phone.errors %}has-error{% endif %}">
+                                {{ company_form.company_phone }}
+                            </div>
+                        </div>
+                        <div class="user_profile-companyInfo pull-right col-xs-16">
+                            <h3>{% trans 'Catering address' %}:</h3>
+                            <div class="form-group {% if catering_form.c_first_name.errors or catering_form.c_last_name.errors %}has-error{% endif %}">
+                                {% if catering_form.errors %}
+                                    <label class="control-label small error_msg">{% trans 'These fields (marked red) are required!' %}</label>
+                                {% endif %}
+                                <div class="clearfix"></div>
+                                {{ catering_form.c_first_name }}
+                                {{ catering_form.c_last_name }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group {% if catering_form.phone.errors or catering_form.phone.errors %}has-error{% endif %}">
+                                {{ catering_form.phone }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group {% if company_form.c_address.errors %}has-error{% endif %}">
+                                {{ catering_form.c_address }}
+                            </div>
+
+                            <div class="form-group {% if catering_form.c_city.errors or catering_form.c_state_full.errors or catering_form.c_zip_code.errors %}has-error{% endif %}">
+                                {{ catering_form.c_city }}
+                                {{ catering_form.c_state_full }}
+                                {{ catering_form.c_zipcode }}
+                            </div>
+
+                            <div class="form-group {% if company_form.c_phone.errors %}has-error{% endif %}">
+                                {{ catering_form.c_phone }}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-4 no-margins pull-right edit-btn">
+                                <input type="submit" class="btn btn-default edit_and_save" value={% trans 'Edit' %}>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                {% if lunchboxes_unrated or lunchboxes_rated or archived_lunchboxes_unrated or archived_lunchboxes_rated %}
+                    {% if lunchboxes_unrated or lunchboxes_rated %}
+                        <h1 class="text-center divider col-md-11 center">{% trans 'Lunchboxes you have ordered' %}</h1>
+                        {% for lb in lunchboxes_unrated %}
+                            {% include 'inc/restaurant_lunchbox_unrated.html' %}
+                        {% endfor %}
+                        {% for lb in lunchboxes_rated %}
+                            {% include 'inc/restaurant_lunchbox.html' %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if archived_lunchboxes_unrated or archived_lunchboxes_rated %}
+                        <h1 class="text-center divider col-md-11 center">{% trans 'Previous archived lunchboxes' %}</h1>
+                        {% for lb in archived_lunchboxes_unrated %}
+                            {% include 'inc/restaurant_archived_lunchbox_unrated.html' %}
+                        {% endfor %}
+                        {% for lb in archived_lunchboxes_rated %}
+                            {% include 'inc/restaurant_archived_lunchbox.html' %}
+                        {% endfor %}
+                    {% endif %}
+                {% else %}
+                    <h1 class="text-center divider col-md-11 center">{% trans 'Lunchboxes you have ordered' %}</h1>
+                    <div class="col-md-11  center cart_empty">
+                        <a href="{% url 'home' %}" class="empty_home_link"></a>
+                        <div class="col-md-10 center">
+                            <p class="first  text-uppercase">
+                                {% trans "You don't have any orders yet" %}
+                            </p>
+                            <img src="{% static 'img/box.png' %}" alt="" class="box">
+                            <p class="second">
+                                {% trans "Choose lunchbox" %}
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="user-profile-footer">
+            {% include 'inc/footer.html' %}
+        </div>
+    </div>
+{% endblock %}

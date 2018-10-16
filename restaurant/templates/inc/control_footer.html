@@ -1,0 +1,21 @@
+{% load static %}
+{% load i18n %}
+<div class="footer footer-control">
+    <div class="col-md-8 pull-left">
+        <img src="{% static 'img/logo_transp.png' %}" alt="" class="control_logo">
+    </div>
+    <div class="col-md-2 pull-right no-margins">
+        <div class="social_links">
+            <p class="small">
+                {% trans 'Follow Us' %}!
+            </p>
+            <a href="https://www.instagram.com/lafiambrera.cat/" target="_blank">
+                <img src="{% static 'img/icons/instagram.png' %}" alt="">
+            </a>
+            <a href="https://www.facebook.com/laFiambreraSpain/" target="_blank">
+                <img src="{% static 'img/icons/facebook.png' %}" alt="">
+            </a>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

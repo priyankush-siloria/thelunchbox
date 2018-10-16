@@ -1,0 +1,306 @@
+{% extends 'control/base_control.html' %}
+{% load thumbnail %}
+{% load i18n %}
+{% load static %}
+{% block title %}Restaurant info{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/jquery.datetimepicker.css' %}">
+    <style type="text/css">
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-indent: 1px;
+            text-overflow: '';
+        }
+        .shift-time > input {
+            padding: 3px 10px !important;
+        }
+        a.add-row, a.add-row:link, a.add-row:visited, a.add-row:hover, a.add-row:focus, a.add-row:active{
+          color:black;
+          text-decoration: none;
+        }
+        p.red {
+            color:red;
+            size:10px;
+        }
+        p.red-last {
+            color:red;
+            size:10px;
+            display:block;
+            float:left;
+        }
+        .add-row {
+            color: black;
+            margin-left: 5px;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .delete-row {
+            font-size: 18px;
+            color: black;
+            margin-left: 15px;
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="col-md-16">
+        <form class="col-md-16 lunchbox-content center restaurant_edit_form" method="POST"
+              enctype="multipart/form-data">{% csrf_token %}
+            <div class="col-md-16 no-margins">
+                {{ images_formset.management_form }}
+                {% for i in images_formset %}
+                    {% if forloop.counter == 1 %}
+                        <div class="col-md-6">
+                            <div class="image_btn">
+                                <div class="lunchbox-image img{{ forloop.counter }} upload_image"
+                                     data-class="img{{ forloop.counter }}">
+                                    {% if i.instance.id %}
+                                        <div class="remove_icon" data-image="{{ i.instance.id }}"><span
+                                                class="glyphicon glyphicon-remove"></span></div>
+                                    {% else %}
+                                        <span>{{ forloop.counter }}</span>
+                                    {% endif %}
+                                    {% if i.instance.image %}
+                                        <img src="{{ i.instance.image|thumbnail_url:'control_restaurant_gallery_big' }}"
+                                             alt="">
+                                    {% else %}
+                                        <p>
+                                            {% trans 'Request Photoshoot' %} <br>
+                                            {% trans 'upload photo' %}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                                <div class="upload_btn upload_btn-img{{ forloop.counter }}">
+                                    {{ i.id }}
+                                    {{ i.image }}
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="image_btn col-md-5">
+                            <div class="lunchbox-image lunchbox-image-small upload_image"
+                                 data-class="img{{ forloop.counter }}">
+                                {% if i.instance.id %}
+                                    <div class="remove_icon" data-image="{{ i.instance.id }}"><span
+                                            class="glyphicon glyphicon-remove"></span></div>
+                                {% else %}
+                                    <span>{{ forloop.counter }}</span>
+                                {% endif %}
+                                {% if i.instance.image %}
+                                    <img src="{{ i.instance.image|thumbnail_url:'control_restaurant_gallery_small' }}"
+                                         alt="">
+                                {% else %}
+                                    <p class="restaurant-imgs-instruction">
+                                        {% trans 'Click to upload' %}
+                                    </p>
+                                    <p class="restaurant-imgs-size">{% trans 'Recommended size' %}: 900x600</p>
+                                {% endif %}
+
+                            </div>
+                            <div class="upload_btn upload_btn-img{{ forloop.counter }}">
+                                {{ i.id }}
+                                {{ i.image }}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-md-16">
+                <div class="col-md-11 discount-availability no-margins">
+                    <p>{% trans 'Attract visitors to your restaurant! Offer a discount via coupons!' %}</p>
+                    <div class="table-responsive col-md-11 no-margins">
+                        <table class="table table-bordered table-availability">
+                            {{ discount_formset.management_form }}
+                            {% for d in discount_formset %}
+                                {{ d.id }}
+                                <tr>
+                                    <td>{% trans 'Availability' %}</td>
+                                    <td {% if d.available_from.errors %}class="error"{% endif %}>
+                                        {% trans 'Start' %}: {{ d.available_from }}<span class="glyphicon glyphicon-calendar"></span>
+                                    </td>
+                                    <td {% if d.available_till.errors %}class="error"{% endif %}>
+                                        {% trans 'End' %}: {{ d.available_till }}<span class="glyphicon glyphicon-calendar"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{% trans 'Time' %}</td>
+                                    <td {% if d.time_from.errors %}class="error"{% endif %}>{% trans 'From:' %} {{ d.time_from }}<span
+                                            class="glyphicon glyphicon-time"></span></td>
+                                    <td {% if d.time_till.errors %}class="error"{% endif %}>{% trans 'Till:' %} {{ d.time_till }}<span
+                                            class="glyphicon glyphicon-time"></span></td>
+                                </tr>
+                                </table>
+                                </div>
+                                <div class="col-md-5 no-margins discount-text">
+                                    {{ d.discount_text }}
+                                    <div class="clearfix"></div>
+                                    <span class="discount_percent">{% trans 'ADD DISCOUNT' %}: {{ d.percent }}%</span>
+                                </div>
+                            {% endfor %}
+                </div>
+                <div class="col-md-5">
+                    <div class="lunchbox-image lunchbox-image-small upload_image logo-image" data-class="img6">
+                        {% if edit_form.instance.logo %}
+                            <img src="{{ edit_form.instance.logo|thumbnail_url:'control_restaurant_logo' }}"
+                                 alt="">
+                        {% else %}
+                            <p>
+                                {% trans 'Upload' %} <br>
+                                {% trans 'Restaurant logo' %}
+                            </p>
+                            <p>{% trans 'Recommended size' %}: 660x260</p>
+                        {% endif %}
+                    </div>
+                    <div class="upload_btn upload_btn-img6">
+                        {{ edit_form.logo }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-16">
+                <div class="col-md-4">
+                    <div class="delivery_distances">
+                        <p class="text-uppercase"><strong>{% trans 'Delivery to' %}</strong></p>
+                        {% if restaurant_delivery %}
+                            {% for d in restaurant_delivery %}
+                                <input type="checkbox" id="{{ d.city.id }}" class="city_delivery"
+                                       {% if d.possible %}checked{% endif %}>
+                                <label for="{{ d.city.id }}">{{ d.city.name }}</label>
+                                <div class="clearfix"></div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-6 edit_form-info">
+                    <div {% if edit_form.name.errors %}class="error" {% endif %}>
+                        {{ edit_form.name }}
+                    </div>
+                    <div {% if edit_form.desc.errors %}class="error" {% endif %}>
+                        {{ edit_form.desc }}
+                    </div>
+                    <p>
+                        {% trans 'Address' %}: {{ edit_form.instance.address }}<br>
+                        {% trans 'Phone Number' %}: {{ edit_form.instance.phone }}<br>
+                        {% if edit_form.instance.user.email %}
+                            {% trans 'Email address' %}: {{ edit_form.instance.user.email }}<br>
+                        {% endif %}
+                    </p>
+                    <p class="web">
+                    <div {% if edit_form.website.errors %}class="error" {% endif %}>
+                        <span>Web:</span> <span>{{ edit_form.website }}</span>
+                        {% for e in edit_form.website.errors %}
+                            <span class="red">{{ e }}</span>
+                        {% endfor %}
+                        <br>
+                    </div>
+                    <div {% if edit_form.facebook.errors %}class="error" {% endif %}>
+                        <span>Facebook:</span> <span>{{ edit_form.facebook }}</span>
+                        {% for e in edit_form.facebook.errors %}
+                            <span class="red">{{ e }}</span>
+                        {% endfor %}
+                        <br>
+                    </div>
+                    <div {% if edit_form.twitter.errors %}class="error" {% endif %}>
+                        <span>Twitter:</span> <span>{{ edit_form.twitter }}</span>
+                        {% for e in edit_form.twitter.errors %}
+                            <span class="red">{{ e }}</span>
+                        {% endfor %}
+                        <br>
+                    </div>
+                    <div {% if edit_form.instagram.errors %}class="error" {% endif %}>
+                        <span>Instagram:</span> <span>{{ edit_form.instagram }}</span>
+                        {% for e in edit_form.instagram.errors %}
+                            <span class="red">{{ e }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <div {% if edit_form.opening_hours.errors %}class="error" {% endif %}>
+                        {{ edit_form.opening_hours }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table table-bordered no-margins opening_hours">
+                            <tr>
+                                <th scope="col">{% trans 'Week day' %}</th>
+                                <th scope="col">{% trans 'start' %}</th>
+                                <th scope="col">{% trans 'end' %}</th>
+                            </tr>
+                            {{ opening_hours_formset.management_form }}
+                            {% for form in opening_hours_formset %}
+                            <tr class="shifts">
+                                {{form.restaurant}}
+                                {{form.id}}
+                                <td>{{form.week_day}}
+                                {% for error in form.week_day.errors %}
+                                    <p class="red">{{error}}</p>
+                                {% endfor %}</td>
+                                <td class="shift-time">{{form.start}}
+                                {% for error in form.start.errors %}
+                                    <p class="red">{{error}}</p>
+                                {% endfor %}</td>
+
+                                <td class="shift-time">{{form.end}}
+                                {% for error in form.end.errors %}
+                                    <p class="red-last">{{error}}</p>
+                                {% endfor %}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </table>
+                            <td colspan="4"> {% if opening_hours_formset.non_form_errors %}
+                                {% for error in opening_hours_formset.non_form_errors %}
+                                    <p class="error_msg">{{ error }}</p>
+                                {% endfor %}
+                            {% endif %}</td>
+                    </div>
+                    <div class="clearfix"></div>
+                    <p class="restaurant-min_order bg-warning col-md-16 text-center {% if edit_form.min_order.errors %}error{% endif %}">{% trans 'Minimum Order' %}: {{ edit_form.min_order }}</p>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-16 no-margins">
+                    <div class="col-md-5 checkbox-radio pull-right">
+                        <div class="lb_checkbox col-md-7">
+                            {{ edit_form.photoshoot_requested }}
+                            <label for="id_photoshoot_requested">{% trans 'Photoshoot requested' %}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 pull-right">
+                        {{ lb_form.nutrition_facts }}
+                        <input type="submit" class="btn btn-default restaurant_submit_btn" value="{% trans 'Save' %}">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="delivery" class="delivery_to">
+            <input type="hidden" name="images_del" class="images_del">
+            <input type="hidden" name="pcodes_del" class="pcodes_del">
+            <div class="clearfix"></div>
+        </form>
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+    <script src="{% static 'js/jquery.formset.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.shifts').formset({
+                addText: '&#8853',
+                deleteText: '&#8854'
+            });
+            $(".add-row").click(function(){
+                $('.red').remove();
+                $('.red-last').remove();
+                $('.timepicker').datetimepicker({
+                    datepicker: false,
+                    format: 'H:i',
+                    theme: 'dark',
+                    minDate: 0
+                });
+            });
+        })
+
+    </script>
+
+{% endblock %}

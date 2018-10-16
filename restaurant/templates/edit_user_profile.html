@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Edit profile' %}{% endblock %}
+{% block content %}
+    <div class="section fp-auto-height registration" data-anchor="registration">
+        <div class="wrapper">
+            <h1 class="text-center edit-profile-title">{% trans 'Please finish your profile!' %}</h1>
+            <br>
+            <form class="register_form col-md-7 center" action="." method="POST" name="registration">{% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="bg-danger">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                {% if not user.profile.is_restaurant %}
+                    <div class="form-group trans_select_box {% if form.company.errors %}has-error{% endif %}">
+                        {{ form.company }}
+                    </div>
+                    <p class="reg_txt"><a href="#" class="show_company_info">{% trans 'Can’t find your company? Register it!' %}</a></p>
+                    <div class="clearfix"></div>
+
+                    <div class="form-group {% if form.company_name.errors %}has-error{% endif %}">
+                        {{ form.company_name }}
+                    </div>
+                    <div class="form-group {% if form.company_street.errors %}has-error{% endif %}">
+                        {{ form.company_street }}
+                    </div>
+
+                    <div class="form-group {% if form.company_city.errors or form.company_state_full.errors or form.company_zip_code.errors %}has-error{% endif %}">
+                        {{ form.company_city }}
+                        {{ form.company_state_full }}
+                        {{ form.company_zipcode }}
+                    </div>
+
+                    <div class="form-group {% if form.company_phone.errors %}has-error{% endif %}">
+                        {{ form.company_phone }}
+                    </div>
+                {% endif %}
+                <div class="form-group {% if form.first_name.errors or form.last_name.errors %}has-error{% endif %}">
+                    {% if form.errors %}
+                        <label class="control-label small error_msg">{% trans 'These fields (marked red) are required!' %}</label>
+                    {% endif %}
+                    <div class="clearfix"></div>
+                    {{ form.last_name }}
+                    {{ form.first_name }}
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                    {{ form.email }}
+                </div>
+                <div class="form-group {% if form.password1.errors or form.password2.errors %}has-error{% endif %}">
+                    {{ form.password1 }}
+                    {{ form.password2 }}
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group {% if form.phone.errors %}has-error{% endif %}">
+                    {{ form.phone }}
+                </div>
+                <div class="form-group">
+                    {{ form.address }}
+                </div>
+                <div class="form-group">
+                    {{ form.city }}
+                    {{ form.state }}
+                    {{ form.zip_code }}
+                </div>
+                <div class="form-group">
+                    <div class="col-md-5 col-xs-4 pref_lang">
+                        <p class="reg_txt">{% trans 'Preferred language' %}:</p>
+                    </div>
+                    <div class="col-md-10 checkbox-radio">
+                        <input type="checkbox" name="lang_en" id="en" checked>
+                        <label for="en">English</label>
+                        <input type="checkbox" name="lang_es" id="es">
+                        <label for="es">Español</label>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <button class="btn btn-lg btn-confirm inverted btn-block" type="submit">
+                    <span class="lft_line"></span>
+                    {% trans 'Confirm' %}
+                    <span class="rgt_line"></span>
+                </button>
+            </form>
+        </div>
+        {% include 'inc/footer.html' %}
+    </div>
+{% endblock %}

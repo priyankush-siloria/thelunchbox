@@ -1,0 +1,1857 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    margin: 0;
+    width: 330mm;
+    height: 297mm;
+    padding: 0;
+  }
+
+  .coupon {
+    position: relative;
+  }
+}
+
+body {
+  background: silver;
+  color: #000;
+  min-height: 100vh;
+  font-family: RobotoRegular, sans-serif;
+  font-size: 13px;
+
+  .cart_empty {
+    padding: 100px 0;
+    position: relative;
+    background: rgba(255, 255, 255, 0.6);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .empty_home_link {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    p {
+      width: 100%;
+      text-align: center;
+
+      &.first {
+        font-family: Roboto, sans-serif;
+        font-size: 28.5px;
+      }
+      &.second {
+        font-family: BodoniFLFBold, sans-serif;
+        font-size: 32px;
+        text-transform: uppercase;
+        margin-top: 15px;
+      }
+      &.third {
+        font-family: BodoniFLFBold, sans-serif;
+        font-size: 32px;
+        margin-top: 15px;
+      }
+    }
+
+    img {
+      display: table;
+      margin: 0 auto;
+    }
+  }
+
+  .info-box {
+    padding: 100px 0;
+    position: relative;
+    background: rgba(255, 255, 255, 0.6);
+
+    .question {
+      font-size: 30px;
+    }
+
+    .ratings {
+      display: flex;
+      justify-content: center;
+    }
+
+    .face {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      margin: 40px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    img {
+      max-width: 85%;
+      max-height: 85%;
+      width: auto;
+      height: auto;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .rating-sent {
+      font-size: 15px;
+      color: #454545;
+      font-style: italic;
+    }
+
+    .thank-you-note, .no-restaurants-available {
+      width: 100%;
+      text-align: center;
+      font-family: BodoniFLFBold, sans-serif;
+      font-size: 32px;
+      margin-top: 15px;
+    }
+  }
+
+  h1 {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  .index {
+    background: url('/static/img/main_bg.jpg') no-repeat center center #000;
+    background-attachment: fixed;
+  }
+
+  .registration {
+    background: url('/static/img/reg_bg.jpg') no-repeat center center #000;
+    background-attachment: fixed;
+
+    &-customer {
+      padding-bottom: 110px;
+    }
+
+    &-cpny-rest {
+      padding-bottom: 53px;
+    }
+  }
+
+  .index, .registration {
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  a {
+    &:hover {
+      color: #c0c0c0 !important;
+    }
+  }
+
+  .c_hidden {
+    display: none;
+  }
+
+  .unselectable {
+    user-select: none !important;
+    -moz-user-select: none !important;
+    -webkit-user-select: none !important;
+    -ms-user-select: none !important;
+
+    pointer-events: none !important;
+
+    background: rgba(2, 2, 2, 0.7) !important;
+    color: silver !important;
+    border: 2px solid #656565 !important;
+    cursor: not-allowed;
+  }
+
+  .promo_code_input, .cart_delivery_date {
+    border: 2px solid white !important;
+    height: 35px !important;
+    padding: 0 5px !important;
+  }
+  .promo_code_input {
+    width: 130px;
+  }
+  .cart_delivery_text {
+    display: block;
+    margin: 5px 0 0 0;
+  }
+  .cart_delivery_date {
+    margin: 0 0 5px 0;
+  }
+
+  .error {
+    border: 2px solid #f15f5d !important;
+  }
+
+}
+
+.divider {
+  margin: 20px auto;
+  background: #000;
+  color: #fff;
+  font-size: 24px;
+  padding: 10px 0;
+}
+
+.lb-chat, .cb-chat, .reviews, .communication_box_with_restaurant, .notification_reply {
+  margin: 15px auto 0 auto;
+  background: rgba(255, 255, 255, 0.40);
+  height: 260px;
+  padding: 5px;
+  overflow: hidden;
+  position: relative;
+
+  .title {
+    font-family: Roboto, sans-serif;
+    font-size: 21px;
+    border-bottom: 2px solid #000;
+  }
+
+  .msgs {
+    width: 120%;
+    overflow-x: hidden;
+    height: 375px;
+    overflow-y: scroll;
+  }
+
+  .restaurant-lunchbox-msgs {
+    width: 120%;
+    overflow-x: hidden;
+    height: 135px;
+    overflow-y: scroll;
+  }
+
+  .review-msgs {
+    width: 120%;
+    overflow-x: hidden;
+    height: 160px;
+    overflow-y: scroll;
+  }
+
+  .msg {
+    width: 100%;
+    border: none;
+    bottom: 0;
+    left: 0;
+    resize: none;
+    height: 70px;
+    padding: 5px;
+    font-size: 12px;
+    color: #000 !important;
+    background: rgba(255, 255, 255, 0.40);
+  }
+
+  .reply-notification-msg {
+    position: absolute;
+  }
+
+  button {
+    background: #000;
+    color: #fff;
+    position: absolute;
+    z-index: 1;
+    bottom: 10px;
+    right: 10px;
+    border: none;
+  }
+
+  .restaurant-lunchbox-msgs ~ button, .review-msgs ~ button {
+    margin: 0px 10px 10px 0px;
+  }
+
+  ::-webkit-input-placeholder {
+    color: #000 !important;
+  }
+
+  ::-moz-placeholder {
+    color: #000!important;
+  }
+
+  /* Firefox 19+ */
+  :-moz-placeholder {
+    color: #000 !important;
+  }
+
+  /* Firefox 18- */
+  :-ms-input-placeholder {
+    color: #000!important;
+  }
+}
+
+.lb-chat {
+  height: auto;
+}
+
+.reviews, .communication_box_with_restaurant, .notification_reply {
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.6);
+  height: 300px !important;
+  margin: 0;
+
+  .msg {
+    padding: 15px;
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background: url("/static/img/icons/gallery_prev_next.png") !important;
+  width: 18px !important;
+  height: 19px !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  margin: auto !important;
+}
+
+.swiper-button-prev {
+  left: 0 !important;
+  background-position: left center !important;
+}
+
+.swiper-button-next {
+  right: 0 !important;
+  background-position: right center !important;
+}
+
+.w100 {
+  width: 100% !important;
+}
+
+.reg_wrapper {
+  min-width: 100%;
+  min-height: ~"calc(100vh - 150px)" !important;
+  display: flex !important;
+  align-items: center;
+
+  .reg_content {
+    margin: 0 auto;
+  }
+}
+
+.auth_wrapper {
+  display: flex;
+  align-items: center;
+
+  &-content {
+    width: 100%;
+  }
+}
+
+.no-margins {
+  margin: 0;
+  padding: 0;
+}
+
+.site_message_wrapper {
+  min-height: 100vh;
+  display: flex !important;
+  align-items: center;
+  width: 100%;
+
+  strong, p {
+    display: block;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    margin-top: 35px;
+    font-size: 30px;
+  }
+
+  strong {
+    text-transform: uppercase;
+    font-size: 35px;
+  }
+
+  p {
+    font-weight: normal;
+    font-size: 24px;
+  }
+
+  .logo {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.counter {
+  border: 2px solid #000;
+  margin-bottom: 8px;
+
+  .qty {
+    text-align: center;
+    font-size: 22px;
+    width: 50%;
+    float: left;
+    height: 100%;
+    min-height: 100%;
+    border-right: 2px solid #000;
+  }
+
+  p {
+    height: 100%;
+    vertical-align: middle;
+    float: left;
+    text-align: center;
+    width: 50%;
+    text-transform: uppercase;
+    font-family: RobotoMedium, sans-serif;
+    font-size: 10px;
+    padding: 3px 0 0 0;
+    margin: 0;
+  }
+
+}
+
+.wrapper {
+  padding-top: 40px;
+  min-height: 100vh;
+  padding-bottom: 130px;
+
+  &.inner {
+    padding-top: 0;
+  }
+}
+
+.btn {
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  &-confirm, &-back {
+    position: relative;
+    padding: 0 70px;
+    background: transparent;
+    color: #fff;
+    font-size: 30.7px;
+    font-family: BodoniFLFBold, sans-serif;
+    text-transform: uppercase;
+
+    &:focus, &:active {
+      color: #fff;
+      outline: none;
+      box-shadow: none;
+    }
+
+    &:hover {
+      color: #c0c0c0;
+
+      .lft_line, .rgt_line {
+        border-bottom: 2px solid #c0c0c0;
+      }
+    }
+
+    .lft_line, .rgt_line {
+      position: absolute;
+      width: 70px;
+      height: 2px;
+      border-bottom: 2px solid #fff;
+    }
+
+    .lft_line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+    }
+
+    .rgt_line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+  }
+
+  &-back {
+    font-size: 25px;
+    margin-top: 1em !important;
+    width: 70px !important;
+    padding: 0;
+  }
+
+  &-transp {
+    display: block;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.67);
+    color: #000;
+    padding: 5px;
+    text-align: center;
+    font-size: 18px;
+    font-family: RobotoMedium, sans-serif;
+    border-radius: 0;
+
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
+  }
+
+  &.add_to_basket, &.btn-default, &.btn-primary, &.catering, &.go-to-basket {
+    background: #000;
+    border-radius: 0;
+    color: #fff;
+    padding: 6px;
+    font-family: BodoniFLFBold, sans-serif;
+    border: 2px solid #000;
+
+    &.inverted {
+      background: #fff;
+      color: #000;
+    }
+
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    &:active {
+      background: #000 !important;
+      color: #fff !important;
+    }
+  }
+
+  &.goto_cart {
+    margin-right: 19%
+  }
+
+  &.add_to_basket, &.btn-login, &.catering_add, &.catering, &.go-to-basket {
+    width: 123px;
+    margin-top: 5px;
+  }
+
+  @media only screen and (max-device-width: 800px), only screen and (max-width: 800px) {
+    &.add_to_basket, &.go-to-basket {
+      width: 49% !important;
+    }
+
+    &.goto_cart {
+      margin-right: 0;
+    }
+  }
+
+  &.btn-primary {
+    background: transparent !important;
+    color: #000;
+    border: 2px solid #000;
+  }
+
+  &.login_btn {
+    background: url('/static/img/login_btn_bg.png') no-repeat top center transparent;
+    border: none;
+    display: table;
+    width: 252px;
+    height: 73px;
+    margin: 0 auto;
+
+    @media only screen and (min-width: 1px), only screen and (max-device-width: 0px) {
+      &:hover {
+        background: url('/static/img/login_btn_bg.png') no-repeat top center transparent;
+        background-position: center -74px;
+        border: none;
+      }
+      &:active {
+        outline: none;
+        background: url('/static/img/login_btn_bg.png') no-repeat bottom center transparent !important;
+        box-shadow: none;
+
+      }
+    }
+
+
+    @media only screen and (max-device-width: 500px), only screen and (max-width: 500px) {
+      width: 200px;
+      height: 59px;
+      background-size: 200px auto;
+
+      &:hover {
+        background-size: 200px auto;
+        background-position: center -59px;
+      }
+
+      &:active {
+        background-size: 200px auto !important;
+        background-position: center -59px;
+      }
+    }
+
+  }
+
+  &.btn-facebook {
+    background: rgba(59, 89, 152, 0.75);
+    color: #fff;
+    width: 48%;
+    float: left;
+    border: 2px solid #fff;
+    border-radius: 0;
+    padding: 10px 0;
+    margin-bottom: 2em !important;
+
+    &:hover {
+      background: rgba(59, 89, 152, 1);
+    }
+
+    @media only screen and (max-device-width: 500px), only screen and (max-width: 500px) {
+      width: 100%;
+      margin-bottom: 5px !important;
+    }
+  }
+
+  &.btn-linkedin {
+    background: rgba(0, 119, 181, 0.74);
+    color: #fff;
+    padding: 10px 0;
+    width: 48%;
+    float: right;
+    border: 2px solid #fff;
+    border-radius: 0;
+    margin-bottom: 2em !important;
+
+    &:hover {
+      background: rgba(0, 119, 181, 1);
+    }
+
+    @media only screen and (max-device-width: 500px), only screen and (max-width: 500px) {
+      width: 100%;
+    }
+  }
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+::-webkit-input-placeholder {
+  color: #fff !important;
+}
+
+::-moz-placeholder {
+  color: #fff !important;
+}
+
+/* Firefox 19+ */
+:-moz-placeholder {
+  color: #fff !important;
+}
+
+/* Firefox 18- */
+:-ms-input-placeholder {
+  color: #fff !important;
+}
+
+select > option[value=""] {
+  display: none;
+}
+
+select option {
+  background: #fff;
+  color: #000;
+}
+
+input[type="text"], input[type="password"], input[type="tel"], input[type="email"], input[type="number"] {
+  background: rgba(2, 2, 2, 0.5);
+  border-radius: 0;
+  border: 2px solid #fff;
+  color: #fff;
+  height: 45px;
+
+  &:focus {
+    border-color: #7ee994;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(125, 233, 141, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(121, 233, 139, 0.6);
+  }
+}
+
+table {
+  tbody {
+    tr {
+      &.strong {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 15px;
+      }
+      td {
+        border-top: none !important;
+        padding: 3px !important;
+        border-bottom: 2px solid #000;
+      }
+    }
+  }
+  &.table-bordered {
+    border: 2px solid #000;
+
+    tr {
+      border: 2px solid #000;
+
+      td {
+        padding: 5px 8px;
+        width: 25%;
+        border: 2px solid #000;
+        font-family: RobotoRegular, sans-serif;
+        font-size: 14px;
+
+        strong {
+          text-transform: uppercase;
+        }
+
+        &.table-head {
+          font-family: RobotoBold, sans-serif;
+          font-size: 16px;
+          width: 100%;
+          background: #acacac;
+          color: #000;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.trans_select_box {
+  padding: 0 45px 0 0;
+  margin: 0;
+  width: 100%;
+  border: 2px solid #fff;
+  display: table;
+  overflow: hidden;
+  background: url(/static/img/trans_select_bg.png) right center no-repeat rgba(2, 2, 2, .5);
+  white-space: nowrap;
+  cursor: pointer;
+
+  &.has-error {
+    background: rgba(2, 2, 2, .5);
+    border: 2px solid #a94442;
+  }
+
+  .form-control {
+    margin-bottom: 0 !important;
+  }
+
+  select {
+    cursor: pointer;
+    width: 130%;
+    border: none;
+    padding: 0 11px;
+    height: 42px;
+    color: #fff;
+    box-shadow: none;
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+
+    &:focus {
+      outline: none !important;
+    }
+  }
+}
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #fff;
+  background: transparent;
+}
+
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '✓';
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  font-size: 24px;
+  line-height: 0.8;
+  color: #fff;
+  transition: all .2s;
+  margin-right: 10px;
+}
+
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+
+[type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+
+[type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+
+.select_box {
+  padding: 0 25px 0 0;
+  margin: 0;
+  border: 2px solid #000;
+  border-right: none;
+  display: table;
+  overflow: hidden;
+  //background: url("/static/img/select_bg.jpg") no-repeat right center;
+  white-space: nowrap;
+  position: relative;
+
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    background: #FFF url('/static/img/plus-minus.png') no-repeat center center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1.3em;
+    opacity: 1;
+  }
+
+  .lb-qty {
+    width: 100%;
+    height: 28px;
+    padding: 0 5px;
+    border-color: transparent;
+  }
+
+  &.qty-box {
+    background: none;
+  }
+
+  .item-qty {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  strong {
+    padding: 5px;
+    //margin-right: 5px;
+    border-right: 2px solid #000;
+    height: 100%;
+    display: table;
+    float: left;
+  }
+
+  select {
+    width: 130%;
+    border: none;
+    padding: 5px;
+    box-shadow: none;
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+
+    &:focus {
+      outline: none !important;
+    }
+  }
+}
+
+.update-btn {
+  float: right;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.logo-steps {
+  @media only screen and (min-width: 501px) {
+    margin: 50px auto 50px auto;
+    width: 92.4%;
+  }
+  float: left;
+  text-align: center;
+
+  .logo {
+
+    .desktop-logo {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+
+      @media only screen and (max-width: 500px), only screen and (max-device-width: 500px) {
+        display: none;
+      }
+    }
+
+    .mobile-logo {
+      display: none;
+      max-width: 75%;
+      max-height: 75%;
+      margin: 0 auto;
+
+      @media only screen and (max-device-width: 500px), only screen and (max-width: 500px) {
+        display: block;
+      }
+    }
+  }
+}
+
+.error_msg, .date_error_msg {
+  color: #f15f5d !important;
+}
+
+.total > a:hover, .total > a:link {
+  color: #f15f5d !important;
+  text-decoration: underline !important;
+}
+
+
+.select_error {
+  .errorlist {
+    margin: 0;
+    padding: 0;
+    li {
+      color: #a94442;
+      list-style-type: none;
+    }
+  }
+}
+
+.bg-danger {
+  padding: 5px;
+}
+
+.graybg {
+  min-height: 100vh;
+  background: url("/static/img/second_bg.jpg") no-repeat center center scroll;
+  background-size: cover !important;
+  //padding-bottom: 158px;
+  //background-attachment: fixed;
+}
+
+.restaurant {
+  margin: 15px auto 15px auto;
+  display: flex;
+  padding: 0;
+
+  .restaurant-lunchbox-gallery {
+    .big {
+      &.with_privileges-even {
+        float: right!important;
+      }
+      &.with_privileges-odd {
+        float: left!important;
+      }
+    }
+  }
+
+  &-coupon {
+    background: rgba(255, 255, 255, 0.4);
+    min-height: 300px;
+    display: table;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: 2px dashed #000;
+
+    .glyphicon-scissors {
+      position: absolute;
+      top: 0;
+      left: -11px;
+      bottom: 0;
+      margin: auto;
+      font-size: 25px;
+      width: 20px;
+      height: 20px;
+
+      -webkit-transform: rotate(-75deg);
+      -moz-transform: rotate(-75deg);
+      -ms-transform: rotate(-75deg);
+      -o-transform: rotate(-75deg);
+      transform: rotate(-75deg);
+    }
+  }
+
+  &-profile {
+    .profile_gallery {
+      .swiper-container {
+        height: 255px !important;
+      }
+    }
+
+    .restaurant-logo {
+      position: relative;
+      width: 100%;
+      max-width: 462px;
+      height: 187px;
+    }
+
+    .restaurant-title {
+      font-size: 24px;
+      text-transform: uppercase;
+      font-family: BodoniFLFBold, sans-serif;
+    }
+
+    .restaurant-desc {
+      font-family: Roboto, sans-serif;
+      font-size: 13px;
+    }
+
+    .contact_info {
+      a {
+        color: #000 !important;
+        text-decoration: none;
+
+        &:hover {
+          color: #000 !important;
+          text-decoration: underline;
+        }
+      }
+      ul {
+        margin: 10px 0;
+        padding: 0;
+
+        li {
+          display: inline;
+          list-style-type: none;
+
+          &:first-child {
+            &:after {
+              content: ' | ';
+            }
+          }
+
+          &:last-child {
+            &:before {
+              content: ' | ';
+            }
+          }
+        }
+      }
+    }
+
+    .opening-hours {
+      display: inline-flex;
+      font-family: RobotoMedium, sans-serif;
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  &.info-left {
+    .ribbon {
+      &:nth-child(even) {
+        left: 0.2em;
+      }
+    }
+  }
+
+  &.info-right {
+    flex-direction: row-reverse !important;
+
+    .restaurant-info {
+      padding-left: 2px;
+      display: flex;
+      padding-right: 0;
+    }
+
+    .ribbon {
+      left: 0.2em;
+    }
+  }
+
+  &-info {
+    padding-left: 0;
+    padding-right: 2px;
+    display: flex;
+
+    &-child {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.4);
+      padding: 15px;
+    }
+
+    .orders_qty {
+      border: 2px solid #000;
+      width: 144px;
+      margin-bottom: 5px;
+
+      .qty {
+        display: block;
+        float: left;
+        //width: 41%;
+        font-size: 21px;
+        font-family: RobotoMedium, sans-serif;
+        padding: 1px 5px;
+        //border-right: 2px solid #000;
+        text-align: center;
+      }
+      .txt {
+        text-transform: uppercase;
+        display: block;
+        text-align: center;
+        font-family: RobotoMedium, sans-serif;
+        padding: 11px 5px 0 11px;
+        font-size: 15px;
+        line-height: 10px;
+        border-left: 2px solid #000;
+      }
+    }
+  }
+
+  .requests {
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+
+    .qty {
+      font-family: RobotoMedium, sans-serif;
+      font-size: 22px;
+      float: left;
+      line-height: 36px;
+      margin-right: 5px;
+    }
+
+    .txt {
+      font-family: RobotoMedium, sans-serif;
+      font-size: 14px;
+      float: left;
+      line-height: 36px;
+    }
+
+    .btn {
+      float: right;
+    }
+  }
+
+  .rate_this_lunchbox {
+    display: table;
+    margin: 10px 0;
+    width: 100%;
+
+    p {
+      font-family: RobotoMedium, sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .rate {
+      margin: 0;
+      padding: 0;
+      display: flex;
+
+      li {
+        float: left;
+        list-style-type: none;
+        margin-right: 5px;
+        width: 19%;
+        max-width: 68px;
+
+        &:hover, &.active {
+          background: #000;
+
+          a {
+            color: #fff;
+          }
+        }
+
+        &:last-child {
+          margin: 0;
+        }
+
+        a {
+          border: 2px solid #000;
+          width: 100%;
+          height: 50px;
+          line-height: 14px;
+          padding: 10px 0;
+          color: #000;
+          text-decoration: none;
+          font-family: RobotoBold, sans-serif;
+          font-size: 14px;
+          display: block;
+          text-align: center;
+          text-transform: uppercase;
+
+          span {
+
+            &:first-child {
+              display: block;
+              width: 100%;
+            }
+            &:last-child {
+              text-transform: none;
+              font-family: RobotoMedium, sans-serif;
+              font-size: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-logo {
+    background: silver;
+    position: relative;
+    border: 2px solid #000;
+    width: 100%;
+    height: 187px;
+    margin-bottom: 15px;
+  }
+
+  &-title {
+    font-family: BodoniFLFBold, sans-serif;
+    font-size: 23px;
+    color: #000;
+  }
+
+  &-desc {
+    color: #000;
+    margin-top: 5px;
+  }
+
+  &-see_profile {
+    display: table;
+    text-transform: uppercase;
+    margin-top: 10px;
+    color: #000;
+    font-family: RobotoBold, sans-serif;
+    font-size: 18px;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+
+  &-min_order {
+    display: table;
+    padding: 5px 15px;
+    border: 2px solid #000;
+    font-size: 18px;
+    margin-top: 20px;
+    background: none;
+    color: #000;
+    font-family: BodoniFLFBold, sans-serif;
+  }
+
+  &-lunchboxes {
+    position: relative;
+    padding: 0 15px 15px;
+    float: left;
+    background: rgba(255, 255, 255, 0.67);
+
+    .orders_qty {
+      border: 2px solid #000;
+      width: 144px;
+      margin-bottom: 5px;
+
+      .qty {
+        display: block;
+        float: left;
+        width: 41%;
+        font-size: 21px;
+        font-family: RobotoMedium, sans-serif;
+        padding: 1px 5px;
+        text-align: center;
+        //border-right: 2px solid #000;
+      }
+      .txt {
+        text-transform: uppercase;
+        display: block;
+        width: 57%;
+        float: right;
+        font-family: RobotoMedium, sans-serif;
+        padding: 6px 5px;
+        font-size: 10px;
+        line-height: 10px;
+        border-left: 2px solid #000;
+      }
+    }
+
+    .swiper-container {
+      padding: 0;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      z-index: 999;
+
+      &::before {
+        content: '';
+      }
+    }
+    .prev {
+      background: url("/static/img/icons/prev.jpg") no-repeat center center;
+      left: 0;
+    }
+    .next {
+      background: url("/static/img/icons/next.jpg") no-repeat center center;
+      right: 0;
+    }
+  }
+  &-lunchbox {
+    &-name {
+      font-size: 23px;
+      font-family: BodoniFLFBold, sans-serif;
+    }
+
+    &-gallery {
+      margin-top: 15px;
+      margin-bottom: 10px;
+      padding: 0;
+      overflow: hidden;
+
+      .big {
+        position: relative;
+        width: 100%;
+        height: 187px !important;
+        background-size: cover !important;
+        background: silver;
+        background-position: center center;
+        overflow: hidden;
+        float: left;
+        border: 2px solid #000;
+
+        //@media screen {
+        //  @media (min-width: 768px) {
+        //    min-height: 100px;
+        //  }
+        //  @media (min-width: 992px) {
+        //    min-height: 150px;
+        //  }
+        //  @media (min-width: 1200px) {
+        //    height: 200px;
+        //  }
+        //}
+
+        &.with_privileges {
+          //float: right;
+          width: 78%;
+          max-width: ~"calc(100% - 144px)";
+        }
+
+        &.cart_privileges {
+          float: right !important;
+        }
+      }
+
+      .privileges {
+        float: left;
+        min-width: 144px;
+        width: 22%;
+        height: 187px;
+        display: flex;
+        flex-direction: column;
+        background: #000;
+        text-align: center;
+
+        div {
+          min-height: 33.3%;
+        }
+      }
+
+      .small {
+        float: left;
+
+        img {
+          clear: both;
+          float: left;
+          cursor: pointer;
+          margin-bottom: 1px;
+
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    &-privilege {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 33.3%;
+    }
+
+    //.nutrition_facts_table {
+    //  height: 32px;
+    //  overflow: hidden;
+    //
+    //  &:hover {
+    //    height: 116px;
+    //    -webkit-transition: height 1s;
+    //    -moz-transition: height 1s;
+    //    -ms-transition: height 1s;
+    //    -o-transition: height 1s;
+    //    transition: height 1s;
+    //  }
+    //
+    //  .table-head {
+    //    cursor: pointer;
+    //  }
+    //}
+
+    .orders_qty {
+      border: 2px solid #000;
+      width: 144px;
+      margin-bottom: 5px;
+
+      .qty {
+        display: block;
+        float: left;
+        width: 41%;
+        font-size: 21px;
+        font-family: RobotoMedium, sans-serif;
+        padding: 1px 5px;
+        text-align: center;
+        //border-right: 2px solid #000;
+      }
+      .txt {
+        text-transform: uppercase;
+        display: block;
+        width: 57%;
+        float: right;
+        font-family: RobotoMedium, sans-serif;
+        padding: 6px 5px;
+        font-size: 10px;
+        line-height: 10px;
+        border-left: 2px solid #000;
+      }
+    }
+  }
+
+  .ribbon {
+    position: absolute;
+    top: 0;
+    right: 0.2em;
+    z-index: 1;
+    color: #eee;
+    font-size: 2.6em;
+    width: 2.4em;
+    line-height: 0.5em;
+    -webkit-transition: line-height 0.5s;
+    transition: line-height 0.5s;
+
+    &:after {
+      content: "";
+      font-size: 0.8em;
+      position: absolute;
+      height: 1.2em;
+      border: 1.5em solid #000;
+      z-index: -1;
+      top: 0;
+      border-top-width: 3em;
+      border-bottom-color: transparent;
+      right: 0;
+      -webkit-transition: height .5s;
+      transition: height .5s
+    }
+
+    .rating_txt {
+      position: absolute;
+      display: table;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+      right: 0;
+      left: 0;
+      margin: auto;
+      font-family: Roboto, sans-serif;
+      font-size: 17px
+    }
+
+    .rating {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      left: 15px;
+      margin: auto;
+      font-size: 37px
+    }
+
+    .stars {
+      position: absolute;
+      top: 60px;
+      width: 100%;
+      display: table;
+      text-align: center;
+      margin: 0 auto;
+      padding: 0;
+
+      li {
+        width: 12%;
+        list-style-type: none !important;
+        float: left;
+        margin: 0 3px;
+
+        span {
+          font-size: 12px
+        }
+      }
+    }
+
+  }
+
+  &.profile-lunchboxes {
+    .restaurant-lunchboxes {
+      position: relative;
+
+      //.ribbon:hover:after {
+      //  border: 1.5em solid #EF5350;
+      //  border-bottom-color: transparent;
+      //  height: 1.6em;
+      //  -webkit-transition: height 0.5s;
+      //  transition: height 0.5s;
+      //}
+      //.ribbon:hover {
+      //  line-height: 0.9em;
+      //  color: #333;
+      //  -webkit-transition: line-height 0.5s;
+      //  transition: line-height 0.5s;
+      //}
+    }
+
+    .big.with_privileges, .privileges {
+      //float: right !important;
+    }
+  }
+
+}
+
+.prev_lunchboxes_txt {
+  color: #fff;
+}
+
+.site_message {
+  width: 430px;
+  margin: 0 auto;
+  color: #fff;
+
+  strong {
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 42px;
+  }
+  p {
+    text-align: center;
+    font-size: 16px;
+  }
+}
+
+.edit-profile-title {
+  color: #fff;
+}
+
+.coupon {
+  position: relative;
+  border: 2px dotted #000;
+  padding: 15px 0;
+  p {
+    font-size: 21px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    &.small {
+      font-family: RobotoRegular, sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    &.discount_text {
+      text-transform: uppercase;
+      font-size: 33px;
+      font-family: BodoniFLFBold, sans-serif;
+    }
+  }
+
+  a {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.camera {
+  width: 100px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+
+  .glyphicon-camera {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: table;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+  }
+
+  .line {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 70px;
+    height: 2px;
+    transform: rotate(40deg);
+    border-bottom: 2px solid #000;
+  }
+}
+@media only screen and (max-device-width: 991px), only screen and (max-width: 991px) {
+  body {
+    .index {
+      background-position: 92%;
+    }
+  }
+}
+
+@media only screen and (max-device-width: 800px), only screen and (max-width: 800px) {
+  body {
+    .promo_code_input {
+      width: 100%;
+    }
+
+    .cart_empty {
+      padding: 45px 0;
+      margin-top: 45px;
+    }
+
+    .info-box .face {
+      margin: 5vw;
+    }
+
+    .restaurant-info-order {
+      order: 2;
+    }
+
+    .restaurant-lunchboxes-order {
+      order: 1;
+    }
+  }
+
+  .display-none {
+    display: none;
+  }
+}
+
+@media only screen and (max-device-width: 500px), only screen and (max-width: 500px) {
+  body {
+    .info-box {
+      padding: 12vw 0;
+
+      .question {
+        font-size: 8vw;
+        margin-bottom: 5vw;
+      }
+
+      .face {
+        margin: 2vw;
+        font-size: 5vw;
+      }
+
+      .thank-you-note {
+        font-size: 8vw;
+      }
+    }
+  }
+}
+
+.isMobile {
+  .wrapper {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .btn {
+    &-back {
+      font-size: 20px;
+      margin-top: 1em !important;
+    }
+  }
+
+  .restaurant {
+    .requests {
+      .qty {
+        font-size: 14px;
+        margin-right: 4px
+      }
+      .txt {
+        font-size: 12px;
+        width: 170px;
+        line-height: 10px;
+        padding: 8px 0;
+        text-align: center;
+      }
+    }
+
+    &.profile-lunchboxes {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    &-profile {
+      .swiper-container {
+        position: relative;
+        display: block;
+        max-width: 100%;
+        max-height: 265px !important;
+        overflow: hidden;
+
+        img {
+          max-width: ~"calc(100% - 2px)";
+          max-height: 265px !important;
+        }
+      }
+      .profile_info {
+        width: 100%;
+        padding: 0 !important;
+        clear: both;
+        margin-top: 15px;
+      }
+    }
+    &-info {
+      padding-right: 0 !important;
+
+      .orders_qty {
+        .txt {
+          font-size: 11px;
+        }
+      }
+    }
+
+    &.info-right {
+      .restaurant-info {
+        padding-left: 0 !important;
+      }
+    }
+
+    @media only screen and (max-device-width: 500px), only screen and (max-width: 500px) {
+      .rate_this_lunchbox {
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+
+        .rate {
+          display: flex;
+          justify-content: center;
+
+          li {
+            margin-right: 3px;
+            width: 18%;
+
+            a {
+              width: 100%;
+              height: 50px;
+              line-height: 28px;
+
+              span {
+                &:first-child {
+                  font-size: 3.8vw;
+                }
+                &:last-child {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-device-width: 1128px) and (min-device-width: 992px),
+only screen and (max-width: 1128px) and (min-width: 992px) {
+  .rate_this_lunchbox .rate li a {
+    height: 64px !important;
+    span {
+      &:first-child {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 991px), only screen and (min-device-width: 801px) and (max-device-width: 991px) {
+  .swiper-container {
+    max-width: 50vw;
+  }
+
+  .restaurant-lunchboxes {
+    .orders_qty {
+      .txt {
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1139px), only screen and (min-device-width: 992px) and (max-device-width: 1139px) {
+  .orders_qty {
+    .qty {
+      font-size: 1.9vw !important;
+      border-right: none !important;
+    }
+    .txt {
+      font-size: 0.8vw !important;
+      border-left: 2px solid #000;
+    }
+  }
+}

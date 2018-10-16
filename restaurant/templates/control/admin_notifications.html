@@ -1,0 +1,89 @@
+{% extends 'control/base_control.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Notifications' %}{% endblock %}
+{% block content %}
+    <div class="col-md-15 center control notifications_content">
+        {% if notifications %}
+            <p class="notification_title">{% trans 'Notification from restaurants' %}</p>
+            {% for n in notifications %}
+                <div class="notification_msg {% if n.priority == 1 %}high-priority{% elif n.priority == 2 %}less-priority{% elif n.priority == 3 %}low-priority{% else %}status_default{% endif %} col-md-16 no-margins"
+                     data-u="{{ n.user.id }}" data-lb="{{ n.lunchbox.id }}" data-mid="{{ n.id }}">
+                    <div class="col-md-9">
+                        {% if n.lunchbox != None %}
+                            <strong>[{{ n.lunchbox.restaurant.name }}]: {{ n.lunchbox.name }} -> {% trans 'requests' %}
+                                {% if n.lunchbox.photoshoot_requested and n.lunchbox.publishing_requested %}
+                                    {% trans 'publishing and photoshoot' %}
+                                {% elif n.lunchbox.photoshoot_requested %}
+                                    {% trans 'photoshoot' %}
+                                {% elif n.lunchbox.publishing_requested %}
+                                    {% trans 'publishing' %}
+                                {% endif %}
+                            </strong>
+                        {% else %}
+                            <strong>[{{ n.restaurant.name }}] -> {% trans 'requests a photoshoot for the restaurant' %}</strong>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-2">
+                        {% if n.lunchbox != None %}
+                            <strong>{{ n.lunchbox.date|date:'Y. M d H:i' }}</strong>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-5 no-margins">
+                            {% if n.lunchbox != None %}
+                                <a href="{% url 'admin_edit_lunchbox' restaurant_id=n.lunchbox.restaurant.id id=n.lunchbox.id %}"
+                                   class="btn btn-primary small btn-reply">{% trans 'Link' %}</a>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-5 no-margins">
+                            <button class="btn btn-primary small archive_notification">
+                                {% if n.lunchbox != None %}
+                                    {% trans 'Archive' %}
+                                {% else %}
+                                    {% trans 'Done' %}
+                                {% endif %}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-2 notification_priority" data-id="{{ n.id }}" data-idd="{{ n.user.id }}">
+                        <div class="priority high-priority">
+                            <input type="checkbox" id="h{{ forloop.counter }}" class="priority-check" data-priority="1"
+                                   {% if n.priority == 1 %}checked{% endif %}>
+                            <label for="h{{ forloop.counter }}">{% trans 'Mark URGENT!' %}</label>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="priority less-priority">
+                            <input type="checkbox" id="l{{ forloop.counter }}" class="priority-check" data-priority="2"
+                                   {% if n.priority == 2 %}checked{% endif %}>
+                            <label for="l{{ forloop.counter }}">{% trans 'Less important' %}</label>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="priority low-priority">
+                            <input type="checkbox" id="lo{{ forloop.counter }}" class="priority-check" data-priority="3"
+                                   {% if n.priority == 3 %}checked{% endif %}>
+                            <label for="lo{{ forloop.counter }}">{% trans 'It can wait' %}</label>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="notification_reply col-md-16 center">
+                        <div class="msgs">
+                            <strong>{{ n.user.first_name }} {{ n.user.last_name }}</strong>
+                            <div class="clearfix"></div>
+                            <span>{{ n.datetime|date:'H:i Y. M d' }}</span>
+                            <div class="clearfix"></div>
+                            <p>{{ n.msg }}</p>
+                            <div class="clearfix"></div>
+                        </div>
+                        {% if request.user.is_authenticated %}
+                            <textarea name="msg" class="msg" placeholder="{% trans 'Write your message here!' %}"></textarea>
+                            <button>{% trans 'send' %}</button>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

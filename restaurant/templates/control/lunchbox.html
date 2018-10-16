@@ -1,0 +1,53 @@
+{% extends 'control/base_control.html' %}
+{% load i18n %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/jquery.datetimepicker.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="col-md-16">
+        <div class="lunchbox-nav col-md-3">
+            <ul>
+                {% if is_restaurant_links %}
+                    <li>
+                        <a href="{% url 'admin_create_lunchbox' restaurant.id %}"
+                           {% if request.get_full_path == "/control/lunchbox/create/" %}class="active"{% endif %}>{% trans 'Create new lunchbox' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'admin_published_lunchboxes' restaurant.id %}"
+                           {% if request.get_full_path == "/control/published_lunchboxes/" %}class="active"{% endif %}>{% trans 'Published lunchboxes' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'admin_saved_lunchboxes' restaurant.id  %}"
+                           {% if request.get_full_path == "/control/saved_lunchboxes/" %}class="active"{% endif %}>{% trans 'Saved/pending lunchboxes' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'admin_archived_lunchboxes' restaurant.id  %}"
+                           {% if request.get_full_path == "/control/archived_lunchboxes/" %}class="active"{% endif %}>{% trans 'Archived lunchboxes' %}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'create_lunchbox' %}"
+                           {% if request.get_full_path == "/control/lunchbox/create/" %}class="active"{% endif %}>{% trans 'Create new lunchbox' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'published_lunchboxes' %}"
+                           {% if request.get_full_path == "/control/published_lunchboxes/" %}class="active"{% endif %}>{% trans 'Published lunchboxes' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'saved_lunchboxes' %}"
+                           {% if request.get_full_path == "/control/saved_lunchboxes/" %}class="active"{% endif %}>{% trans 'Saved/pending lunchboxes' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'archived_lunchboxes' %}"
+                           {% if request.get_full_path == "/control/archived_lunchboxes/" %}class="active"{% endif %}>{% trans 'Archived lunchboxes' %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% block lunchbox_content %}{% endblock %}
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+{% endblock %}

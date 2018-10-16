@@ -1,0 +1,75 @@
+{% extends "mainapp/base.html" %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}{% trans 'Lunchboxes' %}{% endblock %}
+{% block content %}
+
+      <section class="our_lunchbox_section pull-left full-width">
+         <div class="container">
+         {% if lunchboxes %}
+            <h1 class="pull-left full-width text-center">{% trans lunchboxes.0.category.title|title %}</h1>
+          {% else %}
+              <h1 class="pull-left full-width text-center">{% trans catggory.title|title %}</h1>
+          {% endif %}
+            <div class="row">
+            {% if not lunchboxes %}
+              <center><strong>{% trans 'No lunchbox available' %}.</strong></center>
+            {% endif %}
+            {% for lunchbox in lunchboxes %}
+
+            <form role="form"  method="GET" action="{% url 'tocart' %}">{% csrf_token %}
+               <div class="col-md-4 col-sm-4 col-xs-12">
+                  <div class="our_lunchbox_box pull-left full-width">
+                     <div class="our_lunchbox_box_image">
+                     {% if lunchbox.get_images %}
+                        {% for i in lunchbox.get_images|slice:":1" %}
+                            {% if i.image|thumbnail_url:'gallery_image' %}
+                                <a href="{% url 'individual_lunchbox' slug=lunchbox.category.slug pk=lunchbox.id %}"><img src="{{ i.image|thumbnail_url:'home_lunchbox_pic' }}" alt=""></a>
+                            {% else %}
+                                <a href="{% url 'individual_lunchbox' slug=lunchbox.category.slug pk=lunchbox.id %}"><img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt=""></a>
+                            {% endif %}
+                        {% endfor %}
+                      {% else %}
+                        <a href="{% url 'individual_lunchbox' slug=lunchbox.category.slug pk=lunchbox.id %}"><img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt=""></a>
+                      {% endif %}  
+                     </div>   
+                     <div class="our_lunchbox_box_discription pull-left full-width">
+                        <div class="row">
+                           <div class="col-md-6 col-sm-6 col-xs-12">
+                              <span class="our_lunchbox_box_title pull-left full-width"> 
+                                 {% trans lunchbox.name %}
+                                 
+                              </span>
+                               
+                              <span class="our_lunchbox_box_price pull-left full-width">€ {{ lunchbox.price }}</span>
+                           </div>
+                           <input type="hidden" class="available_till" id="ddate_ddate{{ forloop.counter }}" value="{{ lunchbox.available_till|date:'Y-m-d' }}">
+                           <input type="hidden" name="lunchboxname" value="{{ lunchbox.name }}">
+                          <input type="hidden" name="lunchbox" value="{{ lunchbox.id }}">
+                          <input type="hidden" name="lunchboxqty" value="1">
+                           <input type="hidden" name="lunchboxprice" value="{{ lunchbox.price }}">
+                           <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="our_lunchbox_box_button pull-left full-width text-right">
+                                 <a class="our_lunchbox_box_see_more" href="{% url 'individual_lunchbox' slug=lunchbox.category.slug pk=lunchbox.id %}">{% trans 'See' %} {% trans 'More' %}</a>
+                                 <input type="button" name="submit" value="{% trans 'Order' %}" onclick="tocart(this.form)" />
+                              </div>   
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               </form>
+               {% endfor %}
+            </div>
+            
+         </div>
+      </section>
+      
+
+
+
+
+
+{% endblock %}

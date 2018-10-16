@@ -1,0 +1,2710 @@
+{% extends 'dashboard/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load percent %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}
+Admin
+{% endblock %}
+
+{% block content %}
+         <!-- Html code-->
+
+<section class="create-lunch-box">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 bhoechie-tab-container ">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 bhoechie-tab-menu tabs-area">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item text-left active">
+                                {% trans 'Create new lunchbox' %}
+                            </a>
+                            <a href="#" class="list-group-item">
+                                {% trans 'Published lunchboxes' %}
+                            </a>
+                            <a href="#" class="list-group-item">
+                                {% trans 'Saved' %}/{% trans 'pending lunchboxes' %}
+                            </a>
+                            <a href="#" class="list-group-item">
+                                {% trans 'Archived lunchboxes' %}
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 bhoechie-tab content1">
+                        <!-- flight section -->
+                        <div class="bhoechie-tab-content active">
+                
+                <section class="admin_restaurant_edit_section pull-left full-width">
+                  
+                  <form id="add_box_form" enctype="multipart/form-data" action="{% url 'lunchbox_management' restaurant.id %}" method="POST">
+                    {% csrf_token %}
+                     <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input1">
+                                    
+                                       <img id="gallerybigimg1" src="{% static 'dashboard/img/lunchbox_add_photo.jpg' %}" alt="">
+                                       <input id="hidden1" type="hidden">
+                                     
+                                    </label>
+
+                                     <input id="file-input1" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg1','1')" name='myfile'/>
+                                 <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input2">
+                                          
+                                             <img id="gallerybigimg2" src="{% static 'dashboard/img/lunchbox_add_photo_small.jpg' %}" alt="">
+                                           
+                                       </label>
+
+                                       <input type="file" id="file-input2" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg2','2')" name='myfile'>
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input3">
+                                          
+                                             <img id="gallerybigimg3" src="{% static 'dashboard/img/lunchbox_add_photo_small.jpg' %}" alt="">
+                                           
+                                       </label>
+
+                                       <input id="file-input3" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg3','3')" name='myfile'/>
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input4">
+                                          
+                                             <img id="gallerybigimg4" src="{% static 'dashboard/img/lunchbox_add_photo_small.jpg' %}" alt="">
+                                             <input id="hidden4" type="hidden">
+                                           
+                                       </label>
+
+                                       <input id="file-input4" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg4','4')" name='myfile'/>
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input5">
+                                          
+                                             <img id="gallerybigimg5" src="{% static 'dashboard/img/lunchbox_add_photo_small.jpg' %}" alt="">
+                                             <input id="hidden5" type="hidden">
+                                           
+                                       </label>
+
+                                       <input id="file-input5" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg5','5')" name='myfile'/>
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                     
+                  </section>
+
+
+                  <section class="pull-left full-width">
+                      
+                      <div class="creating-lunchbox">
+
+                            <div class="row resp">
+
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12"> 
+                                    <div class="availability-section">
+
+                                     
+                                                 <input class="box-name-input" id="name_of_box" type="text" name="name_of_box" placeholder="Name of the lunchbox">
+                                            
+                                        <h2 class="availability-tab">{% trans 'Availability' %}</h2>
+
+                                        <div class="availability-dates">
+                                          
+                                          <div class="form-group">
+                                              <lable>{% trans 'Start' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="" name="available_from" placeholder="Click here" id="datetimepicker3" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+
+                                          <div class="form-group">
+                                              <lable>{% trans 'End' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="" name="available_till" placeholder="Click here" id="datetimepicker4" type="text" > <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+
+                                       </div>
+
+
+                                    </div>
+
+
+                                    <div class="lunch-category-select">
+                                         <div class="form-group">
+                                          <label for="sel1">{% trans 'Select Category' %}</label>
+                                          <div class="custom-select">
+                                              <select name="category" class="form-control c-select" id="sel11">
+                                                {% for category in categories %}
+                                                  <option value="{{ category.slug }}">{{ category.title }}</option>
+                                                {% endfor %}
+                                              </select>
+                                          </div>
+                                        </div> 
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-outer">
+                                <table class="table table-borderd table-lunch-box">
+                                    
+                                <tbody>
+                                    <tr>
+                                        <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 140px;">{% trans 'Total Calories' %}  </td>
+                                        <td style="width: 160px;">{% trans 'Auto calculated' %}  </td>
+                                        <td>{% trans 'Fat' %}   </td>
+                                        <td style="width: 160px;">GR <input id="fat" class="gr-input" type="text" name="fat" placeholder="XX" maxlength="5">  </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Protein' %}   </td>
+                                        <td>GR <input class="gr-input" type="text" id="protein" name="protein" placeholder="XX" maxlength="5">  </td>
+                                        <td>{% trans 'Sugar' %}   </td>
+                                        <td>GR <input class="gr-input" type="text" name="sugar" id="sugar" placeholder="XX" maxlength="5">  </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Carbohydrates' %}   </td>
+                                        <td>GR <input class="gr-input" type="text" name="carbo" id="carbo" placeholder="XX" maxlength="5">  </td>
+                                        <td>{% trans 'Sodium' %}   </td>
+                                        <td>GR <input class="gr-input" type="text" name="sodium" id="sodium" placeholder="XX" maxlength="5">  </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Price' %}/{% trans 'Lunchbox' %}</span>
+                                            <span class="td-input-span">€ <input class="gr-input" id="price" type="text" name="lunchbox_price" placeholder="XX" maxlength="5"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">La Fiambrera rate</span>
+                                            <span class="td-input-span">€ <input class="gr-input" id="rate" type="text" name="lafia_lunchbox_price" placeholder="XX" maxlength="5"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Vat' %}</span>
+                                            <span class="td-input-span">% <input class="gr-input" id="vat" type="text" name="vat" placeholder="XX" maxlength="5"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">
+                                                <input class="gr-input-right-m" type="text" name="discount_percent1" id="per1" placeholder="XX" maxlength="5">% {% trans 'discount at' %} 
+
+                                                <span><input class="gr-input-right-both" id="dis1" type="text" name="discount_qty1" placeholder="XX" maxlength="5">{% trans 'lunchboxes' %}</span>
+                                            </span>
+
+
+                                            <span class="td-input-span-r">XX.XX €</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">
+                                                <input class="gr-input-right-m" type="text" id="per2" name="discount_percent2" placeholder="XX" maxlength="5">% {% trans 'discount at' %} 
+
+                                                <span><input class="gr-input-right-both" type="text" id="dis2" name="discount_qty2" placeholder="XX" maxlength="5">{% trans 'lunchboxes' %}</span>
+                                            </span>
+
+
+                                            <span class="td-input-span-r">XX.XX €</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">
+                                                <input class="gr-input-right-m" type="text" id="per3" name="discount_percent3" placeholder="XX" maxlength="5">% {% trans 'discount at' %} 
+
+                                                <span><input class="gr-input-right-both" type="text" id="dis3" name="discount_qty3" placeholder="XX" maxlength="5">{% trans 'lunchboxes' %}</span>
+                                            </span>
+
+
+                                            <span class="td-input-span-r">XX.XX €</span>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+
+
+                                </table>
+                                </div>
+                           
+                                </div>
+                                <div class="row">
+                                  <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                  <div class="col-lg-6">
+           
+                                       <textarea rows="4" cols="50" id="box_name_desc" name="box_name_desc" placeholder="Describe your lunch box right now..." style="width:100%; resize:vertical"></textarea>
+                                  </div>
+                                  <div class="col-lg-6">
+
+                                      <textarea rows="4" cols="50" id="box_name_desc_es" name="box_name_desc_es" placeholder="Describe your lunch box right now..." style="width:100%; resize:vertical"></textarea>
+                                  </div>
+
+                                </div>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                      {% if request.session.user_type == 'Restaurant' %}
+                                          <!-- dm -->
+                                          <div class="edit_restaurant_check">
+                                             <input name="photoshoot" type="checkbox">
+                                             <label><p>{% trans 'Photoshoot' %}<br>{% trans 'requested' %}</p></label>
+
+                                          </div>
+                                          <!-- dm -->
+                                          <div class="edit_restaurant_check">
+                                             <input name="publishing" type="checkbox">
+                                             <label><p>{% trans 'Publishing' %}<br>{% trans 'requested' %}</p></label>
+                                          </div>
+                                        {% else %}
+                                        <!-- dm -->
+                                          <div class="edit_restaurant_check">
+                                             <input name="photoshoot" type="checkbox">
+                                             <label><p>{% trans 'Photoshoot' %}<br>{% trans 'requested' %}</p></label>
+
+                                          </div>
+                                          <!-- dm -->
+                                          <div class="edit_restaurant_check">
+                                             <input name="publishing" type="checkbox">
+                                             <label><p>{% trans 'Publishing' %}<br>{% trans 'requested' %}</p></label>
+                                          </div>
+                                          <!-- dm -->
+                                          <div class="edit_restaurant_check">
+                                             <input name="photoshoot_done" type="checkbox">
+                                             <label><p>{% trans 'Photoshoot' %}<br>{% trans 'done' %}?</p></label>
+                                          </div>
+                                          <!-- dm -->
+                                          <div class="edit_restaurant_check">
+                                             <input name="lunchbox_published" type="checkbox">
+                                             <label><p>{% trans 'Lunchbox' %}<br>{% trans 'published' %}?</p></label>
+                                          </div>
+                                          <!-- dm -->    
+                                        {% endif %}
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="submit-lunch">
+                                            <button type="submit" id="edit_submit_res_dash">{% trans 'Save' %}</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                </div>
+
+
+                                
+                            </div>
+                          
+                      </div>
+                      </form>
+                  </section>
+
+
+
+
+
+
+
+                        </div>
+                        <!-- train section -->
+                         <div class="bhoechie-tab-content">
+                            
+                              {% if published_lunchboxes %}
+                            <ul class="nav nav-tabs">
+                            {% for lunchbox in published_lunchboxes %}
+                              {% if forloop.counter == 1 %}
+                                <li class="active"><a data-toggle="tab" href="#c-home" aria-expanded="true">{{ lunchbox.name }} &amp; C</a></li>
+                              {% else %}
+                                <li class=""><a data-toggle="tab" href="#c-menu{{ forloop.counter }}" aria-expanded="false">{{ lunchbox.name }}</a></li>
+                              {% endif %}
+                                <!-- <li class=""><a data-toggle="tab" href="#c-menu2" aria-expanded="false">Salmon Salvaje</a></li>
+                                <li><a data-toggle="tab" href="#c-menu3">Salmon Salvaje</a></li> -->
+                            {% endfor %}
+                              </ul>
+                        {% else %}
+                            <div class="col-sm-12">
+                                <h2 style="color: #ffffff;" class="section_heading"> {% trans 'Empty' %} </h2>
+                                 
+                            </div>
+                        {% endif %}
+
+  <div class="tab-content">
+  {% for lunchbox in published_lunchboxes %}
+  {% if forloop.counter == 1 %}
+    <div id="c-home" class="tab-pane fade active in">
+      
+      <section class="admin_restaurant_edit_section pull-left full-width">
+
+                  {% if lunchbox.get_images %}
+                      {% for i in lunchbox.get_images %}
+                        {% if forloop.counter == 1 %}
+                         <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                        <label for="file-input">
+                                        
+                                           {% if i.image %}
+                                                <img id="gallerybigimg" src="{{ i.image|thumbnail_url:'dashboard_lunchbox' }}"
+                                                     alt="">
+
+                                            {% else %}
+                                               <img id="gallerybigimg" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                            {% endif %}
+                                        </label>
+
+                                     <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                   </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                         {% else %}
+                       
+                      
+                         <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                           <label for="file-input">
+                                              
+                                                {% if i.image %}
+                                                    <img id="gallerybigimg" src="{{ i.image|thumbnail_url:'control_image_small' }}"
+                                                         alt="">
+
+                                                {% else %}
+                                                   <img id="gallerybigimg" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                                {% endif %}
+                                               
+                                           </label>
+
+                     
+                                           <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                       </div>   
+                                   </div>
+                                </div>   
+                             </div>
+                          </div>   
+                       </div>
+                       
+                       {% endif %}
+                      {% endfor %}
+                    {% else %}
+                    
+                     <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input">
+                                    
+                                       <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                       <input id="hidden1" type="hidden">
+                                     
+                                    </label>
+
+                                 <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg2" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                                         
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg3" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden3" type="hidden">
+                                           
+                                       </label>
+
+            
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg4" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden4" type="hidden">
+                                           
+                                       </label>
+
+     
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg5" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden5" type="hidden">
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     {% endif %}
+                     
+                  </section>
+
+
+                  <section>
+                      
+                      <div class="creating-lunchbox">
+
+                            <div class="row resp">
+
+                                <div class="col-lg-4"> 
+
+                                    <div class="name-of-box">
+                                        
+                                        <h2 class="name-of-wild">{{ lunchbox.name }} &amp; C</h2>
+                                        <div class="show_description">{% trans lunchbox.desc|safe %}</div>
+                                        
+
+                                    </div>
+
+                                    <div class="availability-section">
+                                        <h2 class="availability-tab">{% trans 'Availability' %}</h2>
+
+                                        <div class="availability-dates">
+                                          
+                                          <div class="form-group">
+                                              <lable>{% trans 'Start' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_from }}" id="datetimepicker3" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+                                          <div class="form-group">
+                                              <lable>{% trans 'End' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_till }}" placeholder="Click here" id="datetimepicker4" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+
+                                       </div>
+
+
+                                    </div>
+
+
+                                    <div class="lunch-category-select">
+                                         <div class="form-group">
+                                          <label for="sel1">{% trans 'Category' %}</label>
+                                          <div class="custom-select">
+                                              <input type="text" value="{{ lunchbox.category.title }}" disabled="true">
+                                          </div>
+                                        </div> 
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-lg-8">
+                                <div class="table-outer">
+                                <table class="table table-borderd table-lunch-box table-lunch-box2">
+                                    
+                                <tbody>
+                                    <tr>
+                                        <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 140px;">{% trans 'Total Calories' %}  </td>
+                                        <td style="width: 160px;">{% trans 'Auto calculated' %}  </td>
+                                        <td>{% trans 'Fat' %}   </td>
+                                        <td style="width: 160px; text-align: right;"> {{ lunchbox.fat }}
+                                    </td></tr>
+
+                                    <tr>
+                                        <td>{% trans 'Protein' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.protein }}  </td>
+                                        <td>{% trans 'Sugar' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sugar }}   </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Carbohydrates' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.carbohydrates }} </td>
+                                        <td>{% trans 'Sodium' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sodium }} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Price' %}/{% trans 'Lunchbox' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.price }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">La Fiambrera rate</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.rate }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">Vat</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.vat }} %</span>
+                                        </td>
+                                    </tr>
+                                    {% if lunchbox.get_discounts %}
+                                      {% for discount in lunchbox.get_discounts %}
+                                          <tr>
+                                              <td colspan="4">
+                                                  <span style="text-align: left;float: left;">
+                                                     {{ discount.percent }} % {% trans 'discount at' %} {{ discount.qty }} {% trans 'lunchboxes' %}                                                 
+                                                  </span>
+                                                  <span style="text-align: right;float: right;">{{ lunchbox.price|percent:discount.percent }} €</span>
+                                              </td>
+                                          </tr>
+                                      {% endfor %}
+                                    {% else %}
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+                                      {% endif %}
+
+                                </tbody>
+
+
+                                </table>
+                                </div>
+
+                                </div>
+
+                                <div class="col-lg-12">
+                                    
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="ed-and-del">
+                                            <a class="edit-l" href="{% url 'edit_lunchboxes' lunchbox.restaurant.id lunchbox.id %}"> {% trans 'Edit' %} </a>
+                                            <a class="del-l" href="{% url 'del_lunchbox' lunchbox.id %}"> {% trans 'Delete' %} </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                
+                                </div>
+
+
+                                
+                            </div>
+                          
+                      </div>
+
+                  </section>
+
+
+    </div>
+    {% else %}
+    <div id="c-menu{{ forloop.counter }}" class="tab-pane fade">
+
+
+        <section class="admin_restaurant_edit_section pull-left full-width">
+  
+                  
+                  {% if lunchbox.get_images %}
+                      {% for i in lunchbox.get_images %}
+                        {% if forloop.counter == 1 %}
+                         <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                        <label for="file-input">
+                                        
+                                           {% if i.image %}
+                                                <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'dashboard_lunchbox' }}"
+                                                     alt="">
+
+                                            {% else %}
+                                               <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                            {% endif %}
+                                        </label>
+
+           
+                                     <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                   </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                         {% else %}
+                       
+                      
+                         <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                           <label for="file-input">
+                                              
+                                                {% if i.image %}
+                                                    <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'control_image_small' }}"
+                                                         alt="">
+
+                                                {% else %}
+                                                   <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                                {% endif %}
+                                               
+                                           </label>
+
+                                           <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                       </div>   
+                                   </div>
+                                </div>   
+                             </div>
+                          </div>   
+                       </div>
+                       
+                       {% endif %}
+                      {% endfor %}
+                    {% else %}
+                    
+                     <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input">
+                                    
+                                       <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                       <input id="hidden1" type="hidden">
+                                     
+                                    </label>
+
+                                 <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg2" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden2" type="hidden">
+                                           
+                                       </label>
+
+         
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg3" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden3" type="hidden">
+                                           
+                                       </label>
+
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-inpu">
+                                          
+                                             <img id="gallerybigimg4" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden4" type="hidden">
+                                           
+                                       </label>
+
+               
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg5" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden5" type="hidden">
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     {% endif %}
+                     
+                  </section>
+
+
+                  <section>
+                      
+                      <div class="creating-lunchbox">
+
+                            <div class="row resp">
+
+                                <div class="col-lg-4"> 
+
+                                    <div class="name-of-box">
+                                        
+                                        <h2 class="name-of-wild">{{ lunchbox.name }} &amp; C</h2>
+                                        <div class="show_description">{% trans lunchbox.desc|safe %}</div>
+                                       
+
+
+                                    </div>
+
+                                    <div class="availability-section">
+                                        <h2 class="availability-tab">{% trans 'Availability' %}</h2>
+
+                                        <div class="availability-dates">
+                                          
+                                          <div class="form-group">
+                                              <lable>{% trans 'Start' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_from }}" id="datetimepicker3" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+                                          <div class="form-group">
+                                              <lable>{% trans 'End' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_till }}" placeholder="Click here" id="datetimepicker4" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+
+                                       </div>
+
+
+                                    </div>
+
+
+                                    <div class="lunch-category-select">
+                                         <div class="form-group">
+                                          <label for="sel1">{% trans 'Category' %}</label>
+                                          <div class="custom-select">
+                                              <input type="text" value="{{ lunchbox.category.title }}" disabled="true">
+                                          </div>
+                                        </div> 
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-lg-8">
+                                <div class="table-outer">
+                                <table class="table table-borderd table-lunch-box table-lunch-box2">
+                                    
+                                <tbody>
+                                    <tr>
+                                        <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 140px;">{% trans 'Total Calories' %}  </td>
+                                        <td style="width: 160px;">{% trans 'Auto calculated' %}  </td>
+                                        <td>{% trans 'Fat' %}   </td>
+                                        <td style="width: 160px; text-align: right;"> {{ lunchbox.fat }}
+                                    </td></tr>
+
+                                    <tr>
+                                        <td>{% trans 'Protein' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.protein }}  </td>
+                                        <td>{% trans 'Sugar' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sugar }}   </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Carbohydrates' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.carbohydrates }} </td>
+                                        <td>{% trans 'Sodium' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sodium }} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Price' %}/{% trans 'Lunchbox' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.price }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">La Fiambrera rate</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.rate }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Vat' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.vat }} %</span>
+                                        </td>
+                                    </tr>
+                                    {% if lunchbox.get_discounts %}
+                                      {% for discount in lunchbox.get_discounts %}
+                                          <tr>
+                                              <td colspan="4">
+                                                  <span style="text-align: left;float: left;">
+                                                     {{ discount.percent }} % {% trans 'discount at' %} {{ discount.qty }} {% trans 'lunchboxes' %}                                                 
+                                                  </span>
+                                                  <span style="text-align: right;float: right;">{{ lunchbox.price|percent:discount.percent }} €</span>
+                                              </td>
+                                          </tr>
+                                      {% endfor %}
+                                    {% else %}
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+                                      {% endif %}
+
+                                </tbody>
+
+
+                                </table>
+                                </div>
+
+                                </div>
+
+                                <div class="col-lg-12">
+                                    
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="ed-and-del">
+                                            <a class="edit-l" href="{% url 'edit_lunchboxes' lunchbox.restaurant.id lunchbox.id %}"> {% trans 'Edit' %} </a>
+                                            <a class="del-l" href="{% url 'del_lunchbox' lunchbox.id %}"> {% trans 'Delete' %} </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                
+                                </div>
+
+
+                                
+                            </div>
+                          
+                      </div>
+
+                  </section>
+
+
+
+
+
+
+      
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+
+  </div>
+
+</div>
+
+                        <!-- hotel search -->
+                        <div class="bhoechie-tab-content">
+                            {% if saved_lunchboxes %}
+                                <ul class="nav nav-tabs">
+                                    {% for lunchbox in saved_lunchboxes %}
+                                      {% if forloop.counter == 1 %}
+                                        <li class="active"><a data-toggle="tab" href="#c-home" aria-expanded="true">{{ lunchbox.name }} &amp; C</a></li>
+                                      {% else %}
+                                        <li class=""><a data-toggle="tab" href="#c-menu{{ forloop.counter }}" aria-expanded="false">{{ lunchbox.name }}</a></li>
+                                      {% endif %}
+                                        <!-- <li class=""><a data-toggle="tab" href="#c-menu2" aria-expanded="false">Salmon Salvaje</a></li>
+                                        <li><a data-toggle="tab" href="#c-menu3">Salmon Salvaje</a></li> -->
+                                    {% endfor %}
+                                  </ul>
+                            {% else %}
+                                <div class="col-sm-12">
+                                    <h2 style="color: #ffffff;" class="section_heading"> {% trans 'Empty' %} </h2>
+                                     
+                                </div>
+                            {% endif %}
+
+
+
+
+
+<div class="tab-content">
+  {% for lunchbox in saved_lunchboxes %}
+  {% if forloop.counter == 1 %}
+    <div id="c-home" class="tab-pane fade active in">
+      
+      <section class="admin_restaurant_edit_section pull-left full-width">
+                  
+                  {% if lunchbox.get_images %}
+                      {% for i in lunchbox.get_images %}
+                        {% if forloop.counter == 1 %}
+                         <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                        <label for="file-input">
+                                        
+                                           {% if i.image %}
+                                                <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'dashboard_lunchbox' }}"
+                                                     alt="">
+
+                                            {% else %}
+                                               <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                            {% endif %}
+                                        </label>
+
+ 
+                                     <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                   </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                         {% else %}
+                       
+                      
+                         <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                           <label for="file-input">
+                                              
+                                                {% if i.image %}
+                                                    <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'control_image_small' }}"
+                                                         alt="">
+
+                                                {% else %}
+                                                   <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                                {% endif %}
+                                               
+                                           </label>
+
+
+                                           <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                       </div>   
+                                   </div>
+                                </div>   
+                             </div>
+                          </div>   
+                       </div>
+                       
+                       {% endif %}
+                      {% endfor %}
+                    {% else %}
+                    
+                     <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input">
+                                    
+                                       <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                       <input id="hidden1" type="hidden">
+                                     
+                                    </label>
+
+       
+                                 <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg2" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden2" type="hidden">
+                                           
+                                       </label>
+
+ 
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg3" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden3" type="hidden">
+                                           
+                                       </label>
+
+   
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg4" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden4" type="hidden">
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg5" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden5" type="hidden">
+                                           
+                                       </label>
+
+          
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     {% endif %}
+                     
+                  </section>
+
+
+                  <section>
+                      
+                      <div class="creating-lunchbox">
+
+                            <div class="row resp">
+
+                                <div class="col-lg-4"> 
+
+                                    <div class="name-of-box">
+                                        
+                                        <h2 class="name-of-wild">{{ lunchbox.name }} &amp; C</h2>
+
+                                        <div class="show_description">{% trans lunchbox.desc|safe %}</div>
+
+
+                                    </div>
+
+                                    <div class="availability-section">
+                                        <h2 class="availability-tab">{% trans 'Availability' %}</h2>
+
+                                        <div class="availability-dates">
+                                          
+                                          <div class="form-group">
+                                              <lable>{% trans 'Start' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_from }}" id="datetimepicker3" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+                                          <div class="form-group">
+                                              <lable>{% trans 'End' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_till }}" placeholder="Click here" id="datetimepicker4" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+
+                                       </div>
+
+
+                                    </div>
+
+
+                                    <div class="lunch-category-select">
+                                         <div class="form-group">
+                                          <label for="sel1">{% trans 'Category' %}</label>
+                                          <div class="custom-select">
+                                              <input type="text" value="{{ lunchbox.category.title }}" disabled="true">
+                                          </div>
+                                        </div> 
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-lg-8">
+                                <div class="table-outer">
+                                <table class="table table-borderd table-lunch-box table-lunch-box2">
+                                    
+                                <tbody>
+                                    <tr>
+                                        <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 140px;">{% trans 'Total Calories' %}  </td>
+                                        <td style="width: 160px;">{% trans 'Auto calculated' %}  </td>
+                                        <td>{% trans 'Fat' %}   </td>
+                                        <td style="width: 160px; text-align: right;"> {{ lunchbox.fat }}
+                                    </td></tr>
+
+                                    <tr>
+                                        <td>{% trans 'Protein' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.protein }}  </td>
+                                        <td>{% trans 'Sugar' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sugar }}   </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Carbohydrates' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.carbohydrates }} </td>
+                                        <td>{% trans 'Sodium' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sodium }} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Price' %}/{% trans 'Lunchbox' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.price }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">La Fiambrera rate</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.rate }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Vat' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.vat }} %</span>
+                                        </td>
+                                    </tr>
+                                    {% if lunchbox.get_discounts %}
+                                      {% for discount in lunchbox.get_discounts %}
+                                          <tr>
+                                              <td colspan="4">
+                                                  <span style="text-align: left;float: left;">
+                                                     {{ discount.percent }} % {% trans 'discount at' %} {{ discount.qty }} {% trans 'lunchboxes' %}                                                 
+                                                  </span>
+                                                  <span style="text-align: right;float: right;">{{ lunchbox.price|percent:discount.percent }} €</span>
+                                              </td>
+                                          </tr>
+                                      {% endfor %}
+                                    {% else %}
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchbox' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+                                      {% endif %}
+
+                                </tbody>
+
+
+                                </table>
+                                </div>
+
+                                </div>
+
+                                <div class="col-lg-12">
+                                    
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="ed-and-del">
+                                            <a class="edit-l" href="{% url 'edit_lunchboxes' lunchbox.restaurant.id lunchbox.id %}"> {% trans 'Edit' %} </a>
+                                            <a class="del-l" href="{% url 'del_lunchbox' lunchbox.id %}"> {% trans 'Delete' %} </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                
+                                </div>
+
+
+                                
+                            </div>
+                          
+                      </div>
+
+                  </section>
+
+
+    </div>
+    {% else %}
+    <div id="c-menu{{ forloop.counter }}" class="tab-pane fade">
+
+
+        <section class="admin_restaurant_edit_section pull-left full-width">
+                  
+                  {% if lunchbox.get_images %}
+                      {% for i in lunchbox.get_images %}
+                        {% if forloop.counter == 1 %}
+                         <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                        <label for="file-input">
+                                        
+                                           {% if i.image %}
+                                                <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'dashboard_lunchbox' }}"
+                                                     alt="">
+
+                                            {% else %}
+                                               <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                            {% endif %}
+                                        </label>
+
+ 
+                                     <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                   </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                         {% else %}
+                       
+                      
+                         <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                           <label for="file-input">
+                                              
+                                                {% if i.image %}
+                                                    <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'control_image_small' }}"
+                                                         alt="">
+
+                                                {% else %}
+                                                   <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                                {% endif %}
+                                               
+                                           </label>
+
+   
+                                           <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                       </div>   
+                                   </div>
+                                </div>   
+                             </div>
+                          </div>   
+                       </div>
+                       
+                       {% endif %}
+                      {% endfor %}
+                    {% else %}
+                    
+                     <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input">
+                                    
+                                       <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                       <input id="hidden1" type="hidden">
+                                     
+                                    </label>
+
+                                 <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg2" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden2" type="hidden">
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg3" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden3" type="hidden">
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg4" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden4" type="hidden">
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg5" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                             <input id="hidden5" type="hidden">
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     {% endif %}
+                     
+                  </section>
+
+
+                  <section>
+                      
+                      <div class="creating-lunchbox">
+
+                            <div class="row resp">
+
+                                <div class="col-lg-4"> 
+
+                                    <div class="name-of-box">
+                                        
+                                        <h2 class="name-of-wild">{{ lunchbox.name }} &amp; C</h2>
+
+                                        <div class="show_description">{% trans lunchbox.desc|safe %}</div>
+
+
+                                    </div>
+
+                                    <div class="availability-section">
+                                        <h2 class="availability-tab">{% trans 'Availability' %}</h2>
+
+                                        <div class="availability-dates">
+                                          
+                                          <div class="form-group">
+                                              <lable>{% trans 'Start' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_from }}" id="datetimepicker3" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+                                          <div class="form-group">
+                                              <lable>{% trans 'End' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_till }}" placeholder="Click here" id="datetimepicker4" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+
+                                       </div>
+
+
+                                    </div>
+
+
+                                    <div class="lunch-category-select">
+                                         <div class="form-group">
+                                          <label for="sel1">{% trans 'Category' %}</label>
+                                          <div class="custom-select">
+                                              <input type="text" value="{{ lunchbox.category.title }}" disabled="true">
+                                          </div>
+                                        </div> 
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-lg-8">
+                                <div class="table-outer">
+                                <table class="table table-borderd table-lunch-box table-lunch-box2">
+                                    
+                                <tbody>
+                                    <tr>
+                                        <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 140px;">{% trans 'Total Calories' %}  </td>
+                                        <td style="width: 160px;">{% trans 'Auto calculated' %}  </td>
+                                        <td>Fat   </td>
+                                        <td style="width: 160px; text-align: right;"> {{ lunchbox.fat }}
+                                    </td></tr>
+
+                                    <tr>
+                                        <td>{% trans 'Protein' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.protein }}  </td>
+                                        <td>{% trans 'Sugar' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sugar }}   </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Carbohydrates' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.carbohydrates }} </td>
+                                        <td>{% trans 'Sodium' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sodium }} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Price' %}/{% trans 'Lunchbox' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.price }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">La Fiambrera rate</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.rate }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Vat' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.vat }} %</span>
+                                        </td>
+                                    </tr>
+                                    {% if lunchbox.get_discounts %}
+                                      {% for discount in lunchbox.get_discounts %}
+                                          <tr>
+                                              <td colspan="4">
+                                                  <span style="text-align: left;float: left;">
+                                                     {{ discount.percent }} % {% trans 'discount at' %} {{ discount.qty }} {% trans 'lunchboxes' %}                                                 
+                                                  </span>
+                                                  <span style="text-align: right;float: right;">{{ lunchbox.price|percent:discount.percent }} €</span>
+                                              </td>
+                                          </tr>
+                                      {% endfor %}
+                                    {% else %}
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+                                      {% endif %}
+
+                                </tbody>
+
+
+                                </table>
+                                </div>
+
+                                </div>
+
+                                <div class="col-lg-12">
+                                    
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="ed-and-del">
+                                            <a class="edit-l" href="{% url 'edit_lunchboxes' lunchbox.restaurant.id lunchbox.id %}"> {% trans 'Edit' %} </a>
+                                            <a class="del-l" href="{% url 'del_lunchbox' lunchbox.id %}"> {% trans 'Delete' %} </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                
+                                </div>
+
+
+                                
+                            </div>
+                          
+                      </div>
+
+                  </section>
+
+
+
+
+
+
+      
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+
+  </div>
+                        </div>
+                        <div class="bhoechie-tab-content">
+                        {% if archieved_lunchboxes %}
+                            <ul class="nav nav-tabs">
+                            {% for lunchbox in archieved_lunchboxes %}
+                              {% if forloop.counter == 1 %}
+                                <li class="active"><a data-toggle="tab" href="#c-home" aria-expanded="true">{{ lunchbox.name }} &amp; C</a></li>
+                              {% else %}
+                                <li class=""><a data-toggle="tab" href="#c-menu{{ forloop.counter }}" aria-expanded="false">{{ lunchbox.name }}</a></li>
+                              {% endif %}
+                                <!-- <li class=""><a data-toggle="tab" href="#c-menu2" aria-expanded="false">Salmon Salvaje</a></li>
+                                <li><a data-toggle="tab" href="#c-menu3">Salmon Salvaje</a></li> -->
+                            {% endfor %}
+                              </ul>
+                        {% else %}
+                            <div class="col-sm-12">
+                                <h2 style="color: #ffffff;" class="section_heading">{% trans 'Empty' %} </h2>
+                                 
+                            </div>
+                        {% endif %}
+
+  <div class="tab-content">
+  {% for lunchbox in archieved_lunchboxes %}
+  {% if forloop.counter == 1 %}
+    <div id="c-home" class="tab-pane fade active in">
+      
+      <section class="admin_restaurant_edit_section pull-left full-width">
+                  
+                  {% if lunchbox.get_images %}
+                      {% for i in lunchbox.get_images %}
+                        {% if forloop.counter == 1 %}
+                         <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                        <label for="file-input">
+                                        
+                                           {% if i.image %}
+                                                <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'dashboard_lunchbox' }}"
+                                                     alt="">
+
+                                            {% else %}
+                                               <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                            {% endif %}
+                                        </label>
+
+                                     <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                   </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                         {% else %}
+                       
+                      
+                         <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                           <label for="file-input">
+                                              
+                                                {% if i.image %}
+                                                    <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'control_image_small' }}"
+                                                         alt="">
+
+                                                {% else %}
+                                                   <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                                {% endif %}
+                                               
+                                           </label>
+
+                                           <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                       </div>   
+                                   </div>
+                                </div>   
+                             </div>
+                          </div>   
+                       </div>
+                       
+                       {% endif %}
+                      {% endfor %}
+                    {% else %}
+                  
+                    
+                     <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input">
+                                    
+                                       <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+     
+                                     
+                                    </label>
+
+                                 <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg2" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+  
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg3" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                           
+                                       </label>
+
+        
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg4" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+            
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg5" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                     {% endif %}
+                  </section>
+
+
+                  <section>
+                      
+                      <div class="creating-lunchbox">
+
+                            <div class="row resp">
+
+                                <div class="col-lg-4"> 
+
+                                    <div class="name-of-box">
+                                        
+                                        <h2 class="name-of-wild">{{ lunchbox.name }} &amp; C</h2>
+
+                                        <div class="show_description">{% trans lunchbox.desc|safe %}</div>
+
+
+                                    </div>
+
+                                    <div class="availability-section">
+                                        <h2 class="availability-tab">{% trans 'Availability' %}</h2>
+
+                                        <div class="availability-dates">
+                                          
+                                          <div class="form-group">
+                                              <lable>{% trans 'Start' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_from }}" id="datetimepicker3" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+                                          <div class="form-group">
+                                              <lable>{% trans 'End' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_till }}" placeholder="Click here" id="datetimepicker4" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+
+                                       </div>
+
+
+                                    </div>
+
+
+                                    <div class="lunch-category-select">
+                                         <div class="form-group">
+                                          <label for="sel1">{% trans 'Category' %}</label>
+                                          <div class="custom-select">
+                                              <input type="text" value="{{ lunchbox.category.title }}" disabled="true">
+                                          </div>
+                                        </div> 
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-lg-8">
+                                <div class="table-outer">
+                                <table class="table table-borderd table-lunch-box table-lunch-box2">
+                                    
+                                <tbody>
+                                    <tr>
+                                        <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 140px;">{% trans 'Total Calories' %}  </td>
+                                        <td style="width: 160px;">{% trans 'Auto calculated' %}  </td>
+                                        <td>{% trans 'Fat' %}   </td>
+                                        <td style="width: 160px; text-align: right;"> {{ lunchbox.fat }}
+                                    </td></tr>
+
+                                    <tr>
+                                        <td>{% trans 'Protein' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.protein }}  </td>
+                                        <td>{% trans 'Sugar' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sugar }}   </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Carbohydrates' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.carbohydrates }} </td>
+                                        <td>{% trans 'Sodium' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sodium }} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Price' %}/{% trans 'Lunchbox' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.price }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">La Fiambrera rate</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.rate }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">Vat</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.vat }} %</span>
+                                        </td>
+                                    </tr>
+                                    {% if lunchbox.get_discounts %}
+                                      {% for discount in lunchbox.get_discounts %}
+                                          <tr>
+                                              <td colspan="4">
+                                                  <span style="text-align: left;float: left;">
+                                                     {{ discount.percent }} % {% trans 'discount at' %} {{ discount.qty }} {% trans 'lunchboxes' %}                                                 
+                                                  </span>
+                                                  <span style="text-align: right;float: right;">{{ lunchbox.price|percent:discount.percent }} €</span>
+                                              </td>
+                                          </tr>
+                                      {% endfor %}
+                                    {% else %}
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchbox' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+                                      {% endif %}
+
+                                </tbody>
+
+
+                                </table>
+                                </div>
+
+                                </div>
+
+                                <div class="col-lg-12">
+                                    
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="ed-and-del">
+                                            <a class="edit-l" href="{% url 'duplicate_box' lunchbox.id %}"> {% trans 'Duplicate' %} </a>
+                                            <a class="del-l" href="{% url 'del_lunchbox' lunchbox.id %}"> {% trans 'Delete' %} </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                
+                                </div>
+
+
+                                
+                            </div>
+                          
+                      </div>
+
+                  </section>
+
+
+    </div>
+    {% else %}
+    <div id="c-menu{{ forloop.counter }}" class="tab-pane fade">
+
+
+        <section class="admin_restaurant_edit_section pull-left full-width">
+            
+                  
+                  {% if lunchbox.get_images %}
+                      {% for i in lunchbox.get_images %}
+                        {% if forloop.counter == 1 %}
+                         <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                        <label for="file-input">
+                                        
+                                           {% if i.image %}
+                                                <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'dashboard_lunchbox' }}"
+                                                     alt="">
+
+                                            {% else %}
+                                               <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                            {% endif %}
+                                        </label>
+
+                                     <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                   </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                         {% else %}
+                       
+                      
+                         <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                           <label for="file-input">
+                                              
+                                                {% if i.image %}
+                                                    <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.image|thumbnail_url:'control_image_small' }}"
+                                                         alt="">
+
+                                                {% else %}
+                                                   <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                                {% endif %}
+                                               
+                                           </label>
+
+                                           <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                       </div>   
+                                   </div>
+                                </div>   
+                             </div>
+                          </div>   
+                       </div>
+                       
+                       {% endif %}
+                      {% endfor %}
+                    {% else %}
+                    
+                     <div class="col-md-4 col-sm-4 tab-inc">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input">
+                                    
+                                       <img id="gallerybigimg1" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+>
+                                     
+                                    </label>
+
+                                 <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg2" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                           
+                                       </label>
+
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg3" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                           
+                                       </label>
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg4" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                           
+                                       </label>
+
+
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     
+                    
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input">
+                                          
+                                             <img id="gallerybigimg5" src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+
+                                           
+                                       </label>
+
+         
+                                       <!-- <a href="#"><img src="/static/dashboard/img/pinned-ico.png" alt=""></a> -->
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     
+                     {% endif %}
+                     
+                  </section>
+
+
+                  <section>
+                      
+                      <div class="creating-lunchbox">
+
+                            <div class="row resp">
+
+                                <div class="col-lg-4"> 
+
+                                    <div class="name-of-box">
+                                        
+                                        <h2 class="name-of-wild">{{ lunchbox.name }} &amp; C</h2>
+
+                                       <div class="show_description">{% trans lunchbox.desc|safe %}</div>
+
+
+                                    </div>
+
+                                    <div class="availability-section">
+                                        <h2 class="availability-tab">{% trans 'Availability' %}</h2>
+
+                                        <div class="availability-dates">
+                                          
+                                          <div class="form-group">
+                                              <lable>{% trans 'Start' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_from }}" id="datetimepicker3" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+                                          <div class="form-group">
+                                              <lable>{% trans 'End' %}</lable> 
+                                              <span class="admin_date_picker admin_start_date avail-date">
+                                                 <input value="{{ lunchbox.available_till }}" placeholder="Click here" id="datetimepicker4" disabled="" type="text"> <a href="#"><img src="/static/dashboard/img/admin_date_picker.png"></a> 
+                                              </span>
+                                          </div>
+
+
+                                       </div>
+
+
+                                    </div>
+
+
+                                    <div class="lunch-category-select">
+                                         <div class="form-group">
+                                          <label for="sel1">{% trans 'Category' %}</label>
+                                          <div class="custom-select">
+                                              <input type="text" value="{{ lunchbox.category.title }}" disabled="true">
+                                          </div>
+                                        </div> 
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-lg-8">
+                                <div class="table-outer">
+                                <table class="table table-borderd table-lunch-box table-lunch-box2">
+                                    
+                                <tbody>
+                                    <tr>
+                                        <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width: 140px;">{% trans 'Total Calories' %}  </td>
+                                        <td style="width: 160px;">{% trans 'Auto calculated' %}  </td>
+                                        <td>Fat   </td>
+                                        <td style="width: 160px; text-align: right;"> {{ lunchbox.fat }}
+                                    </td></tr>
+
+                                    <tr>
+                                        <td>{% trans 'Protein' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.protein }}  </td>
+                                        <td>{% trans 'Sugar' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sugar }}   </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{% trans 'Carbohydrates' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.carbohydrates }} </td>
+                                        <td>{% trans 'Sodium' %}   </td>
+                                        <td style="text-align: right;">{{ lunchbox.sodium }} </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Price' %}/{% trans 'Lunchbox' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.price }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">La Fiambrera rate</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.rate }} € </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <span class="td-lable-span">{% trans 'Vat' %}</span>
+                                            <span style="float: right;text-align: right;">{{ lunchbox.vat }} %</span>
+                                        </td>
+                                    </tr>
+                                    {% if lunchbox.get_discounts %}
+                                      {% for discount in lunchbox.get_discounts %}
+                                          <tr>
+                                              <td colspan="4">
+                                                  <span style="text-align: left;float: left;">
+                                                     {{ discount.percent }} % discount at {{ discount.qty }} {% trans 'lunchboxes' %}                                                 
+                                                  </span>
+                                                  <span style="text-align: right;float: right;">{{ lunchbox.price|percent:discount.percent }} €</span>
+                                              </td>
+                                          </tr>
+                                      {% endfor %}
+                                    {% else %}
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+
+                                      <tr>
+                                          <td colspan="4">
+                                              <span style="text-align: left;float: left;">
+                                                 0.0 % {% trans 'discount at' %} 0 {% trans 'lunchboxes' %}                                                 
+                                              </span>
+                                              <span style="text-align: right;float: right;">0 €</span>
+                                          </td>
+                                      </tr>
+                                      {% endif %}
+
+                                </tbody>
+
+
+                                </table>
+                                </div>
+
+                                </div>
+
+                                <div class="col-lg-12">
+                                    
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="ed-and-del">
+                                            <a class="edit-l" href="{% url 'duplicate_box' lunchbox.id %}"> {% trans 'Duplicate' %} </a>
+                                            <a class="del-l" href="{% url 'del_lunchbox' lunchbox.id %}"> {% trans 'Delete' %} </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                
+                                </div>
+
+
+                                
+                            </div>
+                          
+                      </div>
+
+                  </section>
+
+
+
+
+
+
+      
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+
+  </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+    // tabbing js 
+        $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+            e.preventDefault();
+            $(this).siblings('a.active').removeClass("active");
+            $(this).addClass("active");
+            var index = $(this).index();
+            $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+            $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        });
+
+
+</script>
+
+
+{% endblock %}    
+{% block scriptcode %}
+<script type="text/javascript">
+        CKEDITOR.replace( 'box_name_desc', {
+            language: 'en'
+          });
+        CKEDITOR.replace( 'box_name_desc_es' , {
+            language: 'es'
+          });
+</script>
+{% endblock %}

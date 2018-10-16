@@ -1,0 +1,282 @@
+{% extends 'login_register/base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n %}
+{% load l10n %}
+<div class="outer-wrapper">
+    <div class="container">
+      
+    <div class="inner-form">
+        
+      <h2><img src="{% static 'login_register/images/reg_txt.png' %}" alt="reg text"></h2>
+      <ul class="nav nav-tabs resto-tabs">
+        <li class="active bag"><a data-toggle="tab" href="#home"><span>{% trans 'To Order' %}</span></a></li>
+        <li class="resto"><a data-toggle="tab" href="#menu1"><span>{% trans 'Restaurant' %}</span></a></li>
+      </ul>
+    {% if messages %}
+        <ul class="messages" style="display: none;">
+            {% for message in messages %}
+                <li id="msg" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <form name="registration" method="POST" action="{% url 'uregistration' %}" class="register_form col-md-12 col-xs-12 center" onsubmit="return validate_user_regis()">{% csrf_token %}
+                    <div class="form-group col-sm-12">
+                        
+                        <div class="clearfix"></div>
+                        
+                        <div class="form-group  half-inputs">
+                            <div class="col-sm-6">
+                            
+                            <input type="text" tabindex="-1" placeholder="First name *" name="user_first_name" id="user_first_name" class="form-control ff" maxlength="14">
+                        
+
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Family name *" name="user_last_name" id="user_last_name" class="form-control ff" maxlength="14">
+                        </div>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-sm-12">
+                        <input type="email" placeholder="Email address *" name="user_email" id="user_email" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-12 half-inputs">
+                      <div class="col-sm-6"><input type="password" placeholder="Password *" name="user_password1" id="user_password1" class="form-control ff" onkeyup="pmismatch('2')"></div>
+                      
+                       <div class="col-sm-6">
+                       <input type="password" placeholder="Password again *" name="user_password2" id="user_password2" class="form-control ff" onkeyup="pmismatch('2')">
+                       </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group col-sm-12">
+                        <input type="tel" placeholder="Phone number *" name="user_phone" id="user_phone" class="form-control">
+                        
+                    </div>
+
+
+                    <div class="form-group col-sm-12">
+                        <input type="text" placeholder="Customer address *" onFocus="geolocate()" name="user_address" id="autocomplete2" class="form-control">
+                        
+                    </div>
+
+                    <div class="form-group col-sm-12  half-inputs">
+                        <div class="col-sm-6">
+                            <input type="text" value="" placeholder="Door No/Floor No." name="user_door" id="door_num"  class="form-control unselectable" maxlength="15">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input type="tel" placeholder="Postal code *" name="user_zip_code" id="postal_code2" class="form-control ff" maxlength="15">
+                        </div>  
+                        
+                    </div>
+                    
+
+                    <!-- ================================================================= -->
+                    
+                   <div id="csgroup2" class="form-group col-sm-12 half-inputs">
+                        <div class="col-sm-6">
+                            <input type="text" value="" placeholder="Building Number" name="user_building" id="street_number2" class="form-control unselectable" maxlength="15">
+                        </div>
+                            
+                        <div id="street_number12" class="col-sm-6">
+                           <input type="text" placeholder="State" name="user_state" id="administrative_area_level_12"  class="form-control unselectable" maxlength="15">
+                            
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="clearfix"></div>
+                    
+                    <div class="form-group col-sm-12">
+                            <input type="text" value="Barcelona" placeholder="City" name="user_city" id="locality2"  class="form-control unselectable" maxlength="15">
+                        </div>
+                        <input type="hidden" value="" readonly="True" placeholder="Country" name="user_country" id="country2"  class="form-control unselectable">
+                        <input type="hidden" readonly="True" placeholder="State" name="user_state" id="administrative_area_level_12"  class="form-control unselectable">
+                        <input type="hidden" value="" name="route" id="route2">
+                    <div class="clearfix"></div>
+                    <div class="form-group col-sm-12 lang-sec">
+                        <div class="col-sm-4 pref_lang">
+                            <p class="reg_txt">{% trans 'Preferred language' %}:</p>
+                        </div>
+                        <div class="col-sm-8 checkbox-radio radio">
+                           <label for="lang_en">
+                            <input name="user_lang" id="lang_en" value="en" checked="" type="radio">
+                            
+                            <span>English</span>
+                          </label>
+       
+                          <label for="lang_es">
+                            <input name="user_lang" id="lang_es" value="es" type="radio">
+
+                            <span>Español</span>
+                          </label>  
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="bottom-buttons">
+                        <button type="submit" class="btn btn-lg btn-confirm inverted btn-block">
+                        <span class="lft_line"></span>
+                        {% trans 'Confirm' %}
+                        <span class="rgt_line"></span>
+                    </button>
+                    <a href="{% url 'login' %}" class="btn btn-lg btn-back inverted btn-block">{% trans 'Back' %}</a>
+                    </div>
+                    <input type="hidden" name="register_type" value="user_form_registration">
+                </form>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+          <form name="registration" method="POST" action="{% url 'resregistration' %}" onsubmit="return validate_res_regis()" class="register_form col-md-12 col-xs-12 center">{% csrf_token %}
+                    
+                    <div class="form-group col-sm-12">
+                                                 
+                            
+                        
+                        <div class="clearfix"></div>
+                        
+                        <div class="form-group  half-inputs">
+                            <div class="col-sm-6">
+                            
+                            <input type="text" tabindex="-1" placeholder="First name *" name="restaurant_first_name" id="restaurant_first_name" class="form-control ff" autofocus="True" maxlength="12">
+                        
+
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="Family name *" name="restaurant_last_name" id="restaurant_last_name" class="form-control ff" maxlength="12">
+                        </div>
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group col-sm-12">
+                        <input type="email" placeholder="Email address *" name="restaurant_email" id="restaurant_email" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-12 half-inputs">
+                      <div class="col-sm-6"><input type="password" placeholder="Password *" name="restaurant_password1" id="restaurant_password1" class="form-control ff" onkeyup="pmismatch('1')"></div>
+                      
+                       <div class="col-sm-6">
+                       <input type="password" placeholder="Password again *" name="restaurant_password2" id="restaurant_password2" class="form-control ff" onkeyup="pmismatch('1')">
+                       </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="form-group col-sm-12">
+                        <input type="tel" placeholder="Phone number *" name="restaurant_owner_phone" id="restaurant_owner_phone" class="form-control">
+                        
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <input type="text" placeholder="Restaurant name *" name="restaurant_name" id="restaurant_name" class="form-control" maxlength="200"> 
+                        
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <input type="text" placeholder="Restaurant address *" onFocus="geolocate()" name="restaurant_address" id="autocomplete" class="form-control">
+                        
+                    </div>
+
+                    <div class="form-group col-sm-12  half-inputs">
+                        <div class="col-sm-6">
+                            <input type="text" value="Barcelona" placeholder="City" name="restaurant_city" id="city" editable="false" class="form-control unselectable" readonly>
+                            <input type="hidden" value="Barcelona" placeholder="City" name="re_city" id="locality">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input type="tel" placeholder="Postal code *" name="restaurant_zip_code" id="postal_code" class="form-control ff" maxlength="12">
+                        </div>  
+                        
+                    </div>
+                    
+
+                    <!-- ================================================================= -->
+                    
+                   <div id="csgroup" class="form-group col-sm-12 half-inputs" style="display: none;">
+                        <div class="col-sm-6">
+                            <input type="text" value="" placeholder="Country" name="country" id="country" class="form-control unselectable" >
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input type="text" placeholder="State" name="restaurant_state" id="administrative_area_level_1" class="form-control unselectable" >
+                        </div>  
+                        
+                    </div>
+                    <div id="csgroup" class="form-group col-sm-12 half-inputs" style="display: none;">
+                        <div class="col-sm-6">
+                            
+                             <input type="text" placeholder="Door No/Floor No." name="door_number" id="door_number" class="form-control unselectable" maxlength="10">
+                        </div>
+
+                        <div class="col-sm-6">
+                           <input type="text" value="" placeholder="Floor No" name="floor_no" id="floor_no" class="form-control unselectable" maxlength="10">
+                        </div>  
+                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="street_number1" class="form-group col-sm-12" style="display: none;">
+                        
+                        <input type="text" placeholder="Building No." name="restaurant_street" id="street_number" class="form-control" maxlength="10">
+                    </div>
+
+                        <input type="hidden" value="" name="route" id="route">
+
+
+                    <!-- ================================================================= -->
+                     <div class="clearfix"></div>
+                    <div class="form-group col-sm-12">
+                        <input type="tel" placeholder="Restaurant phone number *" name="restaurant_phone" id="restaurant_phone" class="form-control">
+                        
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                    <div class="form-group col-sm-12 lang-sec">
+                        <div class="col-sm-4 pref_lang">
+                            <p class="reg_txt">{% trans 'Preferred language' %}:</p>
+                        </div>
+                        <div class="col-sm-8 checkbox-radio radio">
+                           <label for="lang_en1">
+                            <input name="lang" id="lang_en1" value="en" checked="" type="radio">
+                            
+                            <span>English</span>
+                          </label>
+
+                          <label for="lang_es1">
+                            <input name="lang" id="lang_es1" value="es" type="radio">
+
+                            <span>Español</span>
+                          </label>  
+
+
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="bottom-buttons">
+                        <button type="submit" class="btn btn-lg btn-confirm inverted btn-block">
+                        <span class="lft_line"></span>
+                        {% trans 'Confirm' %}
+                        <span class="rgt_line"></span>
+                    </button>
+                    <a href="/" class="btn btn-lg btn-back inverted btn-block">{% trans 'Back' %}</a>
+                    </div>
+                </form>
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

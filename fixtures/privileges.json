@@ -1,0 +1,26 @@
+[
+  {
+    "model": "userprofiles.lunchboxprivileges",
+    "pk": 1,
+    "fields": {
+      "title": "Km0",
+      "image": "./1_EpEhkJc.jpg"
+    }
+  },
+  {
+    "model": "userprofiles.lunchboxprivileges",
+    "pk": 2,
+    "fields": {
+      "title": "Vegan",
+      "image": "./2_r1C4Q8V.jpg"
+    }
+  },
+  {
+    "model": "userprofiles.lunchboxprivileges",
+    "pk": 3,
+    "fields": {
+      "title": "No lactose",
+      "image": "./3_huvmZDi.jpg"
+    }
+  }
+]

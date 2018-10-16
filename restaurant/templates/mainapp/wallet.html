@@ -1,0 +1,99 @@
+{% extends 'mainapp/base.html' %}
+{% load common_template_functions %}
+
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %} 
+{% block title %}
+
+
+Wallet
+
+{% endblock %}
+
+{% block content %}
+ <section class="wallet_section pull-left full-width">
+         <div class="container">
+            <div class="wallet_heading pull-left full-width text-center"><h1>{% trans 'La Fiambrera Credit History' %}</h1></div>
+            <div class="row">
+               <div class="col-md-5 col-sm-12 col-xs-12">
+                  <div class="wallet-left-section pull-left full-width">
+                     <div class="Wallet_current_credits pull-left full-width"><a href="#">{% trans 'Current Credits' %} <span class="Wallet_current_credits_points">{{ wallet_credits }}</span></a></div>
+
+                     <div id="add_money" class="Wallet_current_credits pull-left full-width text-center"><a href="#">{% trans 'Purchase Credits' %}</a></div>
+
+                     <div class="send_money_section pull-left full-width">
+                        <div class="trasfer_credit_text">
+                           <span>{% trans "Transfer credits to a friend's La Fiambrera account for group orders!" %}</span>
+                        </div>
+                        <div class="send_money_Inner pull-left full-width">
+                           <input type="text" name="" placeholder="Enter Amount" id="share_amount">
+                           <input type="email" name="" placeholder="Email id" id="share_email">
+                        </div>   
+                        <button id="send_credit">{% trans 'Transfer Credits' %}</button>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-7 col-sm-12 col-xs-12">
+                  <div class="wallet_history_section pull-left full-width">
+                     <div class="wallet_history_section_overflow pull-left full-width">
+                     {% if wallet_payments %}
+                        <table class="wallet_history_table full-width">
+                           <thead>
+                              <tr>
+                                 <th>{% trans 'NAME' %}</th>
+                                 <th>{% trans 'PAY BY' %}</th>
+                                 <th>{% trans 'DATE' %}</th>
+                                 <th>{% trans 'AMOUNT' %}</th>
+                                 <th>{% trans 'CREDIT' %}</th>
+                              </tr>
+                              <tr class="blank_tr_wallet"></tr>   
+                           </thead>
+                           <tbody>
+                           {% for i in wallet_payments %}
+                              <tr>
+                                 <td>{{ i.moneytowallet.user.first_name|title }} {{ i.moneytowallet.user.last_name|title }}</td>
+                                 <td>{{ i.get_payment_type_display }}</td>
+                                 <td>{{ i.modified|date:'Y M d' }}</td>
+                                 <td>{{ i.moneytowallet.amount }}</td>
+                                 <td>{{ i.moneytowallet.lafiambera_credit }}</td>
+                              </tr>
+                           {% endfor %}   
+                           </tbody>
+                        </table>
+                     {% else %}
+                           <center>{% trans 'No credit history available' %}.</center>
+                     {% endif %}
+                     </div>   
+                     {% if wallet_payments.has_other_pages %}
+                      <ul class="pagination pull-left full-width">
+                        {% if wallet_payments.has_previous %}
+                           <li><a href="?page={{ wallet_payments.previous_page_number }}"><img src="{% static 'mainapp/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                        {% else %}
+                           <li class="disabled"><a href=""><img src="{% static 'mainapp/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                      {% endif %}
+                      {% for i in wallet_payments.paginator.page_range %}
+                        {% if wallet_payments.number == i %}
+                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                          <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+
+                        {% if wallet_payments.has_next %}
+                           <li><a href="?page={{ wallet_payments.next_page_number }}"><img src="{% static 'mainapp/img/pagination_arrow_next.png' %}" alt=""></a></li>
+                        {% else %}
+                           <li class="disabled"><span><a href=""><img src="{% static 'mainapp/img/pagination_arrow_next.png' %}" alt=""></a></span></li>
+                      {% endif %}
+                        </ul>
+                     {% endif %}
+                  </div>
+               </div>
+            </div>   
+         </div>
+      </section>
+      <script type="text/javascript">
+         var wallet_share="{% url 'share_credit' %}";
+      </script>
+{% endblock %}

@@ -1,0 +1,401 @@
+{% extends 'control/base_control.html' %}
+{% load thumbnail %}
+{% load i18n %}
+{% load static %}
+{% load get_company_orders_qty %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'swiper/dist/css/swiper.min.css' %}">
+{% endblock %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <div class="container col-md-16 col-xs-16 col-lg-16 no-margins">
+        <div class="col-md-7 col-xs-7 col-lg-7">
+            <div class="col-md-16 col-xs-16 col-lg-16 today_orders">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr class="bg-gray">
+                            <td class="table-head" colspan="16">
+                                <p>{% trans "Today's orders" %}</p>
+                                <div class="clearfix"></div>
+                                <span>({{ today|date:'Y. M d. | D' }})</span>
+                            </td>
+                        </tr>
+                        {% if restaurant.get_today_orders %}
+                            <tr class="bg-gray">
+                                <td></td>
+
+                                {% for t in restaurant.get_hours %}
+                                    <td>{{ t }}-{{ t|add:1 }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% for lb in restaurant.get_today_orders %}
+                                <tr>
+                                    <td>{{ lb }}</td>
+                                    {% for hour,qty in lb.get_orders_by_hours.items %}
+                                        <td>{% if qty != 0 %}{{ qty }} order{{ qty|pluralize:'s' }}{% endif %}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr class="bg-gray">
+                                <td>
+                                    <p class="no_have_orders">{% trans 'You have no orders scheduled' %}</p>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </div>
+                <a href="{% url 'orders' %}" class="btn btn-transp">{% trans 'See full information' %}</a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-16 col-xs-16 col-lg-16 restaurant-info">
+                <div class="col-md-16 restaurant-info-child">
+                    <div class="col-md-6 col-lg-6 col-xs-6">
+                        <div class="logo">
+                            {% if restaurant.logo %}
+                                <img src="{{ restaurant.logo|thumbnail_url:'restaurant_control_logo_small' }}" alt="">
+                            {% else %}
+                                <div class="camera">
+                                    <div class="line"></div>
+                                    <span class="glyphicon glyphicon-camera"></span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table table-bordered delivery-distance">
+                                <tr>
+                                    <td class="table-head bg-black" colspan="2">{% trans 'Delivery to' %}</td>
+                                </tr>
+                                {% for d in restaurant.get_delivery_distances %}
+                                    <tr>
+                                        <td>{{ d.city }}</td>
+                                        <td class="text-center"><span class="glyphicon glyphicon-ok"></span></td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-xs-10 col-lg-10">
+                        <strong class="restaurant-title">{{ restaurant.name|upper }}</strong>
+                        <div class="clearfix"></div>
+                        <p class="restaurant-desc">{{ restaurant.desc }}</p>
+                        <div class="clearfix"></div>
+                        <p>
+                            <strong>{% trans 'Address' %}:</strong> {{ restaurant.address }}<br>
+                            <strong>{% trans 'Phone Number' %}:</strong> {{ restaurant.phone }}<br>
+                            <strong>{% trans 'Opening hours' %}:</strong>
+                            {% if restaurant.get_opening_hours %}
+                                {% for shift in restaurant.get_opening_hours %}
+                                    {{ shift.start }} - {{ shift.end }} {% if forloop.counter != restaurant.get_opening_hours|length %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                Closed today
+                            {% endif %}
+                        </p>
+                        <div class="clearfix"></div>
+                        {% if restaurant.get_coupon %}
+                            <div class="coupon">
+                                <a href="{% url 'get_coupon' restaurant.id %}" target="_blank"></a>
+                                <p>{% trans 'Enjoyed Our Lunchbox?' %}</p>
+                                <p class="small">{{ restaurant.get_coupon.discount_text }}</p>
+                                <p class="discount_text">{{ restaurant.get_coupon.percent }}% {% trans 'off coupon' %}</p>
+                                <p class="small">{% trans 'click to save it' %}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-16 col-xs-16 col-lg-16">
+                        <p class="restaurant-min_order bg-warning col-md-16 text-center">{% trans 'Minimum Order' %}:
+                            {% if restaurant.min_order %}{{ restaurant.min_order }}{% else %}0{% endif %}</p>
+                        <a href="{% url 'restaurant_info' %}"
+                           class="btn btn-default text-uppercase">{% trans 'Edit restaurant' %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews col-md-16" data-res="{{ restaurant.id }}">
+                <p class="title">
+                    {% trans 'Restaurant reviews' %}
+                </p>
+                <div class="msgs">
+                    {% if restaurant.get_reviews %}
+                        {% for f in restaurant.get_reviews %}
+                            <strong>{{ f.user.first_name }} {{ f.user.last_name }}</strong>
+                            <div class="clearfix"></div>
+                            <span>{{ f.datetime|date:'H:i Y. M d' }}</span>
+                            <div class="clearfix"></div>
+                            <p>{{ f.msg }}</p>
+                            <div class="clearfix"></div>
+                        {% endfor %}
+                    {% else %}
+                        <strong>{% trans "Currently, the restaurant doesn't have any reviews." %}</strong>
+                    {% endif %}
+                </div>
+                {#                <textarea name="msg" class="msg" placeholder="Write your message here!"></textarea>#}
+                {#                <button>{% trans 'send' %}</button>#}
+            </div>
+        </div>
+        <div class="col-md-9 col-lg-9 col-xs-9">
+            <div class="restaurant-lunchboxes col-md-9 col-sm-9">
+                {% if restaurant.get_lunchboxes %}
+                    {% if restaurant.get_lunchboxes|length > 1 %}
+                        <div class="swiper-container col-lg-16 col-md-16 col-xs-16">
+                            <div class="swiper-wrapper">
+                                {% for lb in restaurant.get_lunchboxes %}
+                                    <div class="restaurant-lunchbox swiper-slide col-xs-16 col-md-16 col-lg-16"
+                                         data-lunchbox="{{ lb.id }}">
+                                        <div class="restaurant-lunchbox-gallery col-lg-16 col-md-16 col-xs-16">
+                                            {% for i in lb.get_images %}
+                                                {% if forloop.counter == 1 %}
+                                                    <div class="big"
+                                                         style="background: url('{{ i.image|thumbnail_url:'normal_lb_big' }}') 50% 50% no-repeat"></div>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <div class="small" data-images="
+                                                {% for i in lb.get_images %}
+                                                    {{ i.image|thumbnail_url:'normal_lb_big' }}
+                                                    {% if not forloop.last %},{% endif %}
+                                                {% endfor %}">
+                                            </div>
+                                            {% if not lb.get_image %}
+                                                <div class="camera big">
+                                                    <div class="line"></div>
+                                                    <span class="glyphicon glyphicon-camera"></span>
+                                                </div>
+                                            {% endif %}
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <strong class="restaurant-lunchbox-name">{{ lb.name|upper }}</strong>
+                                        <p class="restaurant-lunchbox-desc">{{ lb.desc }}</p>
+                                        <div class="clearfix"></div>
+                                        {% if lb.get_total_calories %}
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <td class="table-head text-uppercase"
+                                                        colspan="4">{% trans 'The good side of the lunchbox' %}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{% trans 'Total Calories' %}</td>
+                                                    <td class="text-right">{{ lb.get_total_calories }} <strong>Kcal</strong>
+                                                    </td>
+                                                    <td>{% trans 'Fat' %}</td>
+                                                    <td class="text-right">{{ lb.fat }} <strong>Gr</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{% trans 'Protein' %}</td>
+                                                    <td class="text-right">{{ lb.protein }} <strong>Gr</strong></td>
+                                                    <td>{% trans 'Sugar' %}</td>
+                                                    <td class="text-right">{{ lb.sugar }} <strong>Gr</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>{% trans 'Carbohydrates' %}</td>
+                                                    <td class="text-right">{{ lb.carbohydrates }} <strong>Gr</strong>
+                                                    </td>
+                                                    <td>{% trans 'Sodium' %}</td>
+                                                    <td class="text-right">{{ lb.sodium }} <strong>MGr</strong></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    {% endif %}
+                                        <div class="row">
+                                            <div class="col-md-11 col-xs-11">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>{% trans 'Available' %}</td>
+                                                        <td class="text-right">{{ lb.available_from|date:'Y.M d' }}
+                                                            - {{ lb.available_till|date:'Y.M d' }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{% trans 'Average price per lunchbox' %}</td>
+                                                        <td class="text-right">
+                                                            {% if lb.get_average_price != None %}
+                                                                {{ lb.get_average_price }} €
+                                                            {% else %}
+                                                                {% trans 'Not available' %}
+                                                            {% endif %}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="strong">
+                                                        <td>{% trans 'Total order' %}</td>
+                                                        <td class="text-right">{{ lb.get_total_earned }} €</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{% trans 'Companies who chose this lunchbox' %}
+                                                            {{ lb.get_company_orders_qty }} {% trans 'order' %}</td>
+                                                        <td class="text-right">{{ lb.get_company_orders_amount }} €</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-md-5 col-xs-5 pull-right">
+                                                <div class="counter">
+                                                    <div class="qty">{{ lb.id|get_company_orders_qty:request.user.id }}</div>
+                                                    <p>
+                                                        {% trans 'People chose this today' %}
+                                                    </p>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <a href="{% url 'archive_lunchbox' lb.id %}"
+                                                   class="btn col-md-15 col-xs-15 btn-primary pull-right">{% trans 'Archive' %}</a>
+                                                <a href="{% url 'edit_lunchbox' lb.id %}"
+                                                   class="btn col-md-15 col-xs-15 btn-default pull-right">{% trans 'Edit lunchbox' %}</a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="lb-chat restaurant_dashboard_chat" data-res="{{ lb.restaurant.id }}"
+                                             data-lb="{{ lb.id }}">
+                                            <p class="title">{% trans 'Feedback from the clients' %}</p>
+                                            <div class="msgs">
+                                                {% for f in lb.get_feedback %}
+                                                    {% if f.inc and not f.user.profile.is_restaurant %}
+                                                        <strong>{{ f.user.first_name }} {{ f.user.last_name }}</strong>
+                                                        <div class="clearfix"></div>
+                                                        <span>{{ f.datetime|date:'H:i Y. M d' }}</span>
+                                                        <div class="clearfix"></div>
+                                                        <p>{{ f.msg }}</p>
+                                                        <div class="clearfix"></div>
+                                                    {% else %}
+                                                        <strong class="text-uppercase text-warning">{{ f.restaurant.name }}</strong>
+                                                        <div class="clearfix"></div>
+                                                        <span class="text-warning">{{ f.datetime|date:'H:i Y. M d' }}</span>
+                                                        <div class="clearfix"></div>
+                                                        <p class="text-warning">{{ f.msg }}</p>
+                                                        <div class="clearfix"></div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                                <textarea name="msg" class="msg"
+                                                          placeholder="{% trans 'Write your message here!' %}"></textarea>
+                                                 <button>{% trans 'send' %}</button>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="prev glyphicon glyphicon-chevron-left"></div>
+                        <div class="next glyphicon glyphicon-chevron-right"></div>
+                    {% else %} {# lunchboxes|length == 1 #}
+                        {% for lb in restaurant.get_lunchboxes %}
+                            <div class="restaurant-lunchbox" data-lunchbox="{{ lb.id }}">
+                                <div class="restaurant-lunchbox-gallery col-lg-16 col-md-16 col-xs-16">
+                                    {% for i in lb.get_images %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="big col-lg-16 col-md-16 col-xs-16"
+                                                 style="background: url('{{ i.image|thumbnail_url:'normal_lb_big' }}') 50% 50% no-repeat"></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <div class="small" data-images="
+                                            {% for i in lb.get_images %}
+                                                {{ i.image|thumbnail_url:'normal_lb_big' }}
+                                                {% if not forloop.last %},{% endif %}
+                                            {% endfor %}">
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <strong class="restaurant-lunchbox-name">{{ lb.name|upper }}</strong>
+                                <p class="restaurant-lunchbox-desc">{{ lb.desc }}</p>
+                                <div class="clearfix"></div>
+                                {% if lb.get_total_calories %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td class="table-head text-uppercase"
+                                                colspan="4">{% trans 'The good side of the lunchbox' %}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{% trans 'Total Calories' %}</td>
+                                            <td class="text-right">{{ lb.get_total_calories }} <strong>Kcal</strong></td>
+                                            <td>{% trans 'Fat' %}</td>
+                                            <td class="text-right">{{ lb.fat }} <strong>Gr</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{% trans 'Protein' %}</td>
+                                            <td class="text-right">{{ lb.protein }} <strong>Gr</strong></td>
+                                            <td>{% trans 'Sugar' %}</td>
+                                            <td class="text-right">{{ lb.sugar }} <strong>Gr</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{% trans 'Carbohydrates' %}</td>
+                                            <td class="text-right">{{ lb.carbohydrates }} <strong>Gr</strong></td>
+                                            <td>{% trans 'Sodium' %}</td>
+                                            <td class="text-right">{{ lb.sodium }} <strong>MGr</strong></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                {% endif %}
+                                <div class="row">
+                                    <div class="col-md-11 col-xs-11">
+                                        <table class="table">
+                                            <tr>
+                                                <td>{% trans 'Available' %}</td>
+                                                <td class="text-right">{{ lb.available_from|date:'Y.M d' }}
+                                                    - {{ lb.available_till|date:'Y.M d' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{% trans 'Average price per lunchbox' %}</td>
+                                                <td class="text-right">
+                                                    {% if lb.get_average_price != None %}
+                                                        {{ lb.get_average_price }} €
+                                                    {% else %}
+                                                        {% trans 'Not available' %}
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            <tr class="strong">
+                                                <td>{% trans 'Total order' %}</td>
+                                                <td class="text-right">{{ lb.get_total_earned }} €</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{% trans 'Companies who chose this lunchbox' %}
+                                                    {{ lb.get_company_orders_qty }} {% trans 'order' %}</td>
+                                                <td class="text-right">{{ lb.get_company_orders_amount }} €</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-5 col-xs-5 pull-right">
+                                        <div class="counter">
+                                            <div class="qty">{{ lb.id|get_company_orders_qty:request.user.id }}</div>
+                                            <p>
+                                                {% trans 'Colleagues chose this today' %}
+                                            </p>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <a href="{% url 'archive_lunchbox' lb.id %}"
+                                           class="btn col-md-15 col-xs-15 btn-primary pull-right">{% trans 'Archive' %}</a>
+                                        <a href="{% url 'edit_lunchbox' lb.id %}"
+                                           class="btn col-md-15 col-xs-15 btn-default pull-right">{% trans 'Edit lunchbox' %}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="clearfix"></div>
+                {% else %}
+                    <img src="{% static 'img/box.png' %}" alt="" class="box">
+                    <p class="have_no_lb">
+                        Your restaurant doesn’t <br>
+                        have a lunchbox yet.
+                    </p>
+                    <div class="clearfix"></div>
+                    <a href="{% url 'create_lunchbox' %}" class="btn btn-default text-uppercase">Let’s create one</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'swiper/dist/js/swiper.min.js' %}"></script>
+    <script>
+        $('.swiper-container').each(function () {
+            var swiper = new Swiper($(this), {
+                nextButton: $(this).parent().find('.next'),
+                prevButton: $(this).parent().find('.prev'),
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true
+            });
+        });
+    </script>
+{% endblock %}

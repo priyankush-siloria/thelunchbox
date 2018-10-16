@@ -1,0 +1,92 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+    <meta property="og:title" content="LaFiambrera"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="{% static 'img/logo_fb.jpg' %}"/>
+    <meta property="og:url" content="https://lafiambrera.cat/"/>
+    <meta property="og:description" content="Would you like to eat healthier? La Fiambrera is coming to help you. Stay tunned to discover how!"/>
+
+    <title>{% trans 'Site' %}: {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fullpage/jquery.fullpage.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link href="{% static 'toast_noti/css/jquery.toast.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}">
+    {% block styles %}{% endblock %}
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1696918960524132'); // Insert your pixel ID here.
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1696918960524132&ev=PageView&noscript=1"
+        />
+    </noscript>
+    <!-- DO NOT MODIFY -->
+    <!-- End Facebook Pixel Code -->
+
+
+
+
+    <script type="text/javascript">
+        adroll_adv_id = "5DPC6NH2PVASDPITHSOI5Q";
+        adroll_pix_id = "C3TX5KWVENHFNLHXFFJY2X";
+        /* OPTIONAL: provide email to improve user identification */
+        /* adroll_email = "username@example.com"; */
+        (function () {
+            var _onload = function(){
+                if (document.readyState && !/loaded|complete/.test(document.readyState)){setTimeout(_onload, 10);return}
+                if (!window.__adroll_loaded){__adroll_loaded=true;setTimeout(_onload, 50);return}
+                var scr = document.createElement("script");
+                var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+                scr.setAttribute('async', 'true');
+                scr.type = "text/javascript";
+                scr.src = host + "/j/roundtrip.js";
+                ((document.getElementsByTagName('head') || [null])[0] ||
+                    document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+            };
+            if (window.addEventListener) {window.addEventListener('load', _onload, false);}
+            else {window.attachEvent('onload', _onload)}
+        }());
+    </script>
+</head>
+<body>
+{% block content %}{% endblock %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'fullpage/jquery.easings.min.js' %}"></script>
+<script src="{% static 'fullpage/scrolloverflow.min.js' %}"></script>
+<script src="{% static 'fullpage/jquery.fullpage.min.js' %}"></script>
+<script src="{% static 'js/humane.min.js' %}"></script>
+{% block scripts %}{% endblock %}
+<script src="{% static 'js/main.min.js' %}"></script>
+ <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script> 
+ <script src="{% static 'toast_noti/js/jquery.toast.js' %}"></script>
+ <script src="{% static 'js/cart.js' %}"></script>
+ <script src="{% static 'mainapp/js/feedback.js' %}"></script>
+
+
+<script>
+var URLS = {
+  addItem:        '{% url "cart-add" %}',
+  removeItem:     '{% url "cart-remove" %}',
+  changeQuantity: '{% url "cart-change-quantity" %}',
+  emptyCart:      '{% url "cart-empty" %}',
+}
+</script>
+
+</body>
+</html>

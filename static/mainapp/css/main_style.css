@@ -1,0 +1,571 @@
+
+/* Blog Page */
+
+112.home_banner {
+	margin-bottom: 30px;
+}
+.blog_heading h2 {
+    text-align: center;
+    font-size: 34px;
+}
+.blog-container-left .blog-list {
+    list-style: none;
+    position: relative;
+}
+.title a {
+	color: #333;
+	text-decoration: none;
+}
+.tags a {
+	color: #333;
+}
+.author_name {
+	font-weight: bold;
+}
+.blogs .content {
+	padding: 10px 0px;
+}
+.continue-read {
+	margin: 20px 0;
+}
+.continue-read a {
+	color: #333;
+	padding: 8px 10px;
+	font-size: 12px;
+	text-transform: uppercase;
+	text-decoration: none;
+	border: 1px solid #333;
+	border-radius: 14px;
+}
+.continue-read a:hover {
+	background: #333;
+	color: #fff;
+}
+.desc .tags {
+	float: right;
+	margin-right: 50px;
+}
+.continue-read a:hover {
+	text-decoration: none;
+}
+.desc_inner {
+	background: #e7e7e7;
+	padding: 6px 12px;
+	color: #333;
+	width: 100%;
+	max-width: 750px;
+	margin-top: 15px;
+	margin-bottom: 8px;
+}
+hr {
+	margin-top: 35px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid #eee;
+}
+.title::before {
+	position: absolute;
+	content: "";
+	left: 10px;
+	display: block;
+	height: 75px;
+	width: 4px;
+	background: #333;
+}
+#right-sidebar {
+	background: rgba(225,225,225,0.5);
+	padding: 15px;
+	float: right;
+	box-shadow: 2px 2px 2px 2px #dedede;
+	margin-top: 19px;
+	margin-right: -40px;
+}
+.category {
+	list-style: none;
+}
+.category li a {
+	color: #333;
+	text-decoration: none;
+}
+.category li {
+	padding: 5px 5px;
+	border-bottom: 1px solid #bbbbbb;
+}
+#pink{
+	text-align: center;
+}
+#pink ul {
+	list-style: none;
+	text-align: left;
+}
+#pink ul li {
+    padding: 5px 5px;
+	border-bottom: 1px solid #bbbbbb;
+}
+#pink ul li a {
+	color: #333;
+	text-decoration: none;
+}
+#pink h3 {
+	text-align: left;
+}
+
+/* Inner Page */
+
+.blog-list {
+	list-style: none;
+	position: relative;
+	padding: 25px;
+}
+.breadcrumb li a {
+	font-size: 16px;
+	color: #333;
+	font-weight: bold
+}
+.breadcrumb li a:hover {
+	text-decoration: none;
+}
+.breadcrumb {
+	background-color: #e7e7e7 !important;
+}
+.blog_time_name .tags {
+	float: right;
+	color: #333;
+}
+.blog_btn {
+	background-color: #222222;
+	border-radius: 25px;
+	border: solid 1px #222222;
+	color: #ffffff;
+	float: left;
+	font-size: 15px;
+	margin-bottom: 30px;
+	margin-top: 18px;
+	padding: 8px 25px;
+	text-decoration: none;
+}
+.blog_btn:hover {
+	background-color: transparent;
+	color: #222222;
+	text-decoration: none;
+}
+
+.author {
+	font-size: 20px;
+	float: left;
+	margin-left: 50px;
+}
+.widget.tags {
+	float: left;
+	font-size: 20px;
+}
+.content {
+	font-size: 14px;
+	text-align: justify;
+	float: left;
+}
+.subheadings {
+	margin-bottom: 50px;
+}
+.blog_img {
+	text-align: center;
+	margin: 50px 0;
+}
+.blog_img img{
+	width: 100%;
+	max-width: 280px;
+}
+
+
+/* Contact inner page*/
+
+#paymentModal {
+background: rgba(0, 0, 0, 1) none repeat scroll 0 0;
+padding: 0 !important;
+}
+.messages {
+	clear: both;
+}
+#msg {
+	font-size: 16px;
+	text-align: center;
+	background: rgb(0, 140, 0,0.6);
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+	color: #fff;
+	padding: 15px 0;
+}
+.pagination {
+	margin: 50px 0 15px;
+}
+
+/* Orders Page 12th August 2017 */
+
+.admin_registered_restaurants_outer.admin_order_list_outer {
+  float: left;
+  padding: 60px 0;
+  width: 100%;
+}
+.admin_order_table, .admin_order_table td, .admin_order_table tr {
+  border-collapse: collapse;
+  border-color: #313131 !important;
+  box-shadow: none;
+}
+.admin_order_table.full-width.table.table-responsive.table-bordered a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+table.admin_order_table {
+  min-width: 991px;
+}
+
+.admin_order_table td {
+  height: 42px;
+  vertical-align: middle !important;
+}
+
+.admin_order_inner button {
+  background-color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  color: #ffffff;
+  display: inline-block;
+  font-family: "bodoniflfbold";
+  font-size: 22px;
+  margin: 0 15px 0 0;
+  padding: 6px 40px;
+  text-decoration: none;
+}
+.admin_order_inner button:hover {
+  background-color: rgba(0, 0, 0, 0);
+  color: #1a1a1a;
+}
+
+/* Orders Page 12th August 2017 Ends */
+
+.break_text.sub_menu > a#menu_user_account5 {
+  margin-top:0;
+}
+
+/* Payment Confirmation Details */
+
+table.wallet-payment {
+  margin: 0 auto;
+  max-width: 680px;
+  min-width: 680px;
+}
+table.wallet-payment, table.wallet-payment td, table.wallet-payment tr {
+  border-color: #454545 !important;
+}
+.outer-table.wallet-payment-page {
+  float: left;
+  margin: 30px 0 45px;
+/*  padding: 15px;*/
+  width: 100%;
+}
+
+/* Payment Confirmation Detail Ends */
+
+/* Forget Password */
+
+	.forget-password-outer-form {
+	  float: left;
+	  margin-bottom: 20px;
+	  width: 100%;
+	}
+	.forget-password-outer-form .recovery_email {
+	  border: 1px solid #c1c1c1;
+	  display: inline-block;
+	  height: 40px;
+	  line-height: 40px;
+	  max-width: 400px;
+	  padding: 0 15px;
+	  width: 100%;
+	}
+	.input-forget-c button {
+	  background-color: #1a1a1a;
+	  border: 1px solid #1a1a1a;
+	  color: #ffffff;
+	  display: inline-block;
+	  font-size: 16px;
+	  font-weight: 400;
+	  height: 39px;
+	  padding: 0;
+	  text-decoration: none;
+	  width: 120px;
+	}
+	.input-forget-c button:hover {
+	  background-color: rgba(0, 0, 0, 0);
+	  color: #2e2e2e;
+	}
+	.forget-password-outer-form > form {
+	  margin: 0 auto;
+	  max-width: 526px;
+	}
+	.forget-password-outer-form > p {
+	  border: 1px dashed #da4336;
+	  color: #da4336;
+	  margin: 20px auto 40px;
+	  max-width: 520px;
+	  padding: 10px;
+	  text-align: center;
+	  text-transform: uppercase;
+	}
+	.forget-password-outer-form > p.green {
+	  border: 1px dashed #04a257;
+	  color: #04a257;
+	}
+/* Forget Password Ends */
+
+/* Reset your email id */
+
+	.reset-form .form .form-group input {
+	  border: 1px solid #c1c1c1;
+	  display: block;
+	  height: 40px;
+	  line-height: 40px;
+	  margin-bottom: 15px;
+	  max-width: 100%;
+	  padding: 0 15px;
+	  width: 100%;
+	}
+	button.reset-submit {
+	  background-color: #1a1a1a;
+	  border: 1px solid #1a1a1a;
+	  color: #ffffff;
+	  display: inline-block;
+	  font-size: 16px;
+	  font-weight: 400;
+	  height: 40px;
+	  padding: 0;
+	  text-decoration: none;
+	  width: 120px;
+	}
+	button.reset-submit:hover {
+	  background-color: rgba(0, 0, 0, 0);
+	  color: #2e2e2e;
+	}
+	section.reset-id-section {
+	  float: left;
+	  margin: 50px 0 60px;
+	  text-align: center;
+	  width: 100%;
+	}
+	.reset-form {
+	  border: 1px solid #777777;
+	  margin: 0 auto 20px;
+	  max-width: 400px;
+	  padding: 15px;
+	}
+	.reset-form .form h4 {
+	  margin: 15px auto 30px;
+	  text-transform: uppercase;
+	}
+
+
+/* Reset your email id ends */
+
+/* Share LunchBoxes */
+
+	.share_lunchboxes {
+	  margin: 0 auto;
+	  max-width: 500px;
+	}
+	.share-lunch-but input {
+	  border: 1px solid #d1d1d1;
+	  height: 40px;
+	  line-height: 40px;
+	  padding: 0 15px;
+	  width: 360px;
+	}
+	button.share-lunch {
+	  background-color: #1a1a1a;
+	  border: 1px solid #1a1a1a;
+	  color: #ffffff;
+	  display: inline-block;
+	  font-size: 16px;
+	  font-weight: 400;
+	  height: 39px;
+	  padding: 0;
+	  text-decoration: none;
+	  width: 120px;
+	}
+	button.share-lunch:hover {
+	  background-color: rgba(0, 0, 0, 0);
+	  color: #2e2e2e;
+	}
+	.descrrr {
+	  margin-bottom: 10px;
+	}
+	.share-lunchboxes {
+	  float: left;
+	  margin: 30px 0 40px;
+	  width: 100%;
+	}
+
+
+/* Share Lunch Box ends */
+
+	.product_subtotal_inner .chekout_product_order:first-child {
+	  margin-right: 15px;
+	}
+
+
+
+
+@media only screen and (max-width: 1199px){
+
+	.admin_order_inner .outer-table {
+	  margin-bottom: 15px;
+	  overflow-x: scroll;
+	  padding-bottom: 5px;
+	}
+	.outer-table.wallet-payment-page {
+	  overflow-x: scroll;
+	}
+
+}
+@media only screen and (max-width: 390px){
+.author {
+	 margin-left: 0px; 
+}
+}
+@media only screen and (max-width: 767px){
+	.blog_headings {
+		position: relative;
+		float: left;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	.messages {
+		clear: both;
+		padding: 2px 8px;
+	}
+	.admin_order_inner button {
+	  padding: 6px 36px;
+	}
+
+
+	.share-lunchboxes {
+	  float: left;
+	  margin: 30px 15px 40px;
+	  width: 100%;
+	}
+	.descrrr {
+	  margin-bottom: 10px;
+	}
+	.share-lunchboxes {
+	  float: left;
+	  margin: 30px 0 40px;
+	  width: 100%;
+	}
+	.share_lunchboxes {
+	  float: none;
+	  margin: 0 auto;
+	  max-width: 100%;
+	  text-align: center;
+	  width: 290px;
+	}
+	.share-lunch-but input {
+	  width: 100%;
+	  margin-bottom: 15px;
+	}
+	button.share-lunch {
+	  height: 40px;
+	  padding: 0;
+	  text-decoration: none;
+	  width: 120px;
+	  margin: 0px auto;
+	}
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+.heading{
+	text-align: center;
+}
+.blog_btn {
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+}
+
+@media only screen and (max-width: 560px){
+
+	.forget-password-outer-form {
+	  float: left;
+	  margin-bottom: 20px;
+	  padding: 15px;
+	  width: 100%;
+	}
+	.forget-password-outer-form .recovery_email {
+	  border: 1px solid #c1c1c1;
+	  clear: both;
+	  display: inline-block;
+	  height: 40px;
+	  line-height: 40px;
+	  max-width: 100%;
+	  padding: 0 15px;
+	  width: 100%;
+	}
+	.input-forget-c {
+	  text-align: center;
+	}
+	.input-forget-c button {
+	  margin: 15px auto 0;
+	  width: 120px;
+	}
+	
+
+
+
+
+}
+
+
+@media only screen and (max-width: 480px){
+
+	.reset-form {
+	  border: 1px solid #777777;
+	  margin: 0 15px 15px;
+	  max-width: 100%;
+	  padding: 15px;
+	}
+
+
+}
+
+
+
+#paymentModal ul {
+   padding: 0;
+   margin: 0 -10px;
+}
+#paymentModal li {
+   list-style: none;
+   width: 33.33336%;
+   float: left;
+   padding: 0 10px;
+}
+#paymentModal li img {
+   max-width: 100%;
+}
+
+.show_gif::before {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    content: "";
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-image:url(../img/ajax-loader.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 95px;
+    z-index: 99999999;
+    background-color: #fff;
+}

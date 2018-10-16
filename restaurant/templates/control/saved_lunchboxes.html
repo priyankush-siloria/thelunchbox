@@ -1,0 +1,239 @@
+{% extends 'control/lunchbox.html' %}
+{% load i18n %}
+{% load thumbnail %}
+{% load percent %}
+{% block title %}{% trans 'Saved lunchboxes' %}{% endblock %}
+{% block lunchbox_content %}
+    {% if lunchboxes %}
+        <div class="col-md-12 bg-black lb-nav pull-right">
+            <ul class="lunchboxTabs" role="tablist">
+                {% for l in lunchboxes %}
+                    <li>
+                        <a href="#lb{{ forloop.counter }}" id="lb{{ forloop.counter }}-tab" role="tab" data-toggle="tab"
+                           aria-controls="lb{{ forloop.counter }}" aria-expanded="true"
+                           data-id="{{ l.id }}">{{ l.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="lunchbox-content col-md-12 pull-right">
+            <div class="tab-content" id="myTabContent">
+                {% for l in lunchboxes %}
+                    <div class="tab-pane fade in active" role="tabpanel" id="lb{{ forloop.counter }}"
+                         aria-labelledby="lb{{ forloop.counter }}-tab">
+                        <div class="lunchbox_form">
+                            <div class="col-md-16 no-margins">
+                                <div class="col-md-13 no-margins">
+                                    {% for i in l.get_images %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="col-md-6">
+                                                <div class="image_btn">
+                                                    <div class="lunchbox-image img{{ forloop.counter }} upload_image"
+                                                         data-class="img{{ forloop.counter }}">
+                                                        <span>{{ forloop.counter }}</span>
+                                                        {% if i.image %}
+                                                            <img src="{{ i.image|thumbnail_url:'control_image_big' }}"
+                                                                 alt="">
+                                                        {% else %}
+                                                            <p>
+                                                                {% trans 'Request Photoshoot' %} <br>
+                                                                {% trans 'upload photo' %}
+                                                            </p>
+                                                        {% endif %}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="image_btn col-md-5">
+                                                <div class="lunchbox-image lunchbox-image-small upload_image"
+                                                     data-class="img{{ forloop.counter }}">
+                                                    <span>{{ forloop.counter }}</span>
+                                                    {% if i.image %}
+                                                        <img src="{{ i.image|thumbnail_url:'control_image_small' }}"
+                                                             alt="">
+                                                    {% else %}
+                                                        <p>
+                                                            {% trans 'Click to upload' %}
+                                                        </p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if l.get_images_qty_diff|length == 5 %}
+                                        {% for i in  l.get_images_qty_diff %}
+                                            {% if forloop.counter == 1 %}
+                                                <div class="col-md-6">
+                                                    <div class="image_btn">
+                                                        <div class="lunchbox-image">
+                                                            <span>{{ i }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% else %}
+                                                <div class="image_btn col-md-5">
+                                                    <div class="lunchbox-image lunchbox-image-small upload_image">
+                                                        <span>{{ i }}</span>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        {% for i in  l.get_images_qty_diff %}
+                                            <div class="image_btn col-md-5">
+                                                <div class="lunchbox-image lunchbox-image-small upload_image">
+                                                    <span>{{ i }}</span>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-3 no-margins">
+                                    <div class="col-md-3 control_lb_privileges">
+                                        {% for p in l.get_privileges %}
+                                            <img src="{{ p.privilege.image|thumbnail_url:'control_lb_privilege' }}"
+                                                 alt="">
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-md-6">
+                                <div class="lb-name">
+                                    {{ l.name }}
+                                </div>
+
+                                <p class="lb-desc">
+                                    {{ l.desc }}
+                                </p>
+
+                                <div class="clearfix"></div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-availability">
+                                        <tr>
+                                            <td>{% trans 'Availability' %}</td>
+                                            <td>
+                                                {% trans 'Start' %}: {{ l.available_from|date:'M d' }}<span
+                                                    class="glyphicon glyphicon-calendar"></span>
+                                            </td>
+                                            <td>
+                                                {% trans 'End' %}: {{ l.available_till|date:'M d' }}<span
+                                                    class="glyphicon glyphicon-calendar"></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-10">
+                                {% if l.get_total_calories %}
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered no-margins">
+                                            <tr>
+                                                <td class="table-head text-uppercase"
+                                                    colspan="4">
+                                                    {% trans 'The good side of the lunchbox' %}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{% trans 'Total Calories' %}</td>
+                                                <td class="text-right">{{ l.get_total_calories }} <strong>Kcal</strong>
+                                                </td>
+                                                <td>{% trans 'Fat' %}</td>
+                                                <td class="text-right">{{ l.fat }} <strong>Gr</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>{% trans 'Protein' %}</td>
+                                                <td class="text-right">{{ l.protein }} <strong>Gr</strong></td>
+                                                <td>{% trans 'Sugar' %}</td>
+                                                <td class="text-right">{{ l.sugar }} <strong>Gr</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>{% trans 'Carbohydrates' %}</td>
+                                                <td class="text-right">{{ l.carbohydrates }} <strong>Gr</strong></td>
+                                                <td>{% trans 'Sodium' %}</td>
+                                                <td class="text-right">{{ l.sodium }} <strong>MGr</strong></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                {% endif %}
+                                <br>
+                                <div class="table-responsive">
+                                    <table class="table small-inputs">
+                                        <tr>
+                                            <td>{% trans 'Price/Lunchbox' %}</td>
+                                            <td class="text-right">{{ l.price }} <span>€</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{% trans 'La Fiambrera rate' %}</td>
+                                            <td class="text-right">{{ l.rate }} <span>€</span>
+                                            </td>
+                                        </tr>
+                                        {% for d in l.get_discounts %}
+                                            <tr>
+                                                <td>{{ d.percent }} % {% trans 'discount at' %} {{ d.qty }} {% trans 'lunchbox' %}
+                                                </td>
+                                                <td class="text-right">{{ l.price|percent:d.percent }} €</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br>
+                            <div class="col-md-16 no-margins">
+                                <div class="col-md-6 pull-right">
+                                    <div class="lb_checkbox col-md-7">
+                                        <input type="checkbox" disabled
+                                               {% if l.photoshoot_requested %}checked{% endif %}>
+                                        <label for="id_photoshoot_requested">{% trans 'Photoshoot requested' %}</label>
+                                    </div>
+                                    <div class="lb_checkbox col-md-7">
+                                        <input type="checkbox" disabled
+                                               {% if l.publishing_requested %}checked{% endif %}>
+                                        <label for="id_publishing_requested">{% trans 'Publishing requested' %}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pull-right">
+                                    <a href="{% url 'delete_lunchbox' id=l.id %}" class="btn btn-primary">{% trans 'Delete' %}</a>
+                                </div>
+                                <div class="col-md-4 pull-right">
+                                    <a href="
+
+                                            {% if request.user.is_staff %}{% url 'admin_edit_lunchbox' restaurant_id=restaurant.id id=l.id %}{% else %}{% url 'edit_lunchbox' id=l.id %}{% endif %}"
+                                       class="btn btn-primary">{% trans 'Edit' %}</a>
+                                </div>
+                            </div>
+                        <br>
+                        <div class="communication_box_with_restaurant col-md-16 pull-right" data-res="{{ restaurant.id }}" data-lb="{{ l.id }}">
+                            <p class="title">{% trans 'Communication Box' %} {{ restaurant.name }}</p>
+                            <div class="restaurant-lunchbox-msgs">
+                                {% for f in l.get_admin_communication %}
+                                    <strong>
+                                        {% if f.user.is_staff %} (Manager)
+                                        {% else %}
+                                        {{ f.lunchbox.restaurant.name }}
+                                    {% endif %}</strong>
+                                    <div class="clearfix"></div>
+                                    <span>{{ f.date|date:'H:i Y. M d' }}</span>
+                                    <div class="clearfix"></div>
+                                    <p>{{ f.msg }}</p>
+                                    <div class="clearfix"></div>
+                                {% endfor %}
+                            </div>
+                            {% if request.user.is_authenticated and request.user.profile.is_restaurant or request.user.is_staff %}
+                                <textarea name="msg" class="msg" placeholder="{% trans 'Write your message here!' %}"></textarea>
+                                <button>{% trans 'send' %}</button>
+                            {% endif %}
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    {% endif %}
+{% endblock %}

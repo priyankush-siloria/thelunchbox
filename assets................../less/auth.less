@@ -1,0 +1,54 @@
+.auth_form {
+  max-width: 902.5px;
+
+  .form-control, .btn {
+    margin-bottom: 5px;
+  }
+
+  .register_links {
+    width: 100%;
+    text-align: center;
+
+    .register_link, .register_or {
+      font-family: BodoniFLFBold, sans-serif;
+      display: inline-block;
+      color: #fff;
+      font-size: 30px;
+      letter-spacing: 0.5px;
+      padding: 0 5px;
+    }
+    .register_link {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .has-error {
+    .control-label {
+      .errorlist {
+        margin: 0;
+        padding: 0;
+
+        li {
+          list-style-type: none;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-device-width: 500px), only screen and (max-width: 500px) {
+    padding: 0 2em;
+    margin-bottom: 0px;
+
+    .form-group-custom {
+      margin-bottom: 5px;
+    }
+
+    .register_links {
+      .register_link, .register_or {
+        font-size: 6vw;
+      }
+    }
+  }
+}

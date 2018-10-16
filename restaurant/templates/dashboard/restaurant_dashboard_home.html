@@ -1,0 +1,445 @@
+{% extends 'dashboard/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load get_company_orders_qty %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+
+        <ul class="messages" style="display: none;">
+            {% for message in messages %}
+             
+               {% if message|stringformat:"s" == 'invalidforsite' %}  <li id="msgvalid" class="{{ message.tags }}">{%  trans 'You are not authorized to see this page. Login or register as customer to see this page.' %}</li>{% endif %}
+
+               <!-- {% if message.tags == 'error' %}  <li id="msg" class="{{ message.tags }}">{{ message }}</li>{% endif %} -->
+            {% endfor %}
+        </ul>
+    {% endif %}
+ <div class="custom-container">
+     <div class="row">
+     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+
+         <div class="orders-sect">
+            <!-- Orders -->
+                
+                <h1 class="pull-left full-width order_title">{% trans "Today's orders" %}</h1>
+                <span class="date">({{ today|date:'Y. M d. | D' }})</span>
+                 
+                <div class="scheduled-orders">
+                {% if restaurant.get_today_orders %}
+                    <table class="admin_order_table2">
+                        <tbody>
+                            <tr class="bg-gray">
+                                <td>{% trans 'Lunchbox Name' %}</td>
+                                {% for t in restaurant.get_hours %}
+                                    <td>{{ t }}-{{ t|add:1 }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% for lb in restaurant.get_today_orders %}
+                                <tr>
+                                    <td>{{ lb }}</td>
+                                    {% for hour,qty in lb.get_orders_by_hours.items %}
+                                        <td>{% if qty != 0 %}{{ qty }} order{{ qty|pluralize:'s' }}{% endif %}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <h3>{% trans 'You have no orders scheduled' %}</h3>
+                {% endif %}
+                </div>
+
+                <a class="information_btn" href="{% url 'dashorders' %}">{% trans 'See full information' %}</a>
+
+            <!-- Orders -->
+
+         </div>
+
+         <!-- Profile Sect -->
+
+         <div class="profile-sect">
+            
+            <div class="profile-left">
+                <div class="profile-img">
+                {% if restaurant.logo %}
+                    <img src="{{ restaurant.logo|thumbnail_url:'restaurant_logo_dash_home' }}" alt="">
+
+                {% else %}
+                    <img src="{% static 'dashboard/img/default_admin_logo.jpg' %}"  alt="rst-img">
+                {% endif %}
+                </div>
+
+                <div class="delivery-to">
+                    <table class="table table-responsive table-bordered">
+                        <tbody>
+                            <tr>
+                                <th colspan="2">{% trans 'Delivery to' %}</th>
+                            </tr>
+                            {% for d in restaurant.get_delivery_distances %}
+                            <tr>
+                                <td>{{ d.city }}</td>
+                                <td style="text-align: center;"><span class="glyphicon glyphicon-ok"></span></td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>   
+            <!-- Profile Left Ends -->
+
+            <div class="profile-right">
+                <div class="profile-first-content">   
+
+                    <h3> {{ restaurant.name|upper }} </h3>
+                    <p> {% if restaurant.desc %}{% trans restaurant.desc|safe %}{% else %}No description available{% endif %}</p>
+
+                </div>
+
+                <ul>
+                    <li><span>{% trans 'Address' %}</span>{{ restaurant.address }}</li>
+                    <li><span>{% trans 'Phone Number:' %}</span>{{ restaurant.phone }}</li>
+                    <li><span>{% trans 'Opening hours:' %}
+                            {% if restaurant.get_opening_hours %}
+                                {% for shift in restaurant.get_opening_hours %}
+                                    {{ shift.start|time:"h:i A" }} - {{ shift.end|time:"h:i A" }} {% if forloop.counter != restaurant.get_opening_hours|length %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {% trans 'Closed today' %}
+                            {% endif %}
+                     </li>
+                </ul>
+
+                
+                    {% if restaurant.get_coupon %}
+                        <div class="empty-div">
+                            <a href="{% url 'coupan' restaurant.id %}" target="_blank">
+                                <h3>{% trans 'Enjoyed Our Lunchbox?' %}</h3>
+                                <p class="small">{{ restaurant.get_coupon.discount_text }}</p>
+                                <h3 class="discount_text">{{ restaurant.get_coupon.percent }}% {% trans 'off coupon' %}</h3>
+                                <p class="small">{% trans 'click to save it' %}</p>
+                            </a>
+                        </div>
+                    {% endif %}         
+                
+
+            </div>
+
+            <div class="admin_minimum_order_count full-width pull-left">
+                {% trans 'Minimum Order' %}:<input name="min_order" id="rest_min_order" value="{% if restaurant.min_order %}{{ restaurant.min_order }}{% else %}1{% endif %}" type="text" disabled="true">
+            </div>
+
+            <a class="information_btn" href="{% url 'admin_restaurant_information' restaurant.id%}">{% trans 'Edit restaurant' %}</a>
+
+
+         </div>
+
+         <!-- Profile Sect Ends -->
+
+         <!-- Reviews -->
+
+         <div class="feedbacks-box reviews-sect">
+          <h2>{% trans 'Restaurant reviews' %} </h2>
+
+          <div class="feedback-desc">
+            <ul>
+              
+                {% if restaurant.get_reviews %}
+                    {% for f in restaurant.get_reviews %}
+                    <li>
+                        <span>
+                          <img src="{% static 'mainapp/img/dummy-image.jpg' %}" alt="user-img">
+                        </span> 
+                        <p class="user-name">{{ f.user.first_name }} {{ f.user.last_name|title }}</p>
+                        <p class="user-content">
+                            {{ f.msg }}
+                        </p>
+                        <span class="d-and-t">
+                            <span class="time">{{ f.datetime|date:'H:i' }}</span>
+                            <span>{{ f.datetime|date:'Y. M d' }}</span> 
+                        </span>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                <li>
+                    <strong>{% trans "Currently, the restaurant doesn't have any reviews." %}</strong>
+                </li>
+                {% endif %}
+              
+
+             
+            </ul>
+          </div>
+
+        </div>
+
+
+
+     </div>
+     
+     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        {% if restaurant.get_lunchboxes %}
+        <div class="slider">
+            
+                    <div id="myCarouselnew" class="carousel slide" data-ride="carousel">
+                        
+<!--                          <ol class="carousel-indicators">
+                            <li data-target="#myCarouselnew" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarouselnew" data-slide-to="1"></li>
+                            <li data-target="#myCarouselnew" data-slide-to="2"></li>
+                          </ol> -->
+
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                    
+                        {% for lb in restaurant.get_lunchboxes %}
+                            {% if forloop.counter == 1 %}
+                                <div class="item active">
+                            {% else %}
+                                <div class="item">
+                            {% endif %}
+                          
+                            
+                            <section class="admin_restaurant_edit_section pull-left full-width">
+
+                                 <div class="col-md-12 col-sm-12">
+                                    <div class="row">
+                                       <div class="admin_restaurant_edit_pin pull-left full-width">
+                                          <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                                <label for="file-input">
+                                                    {% for i in lb.get_images %}
+                                                        {% if forloop.counter == 1 %}
+                                                            <img id="gallerybigimg1" src="{{ i.image|thumbnail_url:'normal_lb_big' }}" alt="">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    {% if not lb.get_images %}
+                                                        <img id="gallerybigimg1" src="{% static '/mainapp/img/lunchbox_chicken_1.png' %}" alt="">
+                                                    {% endif %}
+                                                </label>
+                                            
+                                          </div> 
+                                          
+                                       </div>
+                                    </div>   
+                                 </div>
+                                 
+                              </section>
+
+                              <!-- Lunch Box Good Side -->
+
+
+                              <div class="inside-caption">
+                                <h2>{{ lb.name|upper }}</h2>
+                                <p> {% trans lb.desc|safe %} </p>
+                              </div>
+
+
+                              <div class="table-outer">
+                                    <table class="table table-borderd table-lunch-box">
+                                        
+                                        <tbody>
+                                            <tr>
+                                                <th class="heading" colspan="4">{% trans 'THE GOOD SIDE OF THE LUNCHBOX' %}</th>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="width: 140px;">{% trans 'Total Calories' %}  </td>
+                                                <td class="bg-td" style="width: 160px;">{{ lb.get_total_calories }} Kcal</td>
+                                                <td>{% trans 'Fat' %}    </td>
+                                                <td class="bg-td" style="width: 160px;">{{ lb.fat }} Gr </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{% trans 'Protein' %}   </td>
+                                                <td class="bg-td">{{ lb.protein }}  Gr </td>
+                                                <td>{% trans 'Sugar' %}    </td>
+                                                <td class="bg-td">{{ lb.sugar }} Gr </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                  {% trans 'Carbohydrates' %}   
+                                                </td>
+                                                <td class="bg-td">
+                                                  {{ lb.carbohydrates }}  Gr
+                                                </td>
+                                                <td>
+                                                  {% trans 'Sodium' %}   
+                                                </td>
+                                                <td class="bg-td">
+                                                  {{ lb.sodium }} MGr
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <td colspan="4">
+                                                    {% trans 'Available' %}
+                                                    <span class="text-right">{{ lb.available_from|date:'Y.M d' }}-{{ lb.available_till|date:'Y.M d' }}</span>
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    {% trans 'Average price per lunchbox' %}
+                                                    <span colspan="2" class="text-right">
+                                                        {% if lb.get_average_price != None %}
+                                                                {{ lb.get_average_price }} €
+                                                        {% else %}
+                                                            {% trans 'Not available' %}
+                                                        {% endif %}
+                                                    </span>
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr class="strong">
+                                                <td colspan="4">
+                                                    {% trans 'Total order' %}
+                                                    <span class="text-right">
+                                                        {{ lb.get_total_earned }} €
+                                                    </span>
+                                                </td>
+                                                
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>  
+
+                                <!-- People Chose -->
+
+                                <div class="col-md-12 col-xs-12 people-who-chose">
+
+                                    <div class="table-outer">
+                                        <table class="table table-responsive table-borderd table-ppl-who-chose">
+                                            <tbody>
+                                                <tr>
+                                                    <th style="text-align: center;">{{ lb.id|get_company_orders_qty:request.user.id }}</th>
+                                                    <td>{% trans 'People chose this today' %}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <div class="buttons-form pull-right">
+                                        <a href="{% url 'archive_lunchbox' lb.id %}" class="">{% trans 'Archive' %}</a>
+                                        <a href="{% url 'edit_lunchboxes' restaurant.id lb.id %}" class="">{% trans 'Edit Lunchbox' %}</a>
+                                    </div>
+                                </div>
+
+                                <!-- Chat Box Section -->
+
+                            <div class="feedbacks-box">
+                                <h2>{% trans 'Comments and requests from customers' %}</h2>
+                                
+
+                                <div class="outer-chat">
+                                    <div class="chat-box-custom">
+
+                                    <div class="top-chat-list">
+                                       <div class="feedback-desc">
+                                            <ul id="chat_msg_list">
+                                            {% for f in lb.get_feedback %}
+                                                {% if f.inc and not f.user.profile.is_restaurant %}
+                                                  <li>
+                                                    <span>
+                                                      <img src="{% static 'mainapp/img/dummy-image.jpg' %}" alt="user-img">
+                                                    </span> 
+                                                    <p class="user-name">{{ f.user.first_name }} {{ f.user.last_name }}</p>
+                                                    <p id="chat_msg_res" class="user-content">
+                                                        {{ f.msg }}
+                                                    </p>
+                                                    <span class="d-and-t">
+                                                        <span class="time">{{ f.datetime|date:'H:i' }}</span>
+                                                        <span>{{ f.datetime|date:'Y. M d' }}</span> 
+                                                    </span>
+                                                  </li>
+                                                {% else %}
+                                                    <li>
+                                                        <span>
+                                                          <img src="{% static 'mainapp/img/dummy-image.jpg' %}" alt="user-img">
+                                                        </span> 
+                                                        <p class="user-name">{{ f.restaurant.name }}</p>
+                                                        <p class="user-content">
+                                                            {{ f.msg }}
+                                                        </p>
+                                                        <span class="d-and-t">
+                                                            <span class="time">{{ f.datetime|date:'H:i' }}</span>
+                                                            <span>{{ f.datetime|date:'Y. M d' }}</span> 
+                                                        </span>
+                                                      </li>
+                                                        {% endif %}
+                                                    {% endfor %}
+
+                                                </ul>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <div class="bottom-chat-box">
+                                        <textarea id="res_chat_box_text" rows="5" cols="30" value="Entered Text" placeholder="{% trans 'Write your message here!' %}" data-res="{{ lb.restaurant.id }}" data-lb="{{ lb.id }}"></textarea>
+                                    <button class="send-chat" type="submit">{% trans 'Send' %}</button>
+                                </div>
+                                </div>
+
+
+
+                            </div> 
+                            <!-- Feedback's Div -->
+
+
+                              </div>
+                          
+                        {% endfor %}
+                            </div>
+                            <a class="left carousel-control" href="#myCarouselnew" data-slide="prev">
+                              <span class="glyphicon glyphicon-chevron-left"></span>
+                              <span class="sr-only">{% trans 'Previous' %}</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarouselnew" data-slide="next">
+                              <span class="glyphicon glyphicon-chevron-right"></span>
+                              <span class="sr-only">{% trans 'Next' %}</span>
+                            </a>
+                        </div>
+
+            <!-- Left and right controls -->
+            
+          </div>
+
+
+        </div>
+        {% else %}
+            <div class="res_empty_lunchbox">
+                <img src="{% static 'img/box.png' %}" alt="" class="box">
+                <p class="have_no_lb">
+                    {% trans 'Your restaurant does not' %} <br>
+                    {% trans 'have a lunchbox yet' %}.
+                </p>
+                <div class="clearfix"></div>
+                <a href="{% url 'lunchbox_management' restaurant.id%}" class="btn btn-default text-uppercase">{% trans "Let’s create one" %}</a>
+            </div>
+        
+        {% endif %}
+
+     </div>
+
+
+     </div>
+</div>
+
+<script type="text/javascript">
+    var askrestaurant="{% url 'ask_restaurant' %}";
+</script>
+
+
+{% endblock %}
+

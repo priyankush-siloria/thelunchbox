@@ -1,0 +1,155 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% block title %}{% trans 'Coupon' %}{% endblock %}
+{% block content %}
+    <div class="custom-container">
+    <div class="main-coupon-area col-xs-12">
+        <div class="restaurant-coupon text-center">
+            <!-- <div class="glyphicon glyphicon-scissors"></div> -->
+            <div class="coupon-left-c">
+                <div class="empty-div">
+                    <a href="#" target="_blank">
+                        <h3>{% trans 'Get discount right now!' %}</h3>
+                        <p class="small">{{ coupon.discount_text }}</p>
+                        <h3 class="discount_text">{{ coupon.percent }}% {% trans 'off coupon' %}</h3>
+                        <p class="small">{% trans 'Come and get it' %}!</p>
+                    </a>
+                </div>
+
+                <div class="table-outer">
+                    
+                    <table class="table table-responsive table-bordered coupon-table">
+                        <tbody>
+                            <tr>
+                                <th>{% trans 'Available from' %}:</th>
+                                <td>{{ coupon.available_from }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>{% trans 'Available till' %}:</th>
+                                <td>{{ coupon.available_till }}</td>
+                            </tr>
+
+                            <tr>
+                                <th>{% trans 'Available time' %}: </th>
+                                <td>{{ coupon.time_from|date:'H:i' }} - {{ coupon.time_till|date:'H:i' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="couplon-right-c">
+                    
+                 <div class="coupon-img-here">
+                 {% if restaurant.logo %}
+                     <img src="{{ restaurant.logo|thumbnail_url:'restaurant_logo' }}" alt="" class="restaurant-logo">
+                 {% else %}
+                     <img src="{% static 'dashboard/img/restaurant_logo_3.jpg' %}" alt="" class="restaurant-logo">
+                 {% endif %}
+                 </div>   
+               
+                <h2>{{ restaurant.name|upper }}</h2>
+
+                <p class="restaurant-desc">{{ restaurant.desc|safe }}</p>
+                
+                <div class="contact_info">
+
+                    <ul>
+                        <li><span>{% trans 'Address' %}:</span> {{ restaurant.address }}</li>
+                        <li><span>{% trans 'Phone' %}:</span> {{ restaurant.phone }}</li>
+                        <li><span>{% trans 'Website' %}:</span> <a href="{{ restaurant.website }}">{{ restaurant.website }}</a> </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <button id="back_button">{% trans 'Back' %}</button>
+        <button id="print_button">{% trans 'Print' %}</button>
+    </div>
+
+    </div>
+    
+{% endblock %}
+{% block scriptcode %}
+<script type="text/javascript">
+        $('#print_button').click(function () {
+                if (confirm('Do you want to print the coupon?')) {
+                    var printContents = $('.restaurant-coupon').html();
+                    // var originalContents = document.body.innerHTML;
+                    // document.body.innerHTML = printContents;
+
+                    // window.print();
+
+                    // document.body.innerHTML = originalContents;
+                    var strFrameName = ("printer-" + (new Date()).getTime());
+                     
+                    // Create an iFrame with the new name.
+                    var jFrame = $( "<iframe name='" + strFrameName + "'>" );
+                     
+                    // Hide the frame (sort of) and attach to the body.
+                    jFrame
+                    .css( "width", "1px" )
+                    .css( "height", "1px" )
+                    .css( "position", "absolute" )
+                    .css( "left", "-9999px" )
+                    .appendTo( $( "body:first" ) )
+                    ;
+                     
+                    // Get a FRAMES reference to the new frame.
+                    var objFrame = window.frames[ strFrameName ];
+                     
+                    // Get a reference to the DOM in the new frame.
+                    var objDoc = objFrame.document;
+                     
+                    // Grab all the style tags and copy to the new
+                    // document so that we capture look and feel of
+                    // the current document.
+                     
+                    // Create a temp document DIV to hold the style tags.
+                    // This is the only way I could find to get the style
+                    // tags into IE.
+                    var jStyleDiv = $( "<div>" ).append(
+                    $( "style" ).clone()
+                    );
+                     
+                    // Write the HTML for the document. In this, we will
+                    // write out the HTML of the current element.
+                    objDoc.open();
+                    objDoc.write( "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">" );
+                    objDoc.write( "<html>" );
+                    objDoc.write( "<body>" );
+                    objDoc.write( "<head>" );
+                    objDoc.write( "<title>" );
+                    objDoc.write( document.title );
+                    objDoc.write( "</title>" );
+                    objDoc.write( jStyleDiv.html() );
+                    objDoc.write( "</head>" );
+                    objDoc.write( printContents );
+                    objDoc.write( "</body>" );
+                    objDoc.write( "</html>" );
+                    objDoc.close();
+                     
+                    // Print the document.
+                    objFrame.focus();
+                    objFrame.print();
+                     
+                    // Have the frame remove itself in about a minute so that
+                    // we don't build up too many of these frames.
+                    setTimeout(
+                    function(){
+                    jFrame.remove();
+                    },
+                    (60 * 1000)
+                    );
+                }
+
+        });
+        $('#back_button').click(function () {
+            window.location.href="{% url 'dashboard_home' %}";
+        });
+
+    </script>
+{% endblock %}

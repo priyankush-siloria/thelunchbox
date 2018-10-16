@@ -1,0 +1,16 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Bucket": "docker-credentials",
+    "Key": ".dockercfg"
+  },
+  "Image": {
+    "Name": "olzalexa/lafiambrera:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "8002"
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{% extends 'control/base_control.html' %}
+{% load thumbnail %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans 'Restaurant info' %}{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/jquery.datetimepicker.css' %}">
+{% endblock %}
+{% block content %}
+    <form class="col-md-15 lunchbox-content center restaurant_edit_form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <div class="col-md-16 no-margins">
+            {{ images_formset.management_form }}
+            {% for i in images_formset %}
+                {% if forloop.counter == 1 %}
+                    <div class="col-md-6">
+                        <div class="image_btn">
+                            <div class="lunchbox-image img{{ forloop.counter }} upload_image"
+                                 data-class="img{{ forloop.counter }}">
+                                <span>{{ forloop.counter }}</span>
+                                {% if i.instance.image %}
+                                    <img src="{{ i.instance.image|thumbnail_url:'control_restaurant_gallery_big' }}"
+                                         alt="">
+                                {% else %}
+                                    <p>
+                                        {% trans 'Request Photoshoot' %} <br>
+                                        {% trans 'upload photo' %}
+                                    </p>
+                                {% endif %}
+                            </div>
+                            <div class="upload_btn upload_btn-img{{ forloop.counter }}">
+                                {{ i.id }}
+                                {{ i.image }}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="image_btn col-md-5">
+                        <div class="lunchbox-image lunchbox-image-small upload_image"
+                             data-class="img{{ forloop.counter }}">
+                            <span>{{ forloop.counter }}</span>
+                            {% if i.instance.image %}
+                                <img src="{{ i.instance.image|thumbnail_url:'control_restaurant_gallery_small' }}"
+                                     alt="">
+                            {% else %}
+                                <p>
+                                    {% trans 'Click to upload' %}
+                                </p>
+                            {% endif %}
+
+                        </div>
+                        <div class="upload_btn upload_btn-img{{ forloop.counter }}">
+                            {{ i.id }}
+                            {{ i.image }}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col-md-16">
+            <div class="col-md-11 discount-availability no-margins">
+                <p>{% trans 'Attract visitors to your restaurant! Offer a discount via coupons!' %}</p>
+                <div class="table-responsive col-md-11 no-margins">
+                    <table class="table table-bordered table-availability">
+                        {{ discount_formset.management_form }}
+                        {% for d in discount_formset %}
+                            {{ d.id }}
+                            <tr>
+                                <td>Availability</td>
+                                <td {% if d.available_from.errors %}class="error"{% endif %}>
+                                    Start: {{ d.available_from }}<span class="glyphicon glyphicon-calendar"></span>
+                                </td>
+                                <td {% if d.available_till.errors %}class="error"{% endif %}>
+                                    End: {{ d.available_till }}<span class="glyphicon glyphicon-calendar"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Time</td>
+                                <td {% if d.time_from.errors %}class="error"{% endif %}>{% trans 'From' %}: {{ d.time_from }}<span
+                                        class="glyphicon glyphicon-time"></span></td>
+                                <td {% if d.time_till.errors %}class="error"{% endif %}>{% trans 'Till' %}: {{ d.time_till }}<span
+                                        class="glyphicon glyphicon-time"></span></td>
+                            </tr>
+                            </table>
+                            </div>
+                            <div class="col-md-5 no-margins discount-text">
+                                {{ d.discount_text }}
+                                <div class="clearfix"></div>
+                                <span class="discount_percent">{% trans 'ADD DISCOUNT' %}: {{ d.percent }}%</span>
+                            </div>
+                        {% endfor %}
+            </div>
+            <div class="col-md-5">
+                <div class="lunchbox-image lunchbox-image-small upload_image logo-image" data-class="img6">
+                    {% if edit_form.instance.logo %}
+                        <img src="{{ edit_form.instance.logo|thumbnail_url:'control_restaurant_logo' }}"
+                             alt="">
+                    {% else %}
+                        <p>
+                            {% trans 'Upload' %} <br>
+                            {% trans 'Restaurant logo' %}
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="upload_btn upload_btn-img6">
+                    {{ edit_form.logo }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-16">
+            <div class="col-md-4">
+                <div class="delivery_distances">
+                    <p class="text-uppercase"><strong>{% trans 'Delivery to' %}</strong></p>
+                    {% if restaurant_delivery %}
+                        {% for d in restaurant_delivery %}
+                            <input type="checkbox" id="{{ d.city.id }}" class="city_delivery" {% if d.possible %}checked{% endif %}>
+                            <label for="{{ d.city.id }}">{{ d.city.name }}</label>
+                            <div class="clearfix"></div>
+                        {% endfor %}
+                    {% else %}
+                        {% for c in cities %}
+                            <input type="checkbox" id="{{ c.id }}" class="city_delivery">
+                            <label for="{{ c.id }}">{{ c.name }}</label>
+                            <div class="clearfix"></div>
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="col-md-6 edit_form-info">
+                <div {% if edit_form.name.errors %}class="error" {% endif %}>
+                    {{ edit_form.name }}
+                </div>
+                <div {% if edit_form.desc.errors %}class="error" {% endif %}>
+                        {{ edit_form.desc }}
+                </div>
+                <p>
+                    <span {% if edit_form.address.errors %}class="error" {% endif %}>
+                        {% trans 'Address' %}: {{ edit_form.address }}
+                    </span><br>
+                    <span {% if edit_form.phone.errors %}class="error" {% endif %}>
+                        {% trans 'Phone Number' %}: {{ edit_form.phone }}</span>
+                    </span><br>
+                </p>
+                <p class="web">
+                    <span>Web:</span> <span>{{ edit_form.website }}</span> <br>
+                    <span>Facebook:</span> <span>{{ edit_form.facebook }}</span> <br>
+                    <span>Twitter:</span> <span>{{ edit_form.twitter }}</span><br>
+                    <span>Instagram:</span> <span>{{ edit_form.instagram }}</span>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="table-responsive">
+                    <table class="table table-bordered no-margins">
+                        {{ opening_hours_formset.management_form }}
+                        <tr>
+                            <td class="table-head text-uppercase" colspan="4">{% trans 'Opening hours' %}</td>
+                        </tr>
+                        {% for h in opening_hours_formset %}
+                            {{ h.id }}
+                            <tr>
+                                <td>{% trans 'Monday' %}</td>
+                                <td>
+                                    {% trans 'From' %}: {{ h.mon_from }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                                <td>
+                                    {% trans 'Till' %}: {{ h.mon_till }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{% trans 'Tuesday' %}</td>
+                                <td>
+                                    {% trans 'From' %}: {{ h.tue_from }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                                <td>
+                                    {% trans 'Till' %}: {{ h.tue_till }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{% trans 'Wendesday' %}</td>
+                                <td>
+                                    {% trans 'From' %}: {{ h.wed_from }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                                <td>
+                                    {% trans 'Till' %}: {{ h.wed_till }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{% trans 'Thursday' %}</td>
+                                <td>
+                                    {% trans 'From' %}: {{ h.thu_from }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                                <td>
+                                    {% trans 'Till' %}: {{ h.thu_till }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{% trans 'Friday' %}</td>
+                                <td>
+                                    {% trans 'From' %}: {{ h.fri_from }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                                <td>
+                                    {% trans 'Till' %}: {{ h.fri_till }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{% trans 'Saturday' %}</td>
+                                <td>
+                                    {% trans 'From' %}: {{ h.sat_from }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                                <td>
+                                    {% trans 'Till' %}: {{ h.sat_till }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{% trans 'Sunday' %}</td>
+                                <td>
+                                    {% trans 'From' %}: {{ h.sun_from }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                                <td>
+                                    {% trans 'Till' %}: {{ h.sun_till }}<span class="glyphicon glyphicon-time pull-right"></span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="clearfix"></div>
+                <p class="restaurant-min_order bg-warning col-md-16 text-center {% if edit_form.min_order.errors %}error{% endif %}">{% trans 'Minimum Order' %}: {{ edit_form.min_order }}</p>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-16 no-margins">
+                <div class="col-md-5 checkbox-radio pull-right">
+                    <div class="lb_checkbox col-md-7">
+                        {{ edit_form.photoshoot_requested }}
+                        <label for="id_photoshoot_requested">{% trans 'Photoshoot requested' %}</label>
+                    </div>
+                </div>
+                <div class="col-md-3 pull-right">
+                    {{ lb_form.nutrition_facts }}
+                    <input type="submit" class="btn btn-default restaurant_submit_btn" value="Save">
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="delivery" class="delivery_to">
+        <div class="clearfix"></div>
+    </form>
+    <div class="clearfix"></div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+{% endblock %}

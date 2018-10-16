@@ -1,0 +1,192 @@
+{% load i18n %}
+<div class="table-responsive">
+    <table class="table table-bordered no-margins">
+        <tr>
+            <td class="table-head text-uppercase"
+                colspan="4">{% trans 'The good side of the lunchbox' %}</td>
+        </tr>
+        <tr>
+            <td>{% trans 'Total Calories' %}</td>
+            <td class="text-right">XXX <strong>Kcal</strong></td>
+            <td>{% trans 'Fat' %}</td>
+            <td class="text-right">XX <strong>Gr</strong></td>
+        </tr>
+        <tr>
+            <td>{% trans 'Protein' %}</td>
+            <td class="text-right">XX <strong>Gr</strong></td>
+            <td>{% trans 'Sugar' %}</td>
+            <td class="text-right">XX <strong>Gr</strong></td>
+        </tr>
+        <tr>
+            <td>{% trans 'Carbohydrates' %}</td>
+            <td class="text-right">XX <strong>Gr</strong></td>
+            <td>{% trans 'Sodium' %}</td>
+            <td class="text-right">XX <strong>MGr</strong></td>
+        </tr>
+    </table>
+</div>
+
+<div class="clearfix"></div>
+
+<ul class="nutrition-facts">
+    <li><span class="glyphicon glyphicon-plus"></span>
+        <a href="#" data-class="meat_protein">{% trans 'Add meat protein' %}<span>({% trans 'chicken, fish...etc' %})</span></a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>
+        <a href="#" data-class="legumes">{% trans 'Add legume' %} <span>({% trans 'beans, nuts, seeds...etc' %})</span></a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>
+        <a href="#" data-class="dairy_products">{% trans 'Add dairy product' %} <span>({% trans 'cheese, milk...etc' %})</span></a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>
+        <a href="#" data-class="vegetables">{% trans 'Add vegetable' %} <span>({% trans 'tomato, potato...etc' %})</span></a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>
+        <a href="#" data-class="cereal_grains">{% trans 'Add cereal grains' %} <span>({% trans 'flour, rice...etc' %})</span></a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>
+        <a href="#" data-class="fruits">{% trans 'Add fruits' %} <span>({% trans 'berries, olive...etc' %})</span></a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>
+        <a href="#" data-class="spices">{% trans 'Add spices' %} <span>({% trans 'salt, sugar...etc' %})</span></a>
+    </li>
+    <li>
+        <span class="glyphicon glyphicon-plus"></span>
+        <a href="#" data-class="oils">{% trans 'Add oils' %} <span>{(% trans 'olive oil, coconut oil...etc' %})</span></a>
+    </li>
+</ul>
+<ul class="lunchbox_nutrition-facts">
+    {% if lunchbox.get_nutrition_facts %}
+        {% for k,v in lunchbox.get_nutrition_facts.items %}
+            <li class="{{ k|get_class }}">
+                <p>{{ k }}</p>
+                <div class="trans_select_box_wrapper meat_protein" data-class="meat_protein">
+                    <div class="trans_select_box">
+                        <select>
+                            {% for i in v %}
+                                <option value="{{ i.id }}">{{ i }}</option>
+
+                                </select>
+                                <label class="glyphicon glyphicon-triangle-bottom"></label>
+                                </div>
+                                <input type="text" name="value" class="val d4" value="{{ i.value }}">
+                                <span class="grams">Gr</span>
+                                <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+                            {% endfor %}
+                </div>
+            </li>
+        {% endfor %}
+    {% endif %}
+</ul>
+
+<div class="hidden nutrition-choices">
+    <div class="trans_select_box_wrapper meat_protein" data-class="meat_protein">
+        <div class="trans_select_box">
+            <select>
+                {% for i in meat_proteins %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="glyphicon glyphicon-triangle-bottom"></label>
+        </div>
+        <input type="text" name="value" class="val d4"> <span class="grams">Gr</span>
+        <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+    </div>
+
+    <div class="trans_select_box_wrapper dairy_products" data-class="dairy_products">
+        <div class="trans_select_box">
+            <select>
+                {% for i in dairy_products %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="glyphicon glyphicon-triangle-bottom"></label>
+        </div>
+        <input type="text" name="value" class="val d4"> <span class="grams">Gr</span>
+        <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+    </div>
+
+    <div class="trans_select_box_wrapper cereal_grains" data-class="cereal_grains">
+        <div class="trans_select_box">
+            <select>
+                {% for i in cereal_grains %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="glyphicon glyphicon-triangle-bottom"></label>
+        </div>
+        <input type="text" name="value" class="val d4"> <span class="grams">Gr</span>
+        <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+    </div>
+
+    <div class="trans_select_box_wrapper spices" data-class="spices">
+        <div class="trans_select_box">
+            <select>
+                {% for i in spices %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="glyphicon glyphicon-triangle-bottom"></label>
+        </div>
+        <input type="text" name="value" class="val d4"> <span class="grams">Gr</span>
+        <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+    </div>
+
+    <div class="trans_select_box_wrapper legumes" data-class="legumes">
+        <div class="trans_select_box">
+            <select>
+                {% for i in legumes %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="glyphicon glyphicon-triangle-bottom"></label>
+        </div>
+        <input type="text" name="value" class="val d4"> <span class="grams">Gr</span>
+        <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+    </div>
+
+    <div class="trans_select_box_wrapper vegetables" data-class="vegetables">
+        <div class="trans_select_box">
+            <select>
+                {% for i in vegetables %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="glyphicon glyphicon-triangle-bottom"></label>
+        </div>
+        <input type="text" name="value" class="val d4"> <span class="grams">Gr</span>
+        <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+    </div>
+
+    <div class="trans_select_box_wrapper fruits" data-class="fruits">
+        <div class="trans_select_box">
+            <select>
+                {% for i in fruits %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="glyphicon glyphicon-triangle-bottom"></label>
+        </div>
+        <input type="text" name="value" class="val d4"> <span class="grams">Gr</span>
+        <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+    </div>
+
+    <div class="trans_select_box_wrapper oils" data-class="oils">
+        <div class="trans_select_box">
+            <select>
+                {% for i in oils %}
+                    <option value="{{ i.id }}">{{ i.name }}</option>
+                {% endfor %}
+            </select>
+            <label class="glyphicon glyphicon-triangle-bottom"></label>
+        </div>
+        <input type="text" name="value" class="val d4"> <span class="grams">Gr</span>
+        <a href="#" class="glyphicon glyphicon-remove remove-nutrition"></a>
+    </div>
+</div>

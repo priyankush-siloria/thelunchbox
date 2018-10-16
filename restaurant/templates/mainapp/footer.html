@@ -1,0 +1,42 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %} 
+<footer class="pull-left full-width">
+    <div class="container">
+        <ul class="footer_navgation pull-left full-width">
+            <li>
+                <a href="{% url 'all' %}">{% trans 'Our lunchboxes' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'steps' %}">{% trans 'Steps to a Healthy Lunch' %} </a>
+            </li>
+            <li>
+                <a href="{% url 'group_benifits' %}">{% trans 'Group benefits and offers' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'faqs' %}">{% trans 'FAQs' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'blog' %}">{% trans 'Blog' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'contactus'%}">{% trans 'Contact us' %}</a>
+            </li>
+        </ul>
+
+        <div class="payment_card_section pull-left full-width text-center">
+            <img src="{% static 'mainapp/img/payment_card.png' %}" alt="">
+        </div>
+
+        <ul class="social_icons pull-left full-width text-center">
+           <li class="facebook"><a href="#"></a></li>
+           <li class="linked_in"><a href="#"></a></li>
+           <li class="instagram"><a href="#"></a></li>
+        </ul>
+    </div>
+    <div class="pre_footer pull-left full-width text-center">
+        <div class="container">
+            {% trans 'Copyright' %} © 2017
+        </div>
+    </div>   
+</footer>

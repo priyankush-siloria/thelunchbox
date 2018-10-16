@@ -1,0 +1,79 @@
+.restaurant-profile {
+  margin: 0 auto;
+  padding: 15px;
+  background: rgba(255, 255, 255, .4);
+
+  .restaurant-logo {
+    margin-bottom: 15px;
+  }
+
+  .profile_info {
+    padding-right: 0;
+    //width: 350px;
+  }
+
+  .swiper-container {
+    //width: 100%;
+    max-width: 782px;
+    padding: 0!important;
+
+    img {
+      width: 100%;
+      max-width: 780px;
+      max-height: 500px;
+      border: 2px solid #000;
+    }
+  }
+
+  .coupon {
+    margin-top: 10px;
+  }
+}
+
+.restaurant-profile_lunchbox {
+  width: 840px;
+  padding: 15px;
+  margin: 0 auto 15px auto;
+  background: rgba(255, 255, 255, .67);
+
+  .restaurant-lunchbox-gallery {
+    width: 265px;
+    height: 225px;
+    float: left;
+    margin-right: 15px;
+
+    .big {
+      width: 260px;
+      height: 150px;
+    }
+    .small {
+      clear: both;
+      img {
+        clear: none;
+        display: inline-block;
+        margin-right: 1px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 991px) {
+  .restaurant-profile {
+    .swiper-container {
+      float: none;
+    }
+  }
+
+}
+
+.isMobile {
+  .restaurant-profile {
+    .swiper-container {
+      max-width: 462px;
+    }
+  }
+}

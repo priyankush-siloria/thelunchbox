@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Admin registration' %}{% endblock %}
+{% block content %}
+    <div class="wrapper registration">
+        <div class="reg_wrapper">
+            <div class="reg_content">
+                <div class="col-md-4 col-xs-4 center reg_logo_txt">
+                    <img src="{% static 'img/reg_txt.png' %}" alt="" class="center">
+                </div>
+                <div class="clearfix"></div>
+                {% include 'inc/reg_steps.html' %}
+                <div class="clearfix"></div>
+
+                <form class="register_form col-md-7 center" action="." method="POST"
+                      name="registration">{% csrf_token %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="bg-danger">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="form-group {% if form.first_name.errors or form.last_name.errors %}has-error{% endif %}">
+                        {% if form.errors %}
+                            <label class="control-label small error_msg">{% trans 'These fields (marked red) are required!' %}</label>
+                        {% endif %}
+                        <div class="clearfix"></div>
+                        {{ form.last_name }}
+                        {{ form.first_name }}
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group {% if form.password1.errors or form.password2.errors %}has-error{% endif %}">
+                        {{ form.password1 }}
+                        {{ form.password2 }}
+                    </div>
+                    <div class="form-group {% if form.phone.errors %}has-error{% endif %}">
+                        {{ form.phone }}
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 col-xs-4 pref_lang">
+                            <p class="reg_txt">{% trans 'Preferred language' %}:</p>
+                        </div>
+                        <div class="col-md-6 checkbox-radio">
+                            <input type="checkbox" name="lang_en" id="en" checked>
+                            <label for="en">English</label>
+                            <input type="checkbox" name="lang_es" id="es">
+                            <label for="es">Español</label>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <button class="btn btn-lg btn-confirm inverted btn-block" type="submit">
+                        <span class="lft_line"></span>
+                        {% trans 'Confirm' %}
+                        <span class="rgt_line"></span>
+                    </button>
+                    <a class="btn btn-lg btn-back inverted btn-block display-none" href="{% url 'home' %}">{% trans 'Back' %}</a>
+                </form>
+            </div>
+        </div>
+        <div class="registration-footer">
+            {% include 'inc/footer.html' %}
+        </div>
+    </div>
+    <div class="desktop-registration-footer">
+        {% include 'inc/footer.html' %}
+    </div>
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'mainapp/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% load add_hour %}
+{% load tz %}
+{% block title %}{% trans 'Orders' %}{% endblock %}
+{% block content %}
+ <div class="container">
+            <div class="admin_registered_restaurants_outer admin_order_list_outer">
+
+               <div class="admin_order_inner pull-left full-width">
+               	{% if orders %}
+                  
+                  <div class="outer-table">
+                     <table class="admin_order_table full-width table table-responsive table-bordered">
+      
+                     <tbody>
+
+                        <tr>
+                           <td>{% trans 'Customer name' %}</td>
+                           <td>{% trans 'Lunchbox' %}</td>
+                           <td class="">{% trans 'Quantity' %}</td>
+                           <td class="text-center">{% trans 'Order Time' %}</td>
+                           <td class="text-center">{% trans 'Order Date' %}</td>
+                           <td class="admin_location_icon">{% trans 'Delivery Address' %}</td>
+                           <td>{% trans 'Payment' %}</td>
+                           <td>{% trans 'vat' %}</td>
+                           <td class=""></td>
+                        </tr>
+                        {% for order in orders %}
+                           <tr>   
+                              <td>{{ order.order.get_customer.name|title }}</td>
+                              <td>{{ order.lunchbox.name }}</td>
+                              <td>{{ order.qty }}</td>
+                              <td class="text-center">{{ order.order.date|date:'H:i' }}-{{ order.order.date|add_hour|date:'H:i' }}</td>
+                              <td class="admin_order_calendar text-center">{{ order.order.date|date:'d M Y' }}</td>
+                              <td>{{ order.order.get_customer.address }}</td>
+                              <td>{{ order.get_amount }} €</td>
+                              <td>{{ order.order.vat }} €</td>
+                              <td><a href="{% url 'user_order_detail' order.id %}">{% trans 'Details' %}</a></td>
+                           </tr>
+                           <input type="hidden" name="odere_id[]" class="order_ids" value="{{ order.id }}">
+                        {% endfor %}
+                     </tbody>
+                  </table>
+                  </div>
+
+
+                  <button onclick="userordermail()">{% trans 'Mail' %}</button>
+                  <button id="print_button">{% trans 'Print' %}</button>
+                  {% endif %}
+                  {% if orders.has_other_pages %}
+                  <ul class="pagination pull-left full-width">
+                     {% if orders.has_previous %}
+                        <li><a href="?page={{ orders.previous_page_number }}"><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                     {% else %}
+                        <li class="disabled"><a href=""><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                     {% endif %}
+
+                     {% for i in orders.paginator.page_range %}
+                        {% if orders.number == i %}
+                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                          <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                     {% endfor %}
+
+                     {% if orders.has_next %}
+                        <li><a href="?page={{ orders.next_page_number }}"><img src="{% static 'mainapp/img/pagination_arrow_next.png' %}" alt=""></a></li>
+                     {% else %}
+                        <li class="disabled"><span><a href=""><img src="{% static 'mainapp/img/pagination_arrow_next.png' %}" alt=""></a></span></li>
+                   {% endif %}
+                     </ul>
+                  {% endif %}
+               </div>
+               {% if not orders %}
+                  <center>{% trans 'No Orders' %}.</center>
+               {% endif %}
+            </div>
+         </div>
+{% endblock %}
+{% block scriptcode %}
+<script type="text/javascript">
+        $('#print_button').click(function () {
+         var emlnts=$('.order_ids');
+                    var printContents = $('.outer-table').html();
+                    printContents=printContents.replace('class="admin_order_table full-width table table-responsive table-bordered"','border="1"')
+                    printContents=printContents.replace('<td class=""></td>','')
+                    for(i=0;i<emlnts.length;i++){
+                        printContents=printContents.replace('<td><a href="/en/user/order/detail/'+$(emlnts[i]).val()+'/">Details</a></td>','') 
+                    }
+                    
+                    // var originalContents = document.body.innerHTML;
+                    // document.body.innerHTML = printContents;
+
+                    // window.print();
+
+                    // document.body.innerHTML = originalContents;
+                    var strFrameName = ("printer-" + (new Date()).getTime());
+                     
+                    // Create an iFrame with the new name.
+                    var jFrame = $( "<iframe name='" + strFrameName + "'>" );
+                     
+                    // Hide the frame (sort of) and attach to the body.
+                    jFrame
+                    .css( "width", "1px" )
+                    .css( "height", "1px" )
+                    .css( "position", "absolute" )
+                    .css( "left", "-9999px" )
+                    .appendTo( $( "body:first" ) )
+                    ;
+                     
+                    // Get a FRAMES reference to the new frame.
+                    var objFrame = window.frames[ strFrameName ];
+                     
+                    // Get a reference to the DOM in the new frame.
+                    var objDoc = objFrame.document;
+                     
+                    // Grab all the style tags and copy to the new
+                    // document so that we capture look and feel of
+                    // the current document.
+                     
+                    // Create a temp document DIV to hold the style tags.
+                    // This is the only way I could find to get the style
+                    // tags into IE.
+                    var jStyleDiv = $( "<div>" ).append(
+                    $( "style" ).clone()
+                    );
+                     
+                    // Write the HTML for the document. In this, we will
+                    // write out the HTML of the current element.
+                    objDoc.open();
+                    objDoc.write( "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">" );
+                    objDoc.write( "<html>" );
+                    objDoc.write( "<body>" );
+                    objDoc.write( "<head>" );
+                    objDoc.write( "<title>" );
+                    objDoc.write( document.title );
+                    objDoc.write( "</title>" );
+                    objDoc.write( jStyleDiv.html() );
+                    objDoc.write( "</head>" );
+                    objDoc.write( printContents );
+                    objDoc.write( "</body>" );
+                    objDoc.write( "</html>" );
+                    objDoc.close();
+                     
+                    // Print the document.
+                    objFrame.focus();
+                    objFrame.print();
+                     
+                    // Have the frame remove itself in about a minute so that
+                    // we don't build up too many of these frames.
+                    setTimeout(
+                    function(){
+                    jFrame.remove();
+                    },
+                    (60 * 1000)
+                    );
+
+        });
+
+    </script>
+{% endblock %}

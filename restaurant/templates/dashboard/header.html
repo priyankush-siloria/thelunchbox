@@ -1,0 +1,53 @@
+ {% load staticfiles %}
+ {% load common_template_functions %}
+ {% load i18n %}
+{% load l10n %}
+ {% url 'lunchbox_management' request.session.restaurant_id as url %}
+ {% url 'admin_restaurant_information' request.session.restaurant_id as url1 %}
+
+ <header class="admin-header pull-left full-width" id="top">
+            <div class="container">
+               <div class="navbar-header">
+                  <button aria-controls="bs-navbar" aria-expanded="false" class="collapsed navbar-toggle" data-target="#bs-navbar" data-toggle="collapse" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a href="{% url 'dashboard_home' %}" class="navbar-brand"><img src="{% static 'dashboard/img/admin_logo.jpg' %}" alt=""></a> 
+                  <div class="top_nav_icon"><a href="{% url 'logout' %}"><img src="{% static 'dashboard/img/admin-top-nav-icon.jpg' %}" alt=""></a></div>
+               </div>
+               <nav class="collapse navbar-collapse" id="bs-navbar">
+                  <ul class="nav navbar-nav navbar-right">
+                     {% if request.path == url %}
+                        <li><a href="{% url 'admin_restaurant_information' request.session.restaurant_id %}"> Restaurant</a></li>
+                        <li><a href="{% url 'logout' %}"><img src="{% static 'dashboard/img/admin-top-nav-icon.jpg' %}" alt=""></a></li>
+                     {% else %}
+                        {%if request.session.user_type == 'Restaurant' %}
+                              <li><a href="{% url 'lunchbox_management' request.session.restaurant_id %}">Lunchbox</a></li>
+                              <li><a class="active" href="{% url 'admin_restaurant_information' request.session.restaurant_id %}">Restaurant</a></li>
+                              <li><a href="{% url 'dashorders' %}">Orders</a></li>
+                              <li><a href="{% url 'dashbilling' %}">Billing</a></li>
+                              <li class="unread_msg"><a href="{% url 'admin_notifications' %}">Unread <span class="unread_msg_icon">{{ restaurant.get_notifications }}</span></a></li>
+                              <li class="language_choose">
+                                    <a href="{% baseurl %}{{LANGUAGE_CODE}}dashboard" id="menu2"  data-toggle="dropdown">{{LANGUAGE_CODE}}</a>
+                                    <ul class="language_choose_list dropdown-menu" role="menu" aria-labelledby="menu2">
+                                     {% for lang in LANGUAGES %}
+                                       <li><a href="{% baseurl lang.0 %}/{{lang_page_url}}dashboard" > {{ lang.1 }} ({{ lang.0 }}) </a></li>
+                                      {% endfor %}
+                                    </ul>
+                                 </li>
+                              <li><a href="{% url 'logout' %}"><img src="{% static 'dashboard/img/admin-top-nav-icon.jpg' %}" alt=""></a></li>
+                        {% else %}
+                           {% if request.path == url1 %}
+                              <li><a class="active" href="{% url 'admin_restaurant_information' request.session.restaurant_id %}">Restaurant</a></li>
+                              <li><a  href="{% url 'lunchbox_management' request.session.restaurant_id %}">Lunchbox</a></li>
+                              <li><a href="{% url 'dashrestaurants' %}">Restaurants</a></li>
+                              <li><a href="{% url 'logout' %}"><img src="{% static 'dashboard/img/admin-top-nav-icon.jpg' %}" alt=""></a></li>
+                           {% else %}
+                              <li><a href="{% url 'dashrestaurants' %}">Restaurants</a></li>
+                              <li><a href="{% url 'dashorders' %}">Orders</a></li>
+                              <li><a href="{% url 'dashbilling' %}">Billing</a></li>
+                              <li class="unread_msg"><a href="{% url 'admin_notifications' %}">Unread <span class="unread_msg_icon">{% if notifications_num %}{{ notifications_num }}{% else %}0{% endif %}</span></a></li>
+                              <li><a href="{% url 'logout' %}"><img src="{% static 'dashboard/img/admin-top-nav-icon.jpg' %}" alt=""></a></li>
+                           {% endif %}
+                        {% endif %}
+                     {% endif %}
+                  </ul>
+               </nav>
+            </div>
+         </header>

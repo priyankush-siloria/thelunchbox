@@ -1,0 +1,280 @@
+.navigation {
+  background: rgba(255, 255, 255, 0.54);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+
+  .elements {
+    .logo {
+      margin-top: -7px;
+      display: table;
+      float: left;
+      margin-bottom: 3px;
+
+      &.logo-not-auth {
+        margin-top: 3px;
+      }
+    }
+    ul {
+      li {
+        list-style-type: none;
+
+        &.step {
+          height: 65px;
+          padding: 5px;
+          float: left;
+          margin: 5px 0;
+          position: relative;
+
+          &:nth-child(even) {
+            &:hover {
+              opacity: 0.5;
+
+              &:last-child {
+                opacity: 1;
+                user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                -moz-user-select: none;
+                cursor: default;
+              }
+            }
+          }
+
+          a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          &.line {
+            width: 20px;
+            margin: 5px 8px;
+
+            div {
+              width: 100%;
+              height: 2px;
+              border-bottom: 1px solid #000;
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              margin: auto;
+            }
+          }
+
+          .step_txt {
+            display: table;
+            margin: 18px auto;
+          }
+
+          &.active {
+            background: url("/static/img/active_nav_item.png") no-repeat center center;
+            pointer-events: none;
+
+            p {
+              background: #000;
+              color: #fff;
+            }
+
+            .one, .two, .three {
+              background-position: center -25px;
+            }
+          }
+
+          &:last-child {
+          }
+
+          .one, .two, .three {
+            width: 30px;
+            margin-right: 2px;
+            height: 25px;
+            float: left;
+            border: 1px solid #000;
+          }
+
+          .one {
+            background: url("/static/img/icons/step1.png") no-repeat top center;
+          }
+
+          .two {
+            background: url("/static/img/icons/step2.png") no-repeat top center;
+          }
+
+          .three {
+            background: url("/static/img/icons/step3.png") no-repeat top center;
+          }
+
+          p {
+            text-align: center;
+            font-size: 16px;
+            height: 25px;
+            color: #000;
+            border: 1px solid #000;
+            font-family: RobotoMedium, sans-serif;
+            float: left;
+            font-weight: bold;
+            background: transparent;
+            padding: 1px 5px 0 5px;
+          }
+        }
+      }
+    }
+    &-icons {
+      float: right;
+      margin-top: 28px;
+
+      .profile-icon, .cart-icon, .logout-icon {
+        font-size: 21px;
+        margin-right: 5px;
+        color: #000;
+        position: relative;
+        border: 1px solid #000;
+        width: 28px;
+        height: 25px;
+        display: block;
+        float: left;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          text-decoration: none;
+          opacity: 0.5;
+        }
+      }
+      .cart-icon {
+        background: url("/static/img/icons/cart.png") no-repeat center center;
+      }
+      .profile-icon {
+        background: url("/static/img/icons/profile.png") no-repeat center center;
+      }
+      .logout-icon {
+        background: url("/static/img/icons/logout.png") no-repeat center center;
+
+      }
+    }
+
+    .items_in_cart {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      color: #fff;
+      background: red;
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 19px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.pseudo-nav {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 30px;
+}
+
+.matop {
+  height: 30px;
+}
+
+.isMobile {
+  .navigation {
+    .elements {
+      padding-top: 5px;
+      .logo {
+        margin-top: 0;
+
+        img {
+          width: 70px;
+        }
+      }
+      &-icons {
+        margin-top: 9px;
+      }
+    }
+    ul {
+      li {
+        &.step {
+          margin: 0;
+          padding: 0 5px;
+
+          @media only screen and (max-width: 310px), only screen and (max-device-width: 310px) {
+            display: none;
+          }
+
+          .step_txt p {
+            display: none;
+          }
+
+          &.active {
+            background: none;
+          }
+        }
+      }
+
+      li.step.line {
+        display: none;
+      }
+
+      @media only screen and (min-width: 480px) and (max-width: 874px), only screen and (min-device-width: 480px) and (max-device-width: 874px) {
+        li.step.active {
+          .step_txt p {
+             display: block;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+@media only screen and (max-device-width: 800px), only screen and (max-width: 800px) {
+  .pseudo-nav {
+    margin-bottom: 0;
+    height: 80px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1272px),
+only screen and (min-width: 801px) and (max-width: 874px) {
+  .navigation {
+    ul {
+      li {
+        &.step {
+          margin: 0;
+          padding: 0 5px;
+
+          .step_txt p {
+            display: none;
+          }
+
+          &.active {
+            background: none;
+          }
+        }
+      }
+      li.step.line {
+        display: none;
+      }
+
+      li.step.active {
+        .step_txt p {
+          display: block;
+        }
+      }
+    }
+  }
+}

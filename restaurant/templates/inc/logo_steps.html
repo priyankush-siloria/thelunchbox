@@ -1,0 +1,7 @@
+{% load static %}
+<div class="logo-steps">
+    <a href="{% if request.get_full_path != '/' %}{% url 'home' %}{% else %}#{% endif %}" class="logo">
+        <img src="{% static 'img/logo_main.png' %}" class="desktop-logo">
+        <img src="{% static 'img/logo_transp.png' %}" class="mobile-logo">
+    </a>
+</div>

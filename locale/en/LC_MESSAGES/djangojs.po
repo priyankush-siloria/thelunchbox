@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-11 18:15+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: assets/js/main.js:154 static/js/main.min.js:140
+msgid "Lunchbox successfully added to catering!"
+msgstr ""
+
+#: assets/js/main.js:175 static/js/main.min.js:155
+msgid "Lunchbox successfully added to basket!"
+msgstr ""
+
+#: assets/js/main.js:198 static/js/main.min.js:68
+msgid "Passwords mismatch!"
+msgstr ""
+
+#: assets/js/main.js:385 static/js/main.min.js:252
+msgid "Rating"
+msgstr ""
+
+#: assets/js/main.js:470 static/js/main.min.js:296
+msgid "Update basket"
+msgstr ""
+
+#: assets/js/main.js:557 assets/js/main.js:563 static/js/main.min.js:323
+#: static/js/main.min.js:326
+msgid "Coupon discount"
+msgstr ""
+
+#: assets/js/main.js:564 static/js/main.min.js:326
+msgid "With discount"
+msgstr ""
+
+#: assets/js/main.js:650 static/js/main.min.js:372
+msgid "There are restaurants closed on the selected delivery dates"
+msgstr ""
+
+#: assets/js/main.js:655 static/js/main.min.js:372
+msgid "Missing delivery dates of lunchboxes!"
+msgstr ""
+
+#: assets/js/main.js:660 assets/js/main.js:811 static/js/main.min.js:376
+#: static/js/main.min.js:454
+msgid "Check minimum order of lunchboxes!"
+msgstr ""
+
+#: assets/js/main.js:665 static/js/main.min.js:376
+msgid "Invalid delivery date! Your order can be delivered from tomorrow"
+msgstr ""
+
+#: assets/js/main.js:713 static/js/main.min.js:400
+msgid "The following restaurants are closed on the selected date"
+msgstr ""
+
+#: assets/js/main.js:717
+msgid "The restaurant is closed on the selected date"
+msgstr ""
+
+#: assets/js/main.js:786 static/js/main.min.js:443
+msgid "There are restaurants closed on the selected delivery date"
+msgstr ""
+
+#: assets/js/main.js:793 static/js/main.min.js:450
+msgid "Missing delivery date and time of order!"
+msgstr ""
+
+#: assets/js/main.js:799 static/js/main.min.js:449
+msgid "Invalid delivery date. Your order can be delivered from tomorrow"
+msgstr ""
+
+#: assets/js/main.js:804 static/js/main.min.js:449
+msgid "Invalid delivery time. Orders can be delivered between 1pm - 4pm"
+msgstr ""
+
+#: assets/js/main.js:848 static/js/main.min.js:471
+msgid "Rating sent!"
+msgstr ""
+
+#: assets/js/main_control.js:168 static/js/main_control.min.js:96
+msgid "Photoshoot requested"
+msgstr ""
+
+#: assets/js/main_control.js:223 static/js/main_control.min.js:121
+msgid "Request payment"
+msgstr ""
+
+#: assets/js/main_control.js:223 static/js/main_control.min.js:121
+msgid "not available yet"
+msgstr ""
+
+#: assets/js/main_control.js:226 static/js/main_control.min.js:121
+msgid "To be confirmed by La Fiambrera"
+msgstr ""
+
+#: assets/js/main_control.js:229 static/js/main_control.min.js:121
+msgid "Payment"
+msgstr ""
+
+#: assets/js/main_control.js:234 static/js/main_control.min.js:121
+msgid "Payment requested"
+msgstr ""
+
+#: assets/js/main_control.js:237 static/js/main_control.min.js:121
+msgid "Confirmed"
+msgstr ""
+
+#: assets/js/main_control.js:240 static/js/main_control.min.js:121
+msgid "Transferred"
+msgstr ""
+
+#: static/js/main.min.js:400
+msgid "The restaurant is closed on the selected date "
+msgstr ""

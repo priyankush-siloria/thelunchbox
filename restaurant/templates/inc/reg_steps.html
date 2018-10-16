@@ -1,0 +1,16 @@
+{% load static %}
+{% load i18n %}
+<ul class="reg_steps">
+    <li class="order {% if request.get_full_path == '/user_registration/' %}active{% endif %}">
+        <a href="{% url 'registration' %}">{% trans 'To order' %}</a>
+    </li>
+    <li class="company {% if request.get_full_path == '/company_registration/' %}active{% endif %}">
+        <a href="{% url 'company_registration' %}">{% trans 'Company' %}</a>
+    </li>
+    <li class="restaurant {% if request.get_full_path == '/restaurant_registration/' %}active{% endif %}">
+        <a href="{% url 'restaurant_registration' %}">{% trans 'Restaurant' %}</a>
+    </li>
+{#    <li class="admin {% if request.get_full_path == '/admin_registration/' %}active{% endif %}">#}
+{#        <a href="{% url 'admin_registration' %}">{% trans 'Admin' %}</a>#}
+{#    </li>#}
+</ul>

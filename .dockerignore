@@ -1,0 +1,7 @@
+.gitignore
+.git
+gulpfile.js
+package.json
+README.md
+.elasticbeanstalk/*
+Makefile

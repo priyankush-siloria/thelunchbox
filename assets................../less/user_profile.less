@@ -1,0 +1,33 @@
+.user_profile {
+  padding: 0;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, .4);
+
+  &-userInfo {
+    padding: 15px;
+    border-right: 2px solid rgba(45, 45, 45, 0.5);
+    width: 50%;
+  }
+
+  &-companyInfo {
+    width: 50%;
+    padding: 15px;
+  }
+
+  @media only screen and (max-device-width: 800px), only screen and (max-width: 800px) {
+    &-userInfo {
+      border-right: none;
+      border-bottom: 2px solid rgba(45, 45, 45, 0.5);
+      width: 100%;
+    }
+
+    &-companyInfo {
+      width: 100%;
+    }
+
+    .edit-btn {
+      width: 100%;
+      font-size: 1.1em;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{% extends 'dashboard/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}
+Admin
+{% endblock %}
+
+{% block content %}
+         <div class="container">
+            <div class="admin_registered_restaurants_outer">
+               <h1 class="pull-left full-width">{% trans 'Registered restaurants' %}</h1>
+               <div class="admin_restaurants_logo_listing pull-left full-width">
+                  <ul class="pull-left full-width">
+                  {% for i in default %}
+                     {% if i.logo %}
+                        <li>
+                           <span class="admin_restaurants_logo_listing_inner">
+                           {{i.name}}
+                            <a href="{% url 'admin_restaurant_information' i.id %}">
+                              <img src="{{ i.logo|thumbnail_url:'restaurant_control_logo_admin' }}" alt="">
+                           </a>
+                           <span class="close_logo glyphicon glyphicon-remove" data-res="{{ i.id }}" style="display: none"></span>
+                           </span>   
+                        </li>
+                     {% else %}
+                        <li>
+                           <span class="admin_restaurants_logo_listing_inner">
+                           {{i.name}}
+                           <a href="{% url 'admin_restaurant_information' i.id %}">
+                              <img src="{% static 'dashboard/img/default_admin_logo.jpg' %}" alt="">
+                           </a>
+                           <span class="close_logo glyphicon glyphicon-remove" data-res="{{ i.id }}" style="display: none"></span>
+                           </span>   
+                        </li>
+                     {% endif %}
+                  {% endfor %}
+                  </ul>
+                  <!-- <div class="admin_add_restaurant_icon pull-left">
+                     <a href="{% url 'admin_restaurant_add' %}">
+                        <span class="admin_add_restaurant_icon_inner">
+                           <span class="admin_restaurants_logo_listing_inner">
+                              <img src="{% static 'dashboard/img/add_restaurant_icon.png' %}" alt="">
+                           </span> 
+                        </span> 
+                     </a>    
+                  </div> -->
+                  <div class="pull-left full-width admin_remove_logo">
+                     <a class="pull-right" href="javascript:show_icon()">{% trans 'Remove' %}</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+{% endblock %}    

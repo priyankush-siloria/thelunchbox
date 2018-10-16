@@ -1,0 +1,306 @@
+{% extends "mainapp/base.html" %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}Lunchbox Detail{% endblock %}
+{% block content %}
+<script type="text/javascript"> 
+   
+   function dcr()
+   {
+
+      var a = document.getElementById("individual_lunchbox_quantity_wanted").value;
+      b=Number(a)
+      if(b>1)
+      {
+         document.getElementById("individual_lunchbox_quantity_wanted").value=b-1;
+      }
+   }
+   function incr()
+   {
+
+      var a = document.getElementById("individual_lunchbox_quantity_wanted").value;
+      b=Number(a)
+      if(b>1 || b==1)
+      {
+         document.getElementById("individual_lunchbox_quantity_wanted").value=b+1;
+      }
+   }
+
+</script>
+
+      <section class="individual_lunchbox_section" id="main_page_section">
+         <div class="container">
+            <div id="main_area">
+              <!-- Slider -->
+              
+               <div class="row">
+
+                  <div class="col-xs-12" id="slider">
+                     <!-- Top part of the slider -->
+                     <div class="row">
+                     {% for lunchbox in lunchbox_detail %}
+
+                     
+                        <div class="col-md-6 carousel-bounding" id="carousel-bounding-box">
+                           <div class="carousel slide" id="myCarousel"  data-ride="carousel">
+                              <!-- Carousel items -->
+                              <div class="carousel-inner">
+                            {% if lunchbox.get_images %}
+                              {% for i in lunchbox.get_images %}
+                                 {% if forloop.first %}
+                                    <div class="active item" data-slide-number="{{forloop.counter}}">
+                                    
+                                        {% if i.image|thumbnail_url:'gallery_image' %}
+                                            <img src="{{ i.image|thumbnail_url:'home_lunchbox_pic' }}" alt="">
+                                        {% else %}
+                                            <img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                        {% endif %}
+                                    
+                                      <!-- <img src="img/individual_slide_pro_img.jpg"> -->
+                                    </div>
+                                    {% else %}
+                                       <div class="item" data-slide-number="{{forloop.counter}}" alt="">
+                                           {% if i.image|thumbnail_url:'gallery_image' %}
+                                               <img src="{{ i.image|thumbnail_url:'home_lunchbox_pic' }}" alt="">
+                                           {% else %}
+                                               <img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                           {% endif %}
+                                       </div> 
+                                       {% endif %}
+                              
+                                 {% endfor %}
+                                 {% else %}
+                                    <div class="active item" data-slide-number="0">
+                                      <img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                    </div>
+                                    <div class="item" data-slide-number="1" alt="">
+                                      <img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                    </div>
+                                  {% endif %}
+                                 <div class="row" id="slider-thumbs">
+                                    <!-- Bottom switcher of slider -->
+                                    <ol class="carousel-indicators" style="z-index:1 !important">
+                                     <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}" class="active"></li>
+                                     
+                                     <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}" class=""></li>
+                                     
+                                   </ol>                 
+                                </div>
+                                
+                              </div>                                
+                           </div>
+                        </div>
+                        
+                        <div class="col-md-6 carousel-text-1" id="carousel-text">
+                          <div class="individual_lunchbox_slide_content">
+                              <div>
+                                <form role="form"  method="GET" action="{% url 'tocart' %}">{% csrf_token %}
+                                  <h1>{{ lunchbox.name }} <span class="individual_lunchbox_icon"><img src="{% static 'mainapp/img/individual_lunch_icon1.png' %}" alt=""></span></h1>
+                                  <span class="individual_lunchbox_price">€ {{ lunchbox.price }}</span>
+                              </div>
+                              <input type="hidden" class="available_till" id="ddate_ddate{{ forloop.counter }}" value="{{ lunchbox.available_till|date:'Y-m-d' }}">
+                                    <input type="hidden" name="lunchboxname" value="{{ lunchbox.name }}">
+                                    <input type="hidden" name="lunchbox" value="{{ lunchbox.id }}">
+                                    <input type="hidden" name="lunchboxprice" value="{{ lunchbox.price }}">
+                              <div class="individual_lunchbox_quantity">
+                                 <div class="input-group individual_lunchbox_quantity"> 
+                                    <span class="input-group-addon" onclick="dcr()">-</span> 
+                                    <input name="lunchboxqty" id="individual_lunchbox_quantity_wanted" class="text form-control" value="2" min="1" type="text"/> 
+                                    <span class="input-group-addon" onclick="incr()">+</span>
+                                 </div>
+                              </div>
+
+                              <div class="individual_lunchbox_order">
+                               <button type="button"  name="Submit" onclick="tocart(this.form)" class="btn btn-default btn-lg">{% trans 'Order' %}</button>
+                    
+                              </div>
+                              </form>
+                              <div class="individual_lunchbox_more_info desktop">
+                                 <ul class="nav nav-tabs">
+                                    <li class="active"> 
+                                       <a href="#tabs-1" data-toggle="tab"> {% trans 'The Lunchbox' %}</a></li>
+                                    <li class="">
+                                       <a href="#tabs-2" data-toggle="tab">{% trans 'Nutritional values' %}</a></li>
+                                    <li class="">
+                                       <a href="#tabs-3" data-toggle="tab">{% trans 'The Restaurant' %}</a>
+                                    </li>
+                                    <li class="">
+                                       <a href="#tabs-4" data-toggle="tab">{% trans 'Group Benefits' %}</a>
+                                    </li>
+                                    
+                                 </ul>
+                                 <div class="tab-content">
+                                    <div id="tabs-1" class="tab-pane active">
+                                       <div id="short_description_block">
+                                          {% trans lunchbox.desc|safe %}
+                                       </div>
+                                    </div>
+                                    <div id="tabs-2" class="tab-pane">
+                                       
+
+                                       <p><strong>{% trans 'Information per 100g | Serving Size 500 ' %} g</strong></p>
+                                       <div class="nutritional_values">
+                                          <div class="nutritional_values_row_grey">
+                                             <span class="nutritional_name"><strong>{% trans 'Sugar' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.sugar }} g</span> 
+                                             <span class="nutritional_name"><strong>{% trans 'Carbohydrates' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.carbohydrates }} g</span>
+                                          </div>
+                                          <div class="nutritional_values_row_white">
+                                             <span class="nutritional_name"><strong>{% trans 'Calories' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.get_total_calories }} Kcal</span> 
+                                             <span class="nutritional_name"><strong>{% trans 'Fat' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.fat }} g</span>
+                                          </div>
+                                          <div class="nutritional_values_row_grey">
+                                             <span class="nutritional_name"><strong>{% trans 'Protein' %}</strong></span>
+                                             <span class="nutritional_data">{{ lunchbox.fat }} g</span> 
+                                             <span class="nutritional_name"><strong>{% trans 'salt' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.sodium }} g</span>
+                                          </div>
+                                       </div>
+                                    </div>
+
+                                    <div id="tabs-3" class="tab-pane">
+                                       <p>{% trans lunchbox.restaurant.desc|safe %}</p>
+                                       <div class="restaurant_logo"><img src="/media/{{ lunchbox.restaurant.logo }}" alt=""></div>
+                                       <div class="address">
+                                          <p><strong>{% trans 'Address:' %}</strong> {% trans lunchbox.restaurant.address %} <br>
+                                          <strong>{% trans 'City:' %}</strong>{% trans lunchbox.restaurant.city %} <br>
+                                          <strong>{% trans 'State:' %}</strong>{% trans lunchbox.restaurant.state %}<br>
+                                          <strong>{% trans 'Zip Code:' %}</strong>{{ lunchbox.restaurant.zip_code }}</p><br>
+                                       </div>
+                                       <div class="website_link">
+                                          <p><strong>{% trans 'Website:' %}</strong> <a href="{{ lunchbox.restaurant.website }}">{{ lunchbox.restaurant.website }}</a></p>
+                                       </div>
+                                       <div class="telephone_number">
+                                          <p><strong>{% trans 'Telephone Number:' %}</strong> {{ lunchbox.restaurant.phone }}</p>
+                                       </div>
+                                       <div class="opening_hours">
+                                          <p><strong>{% trans 'Opening Hours:' %}</strong> {% trans lunchbox.restaurant.opening_hours|safe %}</p>
+                                       </div>
+                                       <div class="more_details">
+                                          <a href="{% url 'restaurant_profile' restaurant_id=lunchbox.restaurant.id %}">{% trans 'See More' %} </a>
+                                       </div>
+                                    </div>
+                                    <div id="tabs-4" class="tab-pane">
+                                       <p>{% trans 'Order multiple Lunchboxes from the same restaurant for special prices !' %}</p>
+                                       <ul class="multiple_lunchboxes pull-left full-width">
+                                       {% for i in lunchbox.get_discounts %}
+                                          <li>{{ i.qty }} {% trans 'lunchboxes' %}={{ i.percent }}% {% trans 'discount' %}</li>
+                                       {% endfor %}   
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                          </div>
+                        </div>
+                        
+                        <div class="col-sm-12 mobile-tab">
+                           <div class="individual_lunchbox_more_info mobile-tab">
+                              <ul class="nav nav-tabs">
+                                 <li class="active"> 
+                                    <a href="#tabs-5" data-toggle="tab">{% trans  'The Lunchbox' %}</a></li>
+                                 <li class="">
+                                    <a href="#tabs-6" data-toggle="tab">{% trans 'Nutritional values' %}</a></li>
+                                 <li class="">
+                                    <a href="#tabs-7" data-toggle="tab">{% trans 'The Restaurant' %}</a>
+                                 </li>
+                                 <li class="">
+                                    <a href="#tabs-8" data-toggle="tab">{% trans 'Group Benefits' %}</a>
+                                 </li>
+                                 
+                              </ul>
+                              <div class="tab-content">
+                                 <div id="tabs-5" class="tab-pane active">
+                                    <div id="short_description_block">
+                                      {% trans lunchbox.desc|safe %}
+                                    </div>
+                                 </div>
+                                 <div id="tabs-6" class="tab-pane">
+                                    
+                                    <p><strong>{% trans 'Information per 100g | Serving Size 500 ' %}g</strong></p>
+                                    <div class="nutritional_values">
+                                          <div class="nutritional_values_row_grey">
+                                             <span class="nutritional_name"><strong>{% trans 'Sugar' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.sugar }} g</span> 
+                                             <span class="nutritional_name"><strong>{% trans 'Carbohydrates' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.carbohydrates }} g</span>
+                                          </div>
+                                          <div class="nutritional_values_row_white">
+                                             <span class="nutritional_name"><strong>{% trans 'Calories' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.get_total_calories }} Kcal</span> 
+                                             <span class="nutritional_name"><strong>{% trans 'Fat' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.fat }} g</span>
+                                          </div>
+                                          <div class="nutritional_values_row_grey">
+                                             <span class="nutritional_name"><strong>{% trans 'Protein' %}</strong></span>
+                                             <span class="nutritional_data">{{ lunchbox.protein }} g</span> 
+                                             <span class="nutritional_name"><strong>{% trans 'salt' %}</strong></span> 
+                                             <span class="nutritional_data">{{ lunchbox.sodium }} g</span>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 
+                                 <div id="tabs-7" class="tab-pane">
+                                    {% trans lunchbox.restaurant.desc|safe %}
+                                    <div class="restaurant_logo"><img src="{% static 'mainapp/img/resturant_logo.png' %}" alt=""></div>
+                                    <div class="address">
+                                          <p><strong>{% trans 'Address:' %}</strong> {% trans lunchbox.restaurant.address  %} <br>
+                                          <strong>{% trans 'City:' %}</strong>{% trans lunchbox.restaurant.city %} <br>
+                                          <strong>{% trans 'State:' %}</strong>{% trans lunchbox.restaurant.state %}<br>
+                                          <strong>{% trans 'Zip Code:' %}</strong>{{ lunchbox.restaurant.zip_code }}</p><br>
+                                       </div>
+                                    <div class="website_link">
+                                       <p><strong>{% trans 'Website:' %}</strong> <a href="#">{{ lunchbox.restaurant.website }}</a></p>
+                                    </div>
+                                    <div class="telephone_number">
+                                       <p><strong>{% trans 'Telephone Number:' %}</strong> {{ lunchbox.restaurant.phone }}</p>
+                                    </div>
+                                    <div class="opening_hours">
+                                       <p><strong>{% trans 'Opening Hours:' %}</strong> {% trans lunchbox.restaurant.opening_hours|safe %}</p>
+                                    </div>
+                                 </div>
+                                 <div id="tabs-8" class="tab-pane">
+                                    <p>{% trans 'Order multiple Lunchboxes from the same restaurant for special prices !' %}</p>
+                                    <ul class="multiple_lunchboxes pull-left full-width">
+                                       {% for i in lunchbox.get_discounts %}
+                                          <li>{{ i.qty }} lunchboxes={{ i.percent }}% discount</li>
+                                       {% endfor %}   
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="individual_lunch_view_all_lunchboxes pull-left full-width text-center">
+                                <a href="{% url 'individual_lunchbox_restaurant' lunchbox.restaurant.id %}"><img class="hover_arrow" src="{% static 'mainapp/img/view_all_arrow.png' %}" alt=""><img class="non_hover_arrow" src="{% static 'mainapp/img/view_all_arrow_non_hover.png' %}" alt="">{% trans 'Featured Lunchbox' %}</a>
+                             </div>
+                           {% endfor %}
+                        </div>
+                     </div>
+                     {% if lunchbox_detail.has_other_pages %}
+                        {% if lunchbox_detail.has_previous %}
+                        <a class="left carousel-control" href="?page={{ lunchbox_detail.previous_page_number }}">
+                           <span class="glyphicon glyphicon-chevron-left"><img src="{% static 'mainapp/img/prev_arrow.png' %}"></span>
+                        </a>
+                        {% endif %}
+                        {% if lunchbox_detail.has_next %}
+                        <a class="right carousel-control" href="?page={{ lunchbox_detail.next_page_number }}"  >
+                           <span class="glyphicon glyphicon-chevron-right"><img src="{% static 'mainapp/img/next_arrow.png' %}"></span>
+                        </a> 
+                        {% endif %}
+                     {% endif %}
+                  </div>
+              </div><!--/Slider-->
+
+              
+            </div>
+         </div>
+      </section>
+      
+      
+
+
+{% endblock %}

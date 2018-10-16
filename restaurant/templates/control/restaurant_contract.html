@@ -1,0 +1,14 @@
+{% extends 'control/base_control.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Contract' %}{% endblock %}
+{% block content %}
+    <div class="col-md-16">
+        <div class="col-md-16 center lunchbox-content contract">
+            <h1 class="text-uppercase">{% trans 'Contract' %}</h1>
+            <p>
+                {{ contract.text }}
+            </p>
+        </div>
+    </div>
+{% endblock %}

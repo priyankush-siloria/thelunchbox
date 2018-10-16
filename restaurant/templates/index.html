@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load socialaccount %}
+{% block title %}{% trans 'Main page' %}{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'swiper/dist/css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'font-awesome.min.css' %}">
+{% endblock %}
+{% block content %}
+
+ <div class="info_text">
+                <button id="open_modal" style="display: none;" data-toggle="modal" data-target="#myModal"><img src="{% static 'img/info_text.png' %}"></button>
+            </div>
+
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4>La Fiambrera</h4>
+                  
+                  <div class="modal-body">
+                    <p>Eat healthily and support local restaurants by ordering a freshly cooked lunch, delivered to your workplace. 
+You and you colleagues can choose from a range of nutritionally-balanced meals and benefit from the group discounts!</p>
+                  </div>
+                  
+                </div>
+
+              </div>
+            </div>
+    <div id="fullpage">
+        {% if not request.user.is_authenticated %}
+            <div class="section fp-auto-height index" data-anchor="authorization">
+                <div class="wrapper auth_wrapper">
+                    <div class="auth_wrapper-content">
+                        <div class="row">
+                            <div class="col-md-7 col-xs-15 center">
+                                {% include 'inc/logo_steps.html' %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form class="auth_form col-md-6 col-xs-15 center" action="." method="POST"
+                                  name="authorization">{% csrf_token %}
+                                <div class="form-group form-group-custom {% if form.email.errors %}has-error{% endif %}">
+                                    {% if form.email.errors %}
+                                        <label class="control-label small">{{ form.email.errors }}</label>
+                                    {% endif %}
+                                    {{ form.email }}
+                                </div>
+                                <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                                    {% if form.email.errors %}
+                                        <label class="control-label small">{{ form.password.errors }}</label>
+                                    {% endif %}
+                                    {{ form.password }}
+                                </div>
+                                <div class="form-group">
+                                    <a href="{% provider_login_url 'facebook' method='oauth2' %}"
+                                       class="btn btn-facebook">{% trans 'Login with' %} Facebook</a>
+                                    <a href="{% provider_login_url 'linkedin' method='oauth2' %}"
+                                       class="btn btn-linkedin">{% trans 'Login with' %} Linkedin</a>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-lg btn-block login_btn" type="submit"></button>
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <p class="bg-danger">{{ message }}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <div class="register_links">
+                                        <a href="{% url 'registration' %}"
+                                           class="register_link text-center">{% trans 'Register' %}</a>
+                                        <span class="register_or">{% trans 'or' %}</span>
+                                        <a href="#restaurants" class="register_link">{% trans 'Take a Peek' %} </a>
+                                    </div>
+                                    {#                                    {% if request.LANGUAGE_CODE == 'en' %}#}
+                                    {#                                        <a href="{% url 'change_lang' lng='es' %}">ES</a>#}
+                                    {#                                    {% else %}#}
+                                    {#                                        <a href="{% url 'change_lang' lng='en' %}">EN</a>#}
+                                    {#                                    {% endif %}#}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-footer">
+                    {% include 'inc/footer.html' %}
+                </div>
+            </div>
+            <div class="section fp-auto-height graybg" data-anchor="restaurants">
+                <div class="wrapper">
+                    {% include 'inc/restaurants.html' %}
+                </div>
+                <div class="restaraunts-footer">
+                {% include 'inc/footer.html' %}
+                </div>
+            </div>
+
+
+        {% else %}
+            {% include 'inc/nav.html' %}
+            <div class="section fp-auto-height graybg">
+
+                <div class="wrapper inner">
+                    <div class="pseudo-nav"></div>
+                    {% include 'inc/restaurants.html' %}
+                </div>
+                <div class="restaraunts-footer">
+                    {% include 'inc/footer.html' %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'swiper/dist/js/swiper.min.js' %}"></script>
+
+    <script>
+        $('.swiper-container').each(function () {
+            var swiper = new Swiper($(this), {
+                nextButton: $(this).parent().find('.next'),
+                prevButton: $(this).parent().find('.prev'),
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true
+            });
+        });
+    </script>
+<script src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+
+
+{% if not request.user.is_authenticated %}
+<script type="text/javascript"></script>
+
+    $(document).ready(function(){
+        
+     /*$('#open_modal').click();*/
+        
+    });
+</script>
+{% endif %}
+
+{{ cart.item_count }}
+{{ cart.total_price }}
+
+{% for item in cart.list_items %}
+<div>
+    {# Access the item's model instance using its "obj" attribute #}
+    {{ item.obj.name }}
+    <img src="{{ item.obj.picture.url }}">
+    {{ item.price }}
+    {{ item.quantity }}
+    {{ item.total }}
+</div>
+{% endfor %}
+
+{% endblock %}
+
+

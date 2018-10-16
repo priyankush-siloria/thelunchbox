@@ -1,0 +1,2864 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-06 14:29+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: paypal/pro/fields.py:105
+msgid "United States of America"
+msgstr ""
+
+#: paypal/pro/fields.py:106
+msgid "Canada"
+msgstr ""
+
+#: paypal/pro/fields.py:107
+msgid "Afghanistan"
+msgstr ""
+
+#: paypal/pro/fields.py:108
+msgid "Albania"
+msgstr ""
+
+#: paypal/pro/fields.py:109
+msgid "Algeria"
+msgstr ""
+
+#: paypal/pro/fields.py:110
+msgid "American Samoa"
+msgstr ""
+
+#: paypal/pro/fields.py:111
+msgid "Andorra"
+msgstr ""
+
+#: paypal/pro/fields.py:112
+msgid "Angola"
+msgstr ""
+
+#: paypal/pro/fields.py:113
+msgid "Anguilla"
+msgstr ""
+
+#: paypal/pro/fields.py:114
+msgid "Antarctica"
+msgstr ""
+
+#: paypal/pro/fields.py:115
+msgid "Antigua & Barbuda"
+msgstr ""
+
+#: paypal/pro/fields.py:116
+msgid "Argentina"
+msgstr ""
+
+#: paypal/pro/fields.py:117
+msgid "Armenia"
+msgstr ""
+
+#: paypal/pro/fields.py:118
+msgid "Aruba"
+msgstr ""
+
+#: paypal/pro/fields.py:119
+#, fuzzy
+#| msgid "Neutral"
+msgid "Australia"
+msgstr "Neutral"
+
+#: paypal/pro/fields.py:120
+msgid "Austria"
+msgstr ""
+
+#: paypal/pro/fields.py:121
+msgid "Azerbaijan"
+msgstr ""
+
+#: paypal/pro/fields.py:122
+msgid "Bahama"
+msgstr ""
+
+#: paypal/pro/fields.py:123
+msgid "Bahrain"
+msgstr ""
+
+#: paypal/pro/fields.py:124
+msgid "Bangladesh"
+msgstr ""
+
+#: paypal/pro/fields.py:125
+msgid "Barbados"
+msgstr ""
+
+#: paypal/pro/fields.py:126
+msgid "Belarus"
+msgstr ""
+
+#: paypal/pro/fields.py:127
+msgid "Belgium"
+msgstr ""
+
+#: paypal/pro/fields.py:128
+msgid "Belize"
+msgstr ""
+
+#: paypal/pro/fields.py:129
+msgid "Benin"
+msgstr ""
+
+#: paypal/pro/fields.py:130
+msgid "Bermuda"
+msgstr ""
+
+#: paypal/pro/fields.py:131
+msgid "Bhutan"
+msgstr ""
+
+#: paypal/pro/fields.py:132
+msgid "Bolivia"
+msgstr ""
+
+#: paypal/pro/fields.py:133
+msgid "Bosnia and Herzegovina"
+msgstr ""
+
+#: paypal/pro/fields.py:134
+msgid "Botswana"
+msgstr ""
+
+#: paypal/pro/fields.py:135
+msgid "Bouvet Island"
+msgstr ""
+
+#: paypal/pro/fields.py:136
+msgid "Brazil"
+msgstr ""
+
+#: paypal/pro/fields.py:137
+msgid "British Indian Ocean Territory"
+msgstr ""
+
+#: paypal/pro/fields.py:138
+msgid "British Virgin Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:139
+msgid "Brunei Darussalam"
+msgstr ""
+
+#: paypal/pro/fields.py:140
+msgid "Bulgaria"
+msgstr ""
+
+#: paypal/pro/fields.py:141
+msgid "Burkina Faso"
+msgstr ""
+
+#: paypal/pro/fields.py:142
+msgid "Burundi"
+msgstr ""
+
+#: paypal/pro/fields.py:143
+msgid "Cambodia"
+msgstr ""
+
+#: paypal/pro/fields.py:144
+msgid "Cameroon"
+msgstr ""
+
+#: paypal/pro/fields.py:145
+msgid "Cape Verde"
+msgstr ""
+
+#: paypal/pro/fields.py:146
+msgid "Cayman Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:147
+msgid "Central African Republic"
+msgstr ""
+
+#: paypal/pro/fields.py:148
+msgid "Chad"
+msgstr ""
+
+#: paypal/pro/fields.py:149
+msgid "Chile"
+msgstr ""
+
+#: paypal/pro/fields.py:150
+msgid "China"
+msgstr ""
+
+#: paypal/pro/fields.py:151
+msgid "Christmas Island"
+msgstr ""
+
+#: paypal/pro/fields.py:152
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:153
+msgid "Colombia"
+msgstr ""
+
+#: paypal/pro/fields.py:154
+msgid "Comoros"
+msgstr ""
+
+#: paypal/pro/fields.py:155
+msgid "Congo"
+msgstr ""
+
+#: paypal/pro/fields.py:156
+msgid "Cook Iislands"
+msgstr ""
+
+#: paypal/pro/fields.py:157
+msgid "Costa Rica"
+msgstr ""
+
+#: paypal/pro/fields.py:158
+msgid "Croatia"
+msgstr ""
+
+#: paypal/pro/fields.py:159
+msgid "Cuba"
+msgstr ""
+
+#: paypal/pro/fields.py:160
+msgid "Cyprus"
+msgstr ""
+
+#: paypal/pro/fields.py:161
+msgid "Czech Republic"
+msgstr ""
+
+#: paypal/pro/fields.py:162
+msgid "Denmark"
+msgstr ""
+
+#: paypal/pro/fields.py:163
+msgid "Djibouti"
+msgstr ""
+
+#: paypal/pro/fields.py:164
+msgid "Dominica"
+msgstr ""
+
+#: paypal/pro/fields.py:165
+msgid "Dominican Republic"
+msgstr ""
+
+#: paypal/pro/fields.py:166
+msgid "East Timor"
+msgstr ""
+
+#: paypal/pro/fields.py:167
+msgid "Ecuador"
+msgstr ""
+
+#: paypal/pro/fields.py:168
+msgid "Egypt"
+msgstr ""
+
+#: paypal/pro/fields.py:169
+msgid "El Salvador"
+msgstr ""
+
+#: paypal/pro/fields.py:170
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: paypal/pro/fields.py:171
+msgid "Eritrea"
+msgstr ""
+
+#: paypal/pro/fields.py:172
+msgid "Estonia"
+msgstr ""
+
+#: paypal/pro/fields.py:173
+msgid "Ethiopia"
+msgstr ""
+
+#: paypal/pro/fields.py:174
+msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+#: paypal/pro/fields.py:175
+msgid "Faroe Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:176
+msgid "Fiji"
+msgstr ""
+
+#: paypal/pro/fields.py:177
+msgid "Finland"
+msgstr ""
+
+#: paypal/pro/fields.py:178
+msgid "France"
+msgstr ""
+
+#: paypal/pro/fields.py:179
+msgid "France, Metropolitan"
+msgstr ""
+
+#: paypal/pro/fields.py:180
+msgid "French Guiana"
+msgstr ""
+
+#: paypal/pro/fields.py:181
+msgid "French Polynesia"
+msgstr ""
+
+#: paypal/pro/fields.py:182
+msgid "French Southern Territories"
+msgstr ""
+
+#: paypal/pro/fields.py:183
+msgid "Gabon"
+msgstr ""
+
+#: paypal/pro/fields.py:184
+msgid "Gambia"
+msgstr ""
+
+#: paypal/pro/fields.py:185
+msgid "Georgia"
+msgstr ""
+
+#: paypal/pro/fields.py:186
+msgid "Germany"
+msgstr ""
+
+#: paypal/pro/fields.py:187
+msgid "Ghana"
+msgstr ""
+
+#: paypal/pro/fields.py:188
+msgid "Gibraltar"
+msgstr ""
+
+#: paypal/pro/fields.py:189
+msgid "Greece"
+msgstr ""
+
+#: paypal/pro/fields.py:190
+msgid "Greenland"
+msgstr ""
+
+#: paypal/pro/fields.py:191
+msgid "Grenada"
+msgstr ""
+
+#: paypal/pro/fields.py:192
+msgid "Guadeloupe"
+msgstr ""
+
+#: paypal/pro/fields.py:193
+msgid "Guam"
+msgstr ""
+
+#: paypal/pro/fields.py:194
+msgid "Guatemala"
+msgstr ""
+
+#: paypal/pro/fields.py:195
+msgid "Guinea"
+msgstr ""
+
+#: paypal/pro/fields.py:196
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: paypal/pro/fields.py:197
+msgid "Guyana"
+msgstr ""
+
+#: paypal/pro/fields.py:198
+msgid "Haiti"
+msgstr ""
+
+#: paypal/pro/fields.py:199
+msgid "Heard & McDonald Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:200
+msgid "Honduras"
+msgstr ""
+
+#: paypal/pro/fields.py:201
+msgid "Hong Kong"
+msgstr ""
+
+#: paypal/pro/fields.py:202
+msgid "Hungary"
+msgstr ""
+
+#: paypal/pro/fields.py:203
+msgid "Iceland"
+msgstr ""
+
+#: paypal/pro/fields.py:204
+msgid "India"
+msgstr ""
+
+#: paypal/pro/fields.py:205
+msgid "Indonesia"
+msgstr ""
+
+#: paypal/pro/fields.py:206
+msgid "Iraq"
+msgstr ""
+
+#: paypal/pro/fields.py:207
+msgid "Ireland"
+msgstr ""
+
+#: paypal/pro/fields.py:208
+msgid "Islamic Republic of Iran"
+msgstr ""
+
+#: paypal/pro/fields.py:209
+msgid "Israel"
+msgstr ""
+
+#: paypal/pro/fields.py:210
+msgid "Italy"
+msgstr ""
+
+#: paypal/pro/fields.py:211
+msgid "Ivory Coast"
+msgstr ""
+
+#: paypal/pro/fields.py:212
+msgid "Jamaica"
+msgstr ""
+
+#: paypal/pro/fields.py:213
+msgid "Japan"
+msgstr ""
+
+#: paypal/pro/fields.py:214
+msgid "Jordan"
+msgstr ""
+
+#: paypal/pro/fields.py:215
+msgid "Kazakhstan"
+msgstr ""
+
+#: paypal/pro/fields.py:216
+msgid "Kenya"
+msgstr ""
+
+#: paypal/pro/fields.py:217
+msgid "Kiribati"
+msgstr ""
+
+#: paypal/pro/fields.py:218
+msgid "Korea, Democratic People's Republic of"
+msgstr ""
+
+#: paypal/pro/fields.py:219
+msgid "Korea, Republic of"
+msgstr ""
+
+#: paypal/pro/fields.py:220
+msgid "Kuwait"
+msgstr ""
+
+#: paypal/pro/fields.py:221
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: paypal/pro/fields.py:222
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: paypal/pro/fields.py:223
+msgid "Latvia"
+msgstr ""
+
+#: paypal/pro/fields.py:224
+msgid "Lebanon"
+msgstr ""
+
+#: paypal/pro/fields.py:225
+msgid "Lesotho"
+msgstr ""
+
+#: paypal/pro/fields.py:226
+msgid "Liberia"
+msgstr ""
+
+#: paypal/pro/fields.py:227
+msgid "Libyan Arab Jamahiriya"
+msgstr ""
+
+#: paypal/pro/fields.py:228
+msgid "Liechtenstein"
+msgstr ""
+
+#: paypal/pro/fields.py:229
+msgid "Lithuania"
+msgstr ""
+
+#: paypal/pro/fields.py:230
+msgid "Luxembourg"
+msgstr ""
+
+#: paypal/pro/fields.py:231
+msgid "Macau"
+msgstr ""
+
+#: paypal/pro/fields.py:232
+msgid "Madagascar"
+msgstr ""
+
+#: paypal/pro/fields.py:233
+msgid "Malawi"
+msgstr ""
+
+#: paypal/pro/fields.py:234
+msgid "Malaysia"
+msgstr ""
+
+#: paypal/pro/fields.py:235
+msgid "Maldives"
+msgstr ""
+
+#: paypal/pro/fields.py:236
+msgid "Mali"
+msgstr ""
+
+#: paypal/pro/fields.py:237
+msgid "Malta"
+msgstr ""
+
+#: paypal/pro/fields.py:238
+msgid "Marshall Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:239
+msgid "Martinique"
+msgstr ""
+
+#: paypal/pro/fields.py:240
+msgid "Mauritania"
+msgstr ""
+
+#: paypal/pro/fields.py:241
+msgid "Mauritius"
+msgstr ""
+
+#: paypal/pro/fields.py:242
+msgid "Mayotte"
+msgstr ""
+
+#: paypal/pro/fields.py:243
+msgid "Mexico"
+msgstr ""
+
+#: paypal/pro/fields.py:244
+msgid "Micronesia"
+msgstr ""
+
+#: paypal/pro/fields.py:245
+msgid "Moldova, Republic of"
+msgstr ""
+
+#: paypal/pro/fields.py:246
+msgid "Monaco"
+msgstr ""
+
+#: paypal/pro/fields.py:247
+msgid "Mongolia"
+msgstr ""
+
+#: paypal/pro/fields.py:248
+msgid "Monserrat"
+msgstr ""
+
+#: paypal/pro/fields.py:249
+msgid "Morocco"
+msgstr ""
+
+#: paypal/pro/fields.py:250
+msgid "Mozambique"
+msgstr ""
+
+#: paypal/pro/fields.py:251
+msgid "Myanmar"
+msgstr ""
+
+#: paypal/pro/fields.py:252
+msgid "Namibia"
+msgstr ""
+
+#: paypal/pro/fields.py:253
+msgid "Nauru"
+msgstr ""
+
+#: paypal/pro/fields.py:254
+msgid "Nepal"
+msgstr ""
+
+#: paypal/pro/fields.py:255
+msgid "Netherlands"
+msgstr ""
+
+#: paypal/pro/fields.py:256
+msgid "Netherlands Antilles"
+msgstr ""
+
+#: paypal/pro/fields.py:257
+msgid "New Caledonia"
+msgstr ""
+
+#: paypal/pro/fields.py:258
+msgid "New Zealand"
+msgstr ""
+
+#: paypal/pro/fields.py:259
+msgid "Nicaragua"
+msgstr ""
+
+#: paypal/pro/fields.py:260
+msgid "Niger"
+msgstr ""
+
+#: paypal/pro/fields.py:261
+msgid "Nigeria"
+msgstr ""
+
+#: paypal/pro/fields.py:262
+msgid "Niue"
+msgstr ""
+
+#: paypal/pro/fields.py:263
+msgid "Norfolk Island"
+msgstr ""
+
+#: paypal/pro/fields.py:264
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:265
+msgid "Norway"
+msgstr ""
+
+#: paypal/pro/fields.py:266
+msgid "Oman"
+msgstr ""
+
+#: paypal/pro/fields.py:267
+msgid "Pakistan"
+msgstr ""
+
+#: paypal/pro/fields.py:268
+msgid "Palau"
+msgstr ""
+
+#: paypal/pro/fields.py:269
+msgid "Panama"
+msgstr ""
+
+#: paypal/pro/fields.py:270
+msgid "Papua New Guinea"
+msgstr ""
+
+#: paypal/pro/fields.py:271
+msgid "Paraguay"
+msgstr ""
+
+#: paypal/pro/fields.py:272
+msgid "Peru"
+msgstr ""
+
+#: paypal/pro/fields.py:273
+msgid "Philippines"
+msgstr ""
+
+#: paypal/pro/fields.py:274
+msgid "Pitcairn"
+msgstr ""
+
+#: paypal/pro/fields.py:275
+msgid "Poland"
+msgstr ""
+
+#: paypal/pro/fields.py:276
+msgid "Portugal"
+msgstr ""
+
+#: paypal/pro/fields.py:277
+msgid "Puerto Rico"
+msgstr ""
+
+#: paypal/pro/fields.py:278
+msgid "Qatar"
+msgstr ""
+
+#: paypal/pro/fields.py:279
+msgid "Reunion"
+msgstr ""
+
+#: paypal/pro/fields.py:280
+msgid "Romania"
+msgstr ""
+
+#: paypal/pro/fields.py:281
+msgid "Russian Federation"
+msgstr ""
+
+#: paypal/pro/fields.py:282
+msgid "Rwanda"
+msgstr ""
+
+#: paypal/pro/fields.py:283
+msgid "Saint Lucia"
+msgstr ""
+
+#: paypal/pro/fields.py:284
+msgid "Samoa"
+msgstr ""
+
+#: paypal/pro/fields.py:285
+msgid "San Marino"
+msgstr ""
+
+#: paypal/pro/fields.py:286
+msgid "Sao Tome & Principe"
+msgstr ""
+
+#: paypal/pro/fields.py:287
+msgid "Saudi Arabia"
+msgstr ""
+
+#: paypal/pro/fields.py:288
+msgid "Senegal"
+msgstr ""
+
+#: paypal/pro/fields.py:289
+msgid "Seychelles"
+msgstr ""
+
+#: paypal/pro/fields.py:290
+msgid "Sierra Leone"
+msgstr ""
+
+#: paypal/pro/fields.py:291
+msgid "Singapore"
+msgstr ""
+
+#: paypal/pro/fields.py:292
+msgid "Slovakia"
+msgstr ""
+
+#: paypal/pro/fields.py:293
+msgid "Slovenia"
+msgstr ""
+
+#: paypal/pro/fields.py:294
+msgid "Solomon Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:295
+msgid "Somalia"
+msgstr ""
+
+#: paypal/pro/fields.py:296
+msgid "South Africa"
+msgstr ""
+
+#: paypal/pro/fields.py:297
+msgid "South Georgia and the South Sandwich Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:298
+msgid "Spain"
+msgstr ""
+
+#: paypal/pro/fields.py:299
+msgid "Sri Lanka"
+msgstr ""
+
+#: paypal/pro/fields.py:300
+msgid "St. Helena"
+msgstr ""
+
+#: paypal/pro/fields.py:301
+msgid "St. Kitts and Nevis"
+msgstr ""
+
+#: paypal/pro/fields.py:302
+msgid "St. Pierre & Miquelon"
+msgstr ""
+
+#: paypal/pro/fields.py:303
+msgid "St. Vincent & the Grenadines"
+msgstr ""
+
+#: paypal/pro/fields.py:304
+msgid "Sudan"
+msgstr ""
+
+#: paypal/pro/fields.py:305
+msgid "Suriname"
+msgstr ""
+
+#: paypal/pro/fields.py:306
+msgid "Svalbard & Jan Mayen Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:307
+msgid "Swaziland"
+msgstr ""
+
+#: paypal/pro/fields.py:308
+msgid "Sweden"
+msgstr ""
+
+#: paypal/pro/fields.py:309
+msgid "Switzerland"
+msgstr ""
+
+#: paypal/pro/fields.py:310
+msgid "Syrian Arab Republic"
+msgstr ""
+
+#: paypal/pro/fields.py:311
+msgid "Taiwan, Province of China"
+msgstr ""
+
+#: paypal/pro/fields.py:312
+msgid "Tajikistan"
+msgstr ""
+
+#: paypal/pro/fields.py:313
+msgid "Tanzania, United Republic of"
+msgstr ""
+
+#: paypal/pro/fields.py:314
+msgid "Thailand"
+msgstr ""
+
+#: paypal/pro/fields.py:315
+msgid "Togo"
+msgstr ""
+
+#: paypal/pro/fields.py:316
+msgid "Tokelau"
+msgstr ""
+
+#: paypal/pro/fields.py:317
+msgid "Tonga"
+msgstr ""
+
+#: paypal/pro/fields.py:318
+msgid "Trinidad & Tobago"
+msgstr ""
+
+#: paypal/pro/fields.py:319
+msgid "Tunisia"
+msgstr ""
+
+#: paypal/pro/fields.py:320
+msgid "Turkey"
+msgstr ""
+
+#: paypal/pro/fields.py:321
+msgid "Turkmenistan"
+msgstr ""
+
+#: paypal/pro/fields.py:322
+msgid "Turks & Caicos Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:323
+msgid "Tuvalu"
+msgstr ""
+
+#: paypal/pro/fields.py:324
+msgid "Uganda"
+msgstr ""
+
+#: paypal/pro/fields.py:325
+msgid "Ukraine"
+msgstr ""
+
+#: paypal/pro/fields.py:326
+msgid "United Arab Emirates"
+msgstr ""
+
+#: paypal/pro/fields.py:327
+msgid "United Kingdom (Great Britain)"
+msgstr ""
+
+#: paypal/pro/fields.py:328
+msgid "United States Minor Outlying Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:329
+msgid "United States Virgin Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:330
+msgid "Unknown or unspecified country"
+msgstr ""
+
+#: paypal/pro/fields.py:331
+msgid "Uruguay"
+msgstr ""
+
+#: paypal/pro/fields.py:332
+msgid "Uzbekistan"
+msgstr ""
+
+#: paypal/pro/fields.py:333
+msgid "Vanuatu"
+msgstr ""
+
+#: paypal/pro/fields.py:334
+msgid "Vatican City State (Holy See)"
+msgstr ""
+
+#: paypal/pro/fields.py:335
+msgid "Venezuela"
+msgstr ""
+
+#: paypal/pro/fields.py:336
+msgid "Viet Nam"
+msgstr ""
+
+#: paypal/pro/fields.py:337
+msgid "Wallis & Futuna Islands"
+msgstr ""
+
+#: paypal/pro/fields.py:338
+msgid "Western Sahara"
+msgstr ""
+
+#: paypal/pro/fields.py:339
+msgid "Yemen"
+msgstr ""
+
+#: paypal/pro/fields.py:340
+msgid "Yugoslavia"
+msgstr ""
+
+#: paypal/pro/fields.py:341
+msgid "Zaire"
+msgstr ""
+
+#: paypal/pro/fields.py:342
+msgid "Zambia"
+msgstr ""
+
+#: paypal/pro/fields.py:343
+msgid "Zimbabwe"
+msgstr ""
+
+#: paypal/standard/forms.py:66
+#, python-format
+msgid "Invalid date format %(value)s: %(e)s"
+msgstr ""
+
+#: restaurant/settings.py:201
+msgid "English"
+msgstr ""
+
+#: restaurant/settings.py:202
+msgid "Español"
+msgstr ""
+
+#: restaurant/templates/activation_email.html:6
+msgid "LaFiambrera activation email"
+msgstr "Correo de activación de La Fiambrera"
+
+#: restaurant/templates/activation_email.html:13
+msgid "Please confirm your email address"
+msgstr "Por favor, confirma tu dirección de e-mail"
+
+#: restaurant/templates/activation_email.html:15
+msgid "You have registered with the username"
+msgstr "Te has registrado con el nombre de usuario"
+
+#: restaurant/templates/activation_email.html:26
+msgid "Confirm Your Email"
+msgstr "Confirma tu correo"
+
+#: restaurant/templates/admin_registration.html:4
+msgid "Admin registration"
+msgstr "Registro admin"
+
+#: restaurant/templates/admin_registration.html:25
+#: restaurant/templates/cart.html:28
+#: restaurant/templates/company_registration.html:25
+#: restaurant/templates/edit_user_profile.html:42
+#: restaurant/templates/restaurant_registration.html:25
+#: restaurant/templates/user_profile.html:24
+#: restaurant/templates/user_profile.html:55
+#: restaurant/templates/user_registration.html:30
+msgid "These fields (marked red) are required!"
+msgstr "Los campos en rojo son obligatorios"
+
+#: restaurant/templates/admin_registration.html:44
+#: restaurant/templates/company_registration.html:69
+#: restaurant/templates/edit_user_profile.html:70
+#: restaurant/templates/restaurant_registration.html:67
+#: restaurant/templates/user_registration.html:63
+msgid "Preferred language"
+msgstr "Idioma predeterminado"
+
+#: restaurant/templates/admin_registration.html:57
+#: restaurant/templates/company_registration.html:82
+#: restaurant/templates/edit_user_profile.html:84
+#: restaurant/templates/restaurant_registration.html:80
+#: restaurant/templates/user_registration.html:77
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: restaurant/templates/admin_registration.html:60
+#: restaurant/templates/company_registration.html:85
+#: restaurant/templates/restaurant_registration.html:83
+#: restaurant/templates/user_registration.html:80
+msgid "Back"
+msgstr "Atrás"
+
+#: restaurant/templates/base.html:15
+msgid "Site"
+msgstr "Página"
+
+#: restaurant/templates/cart.html:22
+#: restaurant/templates/catering_cart.html:22
+msgid "Delivery information"
+msgstr "Información de entrega"
+
+#: restaurant/templates/cart.html:57 restaurant/templates/cart.html:103
+#: restaurant/templates/catering_cart.html:55
+#: restaurant/templates/catering_cart.html:98
+msgid "Go back"
+msgstr "Atrás"
+
+#: restaurant/templates/cart.html:65
+#: restaurant/templates/catering_cart.html:63
+msgid "Enter promo code"
+msgstr "Código promocional"
+
+#: restaurant/templates/cart.html:74 restaurant/templates/cart.html:294
+#: restaurant/templates/catering_cart.html:72
+#: restaurant/templates/catering_cart.html:283
+#: restaurant/templates/control/admin_restaurant_orders.html:14
+#: restaurant/templates/control/restaurant_notifications.html:13
+#: restaurant/templates/control/restaurant_orders.html:14
+#: restaurant/templates/inc/restaurant_lunchbox.html:194
+#: restaurant/templates/inc/restaurants.html:243
+#: restaurant/templates/inc/restaurants.html:449
+#: restaurant/templates/inc/restaurants_backup.html:243
+#: restaurant/templates/inc/restaurants_backup.html:451
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: restaurant/templates/cart.html:83
+#: restaurant/templates/catering_cart.html:81
+msgid "Total amount"
+msgstr "Total"
+
+#: restaurant/templates/cart.html:87
+#: restaurant/templates/catering_cart.html:84
+msgid "Quantity discount"
+msgstr "Descuento por cantidad"
+
+#: restaurant/templates/cart.html:90
+#: restaurant/templates/catering_cart.html:87
+msgid "With discount"
+msgstr "Con descuento"
+
+#: restaurant/templates/cart.html:96
+msgid ""
+"Your order will be delivered between 13:00 and 15:00 on the selected "
+"delivery dates"
+msgstr ""
+"Tu pedido será entregado entre las 13:00 y las 15:00 de la fechas "
+"seleccionadas"
+
+#: restaurant/templates/cart.html:97
+msgid "Orders made before 12:00 can be delivered today"
+msgstr "Pedidos hechos antes de las 12:00 pueden ser entregadas hoy mismo"
+
+#: restaurant/templates/cart.html:108
+#: restaurant/templates/catering_cart.html:103
+msgid "Checkout"
+msgstr "Finalizar pedido"
+
+#: restaurant/templates/cart.html:135
+#: restaurant/templates/catering_cart.html:130
+#: restaurant/templates/control/add_restaurant.html:138
+#: restaurant/templates/control/admin_restaurant_orders.html:24
+#: restaurant/templates/control/restaurant_dashboard.html:86
+#: restaurant/templates/control/restaurant_info.html:183
+#: restaurant/templates/control/restaurant_orders.html:24
+#: restaurant/templates/coupon.html:34
+#: restaurant/templates/inc/restaurants.html:47
+#: restaurant/templates/inc/restaurants_backup.html:47
+#: restaurant/templates/restaurant_profile.html:45
+msgid "Address"
+msgstr "Dirección"
+
+#: restaurant/templates/cart.html:136
+#: restaurant/templates/catering_cart.html:131
+#: restaurant/templates/control/add_restaurant.html:141
+#: restaurant/templates/control/restaurant_dashboard.html:87
+#: restaurant/templates/control/restaurant_info.html:184
+#: restaurant/templates/inc/restaurants.html:48
+#: restaurant/templates/inc/restaurants_backup.html:48
+msgid "Phone Number"
+msgstr "Teléfono"
+
+#: restaurant/templates/cart.html:140
+#: restaurant/templates/catering_cart.html:135
+#: restaurant/templates/inc/restaurants.html:62
+#: restaurant/templates/inc/restaurants_backup.html:62
+msgid "See restaurant information"
+msgstr "Ver información del restaurante"
+
+#: restaurant/templates/cart.html:142
+#: restaurant/templates/catering_cart.html:137
+#: restaurant/templates/control/add_restaurant.html:227
+#: restaurant/templates/control/restaurant_dashboard.html:110
+#: restaurant/templates/control/restaurant_info.html:259
+#: restaurant/templates/inc/restaurants.html:64
+#: restaurant/templates/inc/restaurants_backup.html:64
+msgid "Minimum Order"
+msgstr "Pedido mínimo"
+
+#: restaurant/templates/cart.html:148
+#: restaurant/templates/catering_cart.html:143
+#: restaurant/templates/control/admin_dashboard.html:222
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:73
+#: restaurant/templates/inc/restaurant_lunchbox.html:48
+#: restaurant/templates/inc/restaurants.html:77
+#: restaurant/templates/inc/restaurants.html:287
+#: restaurant/templates/inc/restaurants_backup.html:77
+#: restaurant/templates/inc/restaurants_backup.html:289
+msgid "Rating"
+msgstr "Puntuación"
+
+#: restaurant/templates/cart.html:213
+#: restaurant/templates/catering_cart.html:208
+#: restaurant/templates/control/admin_dashboard.html:265
+#: restaurant/templates/control/archived_lunchboxes.html:137
+#: restaurant/templates/control/inc/nutrition_facts.html:6
+#: restaurant/templates/control/published_lunchboxes.html:116
+#: restaurant/templates/control/restaurant_create_lunchbox.html:112
+#: restaurant/templates/control/restaurant_dashboard.html:177
+#: restaurant/templates/control/restaurant_dashboard.html:305
+#: restaurant/templates/control/saved_lunchboxes.html:137
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:121
+#: restaurant/templates/inc/restaurant_lunchbox.html:98
+#: restaurant/templates/inc/restaurants.html:142
+#: restaurant/templates/inc/restaurants.html:351
+#: restaurant/templates/inc/restaurants_backup.html:142
+#: restaurant/templates/inc/restaurants_backup.html:353
+msgid "The good side of the lunchbox"
+msgstr "El lado bueno de la fiambrera"
+
+#: restaurant/templates/cart.html:216
+#: restaurant/templates/catering_cart.html:211
+#: restaurant/templates/control/admin_dashboard.html:268
+#: restaurant/templates/control/archived_lunchboxes.html:140
+#: restaurant/templates/control/inc/nutrition_facts.html:9
+#: restaurant/templates/control/published_lunchboxes.html:119
+#: restaurant/templates/control/restaurant_create_lunchbox.html:115
+#: restaurant/templates/control/restaurant_dashboard.html:180
+#: restaurant/templates/control/restaurant_dashboard.html:308
+#: restaurant/templates/control/saved_lunchboxes.html:140
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:124
+#: restaurant/templates/inc/restaurant_lunchbox.html:101
+#: restaurant/templates/inc/restaurants.html:145
+#: restaurant/templates/inc/restaurants.html:354
+#: restaurant/templates/inc/restaurants_backup.html:145
+#: restaurant/templates/inc/restaurants_backup.html:356
+msgid "Total Calories"
+msgstr "Calorías totales"
+
+#: restaurant/templates/cart.html:221
+#: restaurant/templates/catering_cart.html:216
+#: restaurant/templates/control/admin_dashboard.html:272
+#: restaurant/templates/control/archived_lunchboxes.html:143
+#: restaurant/templates/control/inc/nutrition_facts.html:11
+#: restaurant/templates/control/published_lunchboxes.html:121
+#: restaurant/templates/control/restaurant_create_lunchbox.html:117
+#: restaurant/templates/control/restaurant_dashboard.html:183
+#: restaurant/templates/control/restaurant_dashboard.html:310
+#: restaurant/templates/control/saved_lunchboxes.html:143
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:128
+#: restaurant/templates/inc/restaurant_lunchbox.html:105
+#: restaurant/templates/inc/restaurants.html:149
+#: restaurant/templates/inc/restaurants.html:358
+#: restaurant/templates/inc/restaurants_backup.html:149
+#: restaurant/templates/inc/restaurants_backup.html:360
+#: restaurant/templates/mainapp/individul_lunchbox.html:151
+#: restaurant/templates/mainapp/individul_lunchbox.html:230
+msgid "Fat"
+msgstr "Grasa"
+
+#: restaurant/templates/cart.html:227
+#: restaurant/templates/catering_cart.html:222
+#: restaurant/templates/control/admin_dashboard.html:278
+#: restaurant/templates/control/archived_lunchboxes.html:147
+#: restaurant/templates/control/inc/nutrition_facts.html:15
+#: restaurant/templates/control/published_lunchboxes.html:125
+#: restaurant/templates/control/restaurant_create_lunchbox.html:121
+#: restaurant/templates/control/restaurant_dashboard.html:187
+#: restaurant/templates/control/restaurant_dashboard.html:314
+#: restaurant/templates/control/saved_lunchboxes.html:147
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:134
+#: restaurant/templates/inc/restaurant_lunchbox.html:111
+#: restaurant/templates/inc/restaurants.html:155
+#: restaurant/templates/inc/restaurants.html:363
+#: restaurant/templates/inc/restaurants_backup.html:155
+#: restaurant/templates/inc/restaurants_backup.html:365
+#: restaurant/templates/mainapp/individul_lunchbox.html:155
+#: restaurant/templates/mainapp/individul_lunchbox.html:234
+msgid "Protein"
+msgstr "Proteína"
+
+#: restaurant/templates/cart.html:232
+#: restaurant/templates/catering_cart.html:227
+#: restaurant/templates/control/admin_dashboard.html:281
+#: restaurant/templates/control/archived_lunchboxes.html:149
+#: restaurant/templates/control/inc/nutrition_facts.html:17
+#: restaurant/templates/control/published_lunchboxes.html:127
+#: restaurant/templates/control/restaurant_create_lunchbox.html:123
+#: restaurant/templates/control/restaurant_dashboard.html:189
+#: restaurant/templates/control/restaurant_dashboard.html:316
+#: restaurant/templates/control/saved_lunchboxes.html:149
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:138
+#: restaurant/templates/inc/restaurant_lunchbox.html:115
+#: restaurant/templates/inc/restaurants.html:159
+#: restaurant/templates/inc/restaurants.html:367
+#: restaurant/templates/inc/restaurants_backup.html:159
+#: restaurant/templates/inc/restaurants_backup.html:369
+#: restaurant/templates/mainapp/individul_lunchbox.html:143
+#: restaurant/templates/mainapp/individul_lunchbox.html:222
+msgid "Sugar"
+msgstr "Azúcar"
+
+#: restaurant/templates/cart.html:239
+#: restaurant/templates/catering_cart.html:234
+#: restaurant/templates/control/admin_dashboard.html:287
+#: restaurant/templates/control/archived_lunchboxes.html:153
+#: restaurant/templates/control/inc/nutrition_facts.html:21
+#: restaurant/templates/control/published_lunchboxes.html:131
+#: restaurant/templates/control/restaurant_create_lunchbox.html:127
+#: restaurant/templates/control/restaurant_dashboard.html:193
+#: restaurant/templates/control/restaurant_dashboard.html:320
+#: restaurant/templates/control/saved_lunchboxes.html:153
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:144
+#: restaurant/templates/inc/restaurant_lunchbox.html:121
+#: restaurant/templates/inc/restaurants.html:165
+#: restaurant/templates/inc/restaurants.html:373
+#: restaurant/templates/inc/restaurants_backup.html:165
+#: restaurant/templates/inc/restaurants_backup.html:375
+#: restaurant/templates/mainapp/individul_lunchbox.html:145
+#: restaurant/templates/mainapp/individul_lunchbox.html:224
+msgid "Carbohydrates"
+msgstr "Hidratos de carbono"
+
+#: restaurant/templates/cart.html:244
+#: restaurant/templates/catering_cart.html:239
+#: restaurant/templates/control/admin_dashboard.html:290
+#: restaurant/templates/control/archived_lunchboxes.html:155
+#: restaurant/templates/control/inc/nutrition_facts.html:23
+#: restaurant/templates/control/published_lunchboxes.html:133
+#: restaurant/templates/control/restaurant_create_lunchbox.html:129
+#: restaurant/templates/control/restaurant_dashboard.html:196
+#: restaurant/templates/control/restaurant_dashboard.html:322
+#: restaurant/templates/control/saved_lunchboxes.html:155
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:149
+#: restaurant/templates/inc/restaurant_lunchbox.html:126
+#: restaurant/templates/inc/restaurants.html:169
+#: restaurant/templates/inc/restaurants.html:377
+#: restaurant/templates/inc/restaurants_backup.html:169
+#: restaurant/templates/inc/restaurants_backup.html:379
+msgid "Sodium"
+msgstr "Sodio"
+
+#: restaurant/templates/cart.html:264
+#: restaurant/templates/catering_cart.html:259
+#: restaurant/templates/inc/restaurant_lunchbox.html:145
+#: restaurant/templates/inc/restaurants.html:189
+#: restaurant/templates/inc/restaurants.html:396
+#: restaurant/templates/inc/restaurants_backup.html:189
+#: restaurant/templates/inc/restaurants_backup.html:398
+msgid "Original price"
+msgstr "Precio original"
+
+#: restaurant/templates/cart.html:271
+#: restaurant/templates/catering_cart.html:266
+#: restaurant/templates/inc/restaurant_lunchbox.html:150
+#: restaurant/templates/inc/restaurants.html:194
+#: restaurant/templates/inc/restaurants.html:401
+#: restaurant/templates/inc/restaurants_backup.html:194
+#: restaurant/templates/inc/restaurants_backup.html:403
+msgid "Your price"
+msgstr "Tu precio"
+
+#: restaurant/templates/cart.html:283
+#: restaurant/templates/catering_cart.html:277
+#: restaurant/templates/control/restaurant_dashboard.html:361
+#: restaurant/templates/inc/restaurant_lunchbox.html:173
+#: restaurant/templates/inc/restaurants.html:221
+#: restaurant/templates/inc/restaurants.html:429
+#: restaurant/templates/inc/restaurants_backup.html:221
+#: restaurant/templates/inc/restaurants_backup.html:431
+msgid "Colleagues chose this today"
+msgstr "Compañeros lo han pedido hoy"
+
+#: restaurant/templates/cart.html:298
+#: restaurant/templates/inc/restaurants.html:249
+#: restaurant/templates/inc/restaurants.html:452
+#: restaurant/templates/inc/restaurants_backup.html:249
+#: restaurant/templates/inc/restaurants_backup.html:454
+msgid "Select delivery date"
+msgstr "Elige la fecha de entrega"
+
+#: restaurant/templates/cart.html:304
+#: restaurant/templates/catering_cart.html:291
+#: restaurant/templates/control/restaurants.html:29
+msgid "Remove"
+msgstr "Eliminar"
+
+#: restaurant/templates/cart.html:307
+#: restaurant/templates/catering_cart.html:294
+#: restaurant/templates/inc/restaurant_lunchbox.html:210
+#: restaurant/templates/inc/restaurants_backup.html:274
+#: restaurant/templates/inc/restaurants_backup.html:484
+msgid "Log In!"
+msgstr "¡Iniciar Sesión!"
+
+#: restaurant/templates/cart.html:320
+#: restaurant/templates/catering_cart.html:307
+msgid "Your basket is empty"
+msgstr "Tu cesta está vacía"
+
+#: restaurant/templates/cart.html:324
+#: restaurant/templates/catering_cart.html:311
+#: restaurant/templates/user_profile.html:117
+msgid "Choose lunchbox"
+msgstr "Elige fiambrera"
+
+#: restaurant/templates/cart.html:340
+#: restaurant/templates/catering_cart.html:327
+#: restaurant/templates/mainapp/header.html:191
+msgid "Choose a payment method"
+msgstr "Elige un método de pago"
+
+#: restaurant/templates/catering_cart.html:57
+msgid "Company cart"
+msgstr "Carrito de la empresa"
+
+#: restaurant/templates/catering_cart.html:93
+msgid "Select delivery date and time (1pm - 4pm)"
+msgstr "Elige fecha y hora de entrega (13:00 - 16:00)"
+
+#: restaurant/templates/catering_cart.html:100
+msgid "Go to Company Checkout"
+msgstr "Ir al Carrito de Empresa"
+
+#: restaurant/templates/company_registration.html:4
+msgid "Company registration"
+msgstr "Registro de empresa"
+
+#: restaurant/templates/control/add_restaurant.html:5
+msgid "Restaurant info"
+msgstr "Información del restaurante"
+
+#: restaurant/templates/control/add_restaurant.html:25
+#: restaurant/templates/control/admin_dashboard.html:125
+#: restaurant/templates/control/archived_lunchboxes.html:37
+#: restaurant/templates/control/published_lunchboxes.html:37
+#: restaurant/templates/control/restaurant_create_lunchbox.html:22
+#: restaurant/templates/control/restaurant_info.html:69
+#: restaurant/templates/control/saved_lunchboxes.html:39
+msgid "Request Photoshoot"
+msgstr "Sesión fotos"
+
+#: restaurant/templates/control/add_restaurant.html:26
+#: restaurant/templates/control/admin_dashboard.html:126
+#: restaurant/templates/control/archived_lunchboxes.html:38
+#: restaurant/templates/control/published_lunchboxes.html:38
+#: restaurant/templates/control/restaurant_create_lunchbox.html:23
+#: restaurant/templates/control/restaurant_info.html:70
+#: restaurant/templates/control/saved_lunchboxes.html:40
+msgid "upload photo"
+msgstr "subir foto"
+
+#: restaurant/templates/control/add_restaurant.html:46
+#: restaurant/templates/control/admin_dashboard.html:143
+#: restaurant/templates/control/archived_lunchboxes.html:54
+#: restaurant/templates/control/published_lunchboxes.html:54
+#: restaurant/templates/control/restaurant_create_lunchbox.html:45
+#: restaurant/templates/control/restaurant_info.html:95
+#: restaurant/templates/control/saved_lunchboxes.html:57
+msgid "Click to upload"
+msgstr "Click para subir"
+
+#: restaurant/templates/control/add_restaurant.html:61
+#: restaurant/templates/control/restaurant_info.html:111
+msgid "Attract visitors to your restaurant! Offer a discount via coupons!"
+msgstr "¡Atrae clientes a tu restaurante! Ofréceles un cupón de descuento"
+
+#: restaurant/templates/control/add_restaurant.html:78
+#: restaurant/templates/control/add_restaurant.html:163
+#: restaurant/templates/control/add_restaurant.html:172
+#: restaurant/templates/control/add_restaurant.html:181
+#: restaurant/templates/control/add_restaurant.html:190
+#: restaurant/templates/control/add_restaurant.html:199
+#: restaurant/templates/control/add_restaurant.html:208
+#: restaurant/templates/control/add_restaurant.html:217
+msgid "From"
+msgstr "Desde"
+
+#: restaurant/templates/control/add_restaurant.html:80
+#: restaurant/templates/control/add_restaurant.html:166
+#: restaurant/templates/control/add_restaurant.html:175
+#: restaurant/templates/control/add_restaurant.html:184
+#: restaurant/templates/control/add_restaurant.html:193
+#: restaurant/templates/control/add_restaurant.html:202
+#: restaurant/templates/control/add_restaurant.html:211
+#: restaurant/templates/control/add_restaurant.html:220
+msgid "Till"
+msgstr "Hasta"
+
+#: restaurant/templates/control/add_restaurant.html:88
+#: restaurant/templates/control/restaurant_info.html:138
+msgid "ADD DISCOUNT"
+msgstr "Añadir descuento"
+
+#: restaurant/templates/control/add_restaurant.html:99
+#: restaurant/templates/control/restaurant_info.html:149
+msgid "Upload"
+msgstr "Subir"
+
+#: restaurant/templates/control/add_restaurant.html:100
+#: restaurant/templates/control/restaurant_info.html:150
+msgid "Restaurant logo"
+msgstr "Logo del restaurante"
+
+#: restaurant/templates/control/add_restaurant.html:112
+#: restaurant/templates/control/restaurant_dashboard.html:69
+#: restaurant/templates/control/restaurant_info.html:163
+msgid "Delivery to"
+msgstr "Entregas a"
+
+#: restaurant/templates/control/add_restaurant.html:156
+#: restaurant/templates/control/restaurant_dashboard.html:88
+#: restaurant/templates/restaurant_profile.html:57
+msgid "Opening hours"
+msgstr "Horario"
+
+#: restaurant/templates/control/add_restaurant.html:161
+msgid "Monday"
+msgstr "Lunes"
+
+#: restaurant/templates/control/add_restaurant.html:170
+msgid "Tuesday"
+msgstr "Martes"
+
+#: restaurant/templates/control/add_restaurant.html:179
+msgid "Wendesday"
+msgstr "Miércoles"
+
+#: restaurant/templates/control/add_restaurant.html:188
+msgid "Thursday"
+msgstr "Jueves"
+
+#: restaurant/templates/control/add_restaurant.html:197
+msgid "Friday"
+msgstr "Viernes"
+
+#: restaurant/templates/control/add_restaurant.html:206
+msgid "Saturday"
+msgstr "Sábado"
+
+#: restaurant/templates/control/add_restaurant.html:215
+msgid "Sunday"
+msgstr "Domingo"
+
+#: restaurant/templates/control/add_restaurant.html:234
+#: restaurant/templates/control/restaurant_create_lunchbox.html:170
+#: restaurant/templates/control/restaurant_info.html:266
+#: restaurant/templates/control/saved_lunchboxes.html:192
+msgid "Photoshoot requested"
+msgstr "Sesión fotos"
+
+#: restaurant/templates/control/admin_dashboard.html:10
+msgid "Admin dashboard"
+msgstr "Escritorio"
+
+#: restaurant/templates/control/admin_dashboard.html:41
+#: restaurant/templates/control/admin_dashboard.html:60
+#: restaurant/templates/control/admin_dashboard.html:367
+#: restaurant/templates/control/restaurant_dashboard.html:18
+msgid "Today's orders"
+msgstr "Pedidos del día"
+
+#: restaurant/templates/control/admin_dashboard.html:48
+msgid "Please, select restaurant on left menu!"
+msgstr "Por favor, selecciona un restaurante del menú de la izquierda"
+
+#: restaurant/templates/control/admin_dashboard.html:84
+#: restaurant/templates/control/restaurant_dashboard.html:42
+msgid "You have no orders scheduled"
+msgstr "No tienes pedidos programados"
+
+#: restaurant/templates/control/admin_dashboard.html:90
+#: restaurant/templates/control/restaurant_dashboard.html:48
+msgid "See full information"
+msgstr "Ver toda la información"
+
+#: restaurant/templates/control/admin_dashboard.html:185
+#: restaurant/templates/control/archived_lunchboxes.html:116
+#: restaurant/templates/control/published_lunchboxes.html:96
+#: restaurant/templates/control/restaurant_create_lunchbox.html:87
+#: restaurant/templates/control/restaurant_info.html:118
+#: restaurant/templates/control/saved_lunchboxes.html:116
+msgid "Availability"
+msgstr "Disponibilidad"
+
+#: restaurant/templates/control/admin_dashboard.html:187
+#: restaurant/templates/control/archived_lunchboxes.html:118
+#: restaurant/templates/control/published_lunchboxes.html:98
+#: restaurant/templates/control/restaurant_create_lunchbox.html:89
+#: restaurant/templates/control/restaurant_info.html:120
+#: restaurant/templates/control/saved_lunchboxes.html:118
+msgid "Start"
+msgstr "Inicio"
+
+#: restaurant/templates/control/admin_dashboard.html:191
+#: restaurant/templates/control/archived_lunchboxes.html:122
+#: restaurant/templates/control/published_lunchboxes.html:102
+#: restaurant/templates/control/restaurant_create_lunchbox.html:92
+#: restaurant/templates/control/restaurant_info.html:123
+#: restaurant/templates/control/saved_lunchboxes.html:122
+msgid "End"
+msgstr "Final"
+
+#: restaurant/templates/control/admin_dashboard.html:202
+#: restaurant/templates/control/archived_lunchboxes.html:164
+#: restaurant/templates/control/published_lunchboxes.html:143
+#: restaurant/templates/control/restaurant_create_lunchbox.html:138
+#: restaurant/templates/control/saved_lunchboxes.html:165
+msgid "Price/Lunchbox"
+msgstr "Precio/Fiambrera"
+
+#: restaurant/templates/control/admin_dashboard.html:208
+#: restaurant/templates/control/archived_lunchboxes.html:175
+#: restaurant/templates/control/published_lunchboxes.html:154
+#: restaurant/templates/control/restaurant_create_lunchbox.html:150
+#: restaurant/templates/control/saved_lunchboxes.html:176
+msgid "discount at"
+msgstr "Descuento"
+
+#: restaurant/templates/control/admin_dashboard.html:208
+#: restaurant/templates/control/archived_lunchboxes.html:175
+#: restaurant/templates/control/published_lunchboxes.html:154
+#: restaurant/templates/control/restaurant_create_lunchbox.html:150
+#: restaurant/templates/control/saved_lunchboxes.html:176
+msgid "lunchbox"
+msgstr "Fiambrera"
+
+#: restaurant/templates/control/admin_dashboard.html:222
+msgid "Average"
+msgstr "Media"
+
+#: restaurant/templates/control/admin_dashboard.html:235
+msgid "got 1 star"
+msgstr "Tiene una estrella"
+
+#: restaurant/templates/control/admin_dashboard.html:238
+msgid "got 2 star"
+msgstr "Tiene dos estrellas"
+
+#: restaurant/templates/control/admin_dashboard.html:241
+msgid "got 3 star"
+msgstr "Tiene tres estrellas"
+
+#: restaurant/templates/control/admin_dashboard.html:244
+msgid "got 4 star"
+msgstr "Tiene cuatro estrellas"
+
+#: restaurant/templates/control/admin_dashboard.html:247
+msgid "got 5 star"
+msgstr "Tiene cinco estrellas"
+
+#: restaurant/templates/control/admin_dashboard.html:255
+#: restaurant/templates/control/restaurant_dashboard.html:235
+#: restaurant/templates/inc/restaurant_lunchbox.html:179
+#: restaurant/templates/inc/restaurants.html:227
+#: restaurant/templates/inc/restaurants.html:435
+#: restaurant/templates/inc/restaurants_backup.html:227
+#: restaurant/templates/inc/restaurants_backup.html:437
+#, fuzzy
+#| msgid "Colleagues chose this today"
+msgid "People chose this today"
+msgstr "Personas lo han pedido hoy"
+
+#: restaurant/templates/control/admin_dashboard.html:304
+#: restaurant/templates/control/restaurant_dashboard.html:248
+msgid "Feedback from the clients"
+msgstr "Valoraciones de sus clientes"
+
+#: restaurant/templates/control/admin_dashboard.html:328
+#: restaurant/templates/control/published_lunchboxes.html:182
+#: restaurant/templates/control/saved_lunchboxes.html:212
+msgid "Communication Box"
+msgstr "Formulario de contacto"
+
+#: restaurant/templates/control/admin_dashboard.html:332
+#: restaurant/templates/control/inc/admin_nav.html:9
+msgid "Manager"
+msgstr "Manager"
+
+#: restaurant/templates/control/admin_dashboard.html:342
+#: restaurant/templates/control/admin_notifications.html:81
+#: restaurant/templates/control/published_lunchboxes.html:199
+#: restaurant/templates/control/restaurant_dashboard.html:270
+#: restaurant/templates/control/restaurant_notifications.html:105
+#: restaurant/templates/control/restaurant_notifications.html:164
+#: restaurant/templates/control/saved_lunchboxes.html:229
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:64
+#: restaurant/templates/inc/restaurant_lunchbox.html:39
+#: restaurant/templates/restaurant_profile.html:101
+msgid "send"
+msgstr "Enviar"
+
+#: restaurant/templates/control/admin_dashboard.html:349
+#: restaurant/templates/control/published_lunchboxes.html:176
+#: restaurant/templates/control/saved_lunchboxes.html:207
+#: restaurant/templates/user_profile.html:81
+msgid "Edit"
+msgstr "Editar"
+
+#: restaurant/templates/control/admin_dashboard.html:374
+msgid "We have no orders today"
+msgstr "No hay pedidos para hoy"
+
+#: restaurant/templates/control/admin_notifications.html:4
+#: restaurant/templates/control/restaurant_notifications.html:4
+msgid "Notifications"
+msgstr "Notificaciones"
+
+#: restaurant/templates/control/admin_notifications.html:8
+msgid "Notification from restaurants"
+msgstr "Notificaciones de los restaurantes"
+
+#: restaurant/templates/control/admin_notifications.html:14
+msgid "requests"
+msgstr "pide"
+
+#: restaurant/templates/control/admin_notifications.html:16
+msgid "publishing and photoshoot"
+msgstr "sesión de fotos y publicación"
+
+#: restaurant/templates/control/admin_notifications.html:18
+msgid "photoshoot"
+msgstr "sesión de fotos"
+
+#: restaurant/templates/control/admin_notifications.html:20
+msgid "publishing"
+msgstr "su publicación"
+
+#: restaurant/templates/control/admin_notifications.html:24
+msgid "requests a photoshoot for the restaurant"
+msgstr "pide una sesión de fotos para el restaurante"
+
+#: restaurant/templates/control/admin_notifications.html:36
+#: restaurant/templates/control/restaurant_notifications.html:63
+msgid "Link"
+msgstr "Enlaces"
+
+#: restaurant/templates/control/admin_notifications.html:42
+#: restaurant/templates/control/restaurant_dashboard.html:240
+#: restaurant/templates/control/restaurant_dashboard.html:366
+#: restaurant/templates/control/restaurant_notifications.html:20
+#: restaurant/templates/control/restaurant_notifications.html:69
+#: restaurant/templates/control/restaurant_notifications.html:129
+msgid "Archive"
+msgstr "Archivar"
+
+#: restaurant/templates/control/admin_notifications.html:44
+msgid "Done"
+msgstr "Hecho"
+
+#: restaurant/templates/control/admin_notifications.html:53
+#: restaurant/templates/control/restaurant_notifications.html:27
+#: restaurant/templates/control/restaurant_notifications.html:76
+#: restaurant/templates/control/restaurant_notifications.html:136
+msgid "Mark URGENT!"
+msgstr "URGENTE"
+
+#: restaurant/templates/control/admin_notifications.html:59
+#: restaurant/templates/control/restaurant_notifications.html:33
+#: restaurant/templates/control/restaurant_notifications.html:82
+#: restaurant/templates/control/restaurant_notifications.html:142
+msgid "Less important"
+msgstr "Menos importante"
+
+#: restaurant/templates/control/admin_notifications.html:65
+#: restaurant/templates/control/restaurant_notifications.html:40
+#: restaurant/templates/control/restaurant_notifications.html:89
+#: restaurant/templates/control/restaurant_notifications.html:148
+msgid "It can wait"
+msgstr "Puede esperar"
+
+#: restaurant/templates/control/admin_notifications.html:80
+#: restaurant/templates/control/published_lunchboxes.html:198
+#: restaurant/templates/control/restaurant_dashboard.html:269
+#: restaurant/templates/control/restaurant_notifications.html:104
+#: restaurant/templates/control/restaurant_notifications.html:163
+#: restaurant/templates/control/saved_lunchboxes.html:228
+msgid "Write your message here!"
+msgstr "Escribe tu mensaje"
+
+#: restaurant/templates/control/admin_restaurant_orders.html:9
+#: restaurant/templates/control/restaurant_orders.html:9
+msgid "Contact"
+msgstr "Contacto"
+
+#: restaurant/templates/control/admin_restaurant_orders.html:11
+#: restaurant/templates/control/inc/admin_nav.html:17
+#: restaurant/templates/control/inc/nav.html:21
+#: restaurant/templates/control/restaurant_notifications.html:13
+#: restaurant/templates/control/restaurant_orders.html:11
+msgid "Lunchbox"
+msgstr "Fiambrera"
+
+#: restaurant/templates/control/admin_restaurant_orders.html:20
+#: restaurant/templates/control/restaurant_orders.html:20
+msgid "Delivery time"
+msgstr "Tiempo de entrega"
+
+#: restaurant/templates/control/admin_restaurant_orders.html:25
+#: restaurant/templates/control/restaurant_billing.html:161
+#: restaurant/templates/control/restaurant_billing.html:168
+msgid "Payment"
+msgstr "Pago"
+
+#: restaurant/templates/control/admin_restaurant_orders.html:78
+msgid "DELIVERY DETAILS"
+msgstr "Detalles del envío"
+
+#: restaurant/templates/control/admin_restaurant_orders.html:85
+msgid "Note"
+msgstr "Nota"
+
+#: restaurant/templates/control/admin_restaurant_orders.html:85
+#: restaurant/templates/control/restaurant_dashboard.html:226
+#: restaurant/templates/control/restaurant_dashboard.html:352
+msgid "order"
+msgstr "pedido"
+
+#: restaurant/templates/control/archived_lunchboxes.html:5
+#: restaurant/templates/control/lunchbox.html:26
+#: restaurant/templates/control/lunchbox.html:43
+msgid "Archived lunchboxes"
+msgstr "Fiambreras archivadas"
+
+#: restaurant/templates/control/archived_lunchboxes.html:169
+#: restaurant/templates/control/published_lunchboxes.html:148
+#: restaurant/templates/control/restaurant_create_lunchbox.html:144
+#: restaurant/templates/control/saved_lunchboxes.html:170
+msgid "La Fiambrera rate"
+msgstr "Comisión de La Fiambrera"
+
+#: restaurant/templates/control/archived_lunchboxes.html:189
+#: restaurant/templates/control/published_lunchboxes.html:167
+#: restaurant/templates/control/saved_lunchboxes.html:201
+msgid "Delete"
+msgstr "Eliminar"
+
+#: restaurant/templates/control/archived_lunchboxes.html:193
+msgid "Duplicate"
+msgstr "Duplicar"
+
+#: restaurant/templates/control/base_control.html:7
+msgid "Admin page"
+msgstr "Administrador de página"
+
+#: restaurant/templates/control/inc/admin_nav.html:19
+#: restaurant/templates/control/inc/nav.html:24
+#: restaurant/templates/inc/reg_steps.html:11
+msgid "Restaurant"
+msgstr "Restaurante"
+
+#: restaurant/templates/control/inc/admin_nav.html:24
+#: restaurant/templates/control/inc/admin_nav.html:27
+#: restaurant/templates/control/inc/nav.html:33
+#: restaurant/templates/control/restaurant_contract.html:4
+#: restaurant/templates/control/restaurant_contract.html:8
+msgid "Contract"
+msgstr "Contrato"
+
+#: restaurant/templates/control/inc/admin_nav.html:32
+msgid "Back to control"
+msgstr "Volver a control"
+
+#: restaurant/templates/control/inc/admin_nav.html:36
+msgid "Restaurants"
+msgstr "Restaurantes"
+
+#: restaurant/templates/control/inc/admin_nav.html:39
+#: restaurant/templates/control/inc/nav.html:29
+msgid "Orders"
+msgstr "Pedidos"
+
+#: restaurant/templates/control/inc/admin_nav.html:42
+#: restaurant/templates/control/inc/nav.html:26
+msgid "Billing"
+msgstr "Facturas"
+
+#: restaurant/templates/control/inc/admin_nav.html:49
+#: restaurant/templates/control/inc/nav.html:41
+msgid "unread"
+msgstr "no leídos"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:33
+msgid "Add meat protein"
+msgstr "Añadir proteína animal"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:33
+msgid "chicken, fish...etc"
+msgstr "Pollo, pescado, etc."
+
+#: restaurant/templates/control/inc/nutrition_facts.html:37
+msgid "Add legume"
+msgstr "Añadir legumbre"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:37
+msgid "beans, nuts, seeds...etc"
+msgstr "alubias, frutos secos, semillas"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:41
+msgid "Add dairy product"
+msgstr "Añadir lácteos"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:41
+msgid "cheese, milk...etc"
+msgstr "queso, leche, etc."
+
+#: restaurant/templates/control/inc/nutrition_facts.html:45
+msgid "Add vegetable"
+msgstr "Añadir vegetal"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:45
+msgid "tomato, potato...etc"
+msgstr "Tomate, patata, etc."
+
+#: restaurant/templates/control/inc/nutrition_facts.html:49
+msgid "Add cereal grains"
+msgstr "Añadir cereales"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:49
+msgid "flour, rice...etc"
+msgstr "harina, arroz, etc."
+
+#: restaurant/templates/control/inc/nutrition_facts.html:53
+msgid "Add fruits"
+msgstr "Añadir fruta"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:53
+msgid "berries, olive...etc"
+msgstr "bayas, olivas, etc."
+
+#: restaurant/templates/control/inc/nutrition_facts.html:57
+msgid "Add spices"
+msgstr "Añadir especias"
+
+#: restaurant/templates/control/inc/nutrition_facts.html:57
+msgid "salt, sugar...etc"
+msgstr "sal, azúcar, etc."
+
+#: restaurant/templates/control/inc/nutrition_facts.html:61
+msgid "Add oils"
+msgstr "Añadir aceites"
+
+#: restaurant/templates/control/lunchbox.html:14
+#: restaurant/templates/control/lunchbox.html:31
+msgid "Create new lunchbox"
+msgstr "Crear nueva fiambrera"
+
+#: restaurant/templates/control/lunchbox.html:18
+#: restaurant/templates/control/lunchbox.html:35
+msgid "Published lunchboxes"
+msgstr "Fiambreras publicadas"
+
+#: restaurant/templates/control/lunchbox.html:22
+#: restaurant/templates/control/lunchbox.html:39
+msgid "Saved/pending lunchboxes"
+msgstr "Fiambreras guardadas/pendientes"
+
+#: restaurant/templates/control/restaurant_billing.html:11
+msgid "Opened lunchboxes"
+msgstr "Fiambreras abiertas"
+
+#: restaurant/templates/control/restaurant_billing.html:15
+msgid "Processing lunchboxes"
+msgstr "Fiambreras en proceso"
+
+#: restaurant/templates/control/restaurant_billing.html:19
+msgid "Paid lunchboxes"
+msgstr "Fiambreras pagadas"
+
+#: restaurant/templates/control/restaurant_billing.html:24
+msgid "Name of the lunchbox"
+msgstr "Nombre de la fiambrera"
+
+#: restaurant/templates/control/restaurant_billing.html:24
+msgid "reference number"
+msgstr "Número de referencia"
+
+#: restaurant/templates/control/restaurant_billing.html:25
+msgid "quantity SOLD"
+msgstr "Cantidad vendida"
+
+#: restaurant/templates/control/restaurant_billing.html:26
+msgid "time period"
+msgstr "Periodo"
+
+#: restaurant/templates/control/restaurant_billing.html:27
+msgid "La Fiambrera Rate"
+msgstr "Puntuación de La Fiambrera"
+
+#: restaurant/templates/control/restaurant_billing.html:28
+#: restaurant/templates/control/restaurant_billing.html:93
+#: restaurant/templates/control/restaurant_billing.html:203
+msgid "Processed"
+msgstr "Procesado"
+
+#: restaurant/templates/control/restaurant_billing.html:38
+#: restaurant/templates/control/restaurant_billing.html:64
+#: restaurant/templates/control/restaurant_billing.html:182
+msgid "Your billing is empty!"
+msgstr "Tu cuenta está vacía"
+
+#: restaurant/templates/control/restaurant_billing.html:112
+#: restaurant/templates/control/restaurant_billing.html:212
+msgid "Payment requested"
+msgstr "Pagos solicitados"
+
+#: restaurant/templates/control/restaurant_billing.html:114
+#: restaurant/templates/control/restaurant_billing.html:219
+msgid "Request payment"
+msgstr "Solicitar pago"
+
+#: restaurant/templates/control/restaurant_billing.html:114
+#: restaurant/templates/control/restaurant_billing.html:219
+msgid "not available yet"
+msgstr "No disponible todavía"
+
+#: restaurant/templates/control/restaurant_billing.html:130
+#: restaurant/templates/control/restaurant_billing.html:140
+#: restaurant/templates/control/restaurant_billing.html:229
+msgid "Confirmed"
+msgstr "Confirmado"
+
+#: restaurant/templates/control/restaurant_billing.html:132
+#: restaurant/templates/control/restaurant_billing.html:147
+#: restaurant/templates/control/restaurant_billing.html:236
+msgid "To be confirmed by La Fiambrera"
+msgstr "A confirmar por La Fiambrera"
+
+#: restaurant/templates/control/restaurant_billing.html:188
+#: restaurant/templates/mainapp/all_lunchbox.html:48
+#: restaurant/templates/mainapp/individul_lunchbox.html:113
+#: restaurant/templates/mainapp/lunch-box-list.html:45
+#: restaurant/templates/paypal.html:3 restaurant/templates/redsys.html:3
+msgid "Order"
+msgstr "Pedido"
+
+#: restaurant/templates/control/restaurant_billing.html:246
+msgid "Transferred"
+msgstr "Transferido"
+
+#: restaurant/templates/control/restaurant_billing.html:253
+msgid "Transfer"
+msgstr "Transferir"
+
+#: restaurant/templates/control/restaurant_create_lunchbox.html:5
+msgid "Create lunchbox"
+msgstr "Crear fiambrera"
+
+#: restaurant/templates/control/restaurant_create_lunchbox.html:26
+#: restaurant/templates/control/restaurant_create_lunchbox.html:48
+#: restaurant/templates/control/restaurant_info.html:97
+#: restaurant/templates/control/restaurant_info.html:152
+msgid "Recommended size"
+msgstr "Tamaño recomendado"
+
+#: restaurant/templates/control/restaurant_create_lunchbox.html:116
+msgid "Auto calculated"
+msgstr "Auto calculado"
+
+#: restaurant/templates/control/restaurant_create_lunchbox.html:174
+#: restaurant/templates/control/saved_lunchboxes.html:197
+msgid "Publishing requested"
+msgstr "Publicación requerida"
+
+#: restaurant/templates/control/restaurant_create_lunchbox.html:179
+msgid "Photoshoot done?"
+msgstr "¿Sesión de fotos hecha?"
+
+#: restaurant/templates/control/restaurant_create_lunchbox.html:183
+msgid "Lunchbox published?"
+msgstr "¿Fiambrera publicada?"
+
+#: restaurant/templates/control/restaurant_create_lunchbox.html:189
+#: restaurant/templates/control/restaurant_info.html:271
+msgid "Save"
+msgstr "Guardar"
+
+#: restaurant/templates/control/restaurant_dashboard.html:101
+#: restaurant/templates/inc/restaurants.html:54
+#: restaurant/templates/inc/restaurants_backup.html:54
+#: restaurant/templates/restaurant_profile.html:68
+msgid "Enjoyed Our Lunchbox?"
+msgstr "¿Has disfrutado de nuestra fiambrera?"
+
+#: restaurant/templates/control/restaurant_dashboard.html:103
+#: restaurant/templates/coupon.html:15
+#: restaurant/templates/inc/restaurants.html:56
+#: restaurant/templates/inc/restaurants_backup.html:56
+#: restaurant/templates/restaurant_profile.html:70
+msgid "off coupon"
+msgstr "de descuento - Cupón"
+
+#: restaurant/templates/control/restaurant_dashboard.html:104
+#: restaurant/templates/inc/restaurants.html:57
+#: restaurant/templates/inc/restaurants_backup.html:57
+#: restaurant/templates/restaurant_profile.html:71
+msgid "click to save it"
+msgstr "Click para guardar"
+
+#: restaurant/templates/control/restaurant_dashboard.html:113
+msgid "Edit restaurant"
+msgstr "Editar restaurante"
+
+#: restaurant/templates/control/restaurant_dashboard.html:119
+msgid "Restaurant reviews"
+msgstr "Críticas del restaurante"
+
+#: restaurant/templates/control/restaurant_dashboard.html:132
+#: restaurant/templates/restaurant_profile.html:96
+msgid "Currently, the restaurant doesn't have any reviews."
+msgstr "El restaurante no tiene ninguna crítica por ahora"
+
+#: restaurant/templates/control/restaurant_dashboard.html:206
+#: restaurant/templates/control/restaurant_dashboard.html:332
+msgid "Available"
+msgstr "Disponible"
+
+#: restaurant/templates/control/restaurant_dashboard.html:211
+#: restaurant/templates/control/restaurant_dashboard.html:337
+msgid "Average price per lunchbox"
+msgstr "Precio medio por fiambrera"
+
+#: restaurant/templates/control/restaurant_dashboard.html:216
+#: restaurant/templates/control/restaurant_dashboard.html:342
+#: restaurant/templates/restaurant_profile.html:61
+msgid "Not available"
+msgstr "No disponible"
+
+#: restaurant/templates/control/restaurant_dashboard.html:221
+#: restaurant/templates/control/restaurant_dashboard.html:347
+msgid "Total order"
+msgstr "Total pedido"
+
+#: restaurant/templates/control/restaurant_dashboard.html:225
+#: restaurant/templates/control/restaurant_dashboard.html:351
+msgid "Companies who chose this lunchbox"
+msgstr "Empresas que han elegido esta fiambrera"
+
+#: restaurant/templates/control/restaurant_dashboard.html:242
+#: restaurant/templates/control/restaurant_dashboard.html:368
+msgid "Edit lunchbox"
+msgstr "Editar fiambrera"
+
+#: restaurant/templates/control/restaurant_info.html:127
+msgid "Time"
+msgstr "Tiempo"
+
+#: restaurant/templates/control/restaurant_info.html:128
+msgid "From:"
+msgstr "Desde:"
+
+#: restaurant/templates/control/restaurant_info.html:130
+msgid "Till:"
+msgstr "Hasta"
+
+#: restaurant/templates/control/restaurant_info.html:186
+#: userprofiles/forms.py:34 userprofiles/forms.py:93 userprofiles/forms.py:182
+#: userprofiles/forms.py:223 userprofiles/forms.py:232
+#: userprofiles/forms.py:262
+msgid "Email address"
+msgstr "E-mail"
+
+#: restaurant/templates/control/restaurant_info.html:226
+msgid "Week day"
+msgstr "Día de la semana"
+
+#: restaurant/templates/control/restaurant_info.html:227
+msgid "start"
+msgstr "inicio"
+
+#: restaurant/templates/control/restaurant_info.html:228
+msgid "end"
+msgstr "fin"
+
+#: restaurant/templates/control/restaurant_notifications.html:8
+msgid "Notifications from new orders"
+msgstr "Notificaciones de nuevos pedidos"
+
+#: restaurant/templates/control/restaurant_notifications.html:51
+msgid "Notifications from Admin"
+msgstr "Notificaciones del administrador"
+
+#: restaurant/templates/control/restaurant_notifications.html:66
+#: restaurant/templates/control/restaurant_notifications.html:126
+msgid "Reply"
+msgstr "Contestar"
+
+#: restaurant/templates/control/restaurant_notifications.html:114
+msgid "Notifications from customers"
+msgstr "Notificaciones de los clientes"
+
+#: restaurant/templates/control/restaurant_notifications.html:119
+msgid "client feedback"
+msgstr "Respuesta del cliente"
+
+#: restaurant/templates/control/restaurant_orders.html:32
+msgid "You don't have any orders!"
+msgstr "No tienes nigún pedido"
+
+#: restaurant/templates/control/restaurants.html:8
+msgid "Registered restaurants"
+msgstr "Restaurantes registrados"
+
+#: restaurant/templates/control/saved_lunchboxes.html:5
+msgid "Saved lunchboxes"
+msgstr "Fiambreras guardadas"
+
+#: restaurant/templates/coupon.html:5
+msgid "Restaurant discount coupon"
+msgstr "Cupón de descuento del restaurante"
+
+#: restaurant/templates/coupon.html:13
+msgid "Get discount right now!"
+msgstr "¡Obtén el descuento ahora!"
+
+#: restaurant/templates/coupon.html:17
+msgid "Come and get it!"
+msgstr "¡Ven y consíguelo!"
+
+#: restaurant/templates/coupon.html:21
+msgid "Available from"
+msgstr "Disponible desde"
+
+#: restaurant/templates/coupon.html:22
+msgid "Available till"
+msgstr "Disponible hasta"
+
+#: restaurant/templates/coupon.html:23
+msgid "Available time"
+msgstr "Tiempo disponible"
+
+#: restaurant/templates/coupon.html:35
+#: restaurant/templates/restaurant_profile.html:46
+msgid "Phone"
+msgstr "Teléfono"
+
+#: restaurant/templates/coupon.html:36
+#: restaurant/templates/restaurant_profile.html:47
+msgid "Website"
+msgstr "Sitio web"
+
+#: restaurant/templates/edit_user_profile.html:4
+msgid "Edit profile"
+msgstr "Editar perfil"
+
+#: restaurant/templates/edit_user_profile.html:8
+msgid "Please finish your profile!"
+msgstr "¡Por favor, completa tu perfil!"
+
+#: restaurant/templates/edit_user_profile.html:20
+msgid "Can’t find your company? Register it!"
+msgstr "¿No encuentras tu empresa? ¡Regístrala!"
+
+#: restaurant/templates/enjoy_your_box.html:12
+msgid "How did you like the service?"
+msgstr "¿Qué te ha parecido el servicio?"
+
+#: restaurant/templates/enjoy_your_box.html:16
+msgid "Not happy"
+msgstr "No estoy contento"
+
+#: restaurant/templates/enjoy_your_box.html:20
+msgid "Neutral"
+msgstr "Neutral"
+
+#: restaurant/templates/enjoy_your_box.html:24
+msgid "Happy"
+msgstr "Estoy contento"
+
+#: restaurant/templates/enjoy_your_box.html:30
+msgid "Thank you. Enjoy your lunchbox!"
+msgstr "Muchas gracias. ¡Disfruta de tu fiambrera!"
+
+#: restaurant/templates/inc/control_footer.html:10
+#: restaurant/templates/inc/footer.html:19
+msgid "Follow Us"
+msgstr "Síguenos"
+
+#: restaurant/templates/inc/goto_home.html:5
+msgid "Back to homepage"
+msgstr "Página de inicio"
+
+#: restaurant/templates/inc/lunchbox_rate.html:5
+msgid "You ordered this lunchbox! How would you rate it?"
+msgstr "Has pedido esta fiambrera, ¿cómo la valorarías?"
+
+#: restaurant/templates/inc/lunchbox_rate.html:7
+msgid "You ordered this lunchbox and rated it"
+msgstr "Has pedido y valorado esta fiambrera"
+
+#: restaurant/templates/inc/lunchbox_rate.html:13
+#: restaurant/templates/inc/lunchbox_rate.html:19
+#: restaurant/templates/inc/lunchbox_rate.html:25
+#: restaurant/templates/inc/lunchbox_rate.html:31
+#: restaurant/templates/inc/lunchbox_rate.html:37
+msgid "star"
+msgstr "Estrella"
+
+#: restaurant/templates/inc/lunchbox_rate.html:14
+msgid "Never again!"
+msgstr "¡Nunca más!"
+
+#: restaurant/templates/inc/lunchbox_rate.html:20
+msgid "Not a fan"
+msgstr "No muy fan"
+
+#: restaurant/templates/inc/lunchbox_rate.html:26
+msgid "Okay, I guess"
+msgstr "No está mal, supongo"
+
+#: restaurant/templates/inc/lunchbox_rate.html:32
+msgid "Liked it a lot"
+msgstr "Me ha gustado mucho"
+
+#: restaurant/templates/inc/lunchbox_rate.html:38
+msgid "Loved it !!!"
+msgstr "¡Me ha encantado!"
+
+#: restaurant/templates/inc/nav.html:19
+msgid "Choose Lunchbox"
+msgstr "Elige fiambrera"
+
+#: restaurant/templates/inc/nav.html:35
+msgid "Check out"
+msgstr "Finalizar compra"
+
+#: restaurant/templates/inc/nav.html:44
+msgid "Enjoy Your Box"
+msgstr "¡Disfruta tu fiambrera!"
+
+#: restaurant/templates/inc/reg_steps.html:5
+msgid "To order"
+msgstr "Para pedir"
+
+#: restaurant/templates/inc/reg_steps.html:8
+msgid "Company"
+msgstr "Empresa"
+
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:11
+msgid "People ordered this lunchbox"
+msgstr "Otras personas han pedido esta fiambrera"
+
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:26
+msgid "Original Price of "
+msgstr "Precio original de"
+
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:34
+msgid "TOTAL PURCHASE"
+msgstr "TOTAL COMPRA"
+
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:43
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:63
+#: restaurant/templates/inc/restaurant_lunchbox.html:18
+msgid "Ask the restaurant!"
+msgstr "Pregunta al restaurante"
+
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:161
+msgid "People asked to have this on the menu again"
+msgstr "Personas ha pedido tenerla en el menú de nuevo"
+
+#: restaurant/templates/inc/restaurant_archived_lunchbox.html:165
+msgid "Request it!"
+msgstr "¡Pídelo!"
+
+#: restaurant/templates/inc/restaurant_lunchbox.html:159
+#: restaurant/templates/inc/restaurants.html:207
+#: restaurant/templates/inc/restaurants.html:415
+#: restaurant/templates/inc/restaurants_backup.html:207
+#: restaurant/templates/inc/restaurants_backup.html:417
+msgid "Discount available for"
+msgstr "Descuento disponible para"
+
+#: restaurant/templates/inc/restaurant_lunchbox.html:159
+#: restaurant/templates/inc/restaurants.html:207
+#: restaurant/templates/inc/restaurants.html:415
+#: restaurant/templates/inc/restaurants_backup.html:207
+#: restaurant/templates/inc/restaurants_backup.html:417
+#, fuzzy
+#| msgid "order"
+msgid "orders"
+msgstr "pedido"
+
+#: restaurant/templates/inc/restaurant_lunchbox.html:200
+#: restaurant/templates/inc/restaurants.html:261
+#: restaurant/templates/inc/restaurants.html:469
+#: restaurant/templates/inc/restaurants_backup.html:260
+#: restaurant/templates/inc/restaurants_backup.html:471
+msgid "Put in basket"
+msgstr "Añadir al carrito"
+
+#: restaurant/templates/inc/restaurant_lunchbox.html:206
+#: restaurant/templates/inc/restaurants.html:265
+#: restaurant/templates/inc/restaurants.html:473
+#: restaurant/templates/inc/restaurants_backup.html:264
+#: restaurant/templates/inc/restaurants_backup.html:475
+msgid "Go to checkout"
+msgstr "Ir al Carrito"
+
+#: restaurant/templates/inc/restaurants.html:252
+#, fuzzy
+#| msgid "Delivery time"
+msgid "Delivery Time"
+msgstr "Tiempo de entrega"
+
+#: restaurant/templates/inc/restaurants.html:497
+#: restaurant/templates/inc/restaurants_backup.html:502
+msgid "No restaurants available"
+msgstr "No hay restaurantes disponibles"
+
+#: restaurant/templates/index.html:5
+msgid "Main page"
+msgstr "Página principal"
+
+#: restaurant/templates/index.html:62 restaurant/templates/index.html:64
+msgid "Login with"
+msgstr "Acceder con"
+
+#: restaurant/templates/index.html:75
+msgid "Register"
+msgstr "Registro"
+
+#: restaurant/templates/index.html:76
+msgid "or"
+msgstr "o"
+
+#: restaurant/templates/index.html:77
+msgid "Take a Peek"
+msgstr "Echa un vistazo"
+
+#: restaurant/templates/mainapp/all_lunchbox.html:6
+#: restaurant/templates/mainapp/lunch-box-list.html:6
+#, fuzzy
+#| msgid "Lunchbox"
+msgid "Lunchboxes"
+msgstr "Fiambrera"
+
+#: restaurant/templates/mainapp/all_lunchbox.html:11
+#: restaurant/templates/mainapp/header.html:23
+#, fuzzy
+#| msgid "Paid lunchboxes"
+msgid "All lunchboxes"
+msgstr "Fiambreras pagadas"
+
+#: restaurant/templates/mainapp/all_lunchbox.html:47
+#: restaurant/templates/mainapp/lunch-box-list.html:44
+msgid "See More"
+msgstr ""
+
+#: restaurant/templates/mainapp/header.html:24
+msgid "Steps to a <br>Healthy Lunch"
+msgstr ""
+
+#: restaurant/templates/mainapp/header.html:25
+msgid "Group Benefits <br>and Offers"
+msgstr ""
+
+#: restaurant/templates/mainapp/header.html:27
+msgid "Categories of <br>Lunchboxes"
+msgstr ""
+
+#: restaurant/templates/mainapp/home_page.html:8
+#, fuzzy
+#| msgid "La Fiambrera rate"
+msgid "lafiambrera-Home"
+msgstr "Comisión de La Fiambrera"
+
+#: restaurant/templates/mainapp/home_page.html:16
+msgid "Your message submitted successfully."
+msgstr ""
+
+#: restaurant/templates/mainapp/home_page.html:21
+#, fuzzy
+#| msgid "Opened lunchboxes"
+msgid "Our lunchboxes."
+msgstr "Fiambreras abiertas"
+
+#: restaurant/templates/mainapp/home_page.html:71
+#, fuzzy
+#| msgid "Lunchboxes you have ordered"
+msgid "Lunchboxes to meet your needs"
+msgstr "Fiambreras que has pedido"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:120
+#: restaurant/templates/mainapp/individul_lunchbox.html:200
+#, fuzzy
+#| msgid "Choose Lunchbox"
+msgid "The Lunchbox"
+msgstr "Elige fiambrera"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:122
+#: restaurant/templates/mainapp/individul_lunchbox.html:202
+msgid "Nutritional values"
+msgstr ""
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:124
+#: restaurant/templates/mainapp/individul_lunchbox.html:204
+#, fuzzy
+#| msgid "Restaurant"
+msgid "The Restaurant"
+msgstr "Restaurante"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:127
+#: restaurant/templates/mainapp/individul_lunchbox.html:207
+msgid "Group Benefits"
+msgstr ""
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:140
+#: restaurant/templates/mainapp/individul_lunchbox.html:219
+msgid "Information per 100g | Serving Size 500 "
+msgstr ""
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:149
+#: restaurant/templates/mainapp/individul_lunchbox.html:228
+#, fuzzy
+#| msgid "Total Calories"
+msgid "Calories"
+msgstr "Calorías totales"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:157
+#: restaurant/templates/mainapp/individul_lunchbox.html:236
+msgid "salt"
+msgstr ""
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:167
+#: restaurant/templates/mainapp/individul_lunchbox.html:246
+#, fuzzy
+#| msgid "Address"
+msgid "Address:"
+msgstr "Dirección"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:168
+#: restaurant/templates/mainapp/individul_lunchbox.html:247
+#, fuzzy
+#| msgid "City"
+msgid "City:"
+msgstr "Ciudad"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:169
+#: restaurant/templates/mainapp/individul_lunchbox.html:248
+msgid "State:"
+msgstr ""
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:170
+#: restaurant/templates/mainapp/individul_lunchbox.html:249
+msgid "Zip Code:"
+msgstr ""
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:173
+#: restaurant/templates/mainapp/individul_lunchbox.html:252
+#, fuzzy
+#| msgid "Website"
+msgid "Website:"
+msgstr "Sitio web"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:176
+#: restaurant/templates/mainapp/individul_lunchbox.html:255
+#, fuzzy
+#| msgid "Phone Number"
+msgid "Telephone Number:"
+msgstr "Teléfono"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:179
+#: restaurant/templates/mainapp/individul_lunchbox.html:258
+#, fuzzy
+#| msgid "Opening hours"
+msgid "Opening Hours:"
+msgstr "Horario"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:183
+#: restaurant/templates/mainapp/individul_lunchbox.html:262
+msgid "Order multiple Lunchboxes from the same restaurant for special prices !"
+msgstr ""
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:186
+#, fuzzy
+#| msgid "lunchbox"
+msgid "lunchboxes"
+msgstr "Fiambrera"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:186
+#, fuzzy
+#| msgid "discount at"
+msgid "discount"
+msgstr "Descuento"
+
+#: restaurant/templates/mainapp/individul_lunchbox.html:290
+#, fuzzy
+#| msgid "Paid lunchboxes"
+msgid "View all lunchboxes"
+msgstr "Fiambreras pagadas"
+
+#: restaurant/templates/pages/Faqs.html:16
+msgid "FAQs"
+msgstr ""
+
+#: restaurant/templates/pages/contact_us.html:11
+msgid "Sorry! Some error occur."
+msgstr ""
+
+#: restaurant/templates/pages/contact_us.html:19
+#, fuzzy
+#| msgid "Contact us"
+msgid "Contact Us"
+msgstr "Contáctanos"
+
+#: restaurant/templates/pages/contact_us.html:58
+#, fuzzy
+#| msgid "Site message"
+msgid "Send Message"
+msgstr "Mensaje del sitio"
+
+#: restaurant/templates/paypal.html:5
+msgid "Please wait..."
+msgstr "Por favor, espere"
+
+#: restaurant/templates/restaurant_profile.html:7
+msgid "Restaurant profile"
+msgstr "Perfil del restaurante"
+
+#: restaurant/templates/restaurant_profile.html:80
+msgid "Leave a review for"
+msgstr "Dejar una opinión para"
+
+#: restaurant/templates/restaurant_profile.html:82
+msgid "Reviews"
+msgstr "Opiniones"
+
+#: restaurant/templates/restaurant_profile.html:100
+msgid "Write your review here!"
+msgstr "Escribe tu opinión aquí"
+
+#: restaurant/templates/restaurant_profile.html:107
+msgid "Present Lunchboxes from"
+msgstr "Fiambreras actuales de"
+
+#: restaurant/templates/restaurant_profile.html:116
+#: restaurant/templates/restaurant_profile.html:134
+msgid "Archived Lunchboxes from"
+msgstr "Fiambreras archivadas de"
+
+#: restaurant/templates/restaurant_registration.html:4
+msgid "Restaurant registration"
+msgstr "Resgistro restaurantes"
+
+#: restaurant/templates/site_message.html:4
+msgid "Site message"
+msgstr "Mensaje del sitio"
+
+#: restaurant/templates/user_profile.html:4
+msgid "User Profile"
+msgstr "Perfil de usuario"
+
+#: restaurant/templates/user_profile.html:16
+msgid "Company address"
+msgstr "Dirección de la empresa"
+
+#: restaurant/templates/user_profile.html:52
+msgid "Catering address"
+msgstr "Dirección del restaurante"
+
+#: restaurant/templates/user_profile.html:90
+#: restaurant/templates/user_profile.html:108
+msgid "Lunchboxes you have ordered"
+msgstr "Fiambreras que has pedido"
+
+#: restaurant/templates/user_profile.html:99
+msgid "Previous archived lunchboxes"
+msgstr "Fiambreras antiguas archivadas"
+
+#: restaurant/templates/user_profile.html:113
+msgid "You don't have any orders yet"
+msgstr "No tienes ningún pedido todavía"
+
+#: restaurant/templates/user_registration.html:4
+msgid "User registration"
+msgstr "Registro usuarios"
+
+#: restaurant/templates/user_registration.html:27
+msgid "Can’t find your company? Register it under the COMPANY menu on the top"
+msgstr ""
+"¿No encuentras tu empresa? Regístrala en el menú EMPRESA de la barra superior"
+
+#: userprofiles/forms.py:11 userprofiles/forms.py:71 userprofiles/forms.py:246
+msgid "CHOOSE COMPANY"
+msgstr "ELIGE EMPRESA"
+
+#: userprofiles/forms.py:21
+msgid "Email"
+msgstr "E-mail"
+
+#: userprofiles/forms.py:22 userprofiles/forms.py:37 userprofiles/forms.py:96
+#: userprofiles/forms.py:183 userprofiles/forms.py:224
+msgid "Password"
+msgstr "Contraseña"
+
+#: userprofiles/forms.py:27 userprofiles/forms.py:86 userprofiles/forms.py:149
+#: userprofiles/forms.py:160 userprofiles/forms.py:170
+#: userprofiles/forms.py:180 userprofiles/forms.py:221
+#: userprofiles/forms.py:230 userprofiles/forms.py:260
+msgid "First name"
+msgstr "Nombre"
+
+#: userprofiles/forms.py:31 userprofiles/forms.py:90 userprofiles/forms.py:150
+#: userprofiles/forms.py:161 userprofiles/forms.py:171
+#: userprofiles/forms.py:181 userprofiles/forms.py:222
+#: userprofiles/forms.py:231 userprofiles/forms.py:261
+msgid "Family name"
+msgstr "Apellidos"
+
+#: userprofiles/forms.py:40 userprofiles/forms.py:99 userprofiles/forms.py:184
+#: userprofiles/forms.py:225
+msgid "Password again"
+msgstr "Repita la contraseña"
+
+#: userprofiles/forms.py:43 userprofiles/forms.py:166
+#: userprofiles/forms.py:176 userprofiles/forms.py:185
+#: userprofiles/forms.py:226 userprofiles/forms.py:233
+#: userprofiles/forms.py:263
+msgid "Phone number"
+msgstr "Número de teléfono"
+
+#: userprofiles/forms.py:48 userprofiles/forms.py:111
+#: userprofiles/forms.py:153 userprofiles/forms.py:163
+#: userprofiles/forms.py:173 userprofiles/forms.py:237
+msgid "City"
+msgstr "Ciudad"
+
+#: userprofiles/forms.py:55
+msgid "This field is required"
+msgstr "Este campo es obligatorio"
+
+#: userprofiles/forms.py:64 userprofiles/forms.py:127
+#: userprofiles/forms.py:200
+msgid "Phone can contain only numbers and spaces!"
+msgstr "El teléfono solo puede incluir números y espacios"
+
+#: userprofiles/forms.py:77 userprofiles/forms.py:252
+msgid "+ ADD YOUR COMPANY"
+msgstr "+ AÑADE TU EMPRESA"
+
+#: userprofiles/forms.py:102
+msgid "Your phone number"
+msgstr "Tu número de teléfono"
+
+#: userprofiles/forms.py:105 userprofiles/forms.py:151
+#: userprofiles/forms.py:235
+msgid "Company name"
+msgstr "Nombre de la empresa"
+
+#: userprofiles/forms.py:115 userprofiles/forms.py:155
+#: userprofiles/forms.py:165 userprofiles/forms.py:175
+#: userprofiles/forms.py:192 userprofiles/forms.py:239
+msgid "Postal code"
+msgstr "Código Postal"
+
+#: userprofiles/forms.py:118 userprofiles/forms.py:156
+msgid "Office phone number"
+msgstr "Número de teléfono de la oficina"
+
+#: userprofiles/forms.py:135 userprofiles/forms.py:216
+msgid "Zip code can contain only numbers!"
+msgstr "El código postal solo puede contener números"
+
+#: userprofiles/forms.py:144
+msgid "Company phone can contain only numbers and spaces!"
+msgstr "El teléfono de la empresa solo puede contener números y espacios"
+
+#: userprofiles/forms.py:152 userprofiles/forms.py:236
+msgid "Company address * (street, building, floor, door)"
+msgstr "Dirección de la empresa (calle, número, piso, puerta)"
+
+#: userprofiles/forms.py:154 userprofiles/forms.py:164
+#: userprofiles/forms.py:174 userprofiles/forms.py:238
+msgid "Region"
+msgstr "Provincia"
+
+#: userprofiles/forms.py:162 userprofiles/forms.py:172
+msgid "Address * (street, building, floor, door)"
+msgstr "Dirección (calle, número, piso, puerta)"
+
+#: userprofiles/forms.py:186
+msgid "Restaurant name"
+msgstr "Nombre del restaurante"
+
+#: userprofiles/forms.py:187
+msgid "Restaurant address *(street, building, floor, door)"
+msgstr "Dirección del restaurante (calle, número, piso, puerta)"
+
+#: userprofiles/forms.py:193
+msgid "Restaurant phone number"
+msgstr "Teléfono del restaurante"
+
+#: userprofiles/forms.py:208
+msgid "Restaurant phone can contain only numbers and spaces!"
+msgstr "El teléfono del restaurante solo puede contener números y espacios"
+
+#: userprofiles/forms.py:240
+msgid "Office Phone number"
+msgstr "Teléfono de la oficina"
+
+#: userprofiles/forms.py:271 userprofiles/forms.py:294
+msgid "Name of the restaurant"
+msgstr "Nombre del restaurante"
+
+#: userprofiles/forms.py:272 userprofiles/forms.py:295
+msgid "DESCRIPTION: Describe your restaurant!"
+msgstr "Descripción: Describe tu restaurante"
+
+#: userprofiles/forms.py:273
+msgid "Enter your address"
+msgstr "Introduce tu dirección"
+
+#: userprofiles/forms.py:274
+msgid "Enter your phone number"
+msgstr "Introduce tu teléfono"
+
+#: userprofiles/forms.py:275
+msgid "Enter your email address"
+msgstr "Introduce tu e-mail"
+
+#: userprofiles/forms.py:277 userprofiles/forms.py:297
+msgid "Enter your facebook address"
+msgstr "Introduce tu página de Facebook"
+
+#: userprofiles/forms.py:278 userprofiles/forms.py:298
+msgid "Your twitter"
+msgstr "Tu Twitter"
+
+#: userprofiles/forms.py:279 userprofiles/forms.py:299
+msgid "Your instagram"
+msgstr "Tu Instagram"
+
+#: userprofiles/forms.py:280 userprofiles/forms.py:300
+msgid "Your website"
+msgstr "Tu página web"
+
+#: userprofiles/forms.py:285 userprofiles/forms.py:305
+msgid ""
+"Opening hours (example):\n"
+"Mon: Closed\n"
+"Tue - Thu: 10:00 - 00:00\n"
+"Fri - Sun: 10:00 - 02:00"
+msgstr ""
+"Horario (ejemplo):\n"
+"Lu: Cerrado\n"
+"Ma - Ju: 10:00 - 00:00\n"
+"Vi - Do: 10:00 - 02:00"
+
+#: userprofiles/forms.py:341
+msgid "The start-time must be earlier than the end-time"
+msgstr "La hora de inicio debe ser previa a la hora de finalización"
+
+#: userprofiles/forms.py:348
+msgid "There are overlapping time intervals"
+msgstr "Los intervalos de tiempo se solapan"
+
+#: userprofiles/forms.py:400
+msgid "Add discount"
+msgstr "Añadir descuento"
+
+#: userprofiles/forms.py:419
+msgid "Name of lunchbox"
+msgstr "Nombre de la fiambrera"
+
+#: userprofiles/forms.py:420
+msgid "DESCRIPTION: Describe your lunchbox right now!"
+msgstr "Descripción: Describe tu fiambrera ahora"
+
+#: userprofiles/forms.py:449
+msgid "Availability: Dates must be later or equal than today"
+msgstr ""
+"Disponibilidad: Las fechas deben ser iguales o posteriores a la del día de "
+"hoy"
+
+#: userprofiles/forms.py:453
+msgid "Availability: End date must be later or equal than start date"
+msgstr ""
+"Disponibilidad: La fecha de finalización debe ser igual o posterior a la "
+"fecha de inicio"
+
+#: userprofiles/forms.py:460
+msgid "La Fiambrera rate: Rate must be lower than the price"
+msgstr "Comisión de La Fiambrera: La comisión debe ser menor que el precio"
+
+#~ msgid "or more orders"
+#~ msgstr "o más pedidos"
+
+#~ msgid "Catering"
+#~ msgstr "Cátering"
+
+#~ msgid "Your company ordered"
+#~ msgstr "Pedidos de tu empresa"
+
+#~ msgid "Catering cart"
+#~ msgstr "Carrito de cátering"
+
+#~ msgid "Go to Catering Checkout"
+#~ msgstr "Ir al Carrito de Cátering"
+
+#~ msgid "Closed today"
+#~ msgstr "Cerrado hoy"

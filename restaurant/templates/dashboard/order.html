@@ -1,0 +1,115 @@
+{% extends 'dashboard/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load add_hour %}
+{% load l10n %}
+{% load tz %}
+{% block title %}
+Orders
+{% endblock %}
+
+{% block content %}
+         <div class="container">
+            <div class="admin_registered_restaurants_outer admin_order_list_outer">
+               <div class="invoice-edit-outer">
+               {%if request.user.profile.is_employee or request.user.is_staff and orders %}
+               <div class="invoice-edit-outer_box">
+                  <lable>{% trans 'Start Date' %}</lable> <input type="date" name="start_date" class="" placeholder="dd/mm/yyyy" id="from_mail_date">
+               </div>
+               <div class="invoice-edit-outer_box">
+                  <lable>{% trans 'End Date' %}</lable>
+                  <input type="date" class="end_date" placeholder="dd/mm/yyyy" id="till_mail_date">
+               </div>   
+               <div class="invoice-edit-outer_box">
+                  <lable>{% trans 'Mail Date' %}</lable>
+                  <input type="date" name="mail_date" class="mail_date" placeholder="dd/mm/yyyy" id="actual_mail_date">
+               </div>   
+               <div class="invoice-edit-outer_box"><input type="button" id="mail_submit" value="Send Mail"></div>
+
+
+<!-- 
+                  <div class="mail-invoice-div">
+                     <div class="inc-left"><p> {% trans 'Set time for for orders invoice email' %} ({% trans 'Deafault is' %} 12:00 AM): </p></div>
+                     <div class="inc-right"><span><input type="text" name="mail_time" id="datetimepicker0" readonly="true"></span>
+                     <button onclick="ordermail()">Change</button></div>
+                  </div> -->
+                 {% endif %}
+               </div>
+               <div class="admin_order_inner pull-left full-width">
+
+                  <table class="admin_order_table full-width">
+                  {% if orders %}
+                     <thead>
+                        <tr>
+                           <td>{% trans 'Customer name' %}</td>
+                           <td>{% trans 'Lunchbox' %}</td>
+                           <td class="">{% trans 'Quantity' %}</td>
+                           <td class="text-center">{% trans 'Delivery Time' %}</td>
+                           <td class="text-center">{% trans 'Delivery Date' %}</td>
+                           <td class="admin_location_icon">{% trans 'Delivery Address' %}</td>
+                           <td>{% trans 'Payment' %}</td>
+                           <td>{% trans 'vat' %}</td>
+                           <td class=""></td>
+                        </tr>
+                     </thead>
+                     {% endif %}
+                     <tbody>
+                        <tr class="blank_admin_tr">
+                           <td colspan="7"></td>
+                        </tr>
+                        {% for order in orders %}
+                           <tr>   
+                              <td>{{ order.order.get_customer.name|title }}</td>
+                              <td>{{ order.lunchbox.name }}</td>
+                              <td>{{ order.qty }}</td>
+                              <td class="text-center">{{ order.delivery_date|date:'H:i' }}-{{ order.delivery_date|add_hour|date:'H:i' }}</td>
+                              <td class="admin_order_calendar text-center">{{ order.delivery_date|date:'d M Y' }}</td>
+                              <td>{{ order.order.get_customer.address }}</td>
+                              <td>{{ order.get_amount }} €</td>
+                              <td>{{ order.order.vat }} €</td>
+                              <td><a href="{% url 'order_detail' order.id %}">{% trans 'Details' %}</a></td>
+                           </tr>
+                        {% endfor %}
+                     </tbody>
+                  </table>
+                  {% if orders.has_other_pages %}
+                     <ul class="pagination pull-left full-width">
+
+                     {% if orders.has_previous %}
+                         <li><a href="?page={{ orders.previous_page_number }}"><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                     {% else %}
+                         <li class="disabled"><a href=""><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                     {% endif %}
+
+                     {% if orders.number|add:'-4' > 1 %}
+                         <li><a href="?page={{ orders.number|add:'-5' }}">&hellip;</a></li>
+                     {% endif %}
+
+                     {% for i in orders.paginator.page_range %}
+                         {% if orders.number == i %}
+                             <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                         {% elif i > orders.number|add:'-5' and i < orders.number|add:'5' %}
+                             <li><a href="?page={{ i }}">{{ i }}</a></li>
+                         {% endif %}
+                     {% endfor %}
+
+                     {% if orders.paginator.num_pages > orders.number|add:'4' %}
+                         <li><a href="?page={{ orders.number|add:'5' }}">&hellip;</a></li>
+                     {% endif %}
+
+                     {% if orders.has_next %}
+                         <li><a href="?page={{ orders.next_page_number }}"><img src="{% static 'mainapp/img/pagination_arrow_next.png' %}" alt=""></a></li>
+                     {% else %}
+                         <li class="disabled"><span><a href=""><img src="{% static 'mainapp/img/pagination_arrow_next.png' %}" alt=""></a></span></li>
+                     {% endif %}
+
+                     </ul>
+                  {% endif %}
+               </div>
+               {% if not orders %}
+                  <center>{% trans 'No order available' %}.</center>
+               {% endif %}
+            </div>
+         </div>
+         {% endblock %}

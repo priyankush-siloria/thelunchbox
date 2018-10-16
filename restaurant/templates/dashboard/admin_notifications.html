@@ -1,0 +1,95 @@
+{% extends 'dashboard/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% block title %}
+Notifications
+{% endblock %}
+
+{% block content %}
+ <div class="container">
+ <div class="admin_registered_restaurants_outer admin_order_list_outer admin_restaurant_non_scroller_new">
+       <div class="admin_order_inner pull-left full-width">
+       {% if notifications %}
+        <h1 class="pull-left full-width">{% trans 'Notification from restaurants' %}</h1>
+         {% for n in notifications %}
+        <div data-u="{{ n.user.id }}" data-lb="{{ n.lunchbox.id }}" data-mid="{{ n.id }}" class="notification_msg high-priority" id="{{ forloop.counter }}">
+        <div class="col-md-3">
+          {% if n.lunchbox != None %}
+              <p><strong>[{{ n.lunchbox.restaurant.name }}]: {{ n.lunchbox.name }} -> {% trans 'requests' %}
+                  {% if n.lunchbox.photoshoot_requested and n.lunchbox.publishing_requested %}
+                      {% trans 'publishing and photoshoot' %}
+                  {% elif n.lunchbox.photoshoot_requested %}
+                      {% trans 'photoshoot' %}
+                  {% elif n.lunchbox.publishing_requested %}
+                      {% trans 'publishing' %}
+                  {% endif %}
+              </strong></p>
+          {% else %}
+              <p><strong>[{{ n.restaurant.name }}] -> {% trans 'requests a photoshoot for the restaurant' %}</strong></p>
+          {% endif %}
+         </div>
+       <div class="col-md-3">
+      {% if n.lunchbox != None %}
+         <p> <strong>{{ n.lunchbox.date|date:'Y. M d H:i' }}</strong></p>
+      {% endif %}
+    </div>
+    <div class="col-md-3 button_notification_new">
+      
+      {% if n.lunchbox != None %}
+          <a href="{% url 'edit_lunchboxes' restaurant_id=n.lunchbox.restaurant.id lunchbox_id=n.lunchbox.id %}"
+             ><button class="btn btn-primary small btn-reply">{% trans 'Link' %}</button></a>
+      {% endif %}
+       <button class="btn btn-primary small archive_notification">
+          {% if n.lunchbox != None %}
+              {% trans 'Archive' %}
+          {% else %}
+              {% trans 'Done' %}
+          {% endif %}
+      </button>
+      </div>
+     <div data-id="{{ n.id }}" data-idd="{{ n.user.id }}" class="col-md-3 notification_priority">
+    <div class="priority high-priority">
+    <input type="checkbox" {% if n.priority == 1 %}checked{% endif %} data-priority="1" class="priority-check" id="h{{ forloop.counter }}">
+    <label for="h{{ forloop.counter }}">{% trans 'Mark URGENT!' %}</label>
+    <div class="clearfix"></div>
+  </div>
+  <div class="priority less-priority">
+     <input type="checkbox" data-priority="2" class="priority-check" id="l{{ forloop.counter }}" {% if n.priority == 2 %}checked{% endif %}>
+
+       <label for="l{{ forloop.counter }}">{% trans 'Less important' %}</label>
+        <div class="clearfix"></div>
+        </div>
+     <div class="priority low-priority">
+    <input type="checkbox" data-priority="3" class="priority-check" id="c{{ forloop.counter }}" {% if n.priority == 3 %}checked{% endif %}>
+   <label for="c{{ forloop.counter }}">{% trans 'It can wait' %}</label>
+  <div class="clearfix"></div>
+</div>
+</div>
+<!-- <div class="notification_reply a_reply col-md-12 center" style="display:none">
+      <div class="msgs">
+          <strong>{{ n.user.first_name }} {{ n.user.last_name }}</strong>
+          <div class="clearfix"></div>
+          <span>{{ n.datetime|date:'H:i Y. M d' }}</span>
+          <div class="clearfix"></div>
+          <p>{{ n.msg }}</p>
+          <div class="clearfix"></div>
+      </div>
+      {% if request.user.is_authenticated %}
+          <textarea name="msg" class="msg" placeholder="{% trans 'Write your message here!' %}"></textarea>
+          <button>{% trans 'send' %}</button>
+      {% endif %}
+  </div> -->
+</div>
+
+{% endfor %}
+{% else %}
+  <center>{% trans 'You do not have any notification' %}.</center>
+{% endif %}
+</div>
+</div>
+</div>
+     {% endblock %}
+
+        

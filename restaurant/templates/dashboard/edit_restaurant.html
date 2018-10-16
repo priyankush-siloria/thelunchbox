@@ -1,0 +1,503 @@
+{% extends 'dashboard/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}
+Admin
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+
+        <ul class="messages" style="display: none;">
+            {% for message in messages %}
+             
+               {% if message|stringformat:"s" == 'successrestaurantregistration' %}  <li id="msgsucc" class="{{ message.tags }}">{%  trans 'You are successfully registered.' %}</li>{% endif %}
+
+               <!-- {% if message.tags == 'error' %}  <li id="msg" class="{{ message.tags }}">{{ message }}</li>{% endif %} -->
+            {% endfor %}
+        </ul>
+    {% endif %}
+         <div class="container">
+         <form id="edit_restaurant_form" enctype="multipart/form-data" enctype="multipart/form-data" action="{% url 'admin_restaurant_information' discount_formset.0.id %}" method="POST">{% csrf_token %}
+            <div class="admin_registered_restaurants_outer admin_order_list_outer admin_billing_outer admin_restaurant_edit">
+               <div class="admin_order_inner admin_billing_inner admin_restaurant_edit_inner pull-left full-width">
+                  <section class="admin_restaurant_edit_section pull-left full-width">
+
+                  {{ images_formset.management_form }}
+                  {% if images_formset %}
+                  {% for i in images_formset %}
+                    {% if forloop.counter == 1 %}
+
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input{{ forloop.counter }}">
+                                    {% if i.instance.image %}
+                                        <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.instance.image|thumbnail_url:'control_restaurant_gallery_big' }}"
+                                             alt="">
+
+                                    {% else %}
+                                       <img id="gallerybigimg{{ forloop.counter }}" src="{% static 'dashboard/img/add_photo_restaurant.jpg' %}" alt="">
+
+                                    {% endif %} 
+                                    </label>
+                                    <input id="file-input{{ forloop.counter }}" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg{{ forloop.counter }}','{{ forloop.counter }}')" name='{% if i.instance.image %}{{ i.instance.id }}myfile{% else %}myfile{% endif %}'/>
+                                
+                              </div> 
+                              
+                           </div>
+                        </div>   
+                     </div>
+                     {% else %}
+                     <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                           <div class="admin_restaurant_edit_pin pull-left full-width">
+                              <div class="col-xs-12">
+                                 <div class="row">
+                                    <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                       <label for="file-input{{ forloop.counter }}">
+                                          {% if i.instance.image %}
+                                             <img id="gallerybigimg{{ forloop.counter }}" src="{{ i.instance.image|thumbnail_url:'control_restaurant_gallery_small' }}"
+                                         alt="">
+
+                                         {% else %}
+                                             <img id="gallerybigimg{{ forloop.counter }}" id="gallerybigimg{{ forloop.counter }}" src="{% static 'dashboard/img/add_photo_restaurant_small.jpg' %}" alt="">
+
+                                          {% endif %} 
+                                       </label>
+                                       <input id="file-input{{ forloop.counter }}" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg{{ forloop.counter }}','{{ forloop.counter }}')" name='{% if i.instance.image %}{{ i.instance.id }}myfile{% else %}myfile{% endif %}'/>
+                                       
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+                     {% endif %}
+                     {% endfor %}
+                     {% else %}
+                           <div class="col-md-4 col-sm-4">
+                              <div class="row">
+                                 <div class="admin_restaurant_edit_pin pull-left full-width">
+                                    <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input1">
+                                       <img id="gallerybigimg1" src="{% static 'dashboard/img/add_photo_restaurant.jpg' %}" alt="">
+                                       </label>
+
+                                       <input id="file-input1" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg1','1')" name='myfile'/>
+                                       
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                           <div class="col-md-4 col-sm-4">
+                              <div class="row">
+                                 <div class="admin_restaurant_edit_pin pull-left full-width">
+                                    <div class="col-xs-12">
+                                       <div class="row">
+                                          <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                          <label for="file-input2">
+                                             <img id="gallerybigimg2" src="{% static 'dashboard/img/add_photo_restaurant_small.jpg' %}" alt="">
+                                             </label>
+
+                                             <input id="file-input2" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg2','2')" name='myfile'/>
+                                             
+                                          </div>   
+                                       </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                       <div class="row">
+                                          <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                          <label for="file-input3">
+                                             <img id="gallerybigimg3" src="{% static 'dashboard/img/add_photo_restaurant_small.jpg' %}" alt="">
+
+                                             </label>
+
+                                             <input id="file-input3" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg3','3')" name='myfile'/>
+                                             
+                                          </div>   
+                                       </div>
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                           <div class="col-md-4 col-sm-4">
+                              <div class="row">
+                                 <div class="admin_restaurant_edit_pin pull-left full-width">
+                                    <div class="col-xs-12">
+                                       <div class="row">
+                                          <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                          <label for="file-input4">
+                                             <img id="gallerybigimg4" src="{% static 'dashboard/img/add_photo_restaurant_small.jpg' %}" alt="">
+                                             </label>
+
+                                             <input id="file-input4" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg4','4')" name='myfile'/>
+                                             
+                                          </div>   
+                                       </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                       <div class="row">
+                                          <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                          <label for="file-input5">
+                                             <img id="gallerybigimg5" src="{% static 'dashboard/img/add_photo_restaurant_small.jpg' %}" alt="">
+                                                </label>
+
+                                                <input id="file-input5" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg5','5')" name='myfile'/>
+                                             
+                                          </div>   
+                                       </div>
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+
+                     {% endif %}
+                  </section>
+                            
+                  <section class="attract_visitor_section pull-left full-width">
+                     <div class="attract_visitor_section_inner full-width pull-left">
+                        <table class="attract_visitor_table full-width">
+                           <thead>
+                              <tr>
+                                 <th colspan="4" class="text-center"><img src="{% static 'dashboard/img/tag-img.png' %}" alt="">&nbsp;{% trans 'Attract visitors to your restaurant! Offer a discount via coupons!' %}</th>
+                              </tr>
+                           </thead> 
+                           <tbody>
+                           {% if discount_formset1 %}
+                           {% for d in discount_formset1 %} 
+
+                              <tr>
+                                 <td>{% trans 'Availability' %}</td>
+                                 
+                                 <td>
+                                    <lable>{% trans 'Start *' %}</lable> 
+                                    <span class="admin_date_picker admin_start_date">
+                                       <input type="text" value="{{ d.available_from|date:'Y-m-d' }}" id="datetimepicker3" name="discount_start_date"> <img  src="{% static 'dashboard/img/admin_date_picker.png' %}">
+                                    </span>
+                                 </td> 
+                                 <td>
+                                    <lable> {% trans 'End *' %}</lable> 
+                                    <span class="admin_date_picker admin_end_date">
+                                       <input type="text" value="{{ d.available_till|date:'Y-m-d' }}" id="datetimepicker4" name="discount_end_date"> <img src="{% static 'dashboard/img/admin_date_picker.png' %}">
+                                    </span>
+                                 </td>
+                                 <td class="text-left">
+                                 
+
+                                    <input type="text" value="{{d.discount_text}}" id="res_dis_text" name="res_dis_text">
+                                 
+                                 </td> 
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <lable> {% trans 'Time' %}</lable>
+                                 </td> 
+                                 <td>
+                                    <lable> {% trans 'From' %} </lable>
+                                    <span class="admin_date_picker admin_from_time">
+                                       <input type="text" value="{{ d.time_from|date:'H:i' }}" id="datetimepicker1" name="discount_start_time"> <img src="{% static 'dashboard/img/admin_from_time_icon.png' %}"> 
+                                    </span>
+                                 </td>
+                                 <td>
+                                    <lable> {% trans 'Until' %} </lable>
+                                    <span class="admin_date_picker admin_from_time">
+                                       <input type="text" value="{{ d.time_till|date:'H:i' }}" id="datetimepicker2" name="discount_end_time"><img src="{% static 'dashboard/img/admin_from_time_icon.png' %}"> 
+                                    </span>
+                                 </td>
+                                 <td>
+                                    {% trans 'ADD DISCOUNT' %}*:<span class="admin_add_discount"><input id="discountp" type="text" value="{{ d.percent }}" name="discountp"></span>%
+                                 </td> 
+                              </tr>
+                              <i class="fa fa-times" id="hide_coupon" aria-hidden="true"></i>
+
+                              {% endfor %}
+                              {% else %}
+                                    <tr>
+                                       <td>{% trans 'Availability' %}</td>
+                                       <td>
+                                          <lable>{% trans 'Start *' %}</lable> 
+                                          <span class="admin_date_picker admin_start_date">
+                                             <input type="text" value="" placeholder="Click here" id="datetimepicker3" name="discount_start_date"> <a href="#"><img src="{% static 'dashboard/img/admin_date_picker.png' %}"></a> 
+                                          </span>
+                                       </td> 
+                                       <td>
+                                          <lable> {% trans 'End *' %}</lable> 
+                                          <span class="admin_date_picker admin_end_date">
+                                             <input type="text" value="" placeholder="Click here" id="datetimepicker4" name="discount_end_date" > <a href="#"><img src="{% static 'dashboard/img/admin_date_picker.png' %}"></a> 
+                                          </span>
+                                       </td>
+                                       <td class="text-left" * >
+                                          <input type="text" value="{{d.discount_text}}" id="res_dis_text" placeholder="Discount Text" name="res_dis_text">
+                                       </td> 
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <lable> {% trans 'Time' %}</lable>
+                                       </td> 
+                                       <td>
+                                          <lable> {% trans 'From *' %} </lable>
+                                          <span class="admin_date_picker admin_from_time">
+                                             <input type="text" value="" placeholder="Click here" id="datetimepicker1" name="discount_start_time"> <a href="#"><img src="{% static 'dashboard/img/admin_from_time_icon.png' %}"></a> 
+                                          </span>
+                                       </td>
+                                       <td>
+                                          <lable> {% trans 'Until *' %} </lable>
+                                          <span class="admin_date_picker admin_from_time">
+                                             <input type="text" value="" placeholder="Click here" id="datetimepicker2" name="discount_start_time"> <a href="#"><img src="{% static 'dashboard/img/admin_from_time_icon.png' %}"></a> 
+                                          </span>
+                                       </td>
+                                       <td>
+                                          {% trans 'ADD DISCOUNT' %}*:<span class="admin_add_discount"><input id="discountp" type="text" value="" placeholder="ex:5" name="discountp"></span>%
+                                       </td> 
+                                    </tr> 
+                                    <i class="fa fa-times" id="hide_coupon" aria-hidden="true"></i>
+ 
+                              {% endif %}
+                              </tbody>  
+                        </table>
+                     </div>   
+                  </section>
+
+                  <section style="display: none;" class=" show_coupon_class full-width">
+                  <input type="button" value="Show Coupon" id="show_coupon" name="show_coupon">
+                  </section>
+                  <section class="admin_delivery_section pull-left full-width">
+                  <div class="col-md-12">
+                      <h2 class="discount_text">{{ discount_formset.0.name }}</h2>
+                   </div>
+                     <div class="col-sm-6 col-xs-12">   
+                        <div class="admin_bananas_slice_section_inner pull-left full-width english_bx">  
+                                 <div class="admin_bananas_slice_section_content">
+                                    <h4>English</h4>
+                                    <textarea  rows="14" cols="61" id="res_desc" name="res_desc" style="width:100%; resize:vertical">{{ discount_formset.0.desc_en|safe }}</textarea>
+                                 </div>
+                        </div>          
+                           <div class="admin_outer_weak_start_end_section pull-left full-width english_bx">
+                              <div class="admin_inner_weak_start_end_section">
+                                 <div class="admin_outer_weak_start_end_table full-width">
+                                    <table class="admin_outer_weak_start_end full-width" id="mytable">
+                                       <thead>
+                                          <tr>
+                                             <td><span class="week_day_icon">Week day</span></td>
+                                             <td><span class="start_day_icon">Start</span></td>
+                                             <td colspan="2"><span class="end_day_icon">End</span></td>
+                                          </tr>
+                                       </thead>
+                                      <tbody>
+                                       {{ opening_hours_formset.management_form }}
+                                          {% for form in opening_hours_formset %}
+                                          <tr class="shifts" data-id="{{form.id}}" data-rid="{{form.restaurant}}">
+                                          
+                                          
+                                             <td>
+                                                {{form.week_day}}
+                                             </td>
+                                             <td class="shift-time">{{form.start}}</td>
+                                             <td class="shift-time">{{form.end}}</td>
+                                             <td onclick="delete_shift(this);"><img src="{% static 'dashboard/img/admin_delete_icon.png' %}" alt=""></td>
+                                          </tr>
+                                       {% endfor %}
+  
+                                       </tbody>
+                                       <tfoot>
+                                          <tr>
+                                             <td colspan="5"><a class="add-row" href="javascript:addrows()"><img src="{% static 'dashboard/img/add-ico.png' %}" alt=""></a></td>
+                                          </tr>
+                                       </tfoot>
+                                    </table>
+                                    <input type="hidden" id="shifts_array_value"  value="" name="shifts_array_value">
+                                    <input type="hidden" id="deliver_cities_array_value"  value="" name="deliver_cities_array_value">
+                                 </div>   
+                                 <div class="admin_minimum_order_count full-width pull-left">
+                                    {% trans 'Minimum Order' %}:<input type="text" name="min_order" id="rest_min_order" value="{{ discount_formset.0.min_order }}">
+                                 </div>
+                              </div>   
+                           </div>   
+     
+                     </div>
+                     <div class="col-sm-6 col-xs-12">
+                           <div class="admin_bananas_slice_section_content">
+                                    <h4>Spanish</h4>
+                                    <textarea  rows="14" cols="61" id="res_desc_es" name="res_desc_es" style="width:100%; resize:vertical">{{ discount_formset.0.desc_es|safe }}</textarea>
+                                 </div>
+
+                           <div class="admin_inner_edit_restaurant_logo_all pull-left full-width">
+                              <div class="admin_inner_edit_restaurant_logo full-width">
+                                 <div class="admin_inner_edit_restaurant_logo_inner full-width">
+                                  <label for="file-input6">
+                                 {% if discount_formset.0.logo %}
+                                    <img id="gallerybigimg6" src="{{ discount_formset.0.logo|thumbnail_url:'control_restaurant_logo' }}" alt="">
+                                 {% else %}
+                                    <img id="gallerybigimg6" src="{% static 'dashboard/img/add_logo_restaurant.png' %}" alt="">
+                                 {% endif %}
+
+                                 </label>
+                                  <input id="file-input6" type="file" accept="image/*" style="display:none" onchange="imgvalidate(this,'gallerybigimg6','6')" name="logo" />
+                                 </div>   
+                              </div>
+                           </div> 
+
+                           <div class="admin_bananas_slice_section_outer pull-left full-width">
+                              <div class="admin_bananas_slice_section_inner pull-left full-width">
+                                 <div class="admin_delivery_outer pull-left full-width">
+                                    <div class="admin_delivery_inner pull-left full-width">
+                                       <h2>{% trans 'Delivery to' %}</h2>
+                                       <div class="delivery-text">
+                                       {% if restaurant_delivery %}
+                                           {% for d in restaurant_delivery %}
+                                               <input type="checkbox" id="{{ d.city.id }}" class="city_delivery"
+                                                      {% if d.possible %}checked{% endif %}>
+                                               <label for="{{ d.city.id }}">{{ d.city.name }}</label>
+                                               <div class="clearfix"></div>
+                                           {% endfor %}
+                                       {% endif %}
+                                       </div>
+                                    </div>   
+                                 </div>
+                                 <div class="admin_info_section">
+                                   <ul class="admin_address_listing">
+                                   <li class="normal admin_address_icon">
+                                       {% if not discount_formset.0.address %} 
+                                          <input type="text" value="" id="address" name="address">
+                                       {% else %}
+                                          <input type="text" value="{{ discount_formset.0.address }}" id="address" name="address">
+                                       {% endif %}
+                                    </li>
+                                   <li class="normal"> 
+                                       {% if not discount_formset.0.phone %} 
+                                       <a href="#">
+                                       <i class="fa fa-globe" aria-hidden="true"></i>   </a>       
+                                       {% else %}  
+                                       <a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a>
+                                      
+                                      {% endif %}
+                                      <input type="text" value="{{ discount_formset.0.phone }}" id="contact_phone" name="phone">
+
+                                      </li>
+ 
+                                   <li class="normal"> 
+
+                                       {% if not discount_formset.0.email %} 
+                                       <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                                       
+                                       {% else %}  
+                                       <a href="{{discount_formset.0.email}}"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                                     
+                                      
+                                      {% endif %}
+                                      <input type="text" value="{{ discount_formset.0.user.email }}" id="contact_email" name="contact_email">
+
+                                      </li>
+                                     
+                                   </ul>
+                                   <ul  class="admin_web_address c-web-address">
+                                       <li> 
+
+                                       {% if discount_formset.0.website %} 
+                                       <a href="#"><i class="fa fa-globe" aria-hidden="true"></i></a>
+                                       <input type="text" id="website" value="{{ discount_formset.0.website }}" name="website">
+                                       {% else %}  
+                                       <a href="{{discount_formset.0.website}}"><i class="fa fa-globe" aria-hidden="true"></i></a>
+                                     <input type="text" id="website" value="" name="website">
+                                      
+                                      {% endif %}
+                                      
+
+                                      </li>
+
+
+                                          <li>
+                                       {% if discount_formset.0.facebook %} 
+                                        <a href="https://www.facebook.com"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                        <input type="text" id="facebook" value="{{ discount_formset.0.facebook }}" name="facebook">
+                                        {% else %}
+                                    <a href="{{discount_formset.0.facebook}}"> <i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                       <input type="text" id="facebook" value="" name="facebook">
+                                       {% endif %}
+                                       
+                                    
+                                        </li>
+
+
+                                           <li>
+                                       {% if discount_formset.0.twitter %} 
+                                        <a href="https://www.twitter.com"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                        <input type="text" id="twitter" value="{{ discount_formset.0.twitter }}" name="twitter">
+                                        {% else %}
+                                    <a href="{{discount_formset.0.twitter}}"> <i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                       <input type="text" id="twitter" value="" name="twitter">
+                                       {% endif %}
+                                    
+                                        </li>
+
+
+                                        <li>
+                                       {% if discount_formset.0.instagram %} 
+                                        <a href="https://www.instagram.com"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                        <input type="text" id="instagram" value="{{ discount_formset.0.instagram }}" name="instagram">
+                                        {% else %}
+                                    <a href="{{discount_formset.0.instagram}}"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                       <input type="text" id="instagram" value="" name="instagram">
+                                       {% endif %}
+                                    
+                                        </li>
+
+                                                          
+                                   </ul>
+                                 </div>
+                              </div>   
+                           </div>
+                     
+        
+
+             
+
+
+         
+              
+               </div>
+                  </section>
+
+          
+
+               </div>
+            </div>
+
+            <div class="admin_edit_resturant_save_section pull-left full-width">
+               <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 pull-right">
+                  <div class="row">
+                     <div class="admin_edit_resturant_save_inner pull-left full-width">
+                        <button type="submit" id="edit_submit_res_dash">Save</button>
+                        <div class="edit_restaurant_check">
+                        {% if discount_formset.0.photoshoot_requested %}
+                           <input type="checkbox" name="photoshoot" class="photoshoot_request" checked=true>
+                        {% else %}
+                           <input type="checkbox" name="photoshoot" class="photoshoot_request">
+                        {% endif %}
+                           <label></label>
+                        </div>
+                        <span>
+                           {% trans 'Photoshoot' %}<br>
+                           {% trans 'requested' %}
+                        </span>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </form>
+         </div>
+{% endblock %}
+{% block scriptcode %}
+<script type="text/javascript">
+   CKEDITOR.replace( 'res_desc', {
+            language: 'en'
+          });
+        CKEDITOR.replace( 'res_desc_es' , {
+            language: 'es'
+          });
+</script>
+{% endblock %}

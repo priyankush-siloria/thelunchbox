@@ -1,0 +1,63 @@
+{% load static %}
+{% load i18n %}
+<div class="navigation">
+    <div class="elements col-md-11 col-lg-11 col-xs-16 center">
+        <a href="{% if request.get_full_path != '/' %}/{% else %}#{% endif %}" class="logo {% if not request.user.is_authenticated %}logo-not-auth{% endif %}">
+            <img src="{% static 'img/logo_nav.png' %}" width="105">
+        </a>
+        {% if request.user.is_authenticated %}
+            <ul>
+                <li class="step line">
+                    <div></div>
+                </li>
+                <li class="step {% if request.get_full_path == '/' %}active{% endif %}">
+                    {% if not request.get_full_path == '/' %}
+                        <a href="{% url 'home' %}"></a>
+                    {% endif %}
+                    <div class="step_txt">
+                        <div class="one"></div>
+                        <p>{% trans 'Choose Lunchbox' %}</p>
+                    </div>
+                </li>
+                <li class="step line">
+                    <div></div>
+                </li>
+                <li class="step {% if request.get_full_path == '/cart/' or request.get_full_path == '/catering_cart/' %}active{% endif %}">
+                    {% if not request.get_full_path == '/cart/' %}
+{#                        {% if request.user.profile.empty_baskets %}#}
+                            <a id="checkout_href" href="{% url 'cart' %}"></a>
+{#                        {% else %}#}
+{#                            <a id="checkout_href" href="{% url 'catering_cart' %}"></a>#}
+{#                        {% endif %}#}
+                    {% endif %}
+                    <div class="step_txt">
+                        <div class="two"></div>
+                        <p>{% trans 'Check out' %}</p>
+                    </div>
+                </li>
+                <li class="step line">
+                    <div></div>
+                </li>
+                <li class="step {% if request.get_full_path == '/enjoy_your_box/' %}active{% endif %}">
+                    <div class="step_txt">
+                        <div class="three"></div>
+                        <p>{% trans 'Enjoy Your Box' %}</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="elements-icons">
+                <a href="{% url 'profile' %}" class="profile-icon"></a>
+{#                {% if request.user.profile.empty_baskets %}#}
+                <a id="checkout_nav_href" href="{% url 'cart' %}" class="cart-icon">
+                    <span class="items_in_cart">2</span>
+                </a>
+{#                {% else %}#}
+{#                <a id="checkout_nav_href" href="{% url 'catering_cart' %}" class="cart-icon">#}
+{#                    <span class="items_in_cart">2</span>#}
+{#                </a>#}
+{#                {% endif %}#}
+                <a href="{% url 'logout' %}" class="logout-icon"></a>
+            </div>
+        {% endif %}
+    </div>
+</div>

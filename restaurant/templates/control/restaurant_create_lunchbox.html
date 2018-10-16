@@ -1,0 +1,194 @@
+{% extends 'control/lunchbox.html' %}
+{% load i18n %}
+{% load get_class %}
+{% load thumbnail %}
+{% block title %}{% trans 'Create lunchbox' %}{% endblock %}
+{% block lunchbox_content %}
+    <div class="lunchbox-content col-md-12 pull-right">
+        <form action="." method="POST" enctype="multipart/form-data" class="lunchbox_form">{% csrf_token %}
+            <div class="col-md-16 no-margins">
+                <div class="col-md-13 no-margins">
+                    {{ images_formset.management_form }}
+                    {% for i in images_formset %}
+                        {% if forloop.counter == 1 %}
+                            <div class="col-md-6">
+                                <div class="image_btn">
+                                    <div class="lunchbox-image img{{ forloop.counter }} upload_image" data-class="img{{ forloop.counter }}" id="uimage{{ forloop.counter }}">
+                                        <span>{{ forloop.counter }}</span>
+                                        {% if i.instance.image %}
+                                            <img src="{{ i.instance.image|thumbnail_url:'control_image_big' }}" alt="">
+                                        {% else %}
+                                            <p>
+                                                {% trans 'Request Photoshoot' %} <br>
+                                                {% trans 'upload photo' %}
+                                            </p>
+                                            <p>
+                                                {% trans 'Recommended size' %}: 800x320
+                                            </p>
+                                        {% endif %}
+                                    </div>
+                                    <div class="upload_btn upload_btn-img{{ forloop.counter }}">
+                                        {{ i.id }}
+                                        {{ i.image }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="image_btn col-md-5">
+                                <div class="lunchbox-image lunchbox-image-small upload_image"
+                                     data-class="img{{ forloop.counter }}">
+                                    <span>{{ forloop.counter }}</span>
+                                    {% if i.instance.image %}
+                                        <img src="{{ i.instance.image|thumbnail_url:'control_image_small' }}" alt="">
+                                    {% else %}
+                                        <p>
+                                            {% trans 'Click to upload' %}
+                                        </p>
+                                        <p style="margin-top: 22px;">
+                                            {% trans 'Recommended size' %}: 800x320
+                                        </p>
+                                    {% endif %}
+
+                                </div>
+                                <div class="upload_btn upload_btn-img{{ forloop.counter }}">
+                                    {{ i.id }}
+                                    {{ i.image }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-md-3 no-margins">
+                    <div class="col-md-16 pull-right">
+                        {{ lb_privileges_formset.management_form }}
+                        {% for p in lb_privileges_formset %}
+                            <div class="select_box">
+                                {{ p.id }}{{ p.privilege }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-6">
+                <div {% if lb_form.name.errors %}class="error" {% endif %}>
+                    {{ lb_form.name }}
+                </div>
+
+                <div {% if lb_form.desc.errors %}class="error" {% endif %}>
+                    {{ lb_form.desc }}
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-availability">
+                        <tr>
+                            <td>{% trans 'Availability' %}</td>
+                            <td {% if lb_form.available_from.errors %}class="error"{% endif %}>
+                                {% trans 'Start' %}: {{ lb_form.available_from }}<span class="glyphicon glyphicon-calendar"></span>
+                            </td>
+                            <td {% if lb_form.available_till.errors %}class="error"{% endif %}>
+                                {% trans 'End' %}: {{ lb_form.available_till }}<span class="glyphicon glyphicon-calendar"></span>
+                            </td>
+                        </tr>
+                    </table>
+
+                    {% if lb_form.non_field_errors %}
+                        {% for error in lb_form.non_field_errors %}
+                            <p class="error_msg">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+               
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-10">
+                <div class="table-responsive">
+                    <table class="table table-bordered no-margins">
+                        <tr>
+                            <td class="table-head text-uppercase"
+                                colspan="4">{% trans 'The good side of the lunchbox' %}{{ nf_form.lunchbox }}</td>
+                        </tr>
+                        <tr>
+                            <td>{% trans 'Total Calories' %}</td>
+                            <td class="text-center">{% trans 'Auto calculated' %}</td>
+                            <td>{% trans 'Fat' %}</td>
+                            <td class="text-right">{{ lb_form.fat }} <strong>Gr</strong></td>
+                        </tr>
+                        <tr>
+                            <td>{% trans 'Protein' %}</td>
+                            <td class="text-right">{{ lb_form.protein }} <strong>Gr</strong></td>
+                            <td>{% trans 'Sugar' %}</td>
+                            <td class="text-right">{{ lb_form.sugar }} <strong>Gr</strong></td>
+                        </tr>
+                        <tr>
+                            <td>{% trans 'Carbohydrates' %}</td>
+                            <td class="text-right">{{ lb_form.carbohydrates }} <strong>Gr</strong></td>
+                            <td>{% trans 'Sodium' %}</td>
+                            <td class="text-right">{{ lb_form.sodium }} <strong>MGr</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table small-inputs">
+                        <tr>
+                            <td>{% trans 'Price/Lunchbox' %}</td>
+                            <td class="text-right {% if lb_form.price.errors %}error{% endif %}">{{ lb_form.price }}<span> €</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>{% trans 'La Fiambrera rate' %}</td>
+                            <td class="text-right {% if lb_form.rate.errors %}error{% endif %}">{{ lb_form.rate }} €</td>
+                        </tr>
+                        {{ discount_formset.management_form }}
+                        {% for d in discount_formset %}
+                            <tr>
+                                <td>{{ d.id }}{{ d.percent }} % {% trans 'discount at' %} {{ d.qty }}{% trans 'lunchbox' %}</td>
+                                <td class="text-right">XX.XX €</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+            <br>
+            <div class="col-md-16 no-margins">
+                <div class="col-md-6">
+                
+               
+                 
+                </div>
+                <div class="{% if request.user.is_staff %}col-md-9{% else %}col-md-6{% endif %} checkbox-radio pull-right">
+                    <div class="lb_checkbox col-md-5">
+                        {{ lb_form.photoshoot_requested }}
+                        <label for="id_photoshoot_requested">{% trans 'Photoshoot requested' %}</label>
+                    </div>
+                    <div class="lb_checkbox col-md-5">
+                        {{ lb_form.publishing_requested }}
+                        <label for="id_publishing_requested">{% trans 'Publishing requested' %}</label>
+                    </div>
+                    {% if request.user.is_staff %}
+                        <div class="lb_checkbox col-md-5">
+                            {{ lb_form.photoshoot_done }}
+                            <label for="id_photoshoot_done">{% trans 'Photoshoot done?' %}</label>
+                        </div>
+                        <div class="lb_checkbox col-md-5">
+                            {{ lb_form.published }}
+                            <label for="id_published">{% trans 'Lunchbox published?' %}</label>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-4 pull-right">
+                    {{ lb_form.nutrition_facts }}
+                    <input type="submit" class="btn btn-default lunchbox_submit_btn" value="{% trans 'Save' %}">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

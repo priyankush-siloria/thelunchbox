@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% block title %}{% trans 'Restaurant discount coupon' %}{% endblock %}
+{% block content %}
+    <div class="col-md-16 section fp-auto-height graybg">
+        <div class="restaurant-coupon col-md-8 center">
+            <div class="glyphicon glyphicon-scissors"></div>
+            <div class="col-md-7">
+                <br>
+                <div class="coupon col-md-16 center">
+                    <p>{% trans 'Get discount right now!' %}</p>
+                    <p class="small">{{ coupon.discount_text }}</p>
+                    <p class="discount_text">{{ coupon.percent }}% {% trans 'off coupon' %}</p>
+                    <p>
+                        {% trans 'Come and get it!' %}
+                    </p>
+                </div>
+                <br>
+                <strong>{% trans 'Available from' %}: </strong><span>{{ coupon.available_from }}</span> <br>
+                <strong>{% trans 'Available till' %}: </strong><span>{{ coupon.available_till }}</span> <br>
+                <strong>{% trans 'Available time' %}: </strong><span>{{ coupon.time_from|date:'H:i' }} - {{ coupon.time_till|date:'H:i' }}</span>
+                <div class="clearfix"></div>
+            </div>
+            <div class="pull-right profile_info restaurant-profile col-md-9">
+                {% if restaurant.logo %}
+                    <img src="{{ restaurant.logo|thumbnail_url:'restaurant_logo' }}" alt="" class="restaurant-logo">
+                {% endif %}
+                <strong class="restaurant-title clearfix">{{ restaurant.name }}</strong>
+                <p class="restaurant-desc">{{ restaurant.desc }}</p>
+                <div class="clearfix"></div>
+                <div class="contact_info">
+                    {% trans 'Address' %}: {{ restaurant.address }}<br>
+                    {% trans 'Phone' %}: {{ restaurant.phone }}<br>
+                    {% if restaurant.website %}{% trans 'Website' %}:
+                        <a href="{{ restaurant.website }}">{{ restaurant.website }}</a>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(window).load(function () {
+            setTimeout(function () {
+                if (confirm(gettext('Do you want to print the coupon?'))) {
+                    window.print();
+                }
+            }, 1000);
+
+        });
+    </script>
+{% endblock %}

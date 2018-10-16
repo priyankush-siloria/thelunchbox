@@ -1,0 +1,86 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% load add_hour %}
+{% load tz %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Orders</title>
+
+</head>
+<body>
+   <table style="border-collapse: collapse;">
+      <caption style="text-align: center; margin: 20px 0;"><a href="{{ logo }}"><img src="{{ logo }}static/mainapp/img/logo.jpg" alt=""></a></caption>
+      <thead>
+         <tr>
+            <td style="border:1px solid #333333; padding:10px;">{% trans 'Restaurant' %}</td>
+            <td style="border:1px solid #333333; padding:10px;">{% trans 'Lunchbox' %}</td>
+            <td class="" style="border:1px solid #333333; padding:10px;">{% trans 'Quantity' %}</td>
+            <td style="border:1px solid #333333; padding:10px; text-align: center;">{% trans 'Time' %}</td>
+            <td class="admin_location_icon" style="border:1px solid #333333; padding:10px;">{% trans 'Address' %}</td>
+            <td class="admin_doller_icon" style="border:1px solid #333333; padding:10px;">{% trans 'Payment' %}</td>
+         </tr>
+      </thead>
+      <tbody>
+      {% for day in order_list %}
+         <tr class="text-center" class="blank_admin_tr">
+            <td colspan="6" style="border:1px solid #333333; padding:10px; text-align: center;"><strong>{{ day.date | localtime | date:"M d, Y" }}</strong></td>
+         </tr>
+         {% for order in day.orders %}
+         <tr>
+            <td rowspan="{{ order.length_of }}" style="border:1px solid #333333; padding:10px;">
+               <p>
+                  <strong>[{{ order.restaurant.name }}]</strong><br>
+                     [{{ order.restaurant.address }}; {{ order.restaurant.zip_code }}]<br>
+                  <strong>[{{ order.restaurant.phone }}]</strong>
+               </p>
+            </td>
+         </tr>
+            {% if order.user_orders %}
+                    {% for o in order.user_orders %}
+                        <tr>   
+                           <td style="border:1px solid #333333; padding:10px;">{{ o.lunchbox.name }}</td>
+                           <td style="border:1px solid #333333; padding:10px; text-align: center;">
+                              {{ o.qty }}
+                           </td>
+                           <td style="border:1px solid #333333; padding:10px; text-align: center;">{{ o.delivery_date|date:'D' }} <strong>{{ o.delivery_date|date:'H:i'}}-{{ o.delivery_date|add_hour|date:'H:i'}}</strong></td>
+                           <td style="border:1px solid #333333; padding:10px;">
+                              <strong>
+                                {{ o.order.user.profile.customer.address }}
+                                {{ o.order.user.profile.customer.city }}
+                                {{ o.order.user.profile.customer.state }}
+                                {{ o.order.user.profile.customer.zip_code }}
+                              </strong>
+                           </td>
+                           <td style="border:1px solid #333333; padding:10px; text-align: center;">{{ o.get_amount }} €</td>
+                        </tr>
+                        <tr>
+                           <td colspan="5" style="border:1px solid #333333; padding:10px;">
+                              <div><strong>{% trans 'DELIVERY DETAILS' %}:</strong>
+                                 [{{ o.order.user.first_name }} {{ o.order.user.last_name }}],
+                                 [{{ o.order.user.profile.phone }}],[{{ o.order.user.email }}]
+                             </div>
+                           </td>
+                           
+                        </tr>
+                        <tr>
+                           <td colspan="5" style="border:1px solid #333333; padding:10px;">
+                              <div><strong>{% trans 'Comment' %}:</strong>
+                                 {{ o.order.get_comment }}
+                             </div>
+                           </td> 
+                        </tr>
+                        <tr>
+                           <td colspan="5" style="border:1px solid #333333; padding:10px;">
+                              <div><strong>{% trans 'Note' %}:</strong> {% trans 'order' %} #{{ o.order.id }}</div>
+                           </td>
+                        </tr>
+                     {% endfor %}
+               {% endif %}
+         {% endfor %}
+      {% endfor %}
+      </tbody>
+   </table>
+</body>
+</html>

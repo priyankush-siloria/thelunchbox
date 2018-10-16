@@ -1,0 +1,73 @@
+{% extends 'mainapp/base.html' %}
+{% load common_template_functions %}
+
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %} 
+{% block title %}
+
+
+Notifications
+
+{% endblock %}
+
+{% block content %}
+
+<section class="individual_restaurant_section notifications-section full-width">
+         <div class="container">
+         
+            <div class="individual-rest-slider">
+               <div class="row">
+                  
+                  <div class="col-md-12 col-xs-12">
+                     
+
+                     <!-- Reviews Here -->
+
+                     <div class="reviews-individual-sec">
+                        <h3>{% trans 'Notifications' %}</h3>
+
+                        <div class="reviews-added">
+                        {% if notifications %}
+                           <ul class="reviews-container">
+                           {% for notification in notifications %}
+                              <li>
+                                 <div class="contents_of_li_usernotifications">
+                                 
+                                 <span class="dated">{{ notification.date|date:'Y M d' }}</span>
+                                 <h5>{% trans notification.head|title %}</h5>
+                                 <p>{% trans notification.msg %}</p>
+                                 </div>
+                                 <div data-id="{{ notification.share_id }}" class="accept_sharing">
+                                    {% ifequal notification.cat 1 %}
+                                       <button>{% trans 'Accept' %}</button>
+                                    {% endifequal %}
+                                 </div>
+                                 <div data-id="{{ notification.id }}" class="archive_noti">
+                                    <button>{% trans 'Remove' %}</button>
+                                 </div>
+                              </li>
+                           {% endfor %}
+                        
+                           </ul>
+                        {% else %}
+                           <center>{% trans 'No new notification available' %}.</center>
+                        {% endif %}
+                        </div>
+
+                     </div>
+
+                  </div>
+
+               </div>
+            </div>
+            
+
+
+
+
+
+         </div>
+      </section>
+{% endblock %}

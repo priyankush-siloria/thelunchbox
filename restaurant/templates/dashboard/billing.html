@@ -1,0 +1,345 @@
+{% extends 'dashboard/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}
+Billing
+{% endblock %}
+
+{% block content %}
+         <div class="container">
+            <div class="admin_registered_restaurants_outer admin_order_list_outer admin_billing_outer">
+               <div class="admin_order_inner admin_billing_inner pull-left full-width">
+                  <div id="exTab3">
+                     <ul class="nav nav-pills admin_billing_nav">
+                        <li class="active" id="1">
+                           <a href="#1b" data-toggle="tab">{% trans 'Delivered lunchboxes' %}</a>
+                        </li>
+                        <li class="" id="2"><a href="#2b" data-toggle="tab">{% trans 'Processing lunchboxes' %}</a>
+                        </li>
+                        <li class="" id="3"><a href="#3b" data-toggle="tab">{% trans 'Paid lunchboxes' %}</a>
+                        </li>
+                     </ul>
+                     <div class="tab-content clearfix">
+                        <div class="tab-pane active" id="1b">
+                        {% if billing_opened %}
+                           <table class="admin_order_table admin_billing_table full-width">
+                              <thead>
+                                 <tr>
+                                    <td> {% trans 'Name of the lunchbox' %} | {% trans 'reference number' %} </td>
+                                    <td class="text-center">{% trans 'quantity SOLD' %} </td>
+                                    <td class="text-center">{% trans 'time period' %} </td>
+                                    <td class="text-center">{% trans 'La Fiambrera Rate' %}</td>
+                                    <td class="text-center">{% trans 'Processed' %}</td>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              {% for o in billing_opened %}
+                                 <tr>   
+                                    <td>{{ o.lunchbox.name }} | {% trans 'Order' %} #{{ o.order.id }}</td>
+                                    <td class="text-center">{{ o.qty }}</td>
+                                    <td class="text-center admin_billig_time_icon"><img src="{% static 'dashboard/img/admin_time_icon.png' %}" alt="">{{ o.order.u_processing_date_from|date:'Y.M d' }}
+                                - {{ o.order.u_processing_date_till|date:'Y.M d' }}</td>
+                                    <td class="text-center">{{ o.lunchbox.rate }} €</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" id="op1{{ forloop.counter }}" class="order-status-check processed-checkbox" data-id="{{ o.id }}" data-status="1" {% if o.is_processed %}checked{% endif %}>
+                                       <label for="op1{{ forloop.counter }}"></label>
+                                    </td>
+                                 </tr>
+                              {% endfor %}
+                                 
+                              </tbody>
+                           </table>
+                           {% else %}
+                                <center>{% trans 'There is no delivered lunchbox' %}.</center>
+                           {% endif %}
+                           {% if billing_opened.has_other_pages %}
+                              <ul class="pagination pull-left full-width">
+                                 {% if billing_opened.has_previous %}
+                                    <li><a href="?page={{ billing_opened.previous_page_number }}&tabv=1"><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                                 {% else %}
+                                    <li class="disabled"><a href=""><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                                 {% endif %}
+
+                                 {% for i in billing_opened.paginator.page_range %}
+                                    {% if billing_opened.number == i %}
+                                      <li class="active"><span>{{ i }} <span class="sr-only">({% trans 'current' %})</span></span></li>
+                                    {% else %}
+                                      <li><a href="?page={{ i }}&tabv=1">{{ i }}</a></li>
+                                    {% endif %}
+                                 {% endfor %}
+
+                                 {% if billing_opened.has_next %}
+                                    <li><a href="?page={{ billing_opened.next_page_number }}&tabv=1"><img src="{% static 'dashboard/img/pagination_arrow_next.png' %}" alt=""></a></li>
+                                 {% else %}
+                                    <li class="disabled"><span><a href=""><img src="{% static 'dashboard/img/pagination_arrow_next.png' %}" alt=""></a></span></li>
+                               {% endif %}
+                                 </ul>
+                           {% endif %}
+                        </div>
+                        <div class="tab-pane" id="2b">
+                        {% if billing_user_processing %}
+                           <table class="admin_order_table admin_billing_table full-width">
+                              <thead>
+                                 <tr>
+                                    <td colspan="2"> {% trans 'Name of the lunchbox' %}  | {% trans 'reference number' %} </td>
+                                    <td class="text-center" colspan="2">{% trans 'quantity SOLD' %} </td>
+                                    <td class="text-center" colspan="2">{% trans 'time period' %} </td>
+                                    <td class="text-center">{% trans 'La Fiambrera Rate' %}</td>
+                                    <td class="text-center">{% trans 'Processed' %}</td>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              {% for o in billing_user_processing %}
+                                       <tr>   
+                                             <td colspan="2">{{ o.lunchbox.name }} | Order #{{ o.order.id }}</td>
+                                             <td class="text-center" colspan="2">{{ o.qty }}</td>
+                                             <td class="text-center admin_billig_time_icon" colspan="2"><img src="{% static 'dashboard/img/admin_time_icon.png' %}" alt="">{{ o.order.u_processing_date_from|date:'Y.M d' }} - {{ o.order.u_processing_date_till|date:'Y.M d' }}</td>
+                                             <td class="text-center">{{ o.lunchbox.rate }} €</td>
+                                             <td class="text-center">
+                                             {% if o.is_confirmed_by_lf %}
+                                                <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                             {% else %}
+                                                <input type="checkbox" id="op2{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                                data-id="{{ o.id }}" data-status="1" {% if o.is_processed %}checked{% endif %}>
+                                                <label for="op2{{ forloop.counter }}"></label>
+                                             {% endif %}
+                                             </td>
+                                       </tr>
+                                    
+                                    <tr>
+                                          <td>
+
+                                             <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                          </td>
+                                          <td>
+                                             <strong>{% trans 'Processed' %}:</strong> {{ o.processed_date|date:'Y.M d' }}
+                                          </td>
+                                          <td>
+                                             {% if o.is_payment_requested and request.user.is_staff or o.is_confirmed_by_lf %}
+                                                 <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                             {% elif request.user.is_staff %}
+                                                2.
+                                             {% else %}
+                                                <input type="checkbox" id="step2{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                                               data-id="{{ o.id }}" data-status="2" {% if o.is_payment_requested %}checked{% endif %}>
+                                                        <label for="step2{{ forloop.counter }}" style="margin-bottom: 0"></label>
+                                             {% endif %}
+                                          </td>
+                                          <td>
+
+                                             {% if o.is_payment_requested %}
+                                                <strong>{% trans 'Payment requested' %}:</strong> {{ o.payment_request_date|date:'Y.M d' }}
+                                             {% else %}
+                                                <strong>{% trans 'Request payment' %}:</strong>{% trans 'not available yet' %}
+                                             {% endif %}
+                                          </td>
+                                          
+                                             {% if request.user.is_staff and o.is_payment_requested and not o.is_payment_transferred %}
+                                                <td>
+                                                  <input type="checkbox" id="step3{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                                         data-id="{{ o.id }}" data-status="3" {% if o.is_confirmed_by_lf %}checked{% endif %}>
+                                                  <label for="step3{{ forloop.counter }}" style="margin-bottom: 0"></label>
+                                                       
+                                                </td>
+                                                <td>
+                                                    {% if o.is_confirmed_by_lf %}
+                                                      <strong>{% trans 'Confirmed' %}:</strong> {{ o.confirmation_by_lf_date|date:'Y.M d' }}
+                                                    {% else %}
+                                                      <strong>{% trans 'To be confirmed by La Fiambrera' %}</strong>
+                                                    {% endif %}
+                                                </td>
+                                          
+                                            {% elif o.is_confirmed_by_lf %}
+                                                <td>
+                                                    <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                                </td>
+                                                <td>
+                                                    <strong>{% trans 'Confirmed' %}:</strong> {{ o.confirmation_by_lf_date|date:'Y.M d' }}
+                                                </td>
+                                            {% else %}
+                                                <td>
+                                                    3.
+                                                </td>
+                                                <td>
+                                                    <strong> {% trans 'To be confirmed by La Fiambrera' %}</strong>
+                                                </td>
+                                            {% endif %}
+                                          
+                                             {% if request.user.is_staff and o.is_confirmed_by_lf and not o.is_payment_transferred %}
+                                                <td>
+                                                        <input type="checkbox" id="step4{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                                               data-id="{{ o.id }}" data-status="4" {% if o.is_payment_transferred %}checked{% endif %}>
+                                                        <label for="step4{{ forloop.counter }}" style="margin-bottom: 0"></label>
+                                                 </td>
+                                                <td>
+                                                    <strong>{% trans 'Payment' %}</strong>
+                                                </td>
+                                            {% else %}
+                                                <td>
+                                                    4.
+                                                </td>
+                                                <td>
+                                                    <strong>{% trans 'Payment' %}</strong>
+                                                </td>
+                                            {% endif %}
+
+                                          </td>
+                                    </tr>
+                              {% endfor %}
+                              </tbody>
+                           </table>
+                           {% else %}
+                                <center>{% trans 'There is no lunchbox in processing' %}.</center>
+                           {% endif %}
+                           {% if billing_user_processing.has_other_pages %}
+                              <ul class="pagination pull-left full-width">
+                                 {% if billing_user_processing.has_previous %}
+                                    <li><a href="?page={{ billing_user_processing.previous_page_number }}&tabv=2"><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                                 {% else %}
+                                    <li class="disabled"><a href=""><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                                 {% endif %}
+
+                                 {% for i in billing_user_processing.paginator.page_range %}
+                                    {% if billing_user_processing.number == i %}
+                                      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                    {% else %}
+                                      <li><a href="?page={{ i }}&tabv=2">{{ i }}</a></li>
+                                    {% endif %}
+                                 {% endfor %}
+
+                                 {% if billing_user_processing.has_next %}
+                                    <li><a href="?page={{ billing_user_processing.next_page_number }}&tabv=2"><img src="{% static 'dashboard/img/pagination_arrow_next.png' %}" alt=""></a></li>
+                                 {% else %}
+                                    <li class="disabled"><span><a href=""><img src="{% static 'dashboard/img/pagination_arrow_next.png' %}" alt=""></a></span></li>
+                               {% endif %}
+                                 </ul>
+                           {% endif %}
+                        </div>
+                        <div class="tab-pane" id="3b">
+                        {% if billing_restaurant_processing %}
+                           <table class="admin_order_table admin_billing_table full-width">
+                              <thead>
+                                 <tr>
+                                    <td colspan="2"> {% trans 'Name of the lunchbox' %}  | {% trans 'reference number' %} </td>
+                                    <td class="text-center" colspan="2">{% trans 'quantity SOLD' %} </td>
+                                    <td class="text-center" colspan="2">{% trans 'time period' %} </td>
+                                    <td class="text-center">{% trans 'La Fiambrera Rate' %}</td>
+                                    <td class="text-center">{% trans 'Processed' %}</td>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                              {% for o in billing_restaurant_processing %}
+                                 <tr>   
+                                    <td colspan="2">{{ o.lunchbox.name }} | Order #{{ o.order.id }}</td>
+                                    <td class="text-center" colspan="2">{{ o.qty }}</td>
+                                    <td class="text-center admin_billig_time_icon" colspan="2"><img src="{% static 'dashboard/img/admin_time_icon.png' %}" alt="">{{ o.order.u_processing_date_from|date:'Y.M d' }} - {{ o.order.u_processing_date_till|date:'Y.M d' }}</td>
+                                    <td class="text-center">{{ o.lunchbox.rate }} €</td>
+                                    <td class="text-center">
+                                    {% if o.is_confirmed_by_lf %}
+                                       <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                    {% else %}
+                                       <input type="checkbox" id="op2{{ forloop.counter }}" class="order-status-check processed-checkbox"
+                                       data-id="{{ o.id }}" data-status="1" {% if o.is_processed %}checked{% endif %}>
+                                       <label for="op2{{ forloop.counter }}"></label>
+                                    {% endif %}
+                                    </td>
+                                 </tr>
+                              
+                              <tr>
+                                    <td>
+
+                                       <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                    </td>
+                                    <td>
+                                       <strong>{% trans 'Processed' %}:</strong> {{ o.processed_date|date:'Y.M d' }}
+                                    </td>
+                                       {% if o.is_payment_requested %}
+                                          <td>
+                                             <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                           </td>
+                                           <td>
+                                             <strong> {% trans 'Payment requested' %}:</strong> {{ o.payment_request_date|date:'Y.M d' }}
+                                          </td>
+                                       {% else %}
+                                          <td>
+                                           2.
+                                          </td>
+                                           <td>
+                                              <strong> {% trans 'Request payment' %}:</strong> {% trans 'not available yet' %}
+                                          </td>
+                                       {% endif %}
+                                   
+
+                                    {% if o.is_confirmed_by_lf %}
+                                       <td>
+                                            <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                       </td>
+                                       <td>
+                                           <strong> {% trans 'Confirmed' %}:</strong> {{ o.confirmation_by_lf_date|date:'Y.M d' }}
+                                       </td>
+                                   {% else %}
+                                       <td>
+                                           3.
+                                       </td>
+                                       <td>
+                                           <strong> {% trans 'To be confirmed by La Fiambrera' %}</strong>
+                                      </td>
+                                   {% endif %}
+                                    
+                              
+                                    
+                                      {% if o.is_payment_transferred %}
+                                       <td>
+                                           <img src="{% static 'dashboard/img/admin_processed_icon.png' %}" alt="">
+                                       </td>
+                                       <td>
+                                           <strong>{% trans 'Transferred' %}: </strong>{{ o.payment_transfer_date|date:'Y.M d' }}
+                                       </td>
+                                   {% else %}
+                                       <td>
+                                           4.
+                                       </td>
+                                       <td>
+                                           <strong>{% trans 'Transfer' %}</strong>
+                                       </td>
+                                   {% endif %}
+                                    </td>
+                                 </tr>
+                              {% endfor %}
+                              </tbody>
+                           </table>
+                           {% else %}
+                                <center>{% trans 'There is no paid lunchbox' %}.</center>
+                           {% endif %}
+                           {% if billing_restaurant_processing.has_other_pages %}
+                              <ul class="pagination pull-left full-width">
+                                 {% if billing_restaurant_processing.has_previous %}
+                                    <li><a href="?page={{ billing_restaurant_processing.previous_page_number }}&tabv=3"><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                                 {% else %}
+                                    <li class="disabled"><a href=""><img src="{% static 'dashboard/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+                                 {% endif %}
+
+                                 {% for i in billing_restaurant_processing.paginator.page_range %}
+                                    {% if billing_restaurant_processing.number == i %}
+                                      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                    {% else %}
+                                      <li><a href="?page={{ i }}&tabv=3">{{ i }}</a></li>
+                                    {% endif %}
+                                 {% endfor %}
+
+                                 {% if billing_restaurant_processing.has_next %}
+                                    <li><a href="?page={{ billing_restaurant_processing.next_page_number }}&tabv=3"><img src="{% static 'dashboard/img/pagination_arrow_next.png' %}" alt=""></a></li>
+                                 {% else %}
+                                    <li class="disabled"><span><a href=""><img src="{% static 'dashboard/img/pagination_arrow_next.png' %}" alt=""></a></span></li>
+                               {% endif %}
+                                 </ul>
+                           {% endif %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+{% endblock %}

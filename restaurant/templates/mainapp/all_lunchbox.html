@@ -1,0 +1,103 @@
+{% extends "mainapp/base.html" %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}{% trans 'Lunchboxes' %}{% endblock %}
+{% block content %}
+
+      <section class="our_lunchbox_section pull-left full-width" id="main_page_section">
+         <div class="container">
+            <h1 class="pull-left full-width text-center">{% trans 'All lunchboxes' %}</h1>
+            
+            <div class="row">
+            {% if not lunchboxes %}
+                <center>{% trans 'There is no lunchbox available' %}.</center>
+            {% endif %}
+            {% for lunchbox in lunchboxes %}
+
+              <form role="form"  method="GET" action="{% url 'tocart' %}">{% csrf_token %}
+               <div class="col-md-4 col-sm-4 col-xs-12">
+                  <div class="our_lunchbox_box pull-left full-width">
+                     <div class="our_lunchbox_box_image">
+                     
+                     {% if lunchbox.get_images %}
+                            {% for i in lunchbox.get_images|slice:":1" %}
+                                {% if i.image|thumbnail_url:'home_lunchbox_pic' %}
+                                <img src="{{ i.image|thumbnail_url:'home_lunchbox_pic' }}" alt="">
+                                {% else %}
+                                    <img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                                {% endif %}
+                            {% endfor %}
+
+                        {% else %}
+
+                            <img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" alt="">
+                        {% endif %}
+                     </div>   
+                     <div class="our_lunchbox_box_discription pull-left full-width">
+                        <div class="row">
+
+
+                           <div class="col-md-6 col-sm-6 col-xs-12">
+                              <span class="our_lunchbox_box_title pull-left full-width"> 
+                                 {% trans lunchbox.name %}
+                                 
+                              </span>
+                               
+                              <span class="our_lunchbox_box_price pull-left full-width">€ {{ lunchbox.price }}</span>
+                           </div>
+                          <input type="hidden" name="lunchboxname" value="{{ lunchbox.name }}">
+                          <input type="hidden" name="lunchbox" value="{{ lunchbox.id }}">
+                          <input type="hidden" class="available_till" id="ddate_ddate{{ forloop.counter }}" value="{{ lunchbox.available_till|date:'Y-m-d' }}">
+                          <input type="hidden" name="lunchboxqty" value="1">
+                           <input type="hidden" name="lunchboxprice" value="{{ lunchbox.price }}">
+                           <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="our_lunchbox_box_button pull-left full-width text-right">
+                                 <a class="our_lunchbox_box_see_more" href="{% url 'individual_lunchbox' slug=lunchbox.category.slug pk=lunchbox.id %}">{% trans 'See More' %}</a>
+                                 <input type="button" name="submit" value="{% trans 'Order' %}" onclick="tocart(this.form)" />
+                              </div>   
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               </form>
+               {% endfor %}
+            </div>
+            
+         </div>
+      </section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+   {% if lunchboxes.has_other_pages %}
+    <ul class="pagination">
+      {% if lunchboxes.has_previous %}
+         <li><a href="?page={{ lunchboxes.previous_page_number }}"><img src="{% static 'mainapp/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+      {% else %}
+         <li class="disabled"><a href=""><img src="{% static 'mainapp/img/pagination_arrow_prev.png' %}" alt=""></a></li>
+    {% endif %}
+    {% for i in lunchboxes.paginator.page_range %}
+      {% if lunchboxes.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+      {% if lunchboxes.has_next %}
+         <li><a href="?page={{ lunchboxes.next_page_number }}"><img src="{% static 'mainapp/img/pagination_arrow_next.png' %}" alt=""></a></li>
+      {% else %}
+         <li class="disabled"><span><a href=""><img src="{% static 'mainapp/img/pagination_arrow_next.png' %}" alt=""></a></span></li>
+    {% endif %}
+      </ul>
+   {% endif %}
+   </div>
+   </div>
+</div>
+
+
+
+{% endblock %}

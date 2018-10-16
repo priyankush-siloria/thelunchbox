@@ -1,0 +1,359 @@
+
+{% load staticfiles %}
+{% load common_template_functions %}
+{% load i18n %}
+{% load l10n %}
+
+
+   <div class="home_banner pull-left full-width">
+        <!-- desktop header start here -->
+        <header class="bs-docs-nav navbar navbar-static-top full-width" id="top"> 
+            <div class="container"> 
+               <div class="navbar-header"> 
+                  <button aria-controls="bs-navbar" aria-expanded="false" class="collapsed navbar-toggle" data-target="#bs-navbar" data-toggle="collapse" type="button"> 
+                     <span class="sr-only">Toggle navigation</span> 
+                     <span class="icon-bar"></span> 
+                     <span class="icon-bar"></span> 
+                     <span class="icon-bar"></span> 
+                  </button> 
+                  <a href="{% url 'home_page' %}" class="navbar-brand"><img src="{% static 'mainapp/img/logo.jpg' %}" alt=""></a> 
+               </div> 
+               <nav class="collapse navbar-collapse" id="bs-navbar"> 
+                  <ul class="nav navbar-nav"> 
+                     <li class="break_text"> <a href="{% url 'steps' %}">{% trans "Steps to a" %} <br>{% trans "Healthy Lunch"%}</a> </li> 
+                     <li class="break_text"> <a href="{% url 'group_benifits' %}">{% trans "Group Benefits" %}<br>{% trans "and Offers" %} </a> </li>
+                     <li class="break_text sub_menu"> 
+                        <a href="#" id="menu4"  data-toggle="dropdown">{% trans "Categories of" %} <br>{% trans "Lunchboxes"%} </a> 
+                        <ul class="top_nav_sub-menu dropdown-menu" role="menu" aria-labelledby="menu4">
+                          {% for category in categories %}
+                              <li><a href="{% url 'category_lunchbox' slug=category.slug %}">{{ category.title }}</a></li>
+                          {% endfor %}
+                        </ul>
+                     </li> 
+                     <li class="blog"> <a href="/blog">{% trans "Blog" %} </a></li> 
+                     <li> <a href="{% url 'contactus' %}">{% trans "Contact us" %}</a> </li> 
+
+                    {% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff and not request.user.profile.is_employee %}
+                     
+
+                     <li> <a href="#" id='add_money'>{% trans "La Fiambrera" %}<br>{% trans "Credits" %}</a> </li>
+                   {% endif %}
+                     
+
+                     {% if request.user.is_authenticated %}
+
+                     <li class="break_text sub_menu"> 
+                        
+                        {% if not request.user.first_name and not request.user.last_name%}
+                        <a href="#" id="menu_user_account5"  data-toggle="dropdown" title="{% trans 'Administrator' %}">
+                          {% trans 'Administrator' %}
+                        {% else %}
+                        <a href="#" id="menu_user_account5"  data-toggle="dropdown" title="{{ request.user.first_name|title }} {{ request.user.last_name|title }}">
+                          {{ request.user.first_name|title }}</br>{{ request.user.last_name|title }}</a> 
+                        {% endif %}
+
+                        <ul class="top_nav_sub-menu dropdown-menu" role="menu" aria-labelledby="menu_user_account5">
+                            
+                            {% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff and not request.user.profile.is_employee %}
+                              <li><a href="{% url 'customer_profile' id=0 %}">{% trans 'Edit Profile' %}</a></li>
+                              <li><a href="{% url 'wallet_history' %}">{% trans 'My La Fiambrera Credits' %}</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'user_orders' %}">{% trans 'My Orders' %}</a></li>
+                            <li><a href="{% url 'invite' %}">{% trans 'Invite a Friend' %}</a></li>
+                            <li><a href="{% url 'logout' %}">{% trans 'Log Out' %}</a></li>
+                        </ul>
+                     </li> 
+                     {% else %}
+
+
+                      <li class="c-user-login"><a class="" href="/login">{% trans "Login" %} </a></li>
+
+                     {% endif %} 
+                      
+                  </ul> 
+                  <ul class="nav navbar-nav navbar-right"> 
+                     
+
+                    <li>
+                      <a class="" href="#"><i class="fa fa-search" aria-hidden="true"></i> </a>
+                        <div id="search_div"  style="display:none">
+                           <form action="{% url 'search' %}" method="POST">{% csrf_token %}
+                              <input type="text" name="search_data" placeholder="Search..." class="search_div_1" id="search_input" onkeydown="if (event.keyCode == 13){ this.form.submit(); return false; }">
+                           }
+                            </form>
+                        </div>
+                    </li>
+                    {% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff %}
+                    <li class="user_notification">
+                      <a class="" href="{% url 'customer_notification' %}"><i class="fa fa-bell" aria-hidden="true"></i><span class="user_notify_num" id="notify_num">0</span> </a>
+                    </li>
+                    {% endif %}
+                     <li class="cart_custom dropdown" >
+                        <a href="#" id="menu1"  data-toggle="dropdown"><img src="{% static 'mainapp/img/cart_icon.png' %}" alt=""> <span class="cart_quientity" id="total_qty">0</span></a>
+                        <div class="product_item_total_detail dropdown-menu" role="menu" aria-labelledby="menu1">
+                           <ul class="list products" id="cart_list">
+                              <div class="add_products" style="display: none;" id="empty_cart_list"> {% trans "Your cart contains no products. Add some " %}<a href="{% url 'all' %}">{% trans 'HERE' %}</a> </div>
+                           </ul>
+                           <div class="product_subtotal_detail">
+                              <div class="product_subtotal_inner">
+                              {% if request.user.id %}
+
+                                <a href="{% url 'share_lunchbox_page' %}" class="chekout_product_order" title="{% trans 'Share your lunchbox selection with a friend so that they know what to order for you.&#xA;You can also send La Fiambrera credits to their account to be used as payment!' %}">{% trans "Share" %}</a>
+                              {% endif %}
+                                 <div class="product_subtotal"> {% trans "Subtotal" %} <span class="cart_product_subtotal"><label id="subtotal"></label></span></div>
+                                 <a href="{% url 'checkout' %}" class="chekout_product_order">{% trans "Checkout" %}</a>
+                              
+                              </div>   
+                           </div>
+                        </div>
+                     </li> 
+                     <li class="language_choose">
+
+                        <a href="{%baseurl%}" id="menu2"  data-toggle="dropdown">{{LANGUAGE_CODE}}</a>
+                        <ul class="language_choose_list dropdown-menu" role="menu" aria-labelledby="menu2">
+                         {% for lang in LANGUAGES %}
+                           <li><a href="{% baseurl lang.0 %}{{ request.get_full_path|slice:'3:' }}" > {{ lang.1 }} ({{ lang.0 }}) </a></li>
+                          {% endfor %}
+                        </ul>
+                     </li> 
+               
+                  </ul> 
+               </nav> 
+            </div> 
+         </header>
+         
+        <!-- desktop header end here -->
+
+        <!-- mobile header start here -->
+        <div class="mobile_header_outer">
+            <div class="mobile_header pull-left full-width">
+                <div class="logo pull-left"><a href="{% url 'home_page' %}"><img src="{% static 'mainapp/img/logo.jpg' %}" alt=""></a></div>
+                <div class="mobile_toggle" id="menu3"  data-toggle="dropdown"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                <ul class="nav navbar-nav navbar-right"> 
+                  {% if request.user.is_authenticated %}
+                    <li class="user_account">
+                        <!-- <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a> -->
+                      
+                      <div class="dropdown">
+                          <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                          </button>
+                          <ul class="dropdown-menu language_choose_list" aria-labelledby="dropdownMenuButton">
+                            {% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff %}
+                              <li><a href="{% url 'customer_profile' id=0 %}">{% trans 'Edit Profile' %}</a></li>
+                              <li><a href="{% url 'wallet_history' %}">{% trans 'My La Fiambrera Credits' %}</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'user_orders' %}">{% trans 'My Orders' %}</a></li>
+                            
+                            <li><a href="{% url 'invite' %}">{% trans 'Invite a Friend' %}</a></li>
+                            <li><a href="{% url 'share_lunchbox_page' %}" class="chekout_product_order">{% trans "Share" %}</a></li>
+                            <li><a href="{% url 'logout' %}">{% trans 'Log Out' %}</a></li>
+                             
+                          </ul>
+                        </div>
+                        
+                        
+                    </li> 
+                    {% else %}
+                      <li class="user_account">
+                        <!-- <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i></a> -->
+                      
+                      <div class="dropdown">
+                      <a href="{% url 'login' %}">
+                          <!-- <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                          </button>
+                          </a>
+                        </div>
+                        
+                        
+                    </li> 
+                    {% endif %}
+                    {% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff %}
+                    <li class="user_notification">
+                      <a class="" href="{% url 'customer_notification' %}"><i class="fa fa-bell" aria-hidden="true"></i><span class="user_notify_num" id="notify_num">0</span>  </a>
+                    </li>
+                    {% endif %}
+
+
+
+                    <li class="cart_custom dropdown" >
+                        <a href="{% url 'checkout' %}"><img src="{% static 'mainapp/img/cart_icon.png' %}" alt=""> <span class="cart_quientity" id="total_qty">0</span></a>
+                    </li> 
+                    <li class="language_choose">
+                        <a href="{%baseurl%}" id="menu2"  data-toggle="dropdown">{{LANGUAGE_CODE}}</a>
+                        <ul class="language_choose_list dropdown-menu" role="menu" aria-labelledby="menu2">
+                         {% for lang in LANGUAGES %}
+                           <li><a href="{%baseurl lang.0 %}{{ request.get_full_path|slice:'3:' }}" > {{ lang.1 }} ({{ lang.0 }}) </a></li>
+                          {% endfor %}
+                        </ul>
+                    </li>    
+
+                </ul>
+                <div class="mobile_navigation dropdown-menu" role="menu" aria-labelledby="menu3">
+                    <div class="mobile_head">
+                        <span class="mobile_head_heading pull-left">{% trans "MENU" %}</span>
+                        <span class="close_icon pull-right"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+                    </div>
+                    <ul class="mobile_nav">
+                        <li><a href="{% url 'all' %}">{% trans "Our lunchboxes" %}</a></li>
+                        <li><a href="{% url 'steps' %}">{% trans "Steps to a " %}<br> {% trans "Healthy Lunch" %}</a></li>
+                        <li><a href="{% url 'group_benifits' %}">{% trans "Group Benefits " %}<br>{% trans "and Offers" %} </a></li>
+                        <li class="sub_menu"><a href="#">{% trans "Categories of " %}<br>{% trans "Lunchboxes " %}</a>
+                            <ul class="top_nav_sub-menu">
+                              {% for category in categories %}
+                                <li><a href="{% url 'category_lunchbox' slug=category.slug %}">{{ category.title }}</a></li>
+                              {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a href="/blog">{% trans "Blog" %} </a></li>
+                        <li><a href="{% url 'contactus'%}">{% trans "Contact us" %}</a></li>
+                        <li> <a href="#" id='add_money'>{% trans "La Fiambrera " %}<br>{% trans "Credits" %}</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- mobile header end here -->
+        <div class="container">
+            <div class="banner_content pull-left full-width">
+                <h1 class="pull-left full-width">{% trans homecontent.0.title|title %}</h1>
+                <p class="pull-left full-width">{% trans homecontent.0.description %}</p>
+                <span style="font-size: 16px;color: white;">{% trans homecontent.0.msg %}</span>
+                <a class="pull-left" href="{% url 'all' %}">{% trans "All Lunchboxes" %}</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Money To WAllet  Modal -->
+<div class="modal fade" id="add_money_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3>{% trans "Purchase La Fiambrera Credits" %}</h3>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="form-group clearfix">
+                  <label class="control-label">{% trans "Amount in Euros" %}:</label>
+                    <input class="form-control" id='euros' type="text"  >
+
+                    <label class="control-label">{% trans "Equivelent Amount in Fiambrera Credits" %}:</label>
+                    <input class="form-control" id='la_euros' readonly type="text"  >
+                    
+              </div>
+                       
+              
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+
+      <div class="modal-footer">
+        
+        <button type="button" id='sub_money_wallet' class="btn btn-primary">{% trans "Submit" %}</button>
+        
+      </div>
+    </div>
+  </div>
+  </div>
+<!-- End -->
+
+
+
+    <!-- PAYMENT MODAL -->
+    <div id="paymentModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" data-dismiss="modal" aria-label="Close">&times;</span>
+          <p>{% trans 'Choose a payment method' %}</p>
+        </div>
+        <div class="modal-body clearfix">
+        <ul>
+        <li>
+            <div class="paypal-form">
+                <form action="{% url 'orderpayment' %}" method="POST" class="process_form">{% csrf_token %}
+                    <input type="hidden" name="orders" class="checkout_orders" id="checkout_orders">
+                    <input type="hidden" name="payment_method" value="paypal">
+                    <input type="hidden" id="l_final_amount" class="l_final_amount" value="" name="l_final_amount">
+                    <input type="hidden" name="order_id_wallet" class="order_id_wallet" value="">
+                    <input type="hidden" class="pl_code"  name="p_code">
+                    <input type="hidden" class="module_type"  name="module_type" value="1">
+                    <input type="hidden" class="a_final_amount" value="" name="a_final_amount">
+                    <input type="hidden" class="wallet_user" value="" name="wallet_user">
+                    <input type="hidden" name="remaining_order" class="remaining_order" value="">
+                    <input type="hidden" name="comments_check" class="comments_check" value="">
+                    <input type="hidden" name="vat" class="vat_pay" value="">
+                    <button type="submit" class="cart_checkout_btn"><img src="{% static 'img/paypal-button.png' %}"></button>
+                </form>
+            </div>
+            </li>
+            <li>
+            <div class="redsys-form">
+                <form action="{% url 'orderpayment' %}" method="POST" class="process_form">{% csrf_token %}
+                    <input type="hidden" name="orders" class="checkout_orders">
+                    <input type="hidden" name="payment_method" value="redsys">
+                    <input type="hidden" class="l_final_amount" value="" name="l_final_amount">
+                    <input type="hidden" class="pl_code"  name="p_code">
+                    <input type="hidden" class="module_type"  name="module_type" value="1">
+                    <input type="hidden" class="wallet_user" value="" name="wallet_user">
+                    <input type="hidden" class="a_final_amount" value="" name="a_final_amount">
+                    <input type="hidden" name="order_id_wallet" class="order_id_wallet" value="">
+                    <input type="hidden" name="remaining_order" class="remaining_order" value="">
+                    <input type="hidden" name="comments_check" class="comments_check" value="">
+                    <input type="hidden" name="vat" class="vat_pay" value="">
+                    <button type="submit" class="cart_checkout_btn visa-btn"><img src="{% static 'img/visa_master.png' %}"></button>
+                </form>
+            </div>
+            </li>
+            <li>
+            <div class="ticket-restaurant-form">
+                <form action="{% url 'orderpayment' %}" method="POST" class="process_form">{% csrf_token %}
+                    <input type="hidden" name="orders" class="checkout_orders">
+                    <input type="hidden" name="payment_method" value="redsys">
+                    <input type="hidden" class="l_final_amount" value="" name="l_final_amount">
+                    <input type="hidden" class="pl_code"  name="p_code">
+                    <input type="hidden" class="module_type"  name="module_type" value="1">
+                    <input type="hidden" class="wallet_user" value="" name="wallet_user">
+                    <input type="hidden" class="a_final_amount" value="" name="a_final_amount">
+                    <input type="hidden" name="order_id_wallet" class="order_id_wallet" value="">
+                    <input type="hidden" name="remaining_order" class="remaining_order" value="">
+                    <input type="hidden" name="comments_check" class="comments_check" value="">
+                    <input type="hidden" name="vat" class="vat_pay" value="">
+                    <button type="submit" class="cart_checkout_btn ticket-restaurant-btn"><img src="{% static 'img/ticket-restaurant.png' %}"></button>
+                </form>
+            </div>
+            </li>
+            </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+
+
+
+ <!-- Icomplete Payment -->
+    <div id="incomplete_payment" class="modal fade">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p>{% trans 'Complete Your Payment' %}</p>
+        </div>
+        <div class="modal-body clearfix">
+          <p class="incomplete_payment_method"></p>
+          
+        </div>
+        <div class="modal-footer">
+          <input type="button" name=""  class="icomplete_paymentok" value="OK" />
+          <input type="button" data-dismiss="modal" class="close_incomplete_payment_dialog" id="Icomplete_paymentcancel" value="Cancel" />
+        </div>
+      </div>
+      </div>
+    </div>

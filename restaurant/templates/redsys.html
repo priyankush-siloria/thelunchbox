@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Order' %}{% endblock %}
+{% block content %}
+{% if debug %}
+    {{ form.sandbox }}
+{% else %}
+    {{ form.render }}
+{% endif %}
+{% endblock %}

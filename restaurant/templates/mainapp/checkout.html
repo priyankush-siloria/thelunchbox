@@ -1,0 +1,513 @@
+{% extends "mainapp/base.html" %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load socialaccount %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}{% trans 'Checkout' %}{% endblock %}
+{% block content %}
+{% if messages %}
+  <ul class="messages" style="display: none;">
+      {% for message in messages %}
+          <li id="msg" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+{% endif %}
+   {% csrf_token %}
+      <section class="checkout_section pull-left full-width">
+         <div class="check_out_left_outer full-width pull-left">
+            <div class="col-lg-4 col-md-6">
+               <div class="row">
+                  <div class="checkout_left_section pull-left full-width">
+                  {% if request.user.is_authenticated %}
+                     <div class="checkout_already_register pull-left full-width">
+                        <h1 style="background-image:none">{% trans 'Your Details for Checkout' %}</h1>
+                     </div>
+                  {% else %}
+                     <div class="checkout_already_register pull-left full-width" onclick="chngForm(this)">
+                        <h1>{% trans 'Registered users login here' %}</h1>
+                     </div>
+                  {% endif %}
+                     {% if request.user.is_authenticated %}
+                        {% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff and not request.user.profile.is_employee %}
+                           <div class="customer_data_section customer_profile-edit pull-left full-width" style="display:block;">
+                              <h2>{% trans 'Customer Profile' %}</h2>
+                              <form id="my_edit_profile_form" action="{% url 'customer_profile' 0 %}" method="POST">
+                              {% csrf_token %}
+                                 <div class="col-xs-12">
+                                    <div class="row">
+                                       <div class="input_group pull-left full-width" id="edit_checkout_link">
+                                          <a href="javascript:showeditform()">{% if not customer.address or not user.profile.phone %}{% trans 'Can\'t find your address or phone number' %}?{% trans 'Click here' %}.{% else %}{% trans 'Want to edit your profile' %}? {% trans 'Click here' %}.{% endif %}</a>
+                                       </div>
+                                       <div class="input_group pull-left full-width">
+                                          <label>{{ user.first_name|title }} {{ user.last_name|title }}</label>
+                                          <input type="text" name="first_name" value="{{ user.first_name|title }}" id="user_first_name" style="display: none" placeholder="First Name" maxlength="14">
+                                       </div>
+                                       <div class="input_group pull-left full-width" id="last_name_div" style="display: none">
+                                          <input type="text" name="last_name" value="{{ user.last_name }}" placeholder="Last Name" maxlength="14">
+                                       </div>
+
+                                       <div class="input_group pull-left full-width">
+                                          <label>{{ user.email }}</label>
+                                          <input type="email" name="email" value="{{ user.email }}" id="user_email2" placeholder="Enter Email" style="display: none" placeholder="Email">
+                                       </div>  
+
+                                       <div class="input_group pull-left full-width">
+                                          <label>{% if user.profile.phone %}{{ user.profile.phone }}{% else %}{% trans 'Phone No. is not available' %}{% endif %}</label>
+                                          {% if user.profile.phone %}
+                                             <input type="text" name="phone" value="{{ user.profile.phone }}" id="user_phone2" placeholder="Enter Number" style="display: none">
+                                          {% else %}
+                                             <input type="text" name="phone" value="" id="user_phone2" placeholder="Enter Number" style="display: none">
+                                          {% endif %}
+                                       </div> 
+
+                                       <div class="input_group pull-left full-width">
+                                          <label>{% if customer.address %}{{ customer.address }}{% else %}{% trans 'Address is not available' %}{% endif %}</label>
+                                          <input type="text" name="address" value="{{ customer.address }}" id="autocomplete2" onfocus="geolocate()" style="display: none" placeholder="Enter Address">
+                                       </div>
+
+                                       <div class="input_group pull-left full-width">
+                                          <label>{% if customer.door_num %}{% trans 'Door No/Floor No.' %}. {{ customer.door_num }}{% else %}{% trans 'Door No/Floor No. is not available' %}{% endif %}</label>
+                                          <input type="text" name="door_num" value="{{ customer.door_num }}" id="door_num2" placeholder="Enter Door No." style="display: none">
+                                       </div>
+
+                                       <div class="input_group pull-left full-width">
+                                          <label>{% if customer.building_num %}{% trans 'Building No' %}. {{ customer.building_num }}{% else %}{% trans 'Building No. is not available' %}{% endif %}</label>
+                                          <input type="text" name="building_num" value="{{ customer.building_num }}" id="street_number2" placeholder="Enter Building No." style="display: none">
+                                       </div>
+
+                                       <div class="input_group pull-left full-width">
+                                          <label>{% if customer.state %}{{ customer.state }}{% else %}{% trans 'State is not available' %}{% endif %}</label>
+                                          <input type="text" name="state" value="{{ customer.state }}" id="administrative_area_level_12" placeholder="Enter State." style="display: none">
+                                       </div> 
+
+                                       <div class="input_group pull-left full-width">
+                                          <label>{% if customer.city %}{{ customer.city }}{% else %}{% trans 'City is not available' %}{% endif %}</label>
+
+                                          <input type="text" name="city" value="{{ customer.city }}" id="locality2" placeholder="Enter City" style="display: none">
+                                       </div>
+
+                                       <div class="input_group pull-left full-width">
+                                          <label>{% if customer.zip_code %}{{ customer.zip_code }}{% else %}{% trans 'Zip Code is not available' %}{% endif %}</label>
+                                          <input type="text" value="{{ customer.zip_code }}" name="zip_code" id="postal_code2" placeholder="Enter Zip Code" style="display: none">
+                                       </div>
+                                       <div class="input_group pull-left full-width" id="save_profile_button" style="display: none">
+                                          <div class="purchase_credits_area text-center" id="checkout_edit_save_button">
+                                             <a href="#">{% trans 'Save' %}</a>
+                                          </div>
+                                       </div>
+                                       <input type="hidden" name="country" id="country2">
+                                       <input type="hidden" name="route" id="route2"> 
+                                       <input type="hidden" name="checkout" value="checkout"> 
+                                    </div>     
+                                 </div>
+                              </form>
+                           </div>
+                        {% else %}
+                           <div class="customer_data_section pull-left full-width" style="display:block;">
+                              <label>{% trans 'Only Available for Customer and guest users' %}</label>
+                           </div>
+                        {% endif %}
+                     {% else %}
+                     <div id="checkout_register" class="customer_data_section pull-left full-width" style="display:block;">
+
+                     <form class="clearfix" role="form" action="{% url 'uregistration' %}" method="POST" onsubmit="return validate_user_regis()">{% csrf_token %}
+                        <div class="col-xs-12">
+                           <div class="row">
+                              <div class="form-group social-action-button">
+                                 <a href="{% provider_login_url 'facebook' method='oauth2' %}"
+                                    class="btn btn-facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i><span>{% trans 'Login with' %} Facebook</span></a>
+                                 <a href="{% provider_login_url 'linkedin' method='oauth2' %}"
+                                    class="btn btn-linkedin"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span>{% trans 'Login with' %} Linkedin</span></a>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-xs-12">
+                        	<h2>{% trans 'Register here' %}</h2>
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'First Name' %}*</label>
+                                 <input type="text" name="user_first_name" id="user_first_name" maxlength="14">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Last Name' %}*</label>
+                                 <input type="text" name="user_last_name" id="user_last_name" maxlength="14">
+                              </div>
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Password' %}*</label>
+                                 <input type="password" name="user_password1" id="user_password1">
+                              </div>
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Confirm Password' %}*</label>
+                                 <input type="password" name="user_password2" id="user_password2" onkeyup="pmismatch('2')">
+                              </div>  
+                           </div>     
+                        </div>
+
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Email' %}*</label>
+                                 <input type="email" name="user_email" id="user_email">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Mobile phone' %}*</label>
+                                 <input type="text" name="user_phone" id="user_phone">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Address' %}*</label>
+                                 <input type="text" name="user_address" id="autocomplete" onkeyup="geolocate()">
+                              </div>
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Door No/Floor No.' %}</label>
+                                 <input type="text" name="user_door" id="door_num">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Building Number' %}*</label>
+                                 <input type="text" name="user_building" id="street_number">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                              <label>{% trans 'State' %}</label>
+                                 <input type="text" name="user_state" id="administrative_area_level_1">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'City' %}</label>
+                                 <input type="text" name="user_city" id="locality">
+
+                              </div>  
+                           </div>     
+                        </div>
+
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Postal Code' %}*</label>
+                                 <input type="text" name="user_zip_code" id="postal_code">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-xs-12">
+                           <div class="row">
+                              <div class="input_group pull-left full-width checkout_checkbox_area_new">
+                                 <div class="col-sm-6">
+                                    <div class="row">
+                                       <label for="lang_en">
+                                          <input name="user_lang" id="lang_en" value="en" checked="" type="radio">
+                                          <span>English</span>
+                                       </label>
+                                    </div>
+                                 </div>      
+                                 <div class="col-sm-6">
+                                    <div class="row">
+                                       <label for="lang_es">
+                                          <input name="user_lang" id="lang_es" value="es" type="radio">
+                                          <span>Español</span>
+                                       </label>
+                                    </div>    
+                                 </div>       
+                              </div>
+                           </div>   
+                        </div>
+
+                         <div class="col-xs-12">
+                           <div class="row">
+                              <div class="input_group pull-left full-width checkout_new_submit">
+                                 <input type="submit" name="submit" value="submit">
+                              </div> 
+                           </div>     
+                        </div>
+                        <input type="hidden" name="user_state" id="administrative_area_level_1">
+                        <input type="hidden" name="user_country" id="country">
+                        <input type="hidden" name="route" id="route">
+                        <input type="hidden" name="register_type" value="checkout">
+                     </form>
+                     </div>
+                     <div id="checkout_login" class="customer_data_section pull-left full-width" style="display:none;">
+                     <form role="form"  method="POST" action="{% url 'chlogin' %}" onsubmit="return validate_login()">
+                        {% csrf_token %}
+                        <h2>{% trans 'Registered users login here' %}</h2>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Email' %}</label>
+                                 <input type="text" id="login_email" name="email">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-sm-6">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <label>{% trans 'Password' %}</label>
+                                 <input type="password" id="login_pwd" name="password">
+                              </div> 
+                           </div>     
+                        </div>
+                        <div class="col-xs-12">
+                           <div class="row">
+                              <div class="input_group pull-left full-width">
+                                 <input type="submit" name="submit" value="submit">
+                              </div> 
+                           </div>     
+                        </div>
+                        
+                        </form>
+                        <div class="col-xs-12">
+                           <div class="row">
+                              <div class="form-group social-action-button">
+                                 <a href="{% provider_login_url 'facebook' method='oauth2' %}"
+                                    class="btn btn-facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i><span>{% trans 'Login with' %} Facebook</span></a>
+                                 <a href="{% provider_login_url 'linkedin' method='oauth2' %}"
+                                    class="btn btn-linkedin"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span>{% trans 'Login with' %} Linkedin</span></a>
+                              </div>
+                           </div>
+                        </div>
+
+                     </div>
+                  {% endif %}
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+               <div class="row">
+                  <div class="payment_section pull-left full-width">
+                     <ul id="checkout_lunchboxes" class="purchase_summery_checkout pull-left full-width">
+                        {% if request.session.cart %}
+                           {% for values in cart_values %}
+                           {% for lunchbox in values.lunchboxes %}
+                           
+                              <li class="pull-left full-width">
+                                 <div class="purchase_summery_checkout_image"> 
+                                    <a href="{% url 'individual_lunchbox' slug=lunchbox.category.slug pk=lunchbox.id %}"> <img src="{% static 'mainapp/img/purchase_summery_cart_image.jpg' %}" alt=""> </a>
+                                 </div>
+                                 <div class="purchase_summery_checkout_data">
+                                    
+                                    <div class="purchase_summery_checkout_name">
+                                       <p class="purchase_summery_checkout_product-name"> 
+                                          <a href="{% url 'individual_lunchbox' slug=lunchbox.category.slug pk=lunchbox.id %}"> {{ lunchbox.name }} </a>
+                                       </p>
+                                    </div>
+                                    <div class="purchase_summery_checkout_product_unit">
+                                       <div class="purchase_summery_checkout_price"> <span class="price"> € {{ lunchbox.price }} </span></div>
+                                    </div>
+                                    <div class="purchase_summery_checkout_product_delete"> 
+                                       <a class="cart_quantity_delete" href="javascript:removecart({{ lunchbox.id }})"></a>
+                                    </div>
+
+                                    
+                                    <div class="purchase_summery_checkout_product_quantity">
+                                       <div  class="purchase_summery_checkout_cart_quantity_button"> 
+                                          <a  class="purchase_summery_checkout_cart_quantity_down"  href="javascript:check_dcr({{ values.lunchbox_id }},{{ lunchbox.price }},{{ forloop.parentloop.counter }})" title="Subtract">-</a> 
+                                          <input size="2" autocomplete="off" class="purchase_summery_checkout_cart_quantity_input" value="{{ values.qty }}" min="1" name="" type="text" id="check_qty{{ forloop.parentloop.counter }}" disabled>
+                                          <a class="purchase_summery_checkout_cart_quantity_up" href="javascript:check_incr({{ values.lunchbox_id }},{{ lunchbox.price }},{{ forloop.parentloop.counter }})" title="Add">+</a>
+                                       </div>
+                                    </div>
+                                    <input type="hidden" name="box" class="box_for_delivery" value="{{ values.lunchbox_id }}">
+                                    <!-- <div class="delivary_date_checkout">
+                                       <p>
+                                          <span> Delivery Date:{{ values.delivery_date }}</span>
+                                       </p>
+                                    </div>
+                                    <div class="purchase_summery_checkout_product_price"> 
+                                       <span class="purchase_summery_checkout_total_price" id="total_amount{{ forloop.counter }}"> {{ values.finalamount }} € </span>
+                                    </div>                                    
+                                    <div class="delivary_time_checkout">
+                                       <p>
+                                          <span>Delivery Time:{{ values.delivery_time }}</span>
+                                       </p>
+                                    </div> -->
+                                    {% endfor %}
+
+                                 </div>
+                              </li>
+                           {% endfor %}
+                        {% else %}
+                         <li class="pull-left full-width">
+                         {% trans 'Nothing in Your Cart' %}
+                         </li>
+                        {% endif %}
+                        </ul>
+                        <div class="purchase_summery_checkout_cart_summary_outer pull-left full-width">
+                           <div id="hide_delivery">
+                              {% if request.session.cart %}
+                                 {% include "mainapp/delivery.html" %}
+                              {% endif %}
+                           </div>
+                           
+                           <div class="col-xs-12">
+                              <table class="purchase_summery_checkout_cart_summary">
+                              {% if request.session.cart %}
+                                 <tr class="purchase_cart_summary_cart_total_products">
+                                    <td colspan="4">{% trans 'SUBTOTAL' %}</td>
+                                    <td class="purchase_cart_summary_cart_total_product" id="sub_total_amount">{{ sub_total }} €</td>
+                                 </tr>
+                                 <tr class="purchase_cart_summary_cart_total_delivery">
+                                    <td colspan="4"></td>
+                                    <td class="purchase_cart_summary_total_shipping">{% trans 'Free Delivery' %}!</td>
+                                 </tr>
+                                    
+                              {% else %}
+                                 <tr class="purchase_cart_summary_cart_total_products">
+                                    <td colspan="4">{% trans 'SUBTOTAL' %}</td>
+                                    <td class="purchase_cart_summary_cart_total_product"></td>
+                                 </tr>
+                                 <tr class="purchase_cart_summary_cart_total_delivery">
+                                    <td colspan="4"></td>
+                                    <td class="purchase_cart_summary_total_shipping">Free Delivery!</td>
+                                 </tr>
+                              {% endif %}
+
+                              </table>
+                           </div>
+                        </div> 
+                  </div>
+               </div>   
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+               <div class="row">
+                  <div class="checkout_last_section pull-left full-width">
+                     <div class="observation_section pull-left full-width">
+                        <h2>{% trans 'Comments' %}</h2>
+                        {% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff and not request.user.profile.is_employee %}
+                           <textarea id="checkout_comment" placeholder="Other delivery location & requirements!"></textarea>
+                        {% else %}
+                           <p>{% trans 'Please Log In or Register to add comments.' %}</p>
+                        {% endif %}
+                     </div>
+                  </div>   
+               </div>   
+            </div>
+         </div>
+         
+         <div class="purchase_summery pull-left full-width">
+            <div class="container">
+               <h2>{% trans 'PURCHASE SUMMARY' %}</h2>
+               <div class="col-sm-6 col-xs-12 box2">
+                  <div class="row">
+                     <div class="purchase_summery_checkout_cart_summary_details">
+                        <h2>{% trans 'AVAILABLE PAYMENT METHODS' %}</h2>
+                        {% if request.user.is_authenticated %}
+                           <div class="vissa_debit_area"><img src="{% static 'mainapp/img/payment_card_checkout.png' %}" alt=""></div>
+                           <div class="Wallet_credits_area pull-left full-width">
+                           <input type="hidden" name="credit" id="credit_amount" value="{{ wallet.0.lafiambera_credit }}">
+                           <a href="javascript:arrayData()">Use La Fiambrera Credits <span class="Checkout_points">{% if wallet %}{{ wallet.0.lafiambera_credit }}{% else %} 0 {% endif %}</span></a></div>
+                           {% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff and not request.user.profile.is_employee %}
+                              <div class="purchase_credits_area pull-left full-width text-center" id="add_money"><a href="#">{% trans 'Purchase Credits' %}</a></div>
+                           {% endif %}
+                        {% else %}
+                           <p>{% trans 'Please Log In or Register before before selecting payment method.' %}</p>
+                        {% endif %}
+                     </div>
+                  </div>   
+               </div> 
+               <div class="col-sm-6 col-xs-12 box1"> 
+                  <div class="row"> 
+                     <div class="checkout_apply_section full-width pull-left">
+                        <div class="checkout_promo_code full-width pull-left">
+                           <input type="text" name="" placeholder="Promo Code" id="promo_code_input">
+                           <button class="promo_code_button">{% trans 'Apply' %}</button>
+                           <div id="invalid_promo"></div>
+                        </div>
+                        <table class="purchase_summery_checkout_cart_summary_final_price full-width">
+                           <tr class="purchase_cart_summary_cart_final_price ">
+                              <td colspan="4">{% trans 'Discount for Group Orders' %}</td>
+                              <td> <span id="qty_discount" class="purchase_cart_summary_total_price">0 €</span></td>
+                           </tr>
+                        	<tr class="purchase_cart_summary_cart_final_price ">
+                              <td colspan="4">{% trans 'Discount with Promo Code' %}</td>
+                              <td> <span id="promo_discount" class="purchase_cart_summary_total_price">0 €</span></td>
+                           </tr>
+                           <!-- <tr class="purchase_cart_summary_cart_final_price ">
+                              <td colspan="4">{% trans 'Total Vat' %}</td>
+                              <td> <span id="vat_tax" class="purchase_cart_summary_total_price">0 €</span></td>
+                           </tr> -->
+                           <tr class="purchase_cart_summary_cart_final_price ">
+                              <td colspan="4">{% trans 'Total' %}</td>
+                              {% if request.session.cart %}
+                                 <td> <span id="after_promo_total" class="purchase_cart_summary_total_price">{{ sub_total }} €</span></td>
+                              {% else %}
+                                 <td> <span class="purchase_cart_summary_total_price">0 €</span></td>
+                              {% endif %}
+                           </tr>
+                        </table>
+                       
+                        <div class="checkout_complete_purchase pull-left full-width">
+                        {% if request.session.cart %}
+                        	{% if request.user.is_authenticated and not request.user.profile.is_restaurant and not request.user.staff and not request.user.profile.is_employee %}
+                           		<button id="sub_money_wallet1" >{% trans 'Complete purchase' %}</button>
+                           	{% else %}
+                           		<button onclick="complete_purchase(0)">{% trans 'Complete purchase' %}</button>
+                           	{% endif %}
+                        {% else %}
+                           <button onclick="complete_purchase(1)">{% trans 'Complete purchase' %}</button>
+                        {% endif %}
+                        </div>
+                     </div>   
+                  </div>      
+               </div>      
+            </div>
+         </div>   
+      </section>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>  
+
+      <script type="text/javascript">
+  var url_apply_token="{% url 'apply_promo_code_discount' %}";
+  var checkout_data="{% url 'checkoutdata' %}";
+  var evening_orders="{% url 'evening_orders' %}";
+  $(document).ready(function() {
+           function setboxHeight(){
+            $('.box1, .box2').css('height', '');
+             var box1height = $('.box1').height();
+            var box2height = $('.box2').height();    
+             box2height>box1height ? ($('.box1').height(box1height)):($('.box2').height(box1height));
+           }
+           
+            setboxHeight();
+           
+           $(window).resize(function(){
+             setboxHeight();
+           });
+      }); 
+</script>
+{% endblock %}  

@@ -1,0 +1,144 @@
+{% extends 'control/base_control.html' %}
+{% load i18n %}
+{% load static %}
+{% load tz %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+    <div class="container col-md-16 col-xs-16 col-lg-16">
+        <div class="col-md-16 orders-header bg-black">
+            <div class="col-md-2 text-uppercase text-center">{% trans 'Contact' %}</div>
+            <div class="col-md-14">
+                <div class="col-md-5 text-uppercase">{% trans 'Lunchbox' %}</div>
+                <div class="col-md-2 text-uppercase text-center">
+                    <a href="#" class="order_by_qty {% if request.GET.qty == '1' %}clicked{% endif %}">
+                        {% trans 'Quantity' %} <span
+                            class="glyphicon {% if request.GET.qty == '1' %}glyphicon-triangle-top{% else %}glyphicon-triangle-bottom{% endif %}"></span>
+                    </a>
+                </div>
+                <div class="col-md-3 text-uppercase text-center">
+                    <a href="#" class="order_by_time {% if request.GET.time == '1' %}clicked{% endif %}">
+                        {% trans 'Delivery time' %} <span
+                            class="glyphicon {% if request.GET.time == '1' %}glyphicon-triangle-top{% else %}glyphicon-triangle-bottom{% endif %}"></span>
+                    </a>
+                </div>
+                <div class="col-md-4 text-uppercase text-center">{% trans 'Address' %}</div>
+                <div class="col-md-2 text-uppercase text-center">{% trans 'Payment' %}</div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        {% for day in order_list %}
+            <div class="bg-black order-date col-md-16 text-center">{{ day.date | localtime | date:"M d, Y" }}</div>
+            <div class="table-orders col-md-16">
+                {% for order in day.orders %}
+                    <div class="row">
+                        <div class="first col-md-2">
+                            <p>
+                                <strong>[{{ order.restaurant.name }}]</strong><br>
+                                [{{ order.restaurant.address }}; {{ order.restaurant.zip_code }}]<br>
+                                <strong>[{{ order.restaurant.phone }}]</strong>
+                            </p>
+                        </div>
+                        <div class="inner col-md-14">
+                            {% if order.user_orders %}
+                                {% for o in order.user_orders %}
+                                    <div class="order_wrap">
+                                        <div class="bordered col-md-16">
+                                            <div class="col-md-5">
+                                                {{ o.lunchbox.name }}
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                {{ o.qty }}
+                                            </div>
+                                            <div class="col-md-3 text-center">
+                                                {{ o.delivery_date|date:'D' }}
+                                            <strong>{{ o.delivery_date|localtime|time:"H:i"}}</strong>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <strong>
+                                                    {% if o.order.user.profile.company %}
+                                                        {{ o.order.user.profile.company.street }},
+                                                        {{ o.order.user.profile.company.city }},
+                                                        {{ o.order.user.profile.company.state }}
+                                                    {% elif o.order.user.profile.address %}
+                                                        {{ o.order.user.profile.address }}
+                                                        {{ o.order.user.profile.city }}
+                                                        {{ o.order.user.profile.state }}
+                                                        {{ o.order.user.profile.zip_code }}
+                                                    {% else %}
+                                                        -
+                                                    {% endif %}
+                                                </strong>
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                {{ o.get_amount }} €
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-md-16 order-details">
+                                            <div><strong>{% trans 'DELIVERY DETAILS' %}:</strong>
+                                                [{{ o.order.user.first_name }} {{ o.order.user.last_name }}],
+                                                [{{ o.order.user.profile.phone }}], [{{ o.order.user.profile.company }}]
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-md-16 order-msg">
+                                            <div><strong>{% trans 'Note' %}:</strong> {% trans 'order' %} #{{ o.order.id }}</div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('.row').each(function () {
+                var f_h = $(this).children('.first').outerHeight(),
+                        i_h = $(this).children('.inner').outerHeight();
+                $(this).children('.first').css({'height': Math.max(f_h, i_h)});
+            });
+
+            var i = 0;
+            $('.highlight').each(function () {
+                $(this).children('input[type="checkbox"]').attr('id', 'r' + i);
+                $(this).children('label').attr('for', 'r' + i);
+                i++;
+            });
+
+            function updateQueryStringParameter(uri, key, value) {
+                var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+                var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+                if (uri.match(re)) {
+                    return uri.replace(re, '$1' + key + "=" + value + '$2');
+                }
+                else {
+                    return uri + separator + key + "=" + value;
+                }
+            }
+
+            $('.order_by_qty').click(function (e) {
+                e.preventDefault();
+                if (!$(this).hasClass('clicked')) {
+                    window.location.href = updateQueryStringParameter(window.location.href, 'qty', 1);
+                } else {
+                    window.location.href = updateQueryStringParameter(window.location.href, 'qty', 0);
+                }
+            });
+
+            $('.order_by_time').click(function (e) {
+                e.preventDefault();
+                if (!$(this).hasClass('clicked')) {
+                    window.location.href = updateQueryStringParameter(window.location.href, 'time', 1);
+                } else {
+                    window.location.href = updateQueryStringParameter(window.location.href, 'time', 0);
+                }
+            });
+        });
+    </script>
+{% endblock %}

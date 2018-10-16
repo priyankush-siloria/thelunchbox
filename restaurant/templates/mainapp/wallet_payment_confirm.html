@@ -1,0 +1,69 @@
+{% extends 'mainapp/base.html' %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% block title %}{% trans 'Payment Confirmation Details' %}{% endblock %}
+{% block content %}
+
+<div class="outer-table wallet-payment-page container" id="main_page_section">
+   <div class="table-responsive">
+      <table class="table table-bordered table-responsive wallet-payment">
+   <tbody>
+      <tr>
+         <td colspan="6">
+            <strong>{{ moneytowallet.user.first_name|title }} {{ moneytowallet.user.last_name|title }}</strong>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <strong>{% trans 'Payment Method' %}</strong>
+         </td>
+         <td>
+            <strong>{% trans 'Date' %}</strong>
+         </td>
+         <td>
+            <strong>{% trans 'Time' %}</strong>
+         </td>
+         <td>
+            <strong>{% trans 'Payment Amount' %}</strong>
+         </td>
+         <td>
+            <strong>{% trans 'La-Fiambrera Credits' %}</strong>
+         </td>
+         <td>
+            <strong>{% trans 'Status' %}</strong>
+         </td>
+      </tr>
+   
+      <tr>
+         <td>
+            {{ payment.get_payment_type_display }}
+         </td>
+         <td>
+            {{ payment.created|date:'Y d m' }}
+         </td>
+         <td>
+            {{ payment.created|date:'H:i' }}
+         </td>
+         <td>
+            {{ payment.amount }} €
+         </td>
+         <td>
+            {{ moneytowallet.lafiambera_credit }}
+         </td>
+         <td>
+            {% if moneytowallet.status %}
+               {% trans 'Success' %}
+            {% else %}
+               {% trans 'Failed' %}
+            {% endif %}
+         </td>
+      </tr>
+   </tbody>
+</table>
+   </div>
+</div>
+
+{% endblock %}

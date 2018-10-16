@@ -1,0 +1,71 @@
+{% extends "mainapp/base.html" %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+
+{% if  request.GET.q  %}
+      <ul class="messages">
+          <li id='msg'>{% trans 'Sorry! Some error occur.' %}</li>
+      </ul>
+{% endif %}
+         
+
+      <section class="contact_us_section pull-left full-width" id="main_page_section">
+         <div class="container">
+            <div class="inner_title pull-left full-width">
+               <h1 class="pull-left full-width text-center">{% trans 'Contact Us' %}</h1>
+               <div class="col-xs-12">
+                  <div class="row">
+                     <div class="contact_us_info col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <span><img src="{% static 'mainapp/img/email-icon.png' %}">{{ support.email }}</span>
+                        <span><img src="{% static 'mainapp/img/call-icon.png' %}">{{ support.phone }}</span>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <form action="{% url 'contactus' %}" method="POST" onsubmit="return validate()">
+                        {% csrf_token %}
+                        <div class="contact_inner">
+                           <div class="row">
+                              <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <div class="inner_group">
+                                    <input type="text" id="name" name="name" placeholder="Name" maxlength="30">
+                                 </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <div class="inner_group">
+                                    <input type="email" id="email" name="email" placeholder="Email" maxlength="30">
+                                 </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <div class="inner_group">
+                                    <input type="text" id="phone" name="phone" placeholder="Phone" maxlength="15">
+                                 </div>
+                              </div>
+                              <div class="col-xs-12">
+                                 <div class="inner_group">
+                                    <textarea name="msg1" id="msg1" placeholder="Message"></textarea>
+                                 </div>
+                              </div>
+
+                              <div class="send_message_button text-center pull-left full-width">
+                                 <div class="col-xs-12">
+                                    <div class="row">
+                                       <button type="submit" class="sub_contact"  >{% trans 'Send Message' %}</button>
+                                    </div>   
+                                 </div>   
+                              </div>
+                           </div>
+                        </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>   
+         </div>
+      </section>
+     
+{% endblock %}      

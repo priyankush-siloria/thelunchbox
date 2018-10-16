@@ -1,0 +1,390 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load user_price %}
+{% load is_buyer %}
+{% load get_company_orders_qty %}
+{% load next_discount_qty %}
+{% load next_discount %}
+{% load thumbnail %}
+{% block title %}Catering cart{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/jquery.datetimepicker.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="section graybg fp-auto-height">
+        <div class="wrapper inner catering_cart">
+            <div class="pseudo-nav"></div>
+            {% include 'inc/nav.html' %}
+            {% if items %}
+                <div class="delivery col-md-11 center">
+                    <div class="info pull-left col-md-8 no-margins">
+                        <strong class="intro_text">{% trans 'Delivery information' %}:</strong>
+                        <div class="clearfix"></div>
+                        <form id="catering_delivery_info" class="register_form col-md-15 col-xs-16 no-margins" action="." method="POST"
+                              name="registration">{% csrf_token %}
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+                                <div {% if catering_form.c_first_name.errors %}class="has-error"{% endif %}>
+                                    {{ catering_form.c_first_name }} <div></div>
+                                </div>
+                                <div {% if catering_form.c_last_name.errors %}class="has-error"{% endif %}>
+                                    {{ catering_form.c_last_name }}
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group {% if catering_form.c_address.errors %}has-error{% endif %}">
+                                {{ catering_form.c_address }}
+                            </div>
+
+                            <div class="form-group {% if catering_form.c_city.errors or catering_form.c_state_full.errors or catering_form.c_zip_code.errors %}has-error{% endif %}">
+                                {{ catering_form.c_city }}
+                                {{ catering_form.c_state_full }}
+                                <div {% if catering_form.c_zipcode.errors %}class="has-error"{% endif %}>
+                                    {{ catering_form.c_zipcode }}
+                                </div>
+                            </div>
+
+                            <div class="form-group {% if company_form.c_phone.errors %}has-error{% endif %}">
+                                {{ catering_form.c_phone }}
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+
+                        <div class="col-md-8 no-margins go-to-btns-mobile">
+                            <a href="{% url 'home' %}" class="pull-left btn btn-default go-to-btn">{% trans 'Go back' %}</a>
+                            <a href="{% url 'cart' %}"
+                               class="pull-right btn btn-default goto_cart go-to-btn">{% trans 'Company cart' %}</a>
+                        </div>
+                    </div>
+                    <div class="total col-md-8 pull-right">
+                        <p id="couponErr" class="error_msg"></p>
+                        <div class="promo-code-txt">
+                            <strong class="total_txt">{% trans 'Enter promo code' %}</strong>
+                        </div>
+                        <input type="text" name="promo_code" class="promo_code_input pull-right">
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="items_info">
+                            {% for item in items %}
+                                <p class="pull-left">
+                                    <span class="text-uppercase">{{ item.lunchbox.name }}</span> |
+                                    <span>{% trans 'Quantity' %}: </span><strong>{{ item.qty }}</strong> /
+                                    <strong>{{ item.lunchbox.price }} EUR</strong>
+                                </p>
+                                <div class="clearfix"></div>
+                            {% endfor %}
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <div class="clearfix"></div>
+                        <strong id="total_amount_txt" class="total_txt">{% trans 'Total amount' %} <span class="pull-right"><span class="total_price">{{ total }}</span> eur</span></strong><br>
+                        {% if total != total_with_discount %}
+                        <div id="company_discount">
+                        <p><strong class="company_discount">{% trans 'Quantity discount' %}<span class="pull-right">-<span class="company_discount_price">{{company_discount}}</span> eur</span></strong></p>
+                        </div>
+                        <div id="total_discount">
+                        <strong class="total_with_discount_txt">{% trans 'With discount' %}
+                            <span class="pull-right"><span class="discount_price">{{ total_with_discount }}</span> eur</span></strong>
+                        </div>
+                        {% endif %}
+                        <br>
+                        <br>
+                        <p class="catering_delivery_date">{% trans 'Select delivery date and time (1pm - 4pm)' %}:
+                            <input type="text" class="datetimepicker pull-right cart_delivery_date"></p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-8 no-margins go-to-btns">
+                        <a href="{% url 'home' %}" class="pull-left btn btn-default">{% trans 'Go back' %}</a>
+                        <a href="{% url 'cart' %}"
+                           class="pull-right btn btn-default goto_cart">{% trans 'Go to Company Checkout' %}</a>
+                    </div>
+                    {% if not total == 0 %}
+                        <a href="#" id="checkout" class="pull-right btn btn-default checkout-btn">{% trans 'Checkout' %}</a>
+                    {% endif %}
+                    <div class="clearfix"></div>
+                </div>
+
+                {% for item in items %}
+                    <div class="col-md-11  col-xs-16 center restaurant {% if forloop.counter|divisibleby:2 %}info-right{% endif %}">
+                        <div class="restaurant-info restaurant-info-order col-md-7 col-xs-16">
+                            <div class="restaurant-info-child">
+                                {% if item.lunchbox.restaurant.logo %}
+                                    <div class="restaurant-logo img-responsive"
+                                        style="background: url('/media/{{ item.lunchbox.restaurant.logo }}') 50% 50% no-repeat; background-size: cover;">
+                                    </div>
+                                {% else %}
+                                    <div class="restaurant-logo">
+                                        <div class="camera">
+                                            <div class="line"></div>
+                                            <span class="glyphicon glyphicon-camera"></span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="clearfix"></div>
+                                <strong class="restaurant-title">{{ item.lunchbox.restaurant.name|upper }}</strong>
+                                <div class="clearfix"></div>
+                                <p class="restaurant-desc">{{ item.lunchbox.restaurant.desc }}</p>
+                                <div class="clearfix"></div>
+                                <p>
+                                    <strong>{% trans 'Address' %}:</strong> {{ item.lunchbox.restaurant.address }}<br>
+                                    <strong>{% trans 'Phone Number' %}:</strong> {{ item.lunchbox.restaurant.phone }}
+                                </p>
+                                <div class="clearfix"></div>
+                                <a href="{% url 'restaurant' item.lunchbox.restaurant.slug %}"
+                                   class="restaurant-see_profile">{% trans 'See restaurant information' %}</a>
+
+                                <p class="restaurant-min_order bg-warning col-md-16 col-xs-16 text-center">{% trans 'Minimum Order' %}: {{ item.lunchbox.restaurant.min_order }}</p>
+                            </div>
+                        </div>
+                        {% if item.lunchbox.get_rating %}
+                            <div class="ribbon">
+                                <p class="rating_txt">
+                                    {% trans 'Rating' %}
+                                </p>
+                                <p class="rating">{{ item.lunchbox.get_rating }}</p>
+                                <ul class="stars">
+                                    {% for r in item.lunchbox.get_rating_int %}
+                                        <li><span class="glyphicon glyphicon-star"></span></li>
+                                    {% endfor %}
+                                    {% for r in item.lunchbox.get_rating_diff %}
+                                        <li><span class="glyphicon glyphicon-star-empty"></span></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <div class="restaurant-lunchboxes restaurant-lunchboxes-order col-md-9 col-xs-16" data-lunchbox="{{ item.lunchbox.id }}"
+                             restaurant-name="{{ item.lunchbox.restaurant.name}}"
+                             restaurant-min-order ="{{ item.lunchbox.restaurant.min_order }}">
+                            <div class="restaurant-lunchbox-gallery col-lg-16 col-md-16 col-xs-16 no-margins">
+                                {% if item.lunchbox.get_images %}
+                                    {% for i in item.lunchbox.get_images %}
+                                        {% if forloop.counter == 1 %}
+                                            <div class="big {% if item.lunchbox.get_privileges %}with_privileges{% endif %} col-lg-13 col-md-13 col-xs-13"
+                                                    {% if item.lunchbox.get_image %}
+                                                 style="background: url('{{ item.lunchbox.get_image.image|thumbnail_url:'normal_lb_big' }}') 50% 50% no-repeat"{% endif %}>
+                                                {% for i in item.lunchbox.get_images %}
+                                                    {% if i.image %}
+                                                        <img src="{{ i.image|thumbnail_url:'normal_lb_big' }}"
+                                                             alt=""
+                                                             class="hidden">
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if not item.lunchbox.get_image %}
+                                                    <div class="camera">
+                                                        <div class="line"></div>
+                                                        <span class="glyphicon glyphicon-camera"></span>
+                                                    </div>
+                                                {% endif %}</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="big {% if item.lunchbox.get_privileges %}with_privileges{% endif %} col-lg-13 col-md-13 col-xs-13">
+                                        <div class="camera">
+                                            <div class="line"></div>
+                                            <span class="glyphicon glyphicon-camera"></span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if item.lunchbox.get_privileges %}
+                                    <div class="col-md-3 no-margins privileges">
+                                        {% for p in item.lunchbox.get_privileges %}
+                                            <div class="col-md-16 no-margins">
+                                                <img src="{{ p.privilege.image|thumbnail_url:'lb_privilege' }}" alt="">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="clearfix"></div>
+                            </div>
+                            <strong class="restaurant-lunchbox-name">{{ item.lunchbox.name|upper }}</strong>
+                            <p class="restaurant-lunchbox-desc">{{ item.lunchbox.desc }}</p>
+                            {% if item.lunchbox.nfacts_is_filled %}
+                                <div class="clearfix"></div>
+                                <div class="table-responsive nutrition_facts_table">
+                                    <table class="table table-bordered no-margins">
+                                        <tr>
+                                            <td class="table-head text-uppercase"
+                                                colspan="4">{% trans 'The good side of the lunchbox' %}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>{% trans 'Total Calories' %}</td>
+                                            <td class="text-right">
+                                                {% if item.lunchbox.get_total_calories %}
+                                                    {{ item.lunchbox.get_total_calories }}{% else %}
+                                                    XXX{% endif %} <strong>Kcal</strong></td>
+                                            <td>{% trans 'Fat' %}</td>
+                                            <td class="text-right">
+                                                {% if item.lunchbox.fat %}{{ item.lunchbox.fat }}{% else %}XX{% endif %}
+                                                <strong>Gr</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{% trans 'Protein' %}</td>
+                                            <td class="text-right">
+                                                {% if item.lunchbox.protein %}{{ item.lunchbox.protein }}{% else %}
+                                                    XX{% endif %}
+                                                <strong>Gr</strong></td>
+                                            <td>{% trans 'Sugar' %}</td>
+                                            <td class="text-right">
+                                                {% if item.lunchbox.sugar %}{{ item.lunchbox.sugar }}{% else %}
+                                                    XX{% endif %}
+                                                <strong>Gr</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>{% trans 'Carbohydrates' %}</td>
+                                            <td class="text-right">
+                                                {% if item.lunchbox.carbohydrates %}
+                                                    {{ item.lunchbox.carbohydrates }}{% else %}XX{% endif %}
+                                                <strong>Gr</strong></td>
+                                            <td>{% trans 'Sodium' %}</td>
+                                            <td class="text-right">
+                                                {% if item.lunchbox.sodium %}{{ item.lunchbox.sodium }}{% else %}
+                                                    XX{% endif %}
+                                                <strong>MGr</strong></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <br>
+                            {% endif %}
+                            <div class="row">
+                                <div class="col-md-10 col-xs-16">
+                                    <table class="table">
+{#                                        {% if request.user.profile.company %}#}
+{#                                            <tr>#}
+{#                                                <td>{% trans 'Your company ordered' %}</td>#}
+{#                                                <td class="text-right">{{ item.lunchbox.id|get_company_orders_qty:request.user.id }}</td>#}
+{#                                            </tr>#}
+{#                                        {% endif %}#}
+                                        <tr>
+                                            <td>{% trans 'Original price' %}</td>
+                                            <td class="text-right"><span
+                                                    class="lb-price">{{ item.lunchbox.price }}</span> €
+                                            </td>
+                                        </tr>
+                                        {% if request.user.is_authenticated and item.lunchbox.price != item.lunchbox.id|user_price:request.user.id %}
+                                            <tr class="strong">
+                                                <td>{% trans 'Your price' %}</td>
+                                                <td class="text-right">{{ item.lunchbox.id|user_price:request.user.id }}
+                                                    €
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    </table>
+                                </div>
+                                <div class="col-md-6 col-xs-16 pull-right">
+                                    <div class="orders_qty pull-right w100">
+                                        <span class="qty">{{ item.lunchbox.id|get_company_orders_qty:request.user.id }}</span>
+                                        <span class="txt">{% trans 'Colleagues chose this today' %}</span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    {% if request.user.is_authenticated %}
+                                        <div class="select_box qty-box pull-right w100">
+                                            <strong>{% trans 'Quantity' %}</strong>
+                                            <input class="qty lb-qty" type="number" min="1" step="1" value="{{ item.qty }}" data-item-id={{ item.id }}>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    {% endif %}
+                                    {% if request.user.is_authenticated and not request.user.profile.is_restaurant %}
+                                        <br>
+                                        <a href="{% url 'remove_from_catering_cart' item.id %}"
+                                           class="btn col-md-15 col-xs-15 btn-default pull-right w100 remove-btn">{% trans 'Remove' %}</a>
+                                    {% else %}
+                                        <a class="btn btn-default col-md-15 col-xs-15 pull-right w100 btn-login"
+                                           href="#authorization">{% trans 'Log In!' %}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="clearfix"></div>
+            {% else %}
+                <div class="col-md-11  center cart_empty">
+                    <a href="{% url 'home' %}" class="empty_home_link"></a>
+                    <div class="col-md-10 center">
+                        <p class="first  text-uppercase">
+                            {% trans "Your basket is empty" %}
+                        </p>
+                        <img src="{% static 'img/box.png' %}" alt="" class="box">
+                        <p class="second">
+                            {% trans "Choose lunchbox" %}
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="cart-footer">
+                {% include 'inc/footer.html' %}
+            </div>
+        </div>
+    </div>
+
+    <!-- PAYMENT MODAL -->
+    <div id="paymentModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <p>{% trans 'Choose a payment method' %}</p>
+        </div>
+        <div class="modal-body">
+            <div class="paypal-form">
+                <form action="{% url 'order_payment' %}" method="POST" class="process_form">{% csrf_token %}
+                    <input type="hidden" name="orders" class="checkout_orders">
+                    <input type="hidden" name="is_catering" value="1">
+                    <input type="hidden" name="delivery_date_and_time" value="">
+                    <input type="hidden" name="payment_method" value="paypal">
+                    <input type="hidden" name="delivery_info" class="delivery_info">
+                </form>
+                <button type="submit" class="catering_cart_checkout_btn"><img src="{% static 'img/paypal-button.png' %}"></button>
+            </div>
+            <div class="redsys-form">
+                <form action="{% url 'order_payment' %}" method="POST" class="process_form">{% csrf_token %}
+                    <input type="hidden" name="orders" class="checkout_orders">
+                    <input type="hidden" name="is_catering" value="1">
+                    <input type="hidden" name="delivery_date_and_time" value="">
+                    <input type="hidden" name="payment_method" value="redsys">
+                    <input type="hidden" name="delivery_info" class="delivery_info">
+                </form>
+                <button type="submit" class="catering_cart_checkout_btn visa-btn"><img src="{% static 'img/visa-button.png' %}"></button>
+            </div>
+            <div class="ticket-restaurant-form">
+                <form action="{% url 'order_payment' %}" method="POST" class="process_form">{% csrf_token %}
+                    <input type="hidden" name="orders" class="checkout_orders">
+                    <input type="hidden" name="is_catering" value="1">
+                    <input type="hidden" name="delivery_date_and_time" value="">
+                    <input type="hidden" name="payment_method" value="redsys">
+                    <input type="hidden" name="delivery_info" class="delivery_info">
+                </form>
+                <button type="submit" class="catering_cart_checkout_btn ticket-restaurant-btn"><img src="{% static 'img/ticket-restaurant.png' %}"></button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById('paymentModal');
+        var btn = document.getElementById("checkout");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <a name="footer"></a>
+
+    <!-- PAYMENT MODAL -->
+    <div class="desktop-cart-footer">
+        {% include 'inc/footer.html' %}
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/jquery.datetimepicker.full.min.js' %}"></script>
+{% endblock %}

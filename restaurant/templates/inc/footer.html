@@ -1,0 +1,23 @@
+{% load static %}
+{% load i18n %}
+<footer>
+    <div class="o_footer_wrapper">
+        <div class="col-md-8 contact_info">
+{#            <a href="https://www.google.com/maps/place/Carrer+de+Mallorca,+508,+08013+Barcelona,+Spain/@41.4072969,2.1784941,17z/data=!3m1!4b1!4m5!3m4!1s0x12a4a2d91339dac1:0xa98c0fc262ac64df!8m2!3d41.4072969!4d2.1806828" target="_blank" class="contact-img">#}
+{#                <img src="{% static 'img/icons/contact_info.png' %}" alt="">#}
+{#            </a>#}
+{#            <p class="small contact-us">{% trans 'Contact us' %}: <a href="mailto:support@lafiambrera.cat">support@lafiambrera.cat</a><br>+34 655 017 173 | +34 650 346 885</p>#}
+        </div>
+        <div class="col-md-4 pull-right social_btns">
+            <a href="https://www.facebook.com/laFiambreraSpain/" target="_blank">
+                <img src="{% static 'img/icons/facebook.png' %}" alt="">
+            </a>
+            <a href="https://www.instagram.com/lafiambrera.cat/" target="_blank">
+                <img src="{% static 'img/icons/instagram.png' %}" alt="">
+            </a>
+            <p class="small contact-us">
+                {% trans 'Follow Us' %}!
+            </p>
+        </div>
+    </div>
+</footer>

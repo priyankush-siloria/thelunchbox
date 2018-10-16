@@ -1,0 +1,58 @@
+{% load static %}
+{% load thumbnail %}
+{% load i18n %}
+<div class="control_navigation">
+    <div class="elements col-md-16 col-lg-16 col-xs-16 center">
+        <div class="logo col-md-3 pull-left">
+            {% if restaurant.logo %}
+                <a href="{% url 'control' %}"><img src="{{ restaurant.logo|thumbnail_url:'restaurant_control_logo' }}"></a>
+            {% else %}
+                <a href="{% url 'control' %}"></a>
+                <div class="camera">
+                    <div class="line"></div>
+                    <span class="glyphicon glyphicon-camera"></span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-13 pull-right no-ma">
+            <div class="nav_wrapper">
+                <ul class="nav">
+                    <li><a href="{% url 'create_lunchbox' %}" id="create_lunchbox"
+                           {% if request.get_full_path == '/control/lunchbox/create/' or request.get_full_path == '/control/published_lunchboxes/' or request.get_full_path == '/control/saved_lunchboxes/' or request.get_full_path == '/control/archived_lunchboxes/' %}class="active"{% endif %}>{% trans 'Lunchbox' %}</a>
+                    </li>
+                    <li><a href="{% url 'restaurant_info' %}" id="restaurant_info" {% if request.get_full_path == '/control/restaurant/' %}
+                           class="active" {% endif %}>{% trans 'Restaurant' %}</a></li>
+                    <li><a href="{% url 'billing' %}" id="billing"
+                           {% if request.get_full_path == '/control/billing/' %}class="active"{% endif %}>{% trans 'Billing' %}</a>
+                    </li>
+                    <li><a href="{% url 'orders' %}" id="orders"
+                           {% if request.get_full_path == '/control/orders/' %}class="active"{% endif %}>{% trans 'Orders' %}</a>
+                    </li>
+                    {% if restaurant.has_contract %}
+                        <li><a href="{% url 'contract' %}" id="contract"
+                               {% if request.get_full_path == '/control/contract/' %}class="active"{% endif %}>{% trans 'Contract' %}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                {% if not request.user.is_staff %}
+                    <div class="notifications">
+                        <a href="{% url 'notifications' %}">
+                            {{ restaurant.get_notifications }}<br>
+                            <span>{% trans 'unread' %}</span>
+                        </a>
+                    </div>
+                {% endif %}
+                <ul class="lang">
+                    <li><a href="{% url 'change_lang' lng='en' %}"
+                           {% if request.LANGUAGE_CODE == 'en' %}class="active"{% endif %}>EN</a></li>
+                    <li><a href="{% url 'change_lang' lng='es' %}"
+                           {% if request.LANGUAGE_CODE == 'es' %}class="active"{% endif %}>ES</a></li>
+                    <li><a href="{% url 'logout' %}">
+                        <span class="glyphicon glyphicon-log-out"></span>
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

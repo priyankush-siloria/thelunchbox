@@ -1,0 +1,188 @@
+{% load static %}
+{% load socialaccount %}
+{% load i18n %}
+{% load l10n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>La-Fiambrera</title>
+    <!-- Bootstrap -->
+    <link href="{% static 'login_register/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'toast_noti/css/jquery.toast.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'login_register/css/loginstyle.css' %}" rel="stylesheet">
+    <link href="{% static 'login_register/css/font-awesome.css' %}" rel="stylesheet">
+
+   <!--  <script type="text/javascript" src="http://platform.linkedin.com/in.js">
+
+             api_key:  81zjgxl16376oa
+
+    </script> -->
+  </head>
+  <body>
+
+
+<script>
+ 
+var token = "{{csrf_token}}";
+
+</script>
+
+
+
+
+
+
+
+{% if messages %}
+
+        <ul class="messages" style="display: none;">
+            {% for message in messages %}
+             
+               {% if message|stringformat:"s" == 'success' %}  <li id="msgsucc" class="{{ message.tags }}">{%  trans 'Successfully Changed Password' %}</li>{% endif %}
+
+               {% if message|stringformat:"s" == 'error' %}  <li id="msg_error" class="{{ message.tags }}">{%  trans 'Error While Changing Password' %}</li>{% endif %}
+
+               {% if message|stringformat:"s" == 'AlreadyRegistered' %}  <li id="msg_already" class="{{ message.tags }}">{%  trans 'User Is  Already Registered Log In Instead' %}</li>{% endif %}
+
+               {% if message|stringformat:"s" == 'ExistsAgain' %}  <li id="msg_already" class="{{ message.tags }}">{%  trans 'User Is  Already Registered Log In Instead' %}</li>{% endif %}
+
+
+               <!-- {% if message.tags == 'error' %}  <li id="msg" class="{{ message.tags }}">{{ message }}</li>{% endif %} -->
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+<section class="login_form">
+
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-md-offset-3">
+          <div class="logo">
+            <img src="{% static 'login_register/images/login_btn_bg1.png' %}" alt="logo">
+           </div>
+
+            <form role="form"  method="POST" action="/login" >
+            {% csrf_token %}
+              <div class="form-group">
+                <input type="text" class="form-control" id="login_email" name="email" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="login_pwd" name="password" placeholder="Password">
+              </div>
+
+               <p  style="display:none" id="hidden_login_alert" >{% trans 'Email Or Password Is Incorrect' %}</p>
+          
+               <button  class="btn login_submit btn-default">{% trans 'Submit' %}</button>
+
+                 
+              <div class="form-group">
+              
+              <div class="form-group">
+                  <a href="{% provider_login_url 'facebook' method='oauth2' %}"
+                     class="btn btn-facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i><span>{% trans 'Login with' %} Facebook</span></a>
+                  <a href="{% provider_login_url 'linkedin' method='oauth2' %}"
+                     class="btn btn-linkedin"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span>{% trans 'Login with' %} Linkedin</span></a>
+              </div>
+            </div>
+
+                <!-- <a href="#" class="btn-linkedin">Login with Linkedin</a> -->
+                    <a href="{% url 'resregistration' %}" class="btn-linkedin register_btn">{% trans 'Register' %}</a>
+                     <a class="login-forget" href="/forget_password">{% trans 'Forgot your password?' %}</a>
+
+              </div>
+              </form>
+
+            
+                <!-- <input type="text" style="display:none"  id="forget_email_id"  placeholder="Email-Id">
+               
+                <button  style="display:none" id="go_forget">Go</button>
+
+                <span style="display:none" id="forget_email"></span>> -->
+
+
+
+
+          
+        </div>
+      </div>
+    </div>
+ </div> 
+</section>
+
+
+
+<script src="{% static 'js/jquery-3.1.0.min.js' %}"></script>
+ 
+<script src="{% static 'login_register/js/bootstrap.min.js' %}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'toast_noti/js/jquery.toast.js' %}"></script>
+<script src="{% static 'login_register/js/login.js' %}"></script>
+
+
+
+<script type="text/javascript">
+
+  $(document).on('click', '.forget_pass', function(){
+
+    $('#forget_email_id').show();
+    $('#go_forget').show();
+
+  });
+
+
+  // $(document).on('click', '#go_forget', function(){
+
+  //   var email_value=$('#forget_email_id').val();
+  //   if (email_value=='')
+  //       {
+  //         $('#forget_email_id').addClass('error');
+  //         return false;
+  //       }
+  //   if (email_value!='')
+  //   {
+
+  //     $.ajax({
+
+  //                     url: '/forget_password',
+  //                     type: 'GET',
+  //                     data: {
+  //                         'email_id':email_value,'csrfmiddlewaretoken': token
+  //                     },
+  //                     success: function (response) {
+  //                       alert(response);
+  //                        }
+  //                      });
+  //   }
+    
+
+  // });
+    
+    
+    // Setup an event listener to make an API call once auth is complete
+    function onLinkedInLoad() {
+        IN.Event.on(IN, "auth", getProfileData);
+    }
+
+    // Handle the successful return from the API call
+    function onSuccess(data) {
+        console.log(data);
+    }
+
+    // Handle an error response from the API call
+    function onError(error) {
+        console.log(error);
+    }
+
+    // Use the API call wrapper to request the member's basic profile data
+    function getProfileData() {
+        IN.API.Raw("/people/~").result(onSuccess).error(onError);
+    }
+
+</script>
+ </body>
+</html>

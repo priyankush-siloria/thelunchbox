@@ -1,0 +1,81 @@
+{% extends 'mainapp/base.html' %}
+{% load common_template_functions %}
+
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %} 
+{% block title %}
+
+
+ Search Result
+
+{% endblock %}
+
+{% block content %}
+<div class="restaurants" id="main_page_section">
+  <div class="container">
+   <div class="row">
+     <h1>{% trans 'Restaurants' %}</h1>
+     {% if restaurants %}
+        <ul>
+    
+            {% for restaurant in restaurants %}
+               <div class="col-md-4 col-sm-4 col-xs-12">
+                <li>
+                    {% if restaurant.logo %}
+                        <img src="{{ restaurant.logo|thumbnail_url:'home_lunchbox_pic' }}"></img>
+                    {% else %}
+                        <img src="{% static 'mainapp/img/default_front_logo.jpg' %}"></img>
+                    {% endif %}
+                    <div class="branch-name">
+                     <a href="{% url 'restaurant_profile' restaurant_id=restaurant.id %}">{{ restaurant.name }}</a>                    
+                    </div>
+                </li>                
+               </div>
+     
+            {% endfor %}
+    
+        </ul> 
+    {% else %}
+       <center> <label>{% trans 'Sorry, There is no restaurant available related to your search.' %}</label></center>
+    {% endif %}     
+   </div>      
+  </div>
+</div>
+<div class="restaurants lunchboxes">
+  <div class="container">
+    <div class="row">
+    <h1>Lunchboxes</h1>
+    {% if lunchboxes %}
+        <ul>
+        
+            {% for lunchbox in lunchboxes %}
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                     <li>
+                        {% if lunchbox.get_image %}
+                            
+                            {% if not lunchbox.get_image.image|thumbnail_url:'home_lunchbox_pic' %}
+                                <img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}"></img>
+                            {% else %}
+                                <img src="{{ lunchbox.get_image.image|thumbnail_url:'home_lunchbox_pic' }}"></img>
+                            {% endif %}
+                        {% else %}
+                            <img src="{% static 'mainapp/img/lunchbox_chicken_3.png' %}" ></img>
+                        {% endif %}
+                        <div class="branch-name">
+                        <a href="{% url 'individual_lunchbox' slug=lunchbox.category.slug pk=lunchbox.id %}">{{ lunchbox.name }}</a>                  
+                        </div>
+                    </li>                 
+                </div>
+            {% endfor %}
+        
+        </ul> 
+    {% else %}
+       <center> <label>{% trans 'Sorry, There is no lunchbox available related to your search.' %}</label></center>
+    {% endif %}             
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Order' %}{% endblock %}
+{% block content %}
+    <h3>{% trans 'Please wait...' %}</h3>
+    <div class="paypal_form">
+        {{ form.render }}
+    </div>
+{% endblock %}

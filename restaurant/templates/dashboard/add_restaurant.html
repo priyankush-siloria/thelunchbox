@@ -1,0 +1,297 @@
+{% extends 'dashboard/base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% block title %}
+Add Restaurant
+{% endblock %}
+
+{% block content %}
+         <div class="container">
+         <form id="edit_restaurant_form" enctype="multipart/form-data" action="{% url 'admin_restaurant_information' %}" method="POST">{% csrf_token %}
+            <div class="admin_registered_restaurants_outer admin_order_list_outer admin_billing_outer admin_restaurant_edit">
+               <div class="admin_order_inner admin_billing_inner admin_restaurant_edit_inner pull-left full-width">
+                  <section class="admin_restaurant_edit_section pull-left full-width">
+                           <div class="col-md-4 col-sm-4">
+                              <div class="row">
+                                 <div class="admin_restaurant_edit_pin pull-left full-width">
+                                    <div class="admin_restaurant_edit_big_img pull-left full-width">
+                                    <label for="file-input1">
+                                       <img id="gallerybigimg1" src="{% static 'dashboard/img/pin1.jpg' %}" alt="">
+                                       <input type="hidden" id="hidden1" >
+                                       </label>
+
+                                       <input id="file-input1" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg1','1')" name='myfile'/>
+                                      
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                           <div class="col-md-4 col-sm-4">
+                              <div class="row">
+                                 <div class="admin_restaurant_edit_pin pull-left full-width">
+                                    <div class="col-xs-12">
+                                       <div class="row">
+                                          <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                          <label for="file-input2">
+                                             <img id="gallerybigimg2" src="{% static 'dashboard/img/pin2.jpg' %}" alt="">
+                                             <input type="hidden" id="hidden2" >
+                                             </label>
+
+                                             <input id="file-input2" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg2','2')" name='myfile'/>
+                                            
+                                          </div>   
+                                       </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                       <div class="row">
+                                          <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                          <label for="file-input3">
+                                             <img id="gallerybigimg3" src="{% static 'dashboard/img/pin3.jpg' %}" alt="">
+                                             <input type="hidden" id="hidden3" >
+                                             </label>
+
+                                             <input id="file-input3" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg3','3')" name='myfile'/>
+                                            
+                                          </div>   
+                                       </div>
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                           <div class="col-md-4 col-sm-4">
+                              <div class="row">
+                                 <div class="admin_restaurant_edit_pin pull-left full-width">
+                                    <div class="col-xs-12">
+                                       <div class="row">
+                                          <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                          <label for="file-input4">
+                                             <img id="gallerybigimg4" src="{% static 'dashboard/img/pin4.jpg' %}" alt="">
+                                             <input type="hidden" id="hidden4" >
+                                             </label>
+
+                                             <input id="file-input4" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg4','4')" name='myfile'/>
+                                            
+                                          </div>   
+                                       </div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                       <div class="row">
+                                          <div class="admin_restaurant_edit_small_img pull-left full-width">
+                                          <label for="file-input5">
+                                             <img id="gallerybigimg5" src="{% static 'dashboard/img/pin5.jpg' %}" alt="">
+                                             <input type="hidden" id="hidden5" >
+                                                </label>
+
+                                                <input id="file-input5" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg5','5')" name='myfile'/>
+                                             
+                                          </div>   
+                                       </div>
+                                    </div>   
+                                 </div>
+                              </div>   
+                           </div>
+                  </section>
+                            
+                  <section class="attract_visitor_section pull-left full-width">
+                     <div class="attract_visitor_section_inner full-width pull-left">
+                        <table class="attract_visitor_table full-width">
+                           <thead>
+                              <tr>
+                                 <th colspan="4" class="text-center"><img src="{% static 'dashboard/img/tag-img.png' %}" alt="">&nbsp;{% trans 'Attract visitors to your restaurant! Offer a discount via coupons!' %}</th>
+                              </tr>
+                           </thead> 
+                           <tbody>
+
+                              <tr>
+                                 <td>{% trans 'Availability' %}</td>
+                                 
+                                 <td>
+                                    <lable>{% trans 'Start' %}</lable> 
+                                    <span class="admin_date_picker admin_start_date">
+                                       <input type="text" value="" placeholder="Select Date" id="datetimepicker3" name="discount_start_date" readonly="true"> 
+                                    </span>
+                                 </td> 
+                                 <td>
+                                    <lable> {% trans 'End' %}</lable> 
+                                    <span class="admin_date_picker admin_end_date">
+                                       <input type="text" value="" placeholder="Select Date" id="datetimepicker4" readonly="true" name="discount_end_date"> 
+                                    </span>
+                                 </td>
+                                 <td class="text-left">
+                                 
+
+                                    <input type="text" placeholder="Discount Text" value="" id="res_dis_text" name="res_dis_text">
+                                 
+                                 </td> 
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <lable> {% trans 'Time' %}</lable>
+                                 </td> 
+                                 <td>
+                                    <lable> {% trans 'From' %} </lable>
+                                    <span class="admin_date_picker admin_from_time">
+                                       <input type="text" value="" placeholder="Select time" id="datetimepicker1" readonly="true" name="discount_start_time"> 
+                                    </span>
+                                 </td>
+                                 <td>
+                                    <lable> {% trans 'Until' %} </lable>
+                                    <span class="admin_date_picker admin_from_time">
+                                       <input type="text" value="" placeholder="Select Time" id="datetimepicker2" readonly="true" name="discount_end_time">
+                                    </span>
+                                 </td>
+                                 <td>
+                                    {% trans 'ADD DISCOUNT:' %}<span class="admin_add_discount"><input id="discountp" type="text" value="" placeholder="5" name="discountp"></span>%
+                                 </td> 
+                              </tr>
+
+                              </tbody>  
+                        </table>
+                     </div>   
+                  </section>
+
+                  <section class="admin_delivery_section pull-left full-width">
+                     <div class="col-sm-6">
+                        <div class="row">
+                           <div class="admin_bananas_slice_section_inner pull-left full-width">  
+                              <h2><input style="color: #000000;" id="res_name" value="" placeholder="Restaurant Name" type="text" name="res_name"></h2>
+                                 <div class="admin_bananas_slice_section_content">
+                                    <textarea  id="res_desc" name="res_desc" style="width:100%; resize:vertical"></textarea>
+                                 </div>
+                           </div>
+                        </div>   
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="row">
+                           <div class="admin_inner_edit_restaurant_logo_all pull-left full-width">
+                              <div class="admin_inner_edit_restaurant_logo full-width">
+                                 <div class="admin_inner_edit_restaurant_logo_inner full-width">
+                                  <label for="file-input6">
+                                    <img id="gallerybigimg6" src="{% static 'dashboard/img/restaurant_logo_1.jpg' %}" alt="">
+                                 </label>
+                                  <input id="file-input6" type="file" accept="image/jpg,image/jpeg" style="display:none" onchange="imgvalidate(this,'gallerybigimg6','6')"/>
+                                 </div>   
+                              </div>
+                           </div>   
+                        </div>   
+                     </div>
+                  </section>
+
+                  <section class="admin_bananas_slice_section pull-left full-width">
+                     <div class="col-sm-12 col-md-6">
+                        <div class="row">
+                           <div class="admin_bananas_slice_section_outer pull-left full-width">
+                              <div class="admin_bananas_slice_section_inner pull-left full-width">
+                                 <div class="admin_delivery_outer pull-left full-width">
+                                    <div class="admin_delivery_inner pull-left full-width">
+                                       <h2>{% trans 'Delivery to' %}</h2>
+                                       {% if restaurant_delivery %}
+                                           {% for d in restaurant_delivery %}
+                                               <input type="checkbox" id="{{ d.city.id }}" class="city_delivery"
+                                                      {% if d.possible %}checked{% endif %}>
+                                               <label for="{{ d.city.id }}">{{ d.city.name }}</label>
+                                               <div class="clearfix"></div>
+                                           {% endfor %}
+                                       {% endif %}
+                                    </div>   
+                                 </div>
+
+                                 
+                                 <div class="admin_info_section">
+                                   <ul class="admin_address_listing">
+                                     <li class="admin_address_icon"><input id="autocomplete" onFocus="geolocate()" value="" placeholder="Address" type="text" name="res_address"></li>
+                                     <li><input id="street_number" placeholder="Street" value=""  type="text" name="res_street"></li>
+                                     <li><input id="locality" value=""  type="text" name="res_city" placeholder="City"></li>
+                                     <li><input id="administrative_area_level_1" value=""  type="hidden" name="res_state" placeholder="State"></li>
+                                     <li><input id="country" placeholder="Country" value=""  type="text" name="res_country"></li>
+                                     <li><input id="postal_code"  value="" placeholder="Postal Code" type="text" name="res_postal"></li>
+                                     <li class="admin_address_phone_icon"><input id="res_phone" value="" placeholder="Phone Number" type="text" name="phone"></li>
+
+
+                                     <li id="li_email_text" class="admin_address_email_icon"><input id="res_email" value="" placeholder="E-mail" type="text" name="email"></li>
+                                   </ul>
+
+                                   <ul class="admin_web_address">
+      
+                                    <li class="admin_web_address_web_icon"><input id="website" value="" placeholder="Website" type="text" name="website"></li>
+                                     
+                                    <li class="admin_web_address_fb_icon"><input id="facebook" value="" placeholder="Facebook" type="text" name="facebook"></li>
+                                    
+                                    <li class="admin_web_address_twitter_icon"><input id="twitter" value="" placeholder="Twitter" type="text" name="twitter"></li>
+                                    
+                                    <li class="admin_web_address_insta_icon"><input id="insta" value="" placeholder="Instagram" type="text" name="instagram"></li>
+                                   </ul>
+                                   
+                                   
+                                   
+                                   
+                                   <input id="route" value=""  type="hidden" name="route">
+                                 </div>
+                              </div>   
+                           </div>
+                        </div>   
+                     </div>
+
+                     <div class="col-sm-12 col-md-6">
+                        <div class="row">
+                           <div class="admin_outer_weak_start_end_section pull-left full-width">
+                              <div class="admin_inner_weak_start_end_section">
+                                 <div class="admin_outer_weak_start_end_table full-width">
+                                    <table class="admin_outer_weak_start_end full-width" id="mytable">
+                                       <thead>
+                                          <tr>
+                                             <td><span class="week_day_icon">Week day</span></td>
+                                             <td><span class="start_day_icon">Start</span></td>
+                                             <td colspan="2"><span class="end_day_icon">End</span></td>
+                                          </tr>
+                                       </thead>
+                                       <tbody>  
+                                        {% for i in day_dic %}
+                                             <tr class="res_shifts">
+
+                                             <td>
+                                                <lable>{{ i }}</lable>
+                                             </td>
+                                             <td><input id="id_form-{{ i }}-start" type="text" name="" value="" class="timepicker_d4"></td>
+                                             <td><input id="id_form-{{ i }}-end" type="text" name="" value="" class="timepicker_d5"></td>
+                                          </tr>
+                                        {% endfor %}
+                                       </tbody>
+                                    </table>
+                                 </div>   
+                                 <input type="hidden" id="shifts_array_value"  value="" name="shifts_array_value">
+                                 <input type="hidden" id="deliver_cities_array_value"  value="" name="deliver_cities_array_value">
+                                 <div class="admin_minimum_order_count full-width pull-left">
+                                    {% trans 'Minimum Order' %}:<input type="text" name="min_order" id="rest_min_order" value="1">
+                                 </div>
+                              </div>   
+                           </div>   
+                        </div>   
+                     </div>
+                  </section>
+
+               </div>
+            </div>
+
+            <div class="admin_edit_resturant_save_section pull-left full-width">
+               <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 pull-right">
+                  <div class="row">
+                     <div class="admin_edit_resturant_save_inner pull-left full-width">
+                        <button type="submit">Save</button>
+                        <div class="edit_restaurant_check">
+                       
+                           <input type="checkbox" name="photoshoot">
+                           <label></label>
+                        </div>
+                        <span>
+                           {% trans 'Photoshoot' %}<br>
+                           {% trans 'requested' %}
+                        </span>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </form>
+         </div>
+{% endblock %}

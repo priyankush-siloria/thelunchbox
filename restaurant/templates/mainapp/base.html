@@ -1,0 +1,83 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %}
+{% get_available_languages as LANGUAGES %}
+{% get_current_language as LANGUAGE_CODE %}     
+<!DOCTYPE html> 
+<html lang={{LANGUAGE_CODE}}>
+   <head>       
+       <title>
+       {% block title %}
+       {% endblock %}
+       </title>       
+        <meta charset=utf-8>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta content="IE=edge" http-equiv=X-UA-Compatible>
+        <meta content="width=device-width,initial-scale=1" name=viewport>
+        <title></title>
+        <link href="{% static 'mainapp/css/bootstrap.min.css' %}" rel=stylesheet>
+        <link href="{% static 'mainapp/css/style.css' %}" rel=stylesheet>
+         <link href="{% static 'mainapp/css/main_style.css' %}" rel=stylesheet>
+        <link href="{% static 'mainapp/css/font-awesome.min.css' %}" rel=stylesheet>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="{% static 'datepicker/jquery.datetimepicker.css' %}"/>
+        <link href="{% static 'toast_noti/css/jquery.toast.css' %}" rel="stylesheet" type="text/css">
+         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css" />
+   
+        {% block css %}
+        {% endblock %}
+   </head>
+   <body>
+        
+
+       {% include 'mainapp/header.html' %}
+
+       {% block content %}
+       {% endblock %}
+
+       {% include 'mainapp/footer.html' %}
+      <script src="{% static 'mainapp/js/jquery.js' %}"></script>
+
+        <!-- <script src="{% static 'datepicker/jquery.js' %}"></script> -->
+        
+        <script src="{% static 'datepicker/build/jquery.datetimepicker.full.js' %}"></script>
+
+        
+       <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+        
+        <script src="{% static 'mainapp/js/bootstrap.min.js' %}"></script> 
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjwFQSl6YAT8xSUNSrkZWt17tpLyd9zFQ&libraries=places&callback=initAutocomplete"
+        async defer></script>
+        <script src="{% static 'toast_noti/js/jquery.toast.js' %}"></script>
+        <script src="{% static 'js/pages.js' %}"></script>
+
+        <script>
+            $(document).ready(function() {
+                var s = $("header");
+                var pos = s.position();                
+                
+                $(window).scroll(function() {
+                    var windowpos = $(window).scrollTop();
+                    if (windowpos >= pos.top & windowpos >=100) {
+                        s.addClass("stick");
+                    } else {
+                        s.removeClass("stick"); 
+                    }
+                });
+            });   
+             var money_to_wallet="{% url 'save_money_wallet' %}";
+             var remove_cart_items="{% url 'remove_cart_item' %}";
+             var add_to_cart="{% url 'tocart' %}";
+             var token='{{ csrf_token }}';
+             var pay_credit="{% url 'pay_wallet' %}";
+             var share_lunchbox="{% url 'share_lunchbox' %}";
+             var accept_sharing="{% url 'accept_share' %}";
+             var login_change_password="{% url 'login_change_password'  %}";
+             var archieve_usernotification="{% url 'archieve_usernotification'  %}";
+        </script>  
+{% block scriptcode %}
+
+{% endblock %}
+    </body>
+</html>

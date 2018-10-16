@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans 'Site message' %}{% endblock %}
+{% block content %}
+    <div class="site_message_wrapper index">
+        <div class="col-md-6 col-xs-16 center">
+            <a href="{% if request.get_full_path != '/' %}{% url 'home_page' %}{% else %}#{% endif %}" class="logo">
+                <img src="{% static 'img/logo_main.png' %}">
+            </a>
+            <div class="clearfix"></div>
+            <strong>{{ title }}</strong>
+            <p>{{ msg }}</p>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                window.location.href = '/';
+            }, 3000);
+        });
+    </script>
+{% endblock %}

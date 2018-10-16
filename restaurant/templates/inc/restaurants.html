@@ -1,0 +1,503 @@
+{% load thumbnail %}
+{% load static %}
+{% load i18n %}
+{% load user_price %}
+{% load is_buyer %}
+{% load get_company_orders_qty %}
+{% load next_discount_qty %}
+{% load next_discount %}
+{% load all_discounts %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/jquery.datetimepicker.css' %}">
+{% endblock %}
+
+
+<h1 style="margin: -17px auto 0px; text-align: center; font-family: BodoniFLFBold,sans-serif; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); width: 69%; font-weight: 700; padding: 30px 20px; font-size: 24px;">Lunchboxes will arrive between 1pm and 3pm. Orders made after 12pm midday will be delivered the next day, or on a later selected date</h2>
+
+
+{% for r in filled_restaurants %}
+    {% with forloop.counter as outer_counter %}
+    <div  class="col-md-11   col-xs-16 center restaurant {% if forloop.counter|divisibleby:2 %}info-right{% endif %}">
+        <div class="restaurant-info col-md-7 col-xs-16">
+            <div class="col-md-16 restaurant-info-child">
+                {% if r.logo %}
+                    <div class="restaurant-logo img-responsive"
+                            style="background: url('/media/{{ r.logo }}') 50% 50% no-repeat; background-size: cover;">
+                    </div>
+                {% else %}
+                    <div class="restaurant-logo">
+                        <div class="camera">
+                            <div class="line"></div>
+                            <span class="glyphicon glyphicon-camera"></span>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="clearfix"></div>
+                <strong class="restaurant-title">{{ r.name|upper }}</strong>
+                <div class="clearfix"></div>
+                {% if r.desc|length > 15 %}
+                <p class="restaurant-desc">{{ r.desc|safe|truncatewords:'15'|linebreaks }} <i class="fa fa-angle-right" aria-hidden="true"></i><a href="{% url 'restaurant' r.slug %}">Read more</a></p>
+                
+
+                {% else %}
+                <p class="restaurant-desc">{{ r.desc|safe }}</p>
+                {% endif %}
+                <div class="clearfix"></div>
+                <p>
+                    <!-- <strong>{% trans 'Address' %}:</strong> {{ r.address }}<br> -->
+                    <!-- <strong>{% trans 'Phone Number' %}:</strong> {{ r.phone }} -->
+                </p>
+                <div class="clearfix"></div>
+                {% if r.get_coupon and request.user.is_authenticated and r.id|is_buyer:request.user.id %}
+                    <div class="coupon col-md-16 col-xs-16 pull-left">
+                        <a href="{% url 'get_coupon' r.id %}" target="_blank"></a>
+                        <p>{% trans 'Enjoyed Our Lunchbox?' %}</p>
+                        <p class="small">{{ r.get_coupon.discount_text }}</p>
+                        <p class="discount_text">{{ r.get_coupon.percent }}% {% trans 'off coupon' %}</p>
+                        <p class="small">{% trans 'click to save it' %}</p>
+                    </div>
+                {% endif %}
+                <div class="clearfix"></div>
+               <!--  <a href="{% url 'restaurant' r.slug %}"
+                   class="restaurant-see_profile">{% trans 'See restaurant information' %}</a>
+ -->
+                <p class="restaurant-min_order bg-warning col-md-16 col-xs-16 text-center">{% trans 'Minimum Order' %}: {{ r.min_order }}</p>
+            </div>
+        </div>
+        <div class="restaurant-lunchboxes col-md-9 col-xs-16">
+            {% if r.get_lunchboxes|length > 1 %}
+                <div class="swiper-container col-lg-16 col-md-16 col-xs-16">
+                    <div class="swiper-wrapper">
+                        {% for lb in r.get_lunchboxes %}
+                            <div class="restaurant-lunchbox swiper-slide col-xs-16 col-md-16 col-lg-16"
+                                 data-lunchbox="{{ lb.id }}">
+                            {% if lb.get_rating %}
+                                <div class="ribbon">
+                                    <p class="rating_txt">
+                                        {% trans 'Rating' %}
+                                    </p>
+                                    <p class="rating">{{ lb.get_rating }}</p>
+                                    <ul class="stars">
+                                        {% for r in lb.get_rating_int %}
+                                            <li><span class="glyphicon glyphicon-star"></span></li>
+                                        {% endfor %}
+                                        {% for r in lb.get_rating_diff %}
+                                            <li><span class="glyphicon glyphicon-star-empty"></span></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                                <div class="restaurant-lunchbox-gallery col-lg-16 col-md-16 col-xs-16">
+                                    {% if lb.get_images %}
+                                        {% for i in lb.get_images %}
+                                            {% if forloop.counter == 1 %}
+                                                <div class="big {% if lb.get_privileges %}with_privileges{% endif %}{% if outer_counter|divisibleby:2 %} with_privileges-odd{% else %} with_privileges-even{% endif %} col-lg-13 col-md-13 col-xs-13"
+                                                        {% if lb.get_image %}
+                                                            style="background: url('{{ lb.get_image.image|thumbnail_url:'normal_lb_big' }}') 50% 50% no-repeat"
+                                                        {% endif %}>
+                                                    {% for i in lb.get_images %}
+                                                        {% if i.image %}
+                                                            <img src="{{ i.image|thumbnail_url:'normal_lb_big' }}"
+                                                                 alt=""
+                                                                 class="hidden">
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    {% if not lb.get_image %}
+                                                        <div class="camera">
+                                                            <div class="line"></div>
+                                                            <span class="glyphicon glyphicon-camera"></span>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="big {% if lb.get_privileges %}with_privileges{% endif %}{% if outer_counter|divisibleby:2 %} with_privileges-odd{% else %} with_privileges-even{% endif %} col-lg-13 col-md-13 col-xs-13">
+                                            <div class="camera">
+                                                <div class="line"></div>
+                                                <span class="glyphicon glyphicon-camera"></span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% if lb.get_privileges %}
+                                        <div class="col-md-3 no-margins privileges">
+                                            {% for p in lb.get_privileges %}
+                                                <div class="col-md-16 no-margins">
+                                                    <img src="{{ p.privilege.image|thumbnail_url:'lb_privilege' }}"
+                                                         alt="">
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    <div class="clearfix"></div>
+                                </div>
+                                <strong class="restaurant-lunchbox-name">{{ lb.name|upper }}</strong>
+                                <p class="restaurant-lunchbox-desc">{{ lb.desc|safe }}</p>
+                                {% if lb.nfacts_is_filled %}
+                                    <div class="clearfix"></div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered no-margins nutrition_facts_table">
+                                            <tr>
+                                                <td class="table-head text-uppercase"
+                                                    colspan="4">{% trans 'The good side of the lunchbox' %}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>{% trans 'Total Calories' %}</td>
+                                                <td class="text-right">
+                                                    {% if lb.get_total_calories %}{{ lb.get_total_calories }}{% else %}
+                                                        XXX{% endif %} <strong>Kcal</strong></td>
+                                                <td>{% trans 'Fat' %}</td>
+                                                <td class="text-right">
+                                                    {% if lb.fat != None %}{{ lb.fat }}{% else %}XX{% endif %}
+                                                    <strong>Gr</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td>{% trans 'Protein' %}</td>
+                                                <td class="text-right">
+                                                    {% if lb.protein != None %}{{ lb.protein }}{% else %}XX{% endif %}
+                                                    <strong>Gr</strong></td>
+                                                <td>{% trans 'Sugar' %}</td>
+                                                <td class="text-right">
+                                                    {% if lb.sugar %}{{ lb.sugar }}{% else %}XX{% endif %} <strong>Gr</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>{% trans 'Carbohydrates' %}</td>
+                                                <td class="text-right">
+                                                    {% if lb.carbohydrates != None %}{{ lb.carbohydrates }}{% else %}
+                                                        XX{% endif %} <strong>Gr</strong></td>
+                                                <td>{% trans 'Sodium' %}</td>
+                                                <td class="text-right">
+                                                    {% if lb.sodium != None %}{{ lb.sodium }}{% else %}XX{% endif %}
+                                                    <strong>MGr</strong></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <br>
+                                {% endif %}
+                                <div class="row">
+                                    <div class="col-md-10 col-xs-16">
+                                        <table class="table">
+        
+{#                                            {% if request.user.profile.company %}#}
+{#                                                <tr>#}
+{#                                                    <td>{% trans 'Your company ordered' %}</td>#}
+{#                                                    <td class="text-right">{{ lb.id|get_company_orders_qty:request.user.id }}</td>#}
+{#                                                </tr>#}
+{#                                            {% endif %}#}
+                                            <tr>
+                                                <td>{% trans 'Original price' %}</td>
+                                                <td class="text-right">{{ lb.price }} €</td>
+                                            </tr>
+                                            {% if request.user.is_authenticated and lb.price != lb.id|user_price:request.user.id %}
+                                                <tr class="strong">
+                                                    <td>{% trans 'Your price' %}</td>
+                                                    <td class="text-right">{{ lb.id|user_price:request.user.id }}
+                                                        €
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+
+                                            {% if lb.get_discounts and lb.id|next_discount_qty:request.user.id and lb.id|next_discount:request.user.id %}
+
+                                            {% for discount in lb.id|all_discounts %}
+                                                <tr>
+                                                    <td>
+                                                    
+                                                      {{discount.percent}}% {% trans 'Discount available for' %} {{ discount.qty }} {% trans 'orders' %}</td>
+                                                    
+                                                    <td class="text-right">-{{ discount.discounted_price }}
+                                                        €
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            {% endif %}
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6 col-xs-16 pull-right">
+                                        {% if request.user.is_authenticated %}
+                                        <div class="orders_qty pull-right w100">
+                                            <span class="qty">{{ lb.id|get_company_orders_qty:request.user.id }}</span>
+                                            <span class="txt">{% trans 'Colleagues chose this today' %}</span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        {% else %}
+                                        <div class="orders_qty pull-right w100">
+                                            <span class="qty">{{ lb.id|get_company_orders_qty:-1 }}</span>
+                                            <span class="txt">{% trans 'People chose this today' %}</span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        {% endif %}
+                                        <div class="clearfix"></div>
+                                        {% if request.user.is_authenticated %}
+{#                                            <div class="select_box pull-right w100">#}
+{#                                                <strong>{% trans 'Quantity' %}</strong>#}
+{#                                                <select name="qty" id="" class="qty">#}
+{#                                                    {% for i in lb.get_range %}#}
+{#                                                        <option value="{{ i }}">{{ i }}</option>#}
+{#                                                    {% endfor %}#}
+{#                                                </select>#}
+{#                                            </div>#}
+
+                                            <div class="select_box pull-right w100">
+                                                <strong>{% trans 'Quantity' %}</strong>
+                                                <input class="qty lb-qty" type="number" min="1" step="1" value="1">
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        {% endif %}
+                                      
+                                        <span class="cart_delivery_text">{% trans 'Select delivery date' %}:</span>
+                                        <input type="text" name='l_date' class="datepicker w100 cart_delivery_date" data-lunchbox-id={{ lb.id }}>
+
+                                        <span>{% trans 'Delivery Time' %}: </span>
+                                     <!--          <select name="time" id="" class="time orders">
+                                                    
+                                                        <option value="1-2 PM">1-2 PM</option>
+                                                        <option value="2-3 PM">2-3 PM</option>
+                                                    
+                                                </select> -->
+                                                <input type="text" name="time" class="time timepicker" />
+                                            <button class="btn col-md-16 col-xs-8 btn-default add_to_basket w100">
+                                                {% trans 'Put in basket' %}
+                                            </button>
+
+                                            <a href="{% url 'cart' %}" class="btn col-md-16 col-xs-8 go-to-basket btn-default pull-right w100">
+                                                {% trans 'Go to checkout' %}
+                                            </a>
+
+{#                                            <button class="btn col-md-16 col-xs-8 btn-default add_to_basket catering pull-right w100"#}
+{#                                               data-min="{{ r.min_order }}">#}
+{#                                                {% trans 'Catering' %}#}
+{#                                            </button>#}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="prev glyphicon glyphicon-chevron-left"></div>
+                <div class="next glyphicon glyphicon-chevron-right"></div>
+            {% else %} {# lunchboxes|length == 1 #}
+                {% for lb in r.get_lunchboxes %}
+                    {% if lb.get_rating %}
+                        <div class="ribbon">
+                            <p class="rating_txt">
+                                {% trans 'Rating' %}
+                            </p>
+                            <p class="rating">{{ lb.get_rating }}</p>
+                            <ul class="stars">
+                                {% for r in lb.get_rating_int %}
+                                    <li><span class="glyphicon glyphicon-star"></span></li>
+                                {% endfor %}
+                                {% for r in lb.get_rating_diff %}
+                                    <li><span class="glyphicon glyphicon-star-empty"></span></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    <div class="restaurant-lunchbox" data-lunchbox="{{ lb.id }}">
+                        <div class="restaurant-lunchbox-gallery col-lg-16 col-md-16 col-xs-16 no-margins">
+                            {% if lb.get_images %}
+                                {% for i in lb.get_images %}
+                                    {% if forloop.counter == 1 %}
+                                        <div class="big {% if lb.get_privileges %}with_privileges{% endif %}{% if outer_counter|divisibleby:2 %} with_privileges-odd{% else %} with_privileges-even{% endif %} col-lg-13 col-md-13 col-xs-13"
+                                                {% if lb.get_image %}
+                                                    style="background: url('{{ lb.get_image.image|thumbnail_url:'normal_lb_big' }}') 50% 50% no-repeat"
+                                                {% endif %}>
+                                            {% for i in lb.get_images %}
+                                                {% if i.image %}
+                                                    <img src="{{ i.image|thumbnail_url:'normal_lb_big' }}"
+                                                         alt=""
+                                                         class="hidden">
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if not lb.get_image %}
+                                                <div class="camera">
+                                                    <div class="line"></div>
+                                                    <span class="glyphicon glyphicon-camera"></span>
+                                                </div>
+                                            {% endif %}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <div class="big {% if lb.get_privileges %}with_privileges{% endif %}{% if outer_counter|divisibleby:2 %} with_privileges-odd{% else %} with_privileges-even{% endif %} col-lg-13 col-md-13 col-xs-13">
+                                    <div class="camera">
+                                        <div class="line"></div>
+                                        <span class="glyphicon glyphicon-camera"></span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if lb.get_privileges %}
+                                <div class="col-md-3 no-margins privileges">
+                                    {% for p in lb.get_privileges %}
+                                        <div class="col-md-16 no-margins">
+                                            <img src="{{ p.privilege.image|thumbnail_url:'lb_privilege' }}" alt="">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="clearfix"></div>
+                        </div>
+                        <strong class="restaurant-lunchbox-name">{{ lb.name|upper }}</strong>
+                        <p class="restaurant-lunchbox-desc">{{ lb.desc|safe }}</p>
+                        {% if lb.nfacts_is_filled %}
+                            <div class="clearfix"></div>
+                            <div class="table-responsive nutrition_facts_table">
+                                <table class="table table-bordered no-margins">
+                                    <tr>
+                                        <td class="table-head text-uppercase"
+                                            colspan="4">{% trans 'The good side of the lunchbox' %}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{% trans 'Total Calories' %}</td>
+                                        <td class="text-right">
+                                            {% if lb.get_total_calories %}{{ lb.get_total_calories }}{% else %}
+                                                XXX{% endif %} <strong>Kcal</strong></td>
+                                        <td>{% trans 'Fat' %}</td>
+                                        <td class="text-right">{% if lb.fat != None %}{{ lb.fat }}{% else %}XX{% endif %}
+                                            <strong>Gr</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{% trans 'Protein' %}</td>
+                                        <td class="text-right">
+                                            {% if lb.protein != None %}{{ lb.protein }}{% else %}XX{% endif %}
+                                            <strong>Gr</strong></td>
+                                        <td>{% trans 'Sugar' %}</td>
+                                        <td class="text-right">
+                                            {% if lb.sugar != None %}{{ lb.sugar }}{% else %}XX{% endif %}
+                                            <strong>Gr</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{% trans 'Carbohydrates' %}</td>
+                                        <td class="text-right">
+                                            {% if lb.carbohydrates != None %}{{ lb.carbohydrates }}{% else %}XX{% endif %}
+                                            <strong>Gr</strong></td>
+                                        <td>{% trans 'Sodium' %}</td>
+                                        <td class="text-right">
+                                            {% if lb.sodium != None %}{{ lb.sodium }}{% else %}XX{% endif %}
+                                            <strong>MGr</strong></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-md-10 col-xs-16">
+                                <table class="table">
+{#                                    {% if request.user.profile.company %}#}
+{#                                        <tr>#}
+{#                                            <td>{% trans 'Your company ordered' %}</td>#}
+{#                                            <td class="text-right">{{ lb.id|get_company_orders_qty:request.user.id }}</td>#}
+{#                                        </tr>#}
+{#                                    {% endif %}#}
+                                    <tr>
+                                        <td>{% trans 'Original price' %}</td>
+                                        <td class="text-right">{{ lb.price }} €</td>
+                                    </tr>
+                                    {% if request.user.is_authenticated and lb.price != lb.id|user_price:request.user.id %}
+                                        <tr class="strong">
+                                            <td>{% trans 'Your price' %}</td>
+                                            <td class="text-right">{{ lb.id|user_price:request.user.id }} €</td>
+                                        </tr>
+                                    {% endif %}
+                                   <!--  {% for x in lb.get_discounts %}
+
+                                    x.qty
+
+                                    {% endfor%} -->
+                                    {% if lb.get_discounts and lb.id|next_discount_qty:request.user.id and lb.id|next_discount:request.user.id %}
+                                       {% for discount in lb.id|all_discounts %}
+                                                <tr>
+                                                    <td>
+                                                    
+                                                      {{discount.percent}}% {% trans 'Discount available for' %} {{ discount.qty }} {% trans 'orders' %}</td>
+                                                    
+                                                    <td class="text-right">-{{ discount.discounted_price }}
+                                                        €
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                    {% endif %}
+                                </table>
+                            </div>
+                            <div class="col-md-6 col-xs-16 pull-right">
+                                {% if request.user.is_authenticated %}
+                                <div class="orders_qty pull-right w100">
+                                    <span class="qty">{{ lb.id|get_company_orders_qty:request.user.id }}</span>
+                                    <span class="txt">{% trans 'Colleagues chose this today' %}</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                                {% else %}
+                                <div class="orders_qty pull-right w100">
+                                    <span class="qty">{{ lb.id|get_company_orders_qty:-1 }}</span>
+                                    <span class="txt">{% trans 'People chose this today' %}</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                                {% endif %}
+                                <div class="clearfix"></div>
+                                {% if request.user.is_authenticated %}
+{#                                    <div class="select_box pull-right w100">#}
+{#                                        <strong>{% trans 'Quantity' %}</strong>#}
+{#                                        <select name="qty" id="" class="qty">#}
+{#                                            {% for i in lb.get_range %}#}
+{#                                                <option value="{{ i }}">{{ i }}</option>#}
+{#                                            {% endfor %}#}
+{#                                        </select>#}
+<div class="select_box pull-right w100">
+                                        <strong>{% trans 'Quantity' %}</strong>
+                                        <input class="qty lb-qty" type="number" min="1" step="1" value="1">
+                                    </div>
+                                          <span class="cart_delivery_text">{% trans 'Select delivery date' %}:</span>
+                                        <input type="text"   id="idOfUl" class="datepicker  w100 cart_delivery_date" data-lunchbox-id={{ lb.id }}>
+                                        <span>Delivery Time </span>
+                                              <select name="time" id="" class="time">
+                                                    
+                                                        <option value="1-2 PM">1-2 PM</option>
+                                                        <option value="2-3 PM">2-3 PM</option>
+                                                    
+                                                </select>
+
+{#                                    </div>#}
+
+                                    
+                                    <div class="clearfix"></div>
+                                {% endif %}
+                            
+                                    <button class="btn col-md-16 col-xs-8 btn-default add_to_basket w100">
+                                        {% trans 'Put in basket' %}
+                                    </button>
+
+                                    <a href="{% url 'cart' %}" class="btn col-md-16 col-xs-8 go-to-basket btn-default pull-right w100">
+                                        {% trans 'Go to checkout' %}
+                                    </a>
+
+{#                                    <button class="btn col-md-16 col-xs-8 btn-default add_to_basket catering pull-right w100"#}
+{#                                       data-min="{{ r.min_order }}">#}
+{#                                        {% trans 'Catering' %}#}
+{#                                    </button>#}
+                  
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    {% endwith %}
+
+    {% empty %}
+    <div class="col-md-11 center info-box">
+        <div class="col-md-10 center">
+            <p class="no-restaurants-available text-uppercase">
+                {% trans "No restaurants available" %}
+            </p>
+        </div>
+    </div>
+
+{% endfor %}
+

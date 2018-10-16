@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load is_buyer %}
+{% load i18n %}
+{% load thumbnail %}
+{% load user_leave_review %}
+{% block title %}{% trans 'Restaurant profile' %}{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'swiper/dist/css/swiper.min.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="section fp-auto-height graybg" data-anchor="restaurants">
+        <div class="pseudo-nav"></div>
+        {% include 'inc/nav.html' %}
+        <div class="restaurant-profile col-md-11 col-xs-16 center">
+            <div class=" profile_gallery swiper-container col-md-10 col-xs-16">
+                <div class="swiper-wrapper">
+                    {% for i in r.get_images %}
+                        <div class="swiper-slide">
+                            <img src="{{ i.image|thumbnail_url:'gallery_image' }}" alt="">
+                        </div>
+                    {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            <div class="profile_info col-md-6 col-xs-6">
+                {% if r.logo %}
+                    <div class="restaurant-logo img-responsive"
+                            style="background: url('/media/{{ r.logo }}') 50% 50% no-repeat; background-size: cover;">
+                    </div>
+                {% else %}
+                    <div class="restaurant-logo">
+                        <div class="camera">
+                            <div class="line"></div>
+                            <span class="glyphicon glyphicon-camera"></span>
+                        </div>
+                    </div>
+                {% endif %}
+                <strong class="restaurant-title clearfix">{{ r.name }}</strong>
+                <p class="restaurant-desc">{{ r.desc|safe }}</p>
+                <div class="clearfix"></div>
+                <div class="contact_info">
+                    {% trans 'Address' %}: {{ r.address }}<br>
+                    {% trans 'Phone' %}: {{ r.phone }}<br>
+                    {% if r.website %}{% trans 'Website' %}: <a href="{{ r.website }}" target="_blank">{{ r.website }}</a>{% endif %}
+                    <ul>
+                        {% if r.facebook %}
+                            <li><a href="{{ r.facebook }}" target="_blank">Facebook</a></li>{% endif %}
+                        {% if r.twitter %}
+                            <li><a href="{{ r.twitter }}" target="_blank">Twitter</a></li>{% endif %}
+                        {% if r.instagram %}
+                            <li><a href="{{ r.instagram }}" target="_blank">Instagram</a></li>{% endif %}
+                    </ul>
+
+                    <strong>{% trans 'Opening hours' %}:</strong>
+                    {% if r.opening_hours %}
+                        <pre class="opening-hours">{{ r.opening_hours }}</pre>
+                    {% else %}
+                        {% trans 'Not available' %}
+                    {% endif %}
+                </div>
+                <div class="clearfix"></div>
+                {% if coupon and request.user.is_authenticated and r.id|is_buyer:request.user.id %}
+                    <div class="coupon col-md-16 col-xs-16 pull-left">
+                        <a href="{% url 'get_coupon' r.id %}" target="_blank"></a>
+                        <p>{% trans 'Enjoyed Our Lunchbox?' %}</p>
+                        <p class="small">{{ coupon.discount_text }}</p>
+                        <p class="discount_text">{{ coupon.percent }}% {% trans 'off coupon' %}</p>
+                        <p class="small">{% trans 'click to save it' %}</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="reviews col-md-11 center" data-res="{{ r.id }}">
+            <p class="title">
+                {% if request.user.is_authenticated and not r.id|user_leave_review:request.user.id and r.id|is_buyer:request.user.id %}
+                    {% trans 'Leave a review for' %} [{{ r.name }}]
+                {% else %}
+                    {% trans 'Reviews' %}
+                {% endif %}
+            </p>
+            <div class="review-msgs">
+                {% if r.get_reviews %}
+                    {% for f in r.get_reviews %}
+                        <strong>{{ f.user.first_name }} {{ f.user.last_name }}</strong>
+                        <div class="clearfix"></div>
+                        <span>{{ f.datetime|date:'H:i Y. M d' }}</span>
+                        <div class="clearfix"></div>
+                        <p>{{ f.msg }}</p>
+                        <div class="clearfix"></div>
+                    {% endfor %}
+                {% else %}
+                    <strong class="no_review_msg">{% trans "Currently, the restaurant doesn't have any reviews." %}</strong>
+                {% endif %}
+            </div>
+            {% if request.user.is_authenticated and not r.id|user_leave_review:request.user.id and r.id|is_buyer:request.user.id %}
+                <textarea name="msg" class="msg" placeholder="{% trans 'Write your review here!' %}"></textarea>
+                <button>{% trans 'send' %}</button>
+            {% endif %}
+        </div>
+        <div class="clearfix"></div>
+        <br>
+        {% if  lunchboxes or lunchboxes_unrated or lunchboxes_rated or other_lunchboxes %}
+            <h1 class="text-center divider col-md-11 center">{% trans 'Present Lunchboxes from' %} <span
+                    class="text-uppercase">[{{ r.name }}]</span>
+            </h1>
+        {% endif %}
+        {% if not user.is_authenticated %}
+            {% for lb in lunchboxes %}
+                {% include 'inc/restaurant_lunchbox.html' %}
+            {% endfor %}
+            {% if archived_other_lunchboxes %}
+                <h1 class="text-center divider col-md-11 center">{% trans 'Archived Lunchboxes from' %} <span
+                        class="text-uppercase">[{{ r.name }}]</span>
+                </h1>
+                {% for lb in archived_other_lunchboxes %}
+                    {% include 'inc/restaurant_archived_lunchbox.html' %}
+                {% endfor %}
+            {% endif %}
+        {% else %}
+            {% for lb in lunchboxes_unrated %}
+                {% include 'inc/restaurant_lunchbox_unrated.html' %}
+            {% endfor %}
+            {% for lb in lunchboxes_rated %}
+                {% include 'inc/restaurant_lunchbox.html' %}
+            {% endfor %}
+            {% for lb in other_lunchboxes %}
+                {% include 'inc/restaurant_lunchbox.html' %}
+            {% endfor %}
+            {% if archived_lunchboxes_unrated or archived_lunchboxes_rated or archived_other_lunchboxes %}
+                <h1 class="text-center divider col-md-11 center">{% trans 'Archived Lunchboxes from' %} <span
+                        class="text-uppercase">[{{ r.name }}]</span>
+                </h1>
+            {% endif %}
+            {% for lb in archived_lunchboxes_unrated %}
+                {% include 'inc/restaurant_archived_lunchbox_unrated.html' %}
+            {% endfor %}
+            {% for lb in archived_lunchboxes_rated %}
+                {% include 'inc/restaurant_archived_lunchbox.html' %}
+            {% endfor %}
+            {% for lb in archived_other_lunchboxes %}
+                {% include 'inc/restaurant_archived_lunchbox.html' %}
+            {% endfor %}
+        {% endif %}
+        <div class="restaurant-profile-footer">
+            {% include 'inc/footer.html' %}
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'swiper/dist/js/swiper.min.js' %}"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+
+            // If we need pagination
+            pagination: '.swiper-pagination',
+
+            // Navigation arrows
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev'
+        })
+    </script>
+{% endblock %}

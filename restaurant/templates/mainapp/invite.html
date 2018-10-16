@@ -1,0 +1,42 @@
+{% extends 'mainapp/base.html' %}
+{% load common_template_functions %}
+
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load l10n %} 
+{% block title %}
+Invite
+{% endblock %}
+
+{% block content %}
+<section class="invite-friend-section full-width">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="inner_title full-width">
+                     <h1 class="pull-left full-width text-center">{% trans 'Invite a Friend' %}</h1>
+                  </div>
+               </div> 
+
+               <div class="col-md-10 col-normal">
+                  <div class="form invite-friend-email">
+                     <div class="invite-email-input">
+                        <input type="email" name="email" id="email" placeholder="Friend's Email ID">
+                        <button class="send_invite">{% trans 'Invite' %}</button>
+                     </div>   
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <script type="text/javascript">
+		var invite_address='{% url "invite_mail" %}';
+	</script>
+{% endblock %}
+
+
+
+ 
+
+	
